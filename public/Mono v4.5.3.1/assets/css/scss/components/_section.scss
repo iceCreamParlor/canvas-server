@@ -1,0 +1,130 @@
+//
+// Sections Styles //
+//
+.section-xs {
+	padding: 50px 0;
+	&.bg-image {
+		.container, .container-fluid { padding: 50px 20px; }
+	}
+}
+.section-sm {
+	padding: 70px 0;
+	&.bg-image {
+		.container, .container-fluid { padding: 70px 20px; }
+	}
+}
+.section, .section-md {
+	padding: 100px 0;
+	&.bg-image {
+		.container, .container-fluid { padding: 100px 20px; }
+	}
+}
+.section-lg {
+	padding: 160px 0;
+	&.bg-image {
+		.container, .container-fluid { padding: 160px 20px; }
+	}
+}
+.section-xl {
+	padding: 200px 0;
+	&.bg-image {
+		.container, .container-fluid { padding: 200px 20px; }
+	}
+}
+@include breakpoint-less(md) {
+	.section-xs {
+		padding: 30px 0;
+		&.bg-image {
+			.container, .container-fluid { padding: 30px 20px; }
+		}
+	}
+	.section-sm {
+		padding: 50px 0;
+		&.bg-image {
+			.container, .container-fluid { padding: 50px 20px; }
+		}
+	}
+	.section, .section-md {
+		padding: 80px 0;
+		&.bg-image {
+			.container, .container-fluid { padding: 80px 20px; }
+		}
+	}
+	.section-lg {
+		padding: 140px 0;
+		&.bg-image {
+			.container, .container-fluid { padding: 140px 20px; }
+		}
+	}
+	.section-xl {
+		padding: 180px 0;
+		&.bg-image {
+			.container, .container-fluid { padding: 180px 20px; }
+		}
+	}
+}
+.section-xs, 
+.section-sm, 
+.section, .section-md, 
+.section-lg, 
+.section-xl {
+	&.bg-image {
+		padding: 0;
+	}
+}
+
+//
+// Section Title //
+//
+.section-title {
+	position: relative;
+	margin-bottom: 70px;
+	p {
+		max-width: 700px;
+		margin-bottom: 10px;
+	}
+	&.text-center {
+		p {
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+	&.text-right {
+		p {
+			margin-left: auto;
+		}
+	}
+	.btn, .button, .text-btn {
+		margin-bottom: 10px;
+	}
+}
+.text-center {
+	.section-title {
+		p {
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+}
+.text-right {
+	.section-title {
+		p {
+			margin-left: auto;
+		}
+	}
+}
+
+//
+// Home Section - Fullscreen //
+//
+.section-fullscreen {
+	width: 100%;
+	height: 100%;
+	div[class^='bg-black'], div[class*=' bg-black'], 
+	.bg-white, div[class^='bg-white-0'], div[class*=' bg-white-0']  {
+		height: 100%;
+	}
+	.container, .container-fluid {
+		height: 100%;
+	}
+}

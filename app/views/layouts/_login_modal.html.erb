@@ -1,0 +1,39 @@
+<!-- Login Modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email" %>
+          </div>
+        
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, class:"form-control", autocomplete: "current-password" %>
+          </div>
+        
+          <% if devise_mapping.rememberable? -%>
+            <!-- <div class="form-group"> -->
+            <!-- <div class="row"> -->
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            <!-- </div> -->
+          <% end -%>
+        </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="submit" class="btn btn-dark">로그인</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

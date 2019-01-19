@@ -1,0 +1,31 @@
+//
+// Box Styles //
+//
+.border-radius {
+	border-radius: 6px;
+}
+.box-circle {
+	border-radius: 50%;
+}
+.box-shadow {
+	@include box-shadow(0 0 30px 0 rgba(0,0,0,0.09));
+}
+.box-shadow-with-hover {
+	@include box-shadow(0 0 30px 0 rgba(0,0,0,0.09));
+	@include transition(ease-out 0.2s);
+	&:hover {
+		@include box-shadow(0 0 36px 0 rgba(0,0,0,0.14));
+	}
+}
+.hover-float {
+	@include transition(ease-out 0.2s);
+	&:hover {
+		@include transform(translateY(-5px));
+	}
+}
+.hover-scale {
+	@include transition(ease-out 0.2s);
+	&:hover {
+		@include transform(scale(1.02));
+	}
+}

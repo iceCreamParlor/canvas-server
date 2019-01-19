@@ -1,0 +1,497 @@
+//
+// Owl Carousel Styles //
+//
+.owl-carousel {
+	.owl-item {
+		img { width: auto; }
+	}
+
+	.owl-nav {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		left: 0;
+		@include transform(translateY(-50%));
+		padding-bottom: 60px;
+		button {
+			&.owl-next, &.owl-prev {
+				color: $color-black-06;
+				&:hover, &:focus {
+					color: $color-black;
+				}
+			}
+		}
+	}
+	.owl-prev, .owl-next {
+		position: absolute;
+		color: $color-black;
+		font-size: 16px;
+		@include transition(linear 0.1s);
+		&:hover, &:focus {
+			opacity: 0.5;
+		}
+	}
+	.owl-prev { left: 0; }
+	.owl-next { right: 0; }
+	&[data-owl-nav="true"] {
+		padding: 0 46px;
+		@include breakpoint-less(sm) {
+			padding: 0 36px;
+		}
+	}
+	&[data-owl-dots="false"], 
+	&.owl-dots-overlay {
+		.owl-nav {
+			padding-bottom: 20px;
+		}
+	}
+
+	.owl-dots {
+		margin-top: 30px;
+		text-align: center;
+		line-height: 0;
+		.owl-dot {
+			position: relative;
+			display: inline-block;
+			width: 9px;
+			height: 9px;
+			margin-right: 16px;
+			&:last-child {
+				margin: 0;
+			}
+			&:before {
+				content: '';
+				position: absolute;
+				top: 1px;
+				right: 1px;
+				bottom: 1px;
+				left: 1px;
+				opacity: 0.3;
+				background: $color-black;
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				@include transition(linear 0.1s);
+			}
+			&:hover, &:focus, &.active {
+				&:before {
+					opacity: 1;
+					background: $color-black;
+				}
+			}
+			&.active {
+				&:before {
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					width: 9px;
+					height: 9px;
+				}
+			}
+		}
+	}
+	//
+	// Owl Nav Overlay //
+	//
+	&.owl-nav-overlay {
+		padding: 0;
+		.owl-nav {
+			padding-bottom: 90px;
+			button {
+				&.owl-next, &.owl-prev {
+					opacity: 0.9;
+					background: $color-black-04;
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+					color: $color-white-07;
+					text-align: center;
+					i {
+						line-height: 50px;
+					}
+					&:hover, &:focus {
+						opacity: 1;
+						color: $color-white;
+					}
+				}
+			}
+			.owl-prev { left: 30px; }
+			.owl-next { right: 30px; }
+			@include breakpoint-less(lg) {
+				.owl-prev { left: 20px; }
+				.owl-next { right: 20px; }
+			}
+		}
+		&[data-owl-dots="false"], 
+		&.owl-dots-overlay {
+			.owl-nav {
+				padding-bottom: 50px;
+			}
+		}
+	}
+	@include breakpoint-above(lg) {
+		&.owl-nav-overlay {
+			.owl-nav {
+				opacity: 0;
+				visibility: hidden;
+				@include transition(linear 0.1s);
+			}
+		}
+		&:hover {
+			.owl-nav {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+	//
+	// Owl Dots Overlay //
+	//
+	&.owl-dots-overlay {
+		.owl-dots {
+			position: absolute;
+			bottom: 30px;
+			left: 50%;
+			@include transform(translateX(-50%));
+			background: $color-black-04;
+			border-radius: 40px;
+			padding: 10px 14px;
+			.owl-dot {
+				&:before {
+					opacity: 1;
+					background: $color-white-05;
+				}
+				&:hover, &:focus, &.active {
+					&:before {
+						background: $color-white;
+					}
+				}
+			}
+		}
+		@include breakpoint-less(lg) {
+			.owl-dots {
+				bottom: 20px;
+			}
+		}
+	}
+}
+
+//
+// Owl Nav Positions //
+//
+.owl-carousel {
+	&.owl-nav-left, 
+	&.owl-nav-right {
+		.owl-nav {
+			padding-bottom: 40px;
+			.owl-prev, 
+			.owl-next {
+				position: static;
+				top: auto;
+				@include transform(translateY(0));
+				display: block;
+				margin: 8px 0;
+			}
+			.owl-prev { left: auto; }
+			.owl-next { right: auto; }
+			@include breakpoint-less(lg) {
+				.owl-prev { left: auto; }
+				.owl-next { right: auto; }
+			}
+		}
+		&[data-owl-dots="false"], 
+		&.owl-dots-overlay {
+			.owl-nav {
+				padding-bottom: 0;
+			}
+		}
+	}
+	&.owl-nav-left {
+		.owl-nav { right: auto; left: 0; }
+		&[data-owl-nav="true"] {
+			padding: 0 0 0 46px;
+			@include breakpoint-less(sm) {
+				padding: 0 0 0 36px;
+			}
+		}
+	}
+	&.owl-nav-right {
+		.owl-nav { right: 0; left: auto; }
+		&[data-owl-nav="true"] {
+			padding: 0 46px 0 0;
+			@include breakpoint-less(sm) {
+				padding: 0 36px 0 0;
+			}
+		}
+	}
+	//
+	// Owl Nav Positions on Overlay //
+	//
+	&.owl-nav-overlay {
+		&.owl-nav-left, 
+		&.owl-nav-right {
+			padding: 0;
+		}
+		&.owl-nav-left {
+			.owl-nav { left: 30px; right: auto; }
+		}
+		&.owl-nav-right {
+			.owl-nav { left: auto; right: 30px; }
+		}
+		@include breakpoint-less(lg) {
+			&.owl-nav-left {
+				.owl-nav { left: 20px; }
+			}
+			&.owl-nav-right {
+				.owl-nav { right: 20px; }
+			}
+		}
+	}
+}
+
+//
+// Owl Dots Positions //
+//
+.owl-carousel {
+	&.owl-dots-left {
+		.owl-dots { text-align: left; }
+	}
+	&.owl-dots-right {
+		.owl-dots { text-align: right; }
+	}
+	//
+	// Owl Nav Dots on Overlay //
+	//
+	&.owl-dots-overlay {
+		&.owl-nav-left {
+			&[data-owl-nav="true"] {
+				.owl-dots { margin-left: 23px; }
+				@include breakpoint-less(sm) {
+					.owl-dots { margin-left: 18px; }
+				}
+				&.owl-nav-overlay {
+					.owl-dots { margin-left: 0; }
+					@include breakpoint-less(sm) {
+						.owl-dots { margin-left: 0; }
+					}
+				}
+				&.owl-dots-right {
+					.owl-dots { margin-left: 0; }
+				}
+				&.owl-dots-left {
+					.owl-dots {
+						margin-left: 46px;
+					}
+					@include breakpoint-less(sm) {
+						.owl-dots { margin-left: 36px; }
+					}
+					&.owl-nav-overlay {
+						.owl-dots {
+							margin-left: 0;
+						}
+						@include breakpoint-less(sm) {
+							.owl-dots { margin-left: 0; }
+						}
+					}
+				}
+			}
+		}
+		&.owl-nav-right {
+			&[data-owl-nav="true"] {
+				.owl-dots { margin-left: -23px; }
+				@include breakpoint-less(sm) {
+					.owl-dots { margin-left: -18px; }
+				}
+				&.owl-nav-overlay {
+					.owl-dots { margin-left: 0; }
+					@include breakpoint-less(sm) {
+						.owl-dots { margin-left: 0; }
+					}
+				}
+				&.owl-dots-left {
+					.owl-dots { margin-left: 0; }
+				}
+				&.owl-dots-right {
+					.owl-dots {
+						margin-right: 46px;
+					}
+					@include breakpoint-less(sm) {
+						.owl-dots { margin-right: 36px; }
+					}
+					&.owl-nav-overlay {
+						.owl-dots {
+							margin-right: 0;
+						}
+						@include breakpoint-less(sm) {
+							.owl-dots { margin-right: 0; }
+						}
+					}
+				}
+			}
+		}
+		&.owl-dots-left, 
+		&.owl-dots-right {
+			.owl-dots {
+				@include transform(translateX(0));
+			}
+		}
+		&.owl-dots-left {
+			.owl-dots { left: 30px; }
+		}
+		&.owl-dots-right {
+			.owl-dots { left: auto; right: 30px; }
+		}
+		@include breakpoint-less(lg) {
+			&.owl-dots-left {
+				.owl-dots { left: 20px; }
+			}
+			&.owl-dots-right {
+				.owl-dots { right: 20px; }
+			}
+		}
+	}
+}
+
+//
+// Owl Nav - Layout 2 //
+//
+.owl-carousel {
+	&.owl-nav-layout-2 {
+		.owl-nav {
+			padding-bottom: 80px;
+			button {
+				&.owl-next, &.owl-prev {
+					opacity: 0.8;
+					background: $color-black-01;
+					width: 46px;
+					height: 46px;
+					border-radius: 0;
+					text-align: center;
+					i {
+						line-height: 46px;
+					}
+					&:hover, &:focus {
+						opacity: 1;
+					}
+				}
+			}
+		}
+		&.owl-dots-overlay, 
+		&[data-owl-dots="false"] {
+			.owl-nav {
+				padding-bottom: 40px;
+			}
+			&.owl-nav-left, &.owl-nav-right {
+				.owl-nav {
+					padding-bottom: 0;
+				}
+			}
+		}
+		@include breakpoint-less(sm) {
+			.owl-nav {
+				button {
+					&.owl-next, &.owl-prev {
+						width: 36px;
+						height: 36px;
+						i {
+							line-height: 36px;
+						}
+					}
+				}
+			}
+		}
+		&.owl-nav-left, &.owl-nav-right {
+			.owl-nav {
+				.owl-prev, .owl-next {
+					margin: 0;
+				}
+			}
+		}
+		&.owl-nav-overlay {
+			.owl-nav {
+				button {
+					&.owl-next, &.owl-prev {
+						opacity: 0.9;
+						background: $color-black-04;
+						width: 50px;
+						height: 50px;
+						border-radius: 0;
+						color: $color-white-07;
+						text-align: center;
+						i {
+							line-height: 50px;
+						}
+						&:hover, &:focus {
+							opacity: 1;
+							color: $color-white;
+						}
+					}
+				}
+				.owl-prev { left: 0; }
+				.owl-next { right: 0; }
+				@include breakpoint-less(lg) {
+					.owl-prev { left: 0; }
+					.owl-next { right: 0; }
+				}
+			}
+			&.owl-nav-left {
+				.owl-nav {
+					left: 0;
+				}
+			}
+			&.owl-nav-right {
+				.owl-nav {
+					right: 0;
+				}
+			}
+		}
+	}
+}
+
+//
+// Owl Controls on section-fullscreen/container-fluid //
+//
+.section-fullscreen {
+	.owl-carousel {
+		height: 100%;
+		padding-bottom: 50px;
+		.owl-stage-outer, .owl-stage, .owl-item, .bg-image {
+			height: 100%;
+		}
+		&.owl-dots-overlay {
+			padding-bottom: 0;
+		}
+		.owl-dots {
+			margin-top: 20px;
+		}
+	}
+}
+
+//
+// Owl Controls on Dark background //
+//
+.bg-dark, .bg-dark-lighter, .bg-dark-lightest, div[class^='bg-black'], div[class*=' bg-black'] {
+	.owl-carousel {
+		button {
+			&.owl-prev, &.owl-next {
+				color: $color-white-07;
+				&:hover, &:focus {
+					color: $color-white;
+				}
+			}
+		}
+		.owl-dots {
+			.owl-dot {
+				&:before {
+					background: $color-white;
+				}
+				&:hover, &:focus, &.active {
+					&:before {
+						background: $color-white;
+					}
+				}
+			}
+		}
+	}
+}
