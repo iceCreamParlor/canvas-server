@@ -1,9 +1,10 @@
 <div class="auth-form-area">
   <div class="container">
+    <h2>로그인</h2>
     <div class="row">
-      <div class="col-sm-12 col-md-2"></div>
-      <div class="col-sm-12 col-md-8">
-        <h2>로그인</h2>
+      
+      <div class="col-sm-12 col-md-6">
+        
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
@@ -17,18 +18,8 @@
           </div>
 
           <% if devise_mapping.rememberable? -%>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end -%>
-
-          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-              <%= link_to "비밀번호 찾기", new_password_path(resource_name) %>&nbsp; | &nbsp;
-          <% end -%>
-          
-          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-              <%= link_to "가입하기", new_registration_path(resource_name), :name => 'test' %>
+            <%= f.check_box :remember_me, style: "width: 5%;" %>
+            <%= f.label :remember_me, "Canvas에 계정 저장" %>
           <% end -%>
           
           <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -42,11 +33,31 @@
           <div class="actions">
             <%= f.submit "Log in" %>
           </div>
+          <%= render "devise/shared/links" %>
         <% end %>
 
-        <%= render "devise/shared/links" %>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-12 col-md-6">
+            <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to new_registration_path(resource_name), :name => 'test' do %>
+                <button class="margin-little" type="button" style="font-weight: 500; float: left;">회원가입</button>
+              <% end %>
+            <% end -%>
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to new_password_path(resource_name) do %>
+                <button class="margin-little" type="button" style="font-weight: 500; float: left;">비밀번호 찾기</button>
+              <% end %>
+            <% end -%>
+          </div>
       </div>
-      <div class="col-sm-12 col-md-2"></div>
+
+
+      </div>
+      <div class="col-sm-12 col-md-6">
+          
+        <img src="/images/sample_image1.jpeg" style="width: 100%;" alt="">
+            
+      </div>
     </div>
   </div>
 </div>    

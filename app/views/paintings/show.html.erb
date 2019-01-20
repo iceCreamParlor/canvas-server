@@ -2,38 +2,53 @@
   <div class="container">
     <div class="row col-spacing-50">
       <!-- Portfolio Content -->
+
       <div class="col-12 col-lg-8">
-        <div class="row gallery-wrapper spacing-20 hover-style-2">
-          <!-- Gallery image box 1 -->
-          <div class="col-12 gallery-box">
-            <% @painting.images.each do |image| %>
-              <div class="gallery-img">
-                <a href="../../assets/images/col-1.jpg" data-gallery-title="Gallery Image 1">
-                  <img src="../../assets/images/col-1.jpg" alt="">
-                </a>
-              </div>
-            <% end %>
+        <div class="owl-carousel owl-nav-overlay owl-dots-overlay" data-owl-items="1" data-owl-nav="true" data-owl-autoplay="true">
+
+        <% @painting.images.each do |image| %>
+          <div>
+            <a href="<%= image.url %>" data-gallery-title="Gallery Image 1">
+              <img src="<%= image.url %>" alt="">
+            </a>
           </div>
-        </div><!-- end row(inner) -->
+        <% end %>
+         
+        </div><!-- end owl-carousel -->
       </div>
       <!-- Sidebar -->
       <div class="col-12 col-lg-4">
         <div>
-          <h5>Single 3 - Gallery</h5>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+          <% if @painting.user_id == current_user.id %>
+            <%= link_to edit_painting_path(@painting) do %>
+              <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">수정</button>
+            <% end %>
+            <%= link_to painting_path(@painting), method: :delete do %>
+              <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">삭제</button>
+            <% end %>
+          <% end %>
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <div>
+          <h5><%= @painting.name %></h5>
+          <p style="white-space: pre;"><%= @painting.desc %></p>
+        </div>
+        <div class="margin-top-20">
+          <h6 class="heading-uppercase no-margin">작가</h6>
+          <span><%= @painting.user.nickname %></span>
         </div>
         <div class="margin-top-20">
           <h6 class="heading-uppercase no-margin">Category</h6>
-          <span>Photography</span>
+          <span><%= @painting.category.name %></span>
         </div>
         <div class="margin-top-20">
-          <h6 class="heading-uppercase no-margin">Client</h6>
-          <span>Brandname</span>
+          <h6 class="heading-uppercase no-margin">Price</h6>
+          <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
         </div>
-        <div class="margin-top-20">
-          <h6 class="heading-uppercase no-margin">Project Link</h6>
-          <a class="hyperlink-8" href="#">www.project.com</a>
-        </div>
+        
       </div>
     </div><!-- end row -->
   </div><!-- end container -->

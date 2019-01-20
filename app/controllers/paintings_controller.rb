@@ -1,10 +1,15 @@
 class PaintingsController < ApplicationController
+  before_action :set_options, only: [:new, :edit]
   before_action :set_painting, only: [:show, :edit, :update, :destroy]
+  
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /paintings
   # GET /paintings.json
   def index
     @paintings = Painting.all
+    @categories = Category.all
+    @colors = Color.all
   end
 
   # GET /paintings/1
@@ -14,7 +19,6 @@ class PaintingsController < ApplicationController
 
   # GET /paintings/new
   def new
-    @painting = Painting.new
   end
 
   # GET /paintings/1/edit
@@ -25,6 +29,7 @@ class PaintingsController < ApplicationController
   # POST /paintings.json
   def create
     @painting = Painting.new(painting_params)
+    @painting.user_id = current_user.id
 
     respond_to do |format|
       if @painting.save
@@ -63,13 +68,24 @@ class PaintingsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_options
+      @painting = Painting.new
+      @options_for_category = []
+      @options_for_color = []
+      Category.all.each do |c|
+        @options_for_category << [c.name, c.id]
+      end
+      Color.all.each do |c|
+        @options_for_color << [c.name, c.id]
+      end
+    end
     def set_painting
       @painting = Painting.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def painting_params
-      params.require(:painting).permit(:name, :price, :desc, :thumbnail, {images: []})
+      params.require(:painting).permit(:name, :category_id, :color_id, :price, :desc, :thumbnail, {images: []})
       
     end
 end

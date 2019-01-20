@@ -10,27 +10,51 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="form-group">
+        <%= form.label :category_id %>
+        <%= form.select(:category_id, options_for_select(@options_for_category), html: {class: "form-control"}) %>
+      </div>
+      <div class="form-group">
+        <%= form.label :color_id %>
+        <%= form.select(:color_id, options_for_select(@options_for_color)) %>
+      </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, required: true %>
+      </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
+      <div class="form-group">
+        <%= form.label :price %>
+        <%= form.number_field :price, required: true %>
+      </div>
 
-  <div class="field">
-    <%= form.label :desc %>
-    <%= form.text_area :desc %>
-  </div>
+      <div class="form-group">
+        <%= form.label :desc %>
+        <%= form.text_area :desc %>
+      </div>
 
-  <%= form.file_field :thumbnail %>
+      <% if painting.thumbnail.present? %>
+        <%= form.file_field :thumbnail %>
+      <% else %>
+        <%= form.file_field :thumbnail, required: true %>
+      <% end %>
 
-  <%= form.file_field :images, multiple: true %>
+      <% if painting.images.blank? %>
+        <%= form.file_field :images, multiple: true, required: true %>
+      <% else %>
+        <%= form.file_field :images, multiple: true %>
+      <% end %>
+      
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <img src="/images/sample_image1.jpeg" style="width: 100%;" alt="">
+    </div>
   </div>
 <% end %>
