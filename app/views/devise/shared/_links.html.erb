@@ -1,24 +1,27 @@
 <%- if devise_mapping.omniauthable? %>
-  <div>
+
+    
     <%- resource_class.omniauth_providers.each do |provider| %>
       <%= link_to omniauth_authorize_path(resource_name, provider) do %>
         <%- if provider.to_s == "google_oauth2" %>
           <% provider = "google plus" %>
         <% end %>
-        <button class="ui fluid large <%= provider %> icon button sns">
-          <i class="<%= provider %> icon" style="float: left"></i>
-          <% if provider.to_s == "facebook" %>
-            <% sns = '페이스북' %>
-          <% elsif provider.to_s == "google plus" %>
-            <% sns = '구글' %>
-          <% else %>
-            <% sns = '카카오' %>
-          <% end %>
-          <%= sns %> 계정으로 로그인
-        </button>
+        
+          <button class="ui fluid <%= provider %> icon button sns">
+            <i class="<%= provider %> icon" style="float: left"></i>
+            <% if provider.to_s == "facebook" %>
+              <% sns = '페이스북' %>
+            <% elsif provider.to_s == "google plus" %>
+              <% sns = '구글' %>
+            <% else %>
+              <% sns = '카카오' %>
+            <% end %>
+            <%= sns %> 계정으로 로그인
+          </button>
+        
       <% end -%>
     <% end -%>
-  </div>
+  
 <% end -%>
 
 

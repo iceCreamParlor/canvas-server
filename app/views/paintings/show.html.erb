@@ -1,14 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @painting.name %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @painting.price %>
-</p>
-
-<%= link_to 'Edit', edit_painting_path(@painting) %> |
-<%= link_to 'Back', paintings_path %>
+<div class="section">
+  <div class="container">
+    <div class="row col-spacing-50">
+      <!-- Portfolio Content -->
+      <div class="col-12 col-lg-8">
+        <div class="row gallery-wrapper spacing-20 hover-style-2">
+          <!-- Gallery image box 1 -->
+          <div class="col-12 gallery-box">
+            <% @painting.images.each do |image| %>
+              <div class="gallery-img">
+                <a href="../../assets/images/col-1.jpg" data-gallery-title="Gallery Image 1">
+                  <img src="../../assets/images/col-1.jpg" alt="">
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </div><!-- end row(inner) -->
+      </div>
+      <!-- Sidebar -->
+      <div class="col-12 col-lg-4">
+        <div>
+          <h5>Single 3 - Gallery</h5>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        </div>
+        <div class="margin-top-20">
+          <h6 class="heading-uppercase no-margin">Category</h6>
+          <span>Photography</span>
+        </div>
+        <div class="margin-top-20">
+          <h6 class="heading-uppercase no-margin">Client</h6>
+          <span>Brandname</span>
+        </div>
+        <div class="margin-top-20">
+          <h6 class="heading-uppercase no-margin">Project Link</h6>
+          <a class="hyperlink-8" href="#">www.project.com</a>
+        </div>
+      </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
+</div>

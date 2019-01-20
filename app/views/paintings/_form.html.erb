@@ -21,6 +21,15 @@
     <%= form.number_field :price %>
   </div>
 
+  <div class="field">
+    <%= form.label :desc %>
+    <%= form.text_area :desc %>
+  </div>
+
+  <%= form.file_field :thumbnail %>
+
+  <%= form.file_field :images, multiple: true %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

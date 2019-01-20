@@ -10,7 +10,9 @@ Devise.setup do |config|
   # KAKAOTALK SNS LOGIN
   config.omniauth :kakao, ENV["Kakao_Key"], :redirect_path => "/users/auth/kakao/callback"
   # FACEBOOK SNS LOGIN
-  config.omniauth :facebook, ENV["Facebook_Key"], ENV["Facebook_Secret"], :redirect_path => "/users/auth/facebook/callback"
+  # config.omniauth :facebook, ENV["Facebook_Key"], ENV["Facebook_Secret"], :redirect_path => "/users/auth/facebook/callback"
+  # GMAIL LOGIN
+  config.omniauth :google_oauth2, ENV["Google_Key"], ENV["Google_Secret"]
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing

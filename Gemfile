@@ -26,8 +26,12 @@ gem 'pg'
 gem 'omniauth'
 gem 'omniauth-kakao', :git => 'git://github.com/hcn1519/omniauth-kakao'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem 'figaro'
+
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

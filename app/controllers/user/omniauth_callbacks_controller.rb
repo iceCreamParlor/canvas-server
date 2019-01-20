@@ -42,7 +42,7 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     }
   end
-  [:kakao, :facebook].each do |provider|
+  [:kakao, :google_oauth2].each do |provider|
     provides_callback_for provider
   end
   # provider별로 서로 다른 로그인 경로 설정

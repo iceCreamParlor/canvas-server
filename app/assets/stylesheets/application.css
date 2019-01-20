@@ -14,6 +14,20 @@
  *= require_self
  */
 
-.page[data-page=paintings-index] .section {
+
+/* .page[data-page=paintings-index] .section {
   margin-top: 80px;
+} */
+.ui.fluid.kakao.icon.button.sns{
+  background-color: #FBDD04;
+  border-radius: 0px;
+}
+.ui.fluid.icon.button.sns{
+  border-radius: 0px;
+}
+.auth-form-area {
+  margin-top: 100px;
+}
+.margin-top-area{
+  margin-top: 30px;
 }
