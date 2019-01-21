@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable
 
   has_many :paintings
-  #!!!!@#!@#
+  
+  # 보낸 메세지, 받은 메세지 구성하는 부분
   has_many :arrived_messages, class_name: "Message", foreign_key: "buyer_id"
   has_many :sent_messages, class_name: "Message", foreign_key: "seller_id"
 
