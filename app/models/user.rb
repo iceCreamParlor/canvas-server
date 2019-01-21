@@ -5,6 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable
 
   has_many :paintings
+  #!!!!@#!@#
+  has_many :arrived_messages, class_name: "Message", foreign_key: "buyer_id"
+  has_many :sent_messages, class_name: "Message", foreign_key: "seller_id"
+
+  # Get all matches
+  def messages
+    self.arrived_messages + self.sent_messages
+  end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 

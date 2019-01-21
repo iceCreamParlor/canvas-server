@@ -19,7 +19,7 @@
       <!-- Sidebar -->
       <div class="col-12 col-lg-4">
         <div>
-          <% if @painting.user_id == current_user.id %>
+          <% if user_signed_in? && @painting.user_id == current_user.id %>
             <%= link_to edit_painting_path(@painting) do %>
               <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">수정</button>
             <% end %>
