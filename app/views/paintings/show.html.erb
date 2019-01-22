@@ -26,6 +26,12 @@
             <%= link_to painting_path(@painting), method: :delete do %>
               <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">삭제</button>
             <% end %>
+          <% else %>
+            <button type="button" 
+                    class="btn btn-outline-dark margin-little" 
+                    style="float:right;" 
+                    data-toggle="modal" 
+                    data-target="#message-modal">쪽지</button>
           <% end %>
         </div>
         <br>
@@ -38,7 +44,9 @@
         </div>
         <div class="margin-top-20">
           <h6 class="heading-uppercase no-margin">작가</h6>
-          <span><%= @painting.user.nickname %></span>
+          <%= link_to profile_path(@painting.user) do %>
+            <span><%= @painting.user.nickname %></span>
+          <% end %>
         </div>
         <div class="margin-top-20">
           <h6 class="heading-uppercase no-margin">Category</h6>
@@ -53,3 +61,56 @@
     </div><!-- end row -->
   </div><!-- end container -->
 </div>
+
+<div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button id="message-close-btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <textarea class="form-control" id="content" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button onclick="messageButtonClicked()" type="button" class="btn btn-outline-dark">보내기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  function messageButtonClicked(){
+
+    <% if user_signed_in? %>
+
+      let senderId = <%= current_user.id %>;
+      let sellerId = <%= @painting.user_id %>;
+      let content = $('#content').val();
+
+      $.ajax({
+        headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        url: '<%= messages_path %>',
+        method: 'POST',
+        data: {
+          sender_id: senderId,
+          seller_id: sellerId,
+          content: content
+        },
+        success: function(){
+          $('#message-close-btn').click();
+        }
+      })
+      
+    <% else %>
+      // 로그인 화면을 띄운다.
+      window.location.href = "/users/sign_in"
+      
+    <% end %>
+  }
+</script>

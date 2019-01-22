@@ -10,7 +10,7 @@
 names = ['두근두근 용', '공작새', '호랑이']
 
 3.times do |index|
-  painting = Painting.create!(name: names[index], desc: names[index]+'입니다')
+  painting = Painting.create!(color_id: 1, user_id: 1, category_id: 1,name: names[index], desc: names[index]+'입니다')
   painting.thumbnail.store!(File.open(File.join(Rails.root, "/public/seeds/seed_#{index}_thumb.JPG")))
   painting.images = [
     File.open(File.join(Rails.root, "/public/seeds/seed_#{index}_image.JPG"))

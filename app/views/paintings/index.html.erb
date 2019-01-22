@@ -23,7 +23,7 @@
         <div id="product-container" class="row product-wrapper product-hover-style-2 margin-top-50">
           <% @paintings.each do |painting| %>
             
-            <div class="col-12 col-md-6 col-lg-4 product item">
+            <div class="col-6 col-md-6 col-lg-4 product item">
               <div class="product-img">
                 <%= link_to painting_path(painting) do %>
                   <img src="<%= painting.thumbnail.url %>" alt="">

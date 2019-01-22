@@ -6,6 +6,10 @@
         <label for="email" class="ui left aligned header" >email</label>
         <%= text_field_tag :email, nil, placeholder: "abc@example.com" %>
       </div>
+      <div class="ui field">
+        <label for="email" class="ui left aligned header" >email</label>
+        <%= text_field_tag :nickname, nil, placeholder: "닉네임" %>
+      </div>
       
       <div class="ui form">
         <%= submit_tag "제출", :class => 'ui fluid large yellow submit button' %>      
@@ -13,13 +17,22 @@
     </div>
   <% end %>
 <% else %>
-  <div class="ui form">
-    <%= link_to '메인 화면으로', root_path %>
-  </div>
+  <%= form_tag(register_infoget_path, :class => 'ui large form col s12') do %>
+    <div class="ui raised segment">
+      <div class="ui field">
+        <label for="email" class="ui left aligned header" >닉네임</label>
+        <%= text_field_tag :nickname, nil, placeholder: "닉네임" %>
+      </div>
+      
+      <div class="ui form">
+        <%= submit_tag "제출", :class => 'ui fluid large yellow submit button' %>      
+      </div>
+    </div>
+  <% end %>
   <script>
-    $(function(){
-      window.location.href = '/';
-    })
+    // $(function(){
+    //   window.location.href = '/';
+    // })
   </script>
 <% end %>
 <script>

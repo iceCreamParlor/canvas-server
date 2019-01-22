@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<meta name="description" content="">
 		<meta name="keywords" content="">
 		<%= csrf_meta_tags %>
@@ -57,29 +57,33 @@
 									%>
 							<% end %>
 						</li>
-
+					
 						<!-- Dropdown -->
+						<% if user_signed_in? %>
 						<li class="nav-item nav-dropdown">
-							<a class="nav-link" href="#">Dropdown</a>
+							<a class="nav-link" href="#">
+								<%= current_user.nickname %>
+							</a>
 				      <ul class="dropdown-menu">
-								<% if current_user.present? %>
 								<li>
-									<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-								</li>
-								<% else %>
+									<a href="#">쪽지 
+										<span style="float: right;" class="badge badge-light">
+											<%= current_user.arrived_messages.count %>
+										</span>
+									</a>
+								</li>	
 								<li>
-									<%= link_to 'Login',
-											'', 
-											data: { toggle: 'modal', target: '#login-modal' }
-										%>
+									<%= link_to '마이페이지', profile_path(current_user.id) %>
 								</li>
-								
-								<% end %>
+								<li>
+									<%= link_to "비밀번호 변경", edit_user_registration_path(), class: "big-button link twitter" %>
+								</li>
 							</ul>
 						</li>
+						<% end %>
 
 						<!-- Sub Dropdown -->
-						<li class="nav-item nav-dropdown">
+						<!-- <li class="nav-item nav-dropdown">
 							<a class="nav-link" href="#">Sub Dropdown</a>
 				        	<ul class="dropdown-menu">
 								<li class="sub-dropdown">
@@ -110,7 +114,7 @@
 									</div>
 								</li>
 							</ul>
-						</li>
+						</li> -->
 						<% if false %>
 						<!-- Mega Dropdown -->
 						<li class="nav-item nav-megadropdown">
@@ -186,6 +190,7 @@
 		<!-- ***** JAVASCRIPTS ***** -->
 
 		<!-- Plugins -->
+		<script src="https://unpkg.com/ionicons@4.5.1/dist/ionicons.js"></script>
 		<script src="/plugins/masonry.pkgd.min.js"></script>
 		<script src="/plugins/bootstrap/bootstrap.min.js"></script>
 		<script src="/plugins/appear.min.js"></script>
