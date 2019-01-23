@@ -1,0 +1,28 @@
+<script>
+  <% if @notice %>
+    $('#toast').toast({
+      delay: 500
+    })
+  <% end %>
+
+  // Check if mobile device
+  if( screen.width <= 480 ) {     
+    // mobile
+    window.MOBILE = true;
+  } else {
+    window.MOBILE = false;
+  }
+
+  // mobile일 경우, 네브바의 알림 상태를 바꾼다.
+  // if(!window.MOBILE){
+  //   $('#notification-count').css({
+  //     'display' : 'flex',
+  //     'right': '-1px',
+  //     'top' : '30px',
+  //     'position' : 'absolute'
+  //   })
+    
+  // } else {
+    
+  // }
+</script>

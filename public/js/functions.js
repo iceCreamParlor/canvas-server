@@ -386,10 +386,10 @@ $(function() {
   var htmlBody = $("html,body");
   var ssBtn = $(".scrolldown-btn, .scrolldown, .navbar a");
 
-  ssBtn.on("click", function(e) {
-    htmlBody.animate({scrollTop: $(this.hash).offset().top}, 700, "easeInOutQuart");
-    e.preventDefault();
-  });
+  // ssBtn.on("click", function(e) {
+  //   htmlBody.animate({scrollTop: $(this.hash).offset().top}, 700, "easeInOutQuart");
+  //   e.preventDefault();
+  // });
 
 
   /*===============================================

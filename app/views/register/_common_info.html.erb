@@ -30,14 +30,10 @@
     </div>
   <% end %>
   <script>
-    // $(function(){
-    //   window.location.href = '/';
-    // })
+    $(function(){
+      <% if @user.nickname.present? && @user.email.present? && @user.email != '' %>
+        window.location.href = '/';
+      <% end %>
+    })
   </script>
 <% end %>
-<script>
-  $(document).ready(function(){
-    
-    $('.ui.radio.checkbox').checkbox();
-  });
-</script>

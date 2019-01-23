@@ -29,9 +29,11 @@
 		<script src="/plugins/jquery.min.js"></script>
 		<script src="/plugins/bootstrap/popper.min.js"></script>
 				
+		
 
 	</head>
 	<body data-preloader="2">
+		
 		
 		<header>
 			<!-- navbar -->
@@ -57,12 +59,16 @@
 									%>
 							<% end %>
 						</li>
-					
+		
 						<!-- Dropdown -->
 						<% if user_signed_in? %>
 						<li class="nav-item nav-dropdown">
 							<a class="nav-link" href="#">
+								
 								<%= current_user.nickname %>
+									<span id="notification-count" class="badge badge-dark">
+										<%= current_user.arrived_messages.count %>
+									</span>
 							</a>
 				      <ul class="dropdown-menu">
 								<li>
@@ -75,9 +81,11 @@
 								<li>
 									<%= link_to '마이페이지', profile_path(current_user.id) %>
 								</li>
-								<li>
-									<%= link_to "비밀번호 변경", edit_user_registration_path(), class: "big-button link twitter" %>
-								</li>
+								<% if !@is_sns %>
+									<li>
+										<%= link_to "비밀번호 변경", edit_user_registration_path(), class: "big-button link twitter" %>
+									</li>
+								<% end %>
 							</ul>
 						</li>
 						<% end %>
@@ -184,7 +192,7 @@
 			<%= yield %>
 
 		</div>
-		
+		<%= render 'layouts/script' %>
 		<%= render 'layouts/toast' %>
 		<%= render 'layouts/login_modal', resource: User.new, resource_name: :user, devise_mapping: Devise.mappings[:user] %>
 		<!-- ***** JAVASCRIPTS ***** -->
@@ -212,12 +220,6 @@
 		<!-- <script src="/plugins/gmaps.min.js"></script> -->
 		<!-- Scripts -->
 		<script src="/js/functions.js"></script>
-		<script>
-			<% if @notice %>
-				$('#toast').toast({
-					delay: 500
-				})
-			<% end %>
-		</script>
+		
 	</body>
 </html>
