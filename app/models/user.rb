@@ -4,13 +4,20 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+  mount_uploader :image, ImageUploader
   has_many :paintings
-  
+  has_many :follows, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
+  has_many :followed, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
+
   # 보낸 메세지, 받은 메세지 구성하는 부분
   has_many :sent_messages, class_name: "Message", foreign_key: "buyer_id"
   has_many :arrived_messages, class_name: "Message", foreign_key: "seller_id"
 
   before_destroy :destroy_posts
+
+  def user_categories
+    Category.where(id: self.paintings.pluck(:category_id).uniq)
+  end
 
   # Get all matches
   def messages

@@ -34,3 +34,12 @@
 .margin-little{
   margin: 3px;
 }
+
+.profile-edit-btn{
+  float: right;
+}
+
+.profile-text{
+  font-size: 16px;
+  font-weight: 600;
+}

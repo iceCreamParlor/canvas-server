@@ -32,6 +32,10 @@
                     style="float:right;" 
                     data-toggle="modal" 
                     data-target="#message-modal">쪽지</button>
+            <button type="button" 
+                    class="btn btn-outline-dark margin-little"
+                    onclick="followUser()"
+                    style="float:right;">팔로우</button>        
           <% end %>
         </div>
         <br>
@@ -85,6 +89,19 @@
 
 <script>
   
+  function followUser(){
+    let followerId = <%= current_user.id %>;
+    let followeeId = <%= @painting.user.id %>;
+
+    $.ajax({
+      url: '/follow/' + followerId + '/' + followeeId,
+      method: 'GET',
+      success: function(){
+        console.log('follow 성공!');
+      }
+    })
+  }
+
   function messageButtonClicked(){
 
     <% if user_signed_in? %>

@@ -79,13 +79,12 @@
 									</a>
 								</li>	
 								<li>
-									<%= link_to '마이페이지', profile_path(current_user.id) %>
+									<%= link_to '프로필', profile_path(current_user.id) %>
 								</li>
-								<% if !@is_sns %>
-									<li>
-										<%= link_to "비밀번호 변경", edit_user_registration_path(), class: "big-button link twitter" %>
-									</li>
-								<% end %>
+								<li>
+									<%= link_to '마이페이지', profiles_path %>
+								</li>
+								
 							</ul>
 						</li>
 						<% end %>
@@ -189,6 +188,7 @@
 		</div>
 		<!-- end Scroll to top button -->
 		<div class="page" data-page="<%= controller_name %>-<%= action_name %>">
+			
 			<%= yield %>
 
 		</div>

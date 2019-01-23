@@ -1,0 +1,58 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+        
+      
+        <div class="col-sm-12 col-md-6">
+          <%= form_tag(profile_path(current_user.id), method: :put, :multipart => true) do %>
+            <div class="form-group">
+              <%= label_tag :nickname, "닉네임" %><br />
+              <%= text_field_tag :nickname, "#{current_user.nickname}" , class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= label_tag :desc, "소개" %><br />
+              <% if current_user.desc.present? %>
+                <%= text_area_tag :desc, 
+                    "#{current_user.desc}",
+                      class: "form-control",
+                      placeholder: "간략한 소개를 입력해 주세요." %>
+              <% else %>
+                <%= text_area_tag :desc, 
+                    "", 
+                    class: "form-control",
+                    placeholder: "간략한 소개를 입력해 주세요." %>
+              <% end %>
+            </div>
+            <div class="form-group">
+              <%= label_tag :instagram, "인스타그램" %><br />
+              <% if current_user.instagram.present? %>
+                <%= text_field_tag :instagram, 
+                    "#{current_user.instagram}",
+                     class: "form-control",
+                     placeholder: "인스타그램 url을 입력해 주세요." %>
+              <% else %>
+                <%= text_field_tag :instagram, 
+                    "", 
+                    class: "form-control",
+                    placeholder: "인스타그램 url을 입력해 주세요." %>
+              <% end %>
+            </div>
+            <div class="form-group">
+              <%= label_tag :image, "프로필 이미지" %><br />
+              <%= file_field_tag :image %>
+            </div>
+  
+            <div class="actions">
+              <button type="submit" class="btn btn-outline-dark">저장</button>
+            </div>
+          <% end %>
+  
+          
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <img src="/images/sample_image1.jpeg" style="width: 100%;" alt="">
+        </div>
+        
+    </div>
+  </div>
+</div>

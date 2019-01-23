@@ -4,54 +4,24 @@
     <div class="container">
       <div class="row align-items-center col-spacing-50">
         <div class="col-12 col-lg-4">
-          <% if @user.image.present? %>
-            <img class="box-shadow-with-hover" src="<%= @user.image.url %>" alt="">
-          <% end %>
+          <!-- <img class="box-shadow-with-hover" src="../assets/images/col-3-tall.jpg" alt=""> -->
         </div>
-        
-        <div class="col-12 col-lg-3">
-          
+        <div class="col-12 col-lg-8">
           <h2 class="font-weight-normal">
-            <%= @user.nickname %>
-            <%= link_to edit_profile_path(current_user.id) do %>
-              <button type="button" class="btn btn-outline-dark profile-edit-btn">수정</button>
-            <% end %>
+            <%= user.nickname %>
           </h2>
           <ul class="list-horizontal-dash margin-bottom-20">
-            <% @user_category.each do |category| %>
+            <% user_category.each do |category| %>
               <li class="heading-uppercase text-dark"><%= category.name %></li>
             <% end %>
           </ul>
           <ul class="list-horizontal-unstyled margin-bottom-20">
-            <!-- <li><a href="#"><i class="fab fa-facebook-f"></i></a></li> -->
-            <!-- <li><a href="#"><i class="fab fa-twitter"></i></a></li> -->
-            <!-- <li><a href="#"><i class="fab fa-pinterest"></i></a></li> -->
-            <% if @user.instagram.present? %>
-              <li>
-                <%= link_to "#{ @user.instagram }", target: "_blank", rel: "noopener noreferrer" do %>
-                  <i class="fab fa-instagram"></i>
-                <% end %>
-              </li>
-            <% end %>
-            
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
           </ul>
-          <div class="row">
-            <div class="col-4">
-              <span class="profile-text">게시물 <%= @user.paintings.count %></span>
-            </div>
-            <div style="text-align: center;" class="col-4">
-              <span class="profile-text">팔로워 <%= @user.followed.count %></span>
-            </div>
-            <div class="col-4">
-              <span style="float: right;" class="profile-text">팔로잉 <%= @user.follows.count %></span>
-            </div>
-            
-          </div>
-          <div class="margin-top-area">
-            <% if @user.desc.present? %>
-              <p><%= @user.desc %></p>
-            <% end %>
-          </div>
+          <p>그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. 그림을 팔거야. </p>
           <!-- Skills -->
           <!-- <div class="row margin-top-30">
             <div class="col-12 col-lg-6">
@@ -96,7 +66,6 @@
             </div> -->
           </div><!-- end inner row -->
         </div>
-        <div class="col-12 col-lg-5"></div>
       </div><!-- end row -->
     </div><!-- end container -->
   </div>
@@ -113,12 +82,12 @@
       </div>
     </div>
     <!-- Portfolio filter -->
-    <% if @user.paintings.present? %>
+    <% if user.paintings.present? %>
       <div class="filter filter-style-4 margin-bottom-50">
         <ul>
           <li class="active" data-filter="*">All</li>
          
-          <% @user_category.each_with_index do |category, index|%>
+          <% user_category.each_with_index do |category, index|%>
             <li data-filter=".category-<%= index %>"><%= category.name %></li>
           <% end %>
         </ul>
@@ -126,7 +95,7 @@
       <!-- end Portfolio filter -->
       <div class="portfolio-wrapper column-3 spacing-10">
         <!-- Portfolio box 1 -->
-        <% @user_category.each_with_index do |category, index|%>
+        <% user_category.each_with_index do |category, index|%>
           <% category.paintings.each do |painting| %>
             <%= link_to painting_path(painting) do %>
               <div class="portfolio-item category-<%= index %>">

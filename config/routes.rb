@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'register/info1'
   get 'register/info2'
   post 'register/infoget'
+
+  get 'follow/:follower_id/:followed_id', to: 'profiles#follow'
   
   resources :paintings
   resources :messages
