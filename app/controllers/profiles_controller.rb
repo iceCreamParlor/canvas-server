@@ -17,8 +17,10 @@ class ProfilesController < ApplicationController
         @is_following = false
       end
     end
-    @follow_members = @user.follow_members
-    @following_members = @user.following_members
+    if user_signed_in?
+      @follow_members = current_user.follow_members
+      @following_members = current_user.following_members
+    end
   end
   
   def edit
