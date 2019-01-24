@@ -16,7 +16,11 @@
                 <span style="margin-left: 10px;"><%= user.nickname %></span>
               </div>
               <% if user_signed_in? %>
-                <button  class="btn btn-outline-dark" data-following="true" data-user="<%= user.id %>" onclick="followUser(this)" >언팔로우</button> 
+                <% if current_user.is_following(user) %>
+                  <button  class="btn btn-outline-dark" data-following="true" data-user="<%= user.id %>" onclick="followUser(this)" >언팔로우</button> 
+                <% else %>
+                  <button  class="btn btn-outline-dark" data-following="false" data-user="<%= user.id %>" onclick="followUser(this)" >팔로우</button> 
+                <% end %>
               <% end %>
             </li>
           <% end %>
