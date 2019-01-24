@@ -133,7 +133,7 @@
       <div class="portfolio-wrapper column-3 spacing-10">
         <!-- Portfolio box 1 -->
         <% @user_category.each_with_index do |category, index|%>
-          <% category.paintings.each do |painting| %>
+          <% category.filter_paintings(user: @user).each do |painting| %>
             <%= link_to painting_path(painting) do %>
               <div class="portfolio-item category-<%= index %>">
                 <div class="portfolio-box">

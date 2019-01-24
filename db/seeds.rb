@@ -16,4 +16,4 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 #     File.open(File.join(Rails.root, "/public/seeds/seed_#{index}_image.JPG"))
 #   ]
 #   painting.save
-end
+# end
