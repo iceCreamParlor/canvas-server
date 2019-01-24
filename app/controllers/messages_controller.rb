@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     painting_id = params[:painting_id]
 
     if painting_id.present?
-      Message.create(buyer_id: buyer_id, seller_id: seller_id, painting_id: painting_id, content: content, message_type: 'question')
+      Message.create!(buyer_id: buyer_id, seller_id: seller_id, painting_id: painting_id, content: content, message_type: 'question')
     else
       Message.create(buyer_id: buyer_id, seller_id: seller_id, content: content, message_type: 'question')
     end

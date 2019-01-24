@@ -1,0 +1,81 @@
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="replyModalTitle">답장하기</h5>
+        <button id="message-close-btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="sellerId">
+        <input type="hidden" id="buyerId">
+        <input type="hidden" id="paintingId">
+        <div class="form-group">
+          <input disabled type="text" class="form-control" id="buyer">
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="content" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button onclick="messageButtonClicked()" type="button" class="btn btn-outline-dark">보내기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).on("click", ".reply-btn", function () {
+  let sellerId = $(this).data('seller');
+  let buyerId = $(this).data('buyer');
+  let buyerName = $(this).data('buyerName');
+  let paintingId = $(this).data('painting');
+  $('#buyer').val(buyerName)
+  $('#sellerId').val(sellerId);
+  $('#buyerId').val(buyerId);
+  $('#paintingId').val(paintingId);
+  
+  // $('#addBookDialog').modal('show');
+});
+function messageButtonClicked(){
+  let sellerId = $('#sellerId').val();
+  let buyerId = $('#buyerId').val();
+  let paintingId = $('#paintingId').val();
+  let content = $('#content').val();
+
+  if(paintingId != -1){
+    $.ajax({
+      headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      url: '<%= messages_path %>',
+      method: 'POST',
+      data: {
+        painting_id: paintingId,    
+        sender_id: sellerId,
+        seller_id: buyerId,
+        content: content
+      },
+      success: function(){
+        $('#message-close-btn').click();
+      }
+    })
+  } else {
+
+    $.ajax({
+      headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      url: '<%= messages_path %>',
+      method: 'POST',
+      data: {
+        sender_id: sellerId,
+        seller_id: buyerId,
+        content: content
+      },
+      success: function(){
+        $('#message-close-btn').click();
+      }
+    })
+
+  }
+}
+  
+</script>

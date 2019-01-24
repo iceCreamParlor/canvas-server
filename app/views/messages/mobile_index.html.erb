@@ -1,5 +1,42 @@
 <div class="section">
   <div class="container">
-    MOBILE
+    <div class="section-title text-center">
+      <h3>메세지</h3>
+    </div>
+    <ul class="accordion accordion-oneopen">
+      <% @messages.each do |message| %>
+        <li>
+          <div class="accordion-title">
+            <h6 class="heading-uppercase">
+              <%= message.content %>
+            </h6>
+          </div>
+          <div class="accordion-content">
+            <p><%= message.buyer.nickname %></p>
+            <% if message.painting.present? %>
+              <div class="margin-top-area">
+                <img src="<%= message.painting.thumbnail.url %>" alt="">
+                <p><%= message.painting.name %></p>
+              </div>
+            <% end %>
+            <button type="button" 
+                    class="btn btn-outline-dark float-right reply-btn"
+                    data-seller="<%= message.seller_id %>"
+                    data-buyer="<%= message.buyer_id %>"
+                    data-buyer-name="<%= message.buyer.nickname %>"
+                    <% if message.painting.present? %>
+                    data-painting="<%= message.painting_id %>"
+                    <% else %>
+                    data-painting="-1"
+                    <% end %>
+                    data-toggle="modal" 
+                    data-target="#replyModal">답장</button>
+          </div>
+          
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
+
+<%= render 'reply' %>

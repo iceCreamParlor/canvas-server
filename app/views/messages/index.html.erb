@@ -13,12 +13,26 @@
               <div class="accordion-title">
                 <h6 class="heading-uppercase message-content"><%= message.content %></h6>
               </div>
-              <% if message.painting.present? %>
+              
                 <div class="accordion-content">
+                  <% if message.painting.present? %>
                   <p class="painting-price"><%= message.painting.price %></p>
-                  <p class="sender-nickname"><%= User.find(message.buyer_id).nickname %></p>
+                  <% end %>
+                  <p class="sender-nickname"><%= User.find(message.buyer_id).nickname %>
+                  <button type="button" 
+                    class="btn btn-outline-dark float-right reply-btn"
+                    data-seller="<%= message.seller_id %>"
+                    data-buyer="<%= message.buyer_id %>"
+                    data-buyer-name="<%= message.buyer.nickname %>"
+                    <% if message.painting.present? %>
+                    data-painting="<%= message.painting_id %>"
+                    <% else %>
+                    data-painting="-1"
+                    <% end %>
+                    data-toggle="modal" 
+                    data-target="#replyModal">답장</button>
+                  </p>
                 </div>
-              <% end %>
             </li>
           <% end %>
         </ul>  
@@ -46,6 +60,8 @@
     </div>
   </div>
 </div>
+
+<%= render 'reply' %>
 
 <script>
   let messages = <%= @messages_json.html_safe %>;
