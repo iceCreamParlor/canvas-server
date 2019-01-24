@@ -15,6 +15,18 @@ class PaintingsController < ApplicationController
   # GET /paintings/1
   # GET /paintings/1.json
   def show
+    @user = @painting.user
+    @user_category = @user.user_categories
+
+    @is_following = false
+    if user_signed_in?
+      if current_user.is_following(@user)
+        @is_following = true
+      end
+      if current_user.id == @user.id
+        @is_following = false
+      end
+    end
   end
 
   # GET /paintings/new

@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   post 'register/infoget'
 
   get 'follow/:follower_id/:followed_id', to: 'profiles#follow'
-  
-  resources :paintings
-  resources :messages
-  resources :profiles
+  get 'messages/load_message/:id', to: 'messages#load_message'
+
+  resources :paintings, :messages
+  resources :profiles do 
+    member do 
+      
+    end
+  end
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   

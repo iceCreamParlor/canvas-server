@@ -1,0 +1,75 @@
+<div class="section">
+  <div class="container">
+    <div class="section-title">
+      <h3>메세지</h3>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        
+        <ul class="accordion accordion-oneopen">
+          <% @messages.each do |message| %>
+            <li onclick="showMessage(this)"
+                data-message="<%= message.id %>">
+              <div class="accordion-title">
+                <h6 class="heading-uppercase message-content"><%= message.content %></h6>
+              </div>
+              <% if message.painting.present? %>
+                <div class="accordion-content">
+                  <p class="painting-price"><%= message.painting.price %></p>
+                  <p class="sender-nickname"><%= User.find(message.buyer_id).nickname %></p>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>  
+
+
+      </div>
+      <div id="message-specific" class="col-6" style="border: 1px solid #e6e6e6;">
+        <div id="message-sender">
+
+        </div>
+        <div id="message-painting">
+          <div id="painting-name">
+
+          </div>
+          <div id="painting-img">
+
+          </div>
+        </div>
+        <div id="message-content">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let messages = <%= @messages_json.html_safe %>;
+  
+  function showMessage(element){
+
+    let messageId = parseInt(element.dataset.message);
+
+    messages.forEach(function(message){
+      if(messageId == message.id){
+        
+        $.ajax({
+          url: '/messages/load_message/' + message.id,
+          method: 'GET',
+          success: function(){
+            console.log("success!!")
+          }
+        })
+        
+      }
+    });  
+  }
+  $(function(){
+    
+    let messageSpecific = document.getElementById('message-specific');
+    messageSpecific.style.height = window.innerHeight - messageSpecific.getBoundingClientRect().top + 'px';
+  })
+</script>

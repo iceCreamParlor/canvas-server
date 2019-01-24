@@ -1,7 +1,7 @@
 <!-- Home section -->
-<div class="section-lg bg-image bg-image-gradient" style="background-image: url(../assets/images/background.jpg)">
+<div class="section-lg bg-image bg-image-gradient">
   <div class="bg-white-08">
-    <div class="container">
+    <div class="container" style="padding-bottom: 0px;">
       <div class="row align-items-center col-spacing-50">
         <div class="col-12 col-lg-4">
           <% if @user.image.present? %>
@@ -13,8 +13,10 @@
           
           <h2 class="font-weight-normal">
             <%= @user.nickname %>
-            <%= link_to edit_profile_path(current_user.id) do %>
-              <button type="button" class="btn btn-outline-dark profile-edit-btn">수정</button>
+            <% if user_signed_in? && @user.id == current_user.id %>
+              <%= link_to edit_profile_path(@user.id) do %>
+                <button type="button" class="btn btn-outline-dark profile-edit-btn">수정</button>
+              <% end %>
             <% end %>
           </h2>
           <ul class="list-horizontal-dash margin-bottom-20">
@@ -35,19 +37,23 @@
             <% end %>
             
           </ul>
-          <div class="row">
+          <div class="row margin-top-area">
             <div class="col-4">
               <span class="profile-text">게시물 <%= @user.paintings.count %></span>
             </div>
-            <div style="text-align: center;" class="col-4">
+            <div style="text-align: center;" class="col-4" data-toggle="modal" data-target="#followerModal">
               <span class="profile-text">팔로워 <%= @user.followed.count %></span>
             </div>
-            <div class="col-4">
-              <span style="float: right;" class="profile-text">팔로잉 <%= @user.follows.count %></span>
+            <div class="col-4" data-toggle="modal" data-target="#followingModal">
+              <span style="float: right;" class="profile-text">팔로우
+                <span id="follows-count">
+                  <%= @user.follows.count %>
+                </span>
+              </span>
             </div>
             
           </div>
-          <div class="margin-top-area">
+          <div class="margin-top-middle">
             <% if @user.desc.present? %>
               <p><%= @user.desc %></p>
             <% end %>
@@ -104,10 +110,10 @@
 <!-- end Home section -->
 
 <!-- Portfolio section -->
-<div class="section-lg bg-grey-lighter">
+<div class="section-lg bg-grey-lighter profile-portfolio margin-top-area">
   <div class="container">
-    <div class="section-title">
-      <h2 class="font-weight-normal">Works</h2>
+    <div class="section-title" style="margin-bottom: 20px;">
+      <h2 class="font-weight-normal">Artworks</h2>
       <div class="divider-zigzag divider-zigzag-color-black-07">
         <span></span><span></span><span></span>
       </div>
@@ -151,3 +157,38 @@
   </div><!-- end container -->
 </div>
 <!-- end Portfolio section -->
+
+<%= render 'layouts/follower_modal' %>
+<%= render 'layouts/following_modal' %>
+<script>
+  function followUser(element){
+    <% if user_signed_in? %>
+      let list = element.closest('.list-group-item');
+      
+      let isFollowing = element.dataset.following == 'true';
+      let dataUser = parseInt(element.dataset.user);
+      
+      let followerId = <%= current_user.id %>;
+      let followeeId = dataUser;
+
+      
+      $.ajax({
+        url: '/follow/' + followerId + '/' + followeeId,
+        method: 'GET',
+        success: function(){
+          if(!isFollowing){
+            // 원래 상태가 언팔로우인 경우
+            console.log('follow')
+            element.dataset.following = 'true';
+            element.innerText = '언팔로우';
+            
+          } else {
+            console.log('unfollow')
+            element.dataset.following = 'false';
+            element.innerText = '팔로우';
+          }
+        }
+      })
+    <% end %>
+  }
+</script>

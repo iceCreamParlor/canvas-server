@@ -1,1 +1,6 @@
-console.log("FOLLOW 성공!")
+<% if @is_following %>
+  $('#follow-btn').text('언팔로우');
+<% else %>
+  $('#follow-btn').text('팔로우');
+<% end %>
+$('#follows-count').text('<%= @following_members_count %>');

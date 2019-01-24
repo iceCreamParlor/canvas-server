@@ -15,5 +15,12 @@ class ApplicationController < ActionController::Base
         @is_sns = true
       end
     end
+    @is_mobile = mobile_device?
+  end
+  def mobile_device?
+    agent = request.user_agent
+    return true if agent =~ /(tablet|ipad)|(android(?!.*mobile))/i
+    return true if agent =~ /Mobile/
+    return false
   end
 end

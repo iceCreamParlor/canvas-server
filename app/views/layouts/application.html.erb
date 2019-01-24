@@ -72,11 +72,12 @@
 							</a>
 				      <ul class="dropdown-menu">
 								<li>
-									<a href="#">쪽지 
+									<%= link_to messages_path do %>
+										쪽지 
 										<span style="float: right;" class="badge badge-light">
 											<%= current_user.arrived_messages.count %>
 										</span>
-									</a>
+									<% end %>
 								</li>	
 								<li>
 									<%= link_to '프로필', profile_path(current_user.id) %>

@@ -19,6 +19,22 @@ class User < ApplicationRecord
     Category.where(id: self.paintings.pluck(:category_id).uniq)
   end
 
+  def follow_members
+    User.where(id: self.followed.pluck(:follower_id))
+  end
+
+  def following_members
+    User.where(id: self.follows.pluck(:followed_id))
+  end
+
+  def is_following(user)
+    follow = Follow.where(follower_id: self.id, followed_id: user.id)
+    if follow.present?
+      return true
+    end
+    return false
+  end
+
   # Get all matches
   def messages
     self.arrived_messages + self.sent_messages

@@ -19,6 +19,7 @@
       <!-- Sidebar -->
       <div class="col-12 col-lg-4">
         <div>
+          
           <% if user_signed_in? && @painting.user_id == current_user.id %>
             <%= link_to edit_painting_path(@painting) do %>
               <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">수정</button>
@@ -26,16 +27,27 @@
             <%= link_to painting_path(@painting), method: :delete do %>
               <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">삭제</button>
             <% end %>
-          <% else %>
+          <% elsif user_signed_in? %>
             <button type="button" 
                     class="btn btn-outline-dark margin-little" 
                     style="float:right;" 
                     data-toggle="modal" 
                     data-target="#message-modal">쪽지</button>
             <button type="button" 
+                    id="follow-btn"
                     class="btn btn-outline-dark margin-little"
                     onclick="followUser()"
-                    style="float:right;">팔로우</button>        
+                    style="float:right;">
+              <% if @is_following %>
+                언팔로우
+              <% else %>
+                팔로우
+              <% end %>
+            </button>        
+
+          <% end %>
+          <%= link_to paintings_path do %>
+            <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">목록</button>
           <% end %>
         </div>
         <br>
@@ -90,16 +102,18 @@
 <script>
   
   function followUser(){
-    let followerId = <%= current_user.id %>;
-    let followeeId = <%= @painting.user.id %>;
+    <% if user_signed_in? %>
+      let followerId = <%= current_user.id %>;
+      let followeeId = <%= @painting.user.id %>;
 
-    $.ajax({
-      url: '/follow/' + followerId + '/' + followeeId,
-      method: 'GET',
-      success: function(){
-        console.log('follow 성공!');
-      }
-    })
+      $.ajax({
+        url: '/follow/' + followerId + '/' + followeeId,
+        method: 'GET',
+        success: function(){
+          console.log('follow 성공!');
+        }
+      })
+    <% end %>
   }
 
   function messageButtonClicked(){
@@ -115,6 +129,7 @@
         url: '<%= messages_path %>',
         method: 'POST',
         data: {
+          painting_id: <%= @painting.id %>,
           sender_id: senderId,
           seller_id: sellerId,
           content: content

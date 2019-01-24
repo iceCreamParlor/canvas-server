@@ -1,0 +1,17 @@
+$('#message-sender').html(`
+  <%= @sender.nickname %>
+`)
+$('#message-content').html(`
+  <%= @message.content %>
+`)
+<% if @painting.present? %>
+  $('#painting-name').html(`
+    <%= @painting.name %>
+  `)
+  $('#painting-img').html(`
+    <img src="<%= @painting.thumbnail.url %>" style="width: 100%;">
+  `)
+<% else %>
+  $('#painting-name').html(``)
+  $('#painting-img').html(``)
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_151953) do
+ActiveRecord::Schema.define(version: 2019_01_24_042006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 2019_01_23_151953) do
     t.datetime "updated_at", null: false
     t.integer "message_type"
     t.string "content"
+    t.bigint "painting_id"
+    t.index ["painting_id"], name: "index_messages_on_painting_id"
   end
 
   create_table "paintings", force: :cascade do |t|
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(version: 2019_01_23_151953) do
   end
 
   add_foreign_key "identities", "users"
+  add_foreign_key "messages", "paintings"
   add_foreign_key "paintings", "categories"
   add_foreign_key "paintings", "colors"
   add_foreign_key "paintings", "users"
