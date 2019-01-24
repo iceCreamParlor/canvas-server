@@ -38,13 +38,13 @@
             
           </ul>
           <div class="row margin-top-area">
-            <div class="col-4">
+            <div class="col-4" style="cursor: pointer;">
               <span class="profile-text">게시물 <%= @user.paintings.count %></span>
             </div>
-            <div style="text-align: center;" class="col-4" data-toggle="modal" data-target="#followerModal">
+            <div style="text-align: center;" style="cursor: pointer;" class="col-4" data-toggle="modal" data-target="#followerModal">
               <span class="profile-text">팔로워 <%= @user.followed.count %></span>
             </div>
-            <div class="col-4" data-toggle="modal" data-target="#followingModal">
+            <div class="col-4" style="cursor: pointer;" data-toggle="modal" data-target="#followingModal">
               <span style="float: right;" class="profile-text">팔로우
                 <span id="follows-count">
                   <%= @user.follows.count %>
