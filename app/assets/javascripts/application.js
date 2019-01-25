@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require ckeditor/init
 // require turbolinks
 // active admin 자바스크립트 오류로 인해 주석처리
 // require_tree .

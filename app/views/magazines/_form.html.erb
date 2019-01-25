@@ -1,0 +1,29 @@
+
+  
+  <%= form_with(model: magazine, local: true) do |form| %>
+    <div>
+      <%= form.cktext_area :body, rows: 10 %>
+    </div>
+    <% if magazine.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(magazine.errors.count, "error") %> prohibited this magazine from being saved:
+        </h2>
+        <ul>
+        <% magazine.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
+<script>
+  $(document).ready(function() {
+    
+  });
+</script>

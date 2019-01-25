@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  mount Ckeditor::Engine => '/ckeditor'
+  resources :magazines
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: "user/registrations"}

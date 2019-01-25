@@ -71,6 +71,23 @@
         <div class="margin-top-20">
           <h6 class="heading-uppercase no-margin">Price</h6>
           <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
+
+          <!-- <a  
+              class="heading-uppercase no-margin"
+              data-toggle="collapse" 
+              href="#painting-price-<%= @painting.id %>" 
+              role="button" 
+              aria-expanded="false" 
+              aria-controls="collapseExample"
+              style="font-size: 12px;">
+            Price
+          </a>
+          <div class="collapse" id="painting-price-<%= @painting.id %>">
+            <p style="font-size: 12px">
+              <%= number_to_currency(@painting.price, unit: '￦', precision: 0) %>
+            </p>
+          </div> -->
+
         </div>
         
       </div>
