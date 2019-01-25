@@ -7,7 +7,7 @@ class PaintingsController < ApplicationController
   # GET /paintings
   # GET /paintings.json
   def index
-    @paintings = Painting.all
+    @paintings = Painting.all.order(created_at: :desc)
     @categories = Category.all
     @colors = Color.all
   end
