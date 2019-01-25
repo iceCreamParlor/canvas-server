@@ -2,7 +2,7 @@
   
   <%= form_with(model: magazine, local: true) do |form| %>
     <div>
-      <%= form.text_field :title %>
+      <%= form.text_field :title, placeholder: "매거진 제목을 입력해 주세요." %>
     </div>
     <div>
       <%= form.cktext_area :content, rows: 10 %>
@@ -24,9 +24,6 @@
       <%= form.submit %>
     </div>
   <% end %>
+  
 </div>
-<script>
-  $(document).ready(function() {
-    
-  });
-</script>
+

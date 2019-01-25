@@ -1,8 +1,9 @@
 <div class="section">
-  
-  <h1>New Magazine</h1>
+  <div class="container">
+    <h1>New Magazine</h1>
+    <%= link_to 'Back', magazines_path, style: "float: right;" %>
+    <%= render 'form', magazine: @magazine %>
 
-  <%= render 'form', magazine: @magazine %>
-
-  <%= link_to 'Back', magazines_path %>
+    
+  </div>
 </div>
