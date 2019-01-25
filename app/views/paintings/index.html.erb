@@ -135,10 +135,14 @@
 
 <script>
 $(function(){
-  $('#product-container').masonry({
-    // options
-    itemSelector : '.item',
+  setInterval(function(){
+    // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
+    $('#product-container').masonry({
+      // options
+      itemSelector : '.item',
     
-  });
-});
+    });
+  })
+  
+}, 300);
 </script>
