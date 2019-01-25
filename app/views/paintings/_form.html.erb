@@ -37,15 +37,15 @@
       </div>
 
       <% if painting.thumbnail.present? %>
-        <%= form.file_field :thumbnail %>
+        <%= form.file_field :thumbnail, accept:"image/*" %>
       <% else %>
-        <%= form.file_field :thumbnail, required: true %>
+        <%= form.file_field :thumbnail, required: true, accept:"image/*" %>
       <% end %>
 
       <% if painting.images.blank? %>
-        <%= form.file_field :images, multiple: true, required: true %>
+        <%= form.file_field :images, multiple: true, required: true, accept:"image/*" %>
       <% else %>
-        <%= form.file_field :images, multiple: true %>
+        <%= form.file_field :images, multiple: true, accept:"image/*" %>
       <% end %>
       
 
