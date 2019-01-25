@@ -43,9 +43,9 @@
       <% end %>
 
       <% if painting.images.blank? %>
-        <%= form.file_field :images, multiple: true, required: true, accept:"image/*" %>
+        <%= form.file_field :images, multiple: true, required: true, accept:"file_extension|image/*" %>
       <% else %>
-        <%= form.file_field :images, multiple: true, accept:"image/*" %>
+        <%= form.file_field :images, multiple: true, accept:"image/*"  %>
       <% end %>
       
 
