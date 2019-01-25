@@ -11,10 +11,12 @@
         <ul class="list-group">
           <% @follow_members.each do |user| %>
             <li class="list-group-item" style="display: flex; align-items: center;justify-content: space-between; padding-top: 5px; padding-bottom: 5px;">
-              <div>
-                <img style="height: 40px; width: 40px; border-radius: 20px;" src="<%= user.image.url %>" alt="">
-                <span style="margin-left: 10px;"><%= user.nickname %></span>
-              </div>
+              <%= link_to profile_path(user) do %>
+                <div>
+                  <img style="height: 40px; width: 40px; border-radius: 20px;" src="<%= user.image.url %>" alt="">
+                  <span style="margin-left: 10px;"><%= user.nickname %></span>
+                </div>
+              <% end %>
               <% if user_signed_in? %>
                 <% if current_user.is_following(user) %>
                   <button  class="btn btn-outline-dark" data-following="true" data-user="<%= user.id %>" onclick="followUser(this)" >언팔로우</button> 
