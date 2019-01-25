@@ -2,7 +2,10 @@
   
   <%= form_with(model: magazine, local: true) do |form| %>
     <div>
-      <%= form.cktext_area :body, rows: 10 %>
+      <%= form.text_field :title %>
+    </div>
+    <div>
+      <%= form.cktext_area :content, rows: 10 %>
     </div>
     <% if magazine.errors.any? %>
       <div id="error_explanation">

@@ -1,4 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  <%= @magazine.title %>
+</p>
+<div>
+  <%= @magazine.content.html_safe %>
+</div>
 <%= link_to 'Edit', edit_magazine_path(@magazine) %> |
 <%= link_to 'Back', magazines_path %>
