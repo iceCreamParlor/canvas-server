@@ -38,7 +38,7 @@ class MagazinesController < InheritedResources::Base
   private
 
     def magazine_params
-      params.require(:magazine).permit(:title, :content, :thumbnail)
+      params.require(:magazine).permit(:title, :content, :thumbnail, :user_id)
     end
 end
 
