@@ -2,11 +2,13 @@
 <div class="section">
   <div class="container margin-top-20">
     <div class="row">
-      <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
+      
+      <div class="col-12 col-sm-10 offset-sm-1 col-md-8">
+        <h4 style="padding: 0px !important;">
+          <%= @magazine.title %>
+        </h4>  
         <div class="margin-bottom-30">
-          <h4>
-            <%= @magazine.title %>
-          </h4>
+          
           <div class="row gallery-wrapper spacing-30">
             <%= @magazine.content.html_safe %>    
           </div><!-- end row/gallery-wrapper -->
@@ -43,6 +45,7 @@
         <ul class="list-horizontal-unstyled margin-top-20">
           <% if @magazine.user.instagram.present? %>
           <li>
+            instagram
             <a href="<%= @magazine.user.instagram %>">
               <i class="fab fa-instagram"></i>
             </a>
@@ -68,14 +71,16 @@
             <div class="comment-box">
               <div class="comment-user-avatar">
                 <%  if comment.user.image.present? %>
-                  <img src="<%= comment.user.image.url %>" style="border-radius: 30px;" alt="">
+                  <img class="magazine-comment-image" src="<%= comment.user.image.url %>" alt="">
                 <% else %>
                   <i class="fa fa-user"></i>
                 <% end %>
               </div>
               <div class="comment-content">
                 <span class="comment-time"><%= comment.created_at.strftime("%Y년 %m월 %d일") %></span>
-                <h6 class="font-weight-normal"><%= comment.user.nickname %></h6>
+                <%= link_to profile_path(comment.user) do %>
+                  <h6 class="font-weight-normal"><%= comment.user.nickname %></h6>
+                <% end %>
                 <p>
                   <%= comment.content %>
                 </p>

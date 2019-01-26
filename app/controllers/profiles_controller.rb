@@ -7,8 +7,8 @@ class ProfilesController < ApplicationController
 
   def show
     @user_category = @user.user_categories
-
     @is_following = false
+
     if user_signed_in?
       if current_user.is_following(@user)
         @is_following = true
@@ -16,7 +16,10 @@ class ProfilesController < ApplicationController
       if current_user.id == @user.id
         @is_following = false
       end
+      
     end
+
+    @liked_paintings = Painting.where(id: @user.likes.pluck(:painting_id)).last(10).reverse
     @follow_members = @user.follow_members
     @following_members = @user.following_members
   end

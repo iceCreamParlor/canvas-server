@@ -55,7 +55,26 @@
         <br>
 
         <div>
-          <h5><%= @painting.name %></h5>
+          
+          <h5>
+            <%= @painting.name %>
+            <% if user_signed_in? %>
+              <span class="float-right">
+                <ion-icon 
+                  id="like-button" 
+                  onclick="likeButtonClicked()" 
+                  class="like-button" 
+                  <% if @like.present? %>
+                  name="heart"
+                  <% else %>
+                  name="heart-empty"
+                  <% end %>
+                ></ion-icon>
+              </span>
+            <% end %>
+          </h5>
+          
+          
           <p style="word-wrap: break-word;"><%= @painting.desc %></p>
         </div>
         <div class="margin-top-20">
@@ -160,6 +179,18 @@
       // 로그인 화면을 띄운다.
       window.location.href = "/users/sign_in"
       
+    <% end %>
+  }
+
+  function likeButtonClicked(){
+    <% if user_signed_in? %>
+      $.ajax({
+        method: 'GET',
+        url: '<%= toggle_like_path(@painting.id) %>',
+        success: function(){
+          console.log("LIKE SUCCESSED")
+        }
+      });
     <% end %>
   }
 </script>

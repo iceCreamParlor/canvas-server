@@ -26,6 +26,7 @@ class PaintingsController < ApplicationController
       if current_user.id == @user.id
         @is_following = false
       end
+      @like = Like.where(user_id: current_user.id, painting_id: @painting.id)
     end
   end
 

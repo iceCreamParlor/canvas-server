@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'like/create'
+  get 'like/destroy'
   mount Ckeditor::Engine => '/ckeditor'
-  resources :magazines
-  resources :magazine_comments
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: "user/registrations"}
@@ -14,8 +15,12 @@ Rails.application.routes.draw do
 
   get 'follow/:follower_id/:followed_id', to: 'profiles#follow'
   get 'messages/load_message/:id', to: 'messages#load_message'
+  get 'likes/toggle_like/:painting_id', to: 'likes#toggle_like', as: 'toggle_like'
 
   resources :paintings, :messages
+  resources :magazines
+  resources :magazine_comments
+  
   resources :profiles do 
     member do 
       

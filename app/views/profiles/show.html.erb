@@ -138,7 +138,7 @@
               <div class="portfolio-item category-<%= index %>">
                 <div class="portfolio-box">
                   <div class="portfolio-img">
-                    <img src="<%= painting.thumbnail.url %>" alt=""><!-- Image source -->
+                    <img src="<%= painting.thumbnail.url %>" alt="">
                   </div>
                   
                   <div class="portfolio-title">
@@ -157,6 +157,67 @@
   </div><!-- end container -->
 </div>
 <!-- end Portfolio section -->
+
+<!-- Products Slider -->
+<% if @liked_paintings.present? %>
+  <div class="section border-top">
+    <div class="container">
+      <div class="section-title">
+        <h3>최근 좋아요</h3>
+      </div>
+      <div class="owl-carousel" data-owl-nav="true" data-owl-dots="false" data-owl-margin="30" data-owl-xs="1" data-owl-sm="2" data-owl-md="3" data-owl-lg="4" data-owl-xl="4">
+        <!-- Product Slider box 1 -->
+        
+        <% @liked_paintings.each do |painting| %>
+          <div class="product">
+            <div class="product-img">
+              <%= link_to painting_path(painting) do %>
+                <% if painting.thumbnail.present? %>
+                  <img src="<%= painting.thumbnail.url %>" alt="">
+                <% end %>
+                <!-- <div class="product-sale">
+                  <h6 class="heading-uppercase">-30%</h6>
+                </div> -->
+              <% end %>
+              <!-- <div class="product-img-hover">
+                <h6 class="heading-uppercase"><a href="#">보러가기</a></h6>
+              </div> -->
+            </div><!-- end product-img -->
+            <div class="product-info">
+              <h6>
+                <%= link_to painting_path(painting) do %>
+                  <%= painting.name %>
+                <% end %>
+              </h6>
+              <!-- Product Category -->
+              <!-- <ul class="list-horizontal">
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Clothing</a></li>
+              </ul> -->
+              <!-- Product Price -->
+              <!-- <div class="product-price">
+                <h6><span>$29</span>$20</h6>
+              </div> -->
+              <!-- Add to Wishlist button -->
+              <!-- <a class="product-wishlist" href="#">
+                <i class="far fa-heart"></i>
+              </a> -->
+              <!-- Product Rating -->
+              <!-- <div class="product-rating">
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star"></i></span>
+                <span><i class="far fa-star"></i></span>
+              </div> -->
+            </div><!-- end product-info -->
+          </div>
+        <% end %>
+      </div><!-- end owl-carousel -->
+    </div><!-- end container -->
+  </div>
+<% end %>
+<!-- end Products Slider -->
 
 <%= render 'layouts/follower_modal' %>
 <%= render 'layouts/following_modal' %>
