@@ -6,6 +6,7 @@ class MagazinesController < InheritedResources::Base
 
   def show
     @magazine = Magazine.find(params[:id])
+    @magazine_comments = MagazineComment.where(magazine_id: @magazine.id)
   end
 
   def new
@@ -37,7 +38,7 @@ class MagazinesController < InheritedResources::Base
   private
 
     def magazine_params
-      params.require(:magazine).permit(:title, :content )
+      params.require(:magazine).permit(:title, :content, :thumbnail)
     end
 end
 

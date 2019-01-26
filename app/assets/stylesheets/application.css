@@ -61,3 +61,7 @@
 .float-left{
   float: left;
 }
+
+.magazine-comment-image{
+  border-radius: 30px;
+}

@@ -5,16 +5,16 @@
     </div>
     <div class="row">
       <div class="col-6">
-        
-        <ul class="accordion accordion-oneopen">
+        <h4>쪽지함</h4>
+        <ul class="list-group">
           <% @messages.each do |message| %>
-            <li onclick="showMessage(this)"
+            <li class="list-group-item" onclick="showMessage(this)"
                 data-message="<%= message.id %>">
-              <div class="accordion-title">
+              <div>
                 <h6 class="heading-uppercase message-content"><%= message.content %></h6>
               </div>
               
-                <div class="accordion-content">
+                <!-- <div class="accordion-content">
                   <% if message.painting.present? %>
                   <p class="painting-price"><%= message.painting.price %></p>
                   <% end %>
@@ -32,7 +32,7 @@
                     data-toggle="modal" 
                     data-target="#replyModal">답장</button>
                   </p>
-                </div>
+                </div> -->
             </li>
           <% end %>
         </ul>  
@@ -40,6 +40,8 @@
 
       </div>
       <div id="message-specific" class="col-6" style="border: 1px solid #e6e6e6;">
+        <h4>상세 내용</h4>
+        
         <div id="message-sender">
 
         </div>

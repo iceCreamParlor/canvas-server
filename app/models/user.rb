@@ -3,11 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum user_type: ["normal", "admin"]
 
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
   mount_uploader :image, ImageUploader
   has_many :paintings
+  has_many :magazines
   has_many :follows, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
 

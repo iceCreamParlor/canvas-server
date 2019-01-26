@@ -1,0 +1,42 @@
+<!-- Write Comment section -->
+<div class="section border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
+        <h4 class="margin-bottom-50 text-left">댓글 작성</h4>
+        <div class="text-right">
+          
+          <div class="form-row">
+          </div>
+          <textarea id="comment" placeholder="댓글을 작성해주세요."></textarea>
+          <button onclick="submitComment()" type="button" class="btn btn-outline-dark">저장</button>
+          
+        </div>
+      </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
+</div>
+<!-- end Write Comment section -->
+
+<script>
+  function submitComment(){
+    let user_id = <%= current_user.id %>;
+    let comment = $('#comment').val();
+
+    $.ajax({
+
+      headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      url: '<%= magazine_comments_path %>',
+      method: 'POST',
+      data: {
+        user_id: user_id,
+        magazine_id: <%= @magazine.id %>,
+        content: comment
+      },
+      success: function(){
+        console.log('SUCCESS');
+      }
+
+    })
+  }
+</script>
