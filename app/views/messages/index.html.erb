@@ -13,7 +13,18 @@
               <div>
                 <h6 class="heading-uppercase message-content"><%= message.content %></h6>
               </div>
-              
+              <button type="button" 
+                    class="btn btn-outline-dark float-right reply-btn"
+                    data-seller="<%= message.seller_id %>"
+                    data-buyer="<%= message.buyer_id %>"
+                    data-buyer-name="<%= message.buyer.nickname %>"
+                    <% if message.painting.present? %>
+                    data-painting="<%= message.painting_id %>"
+                    <% else %>
+                    data-painting="-1"
+                    <% end %>
+                    data-toggle="modal" 
+                    data-target="#replyModal">답장</button>
                 <!-- <div class="accordion-content">
                   <% if message.painting.present? %>
                   <p class="painting-price"><%= message.painting.price %></p>
