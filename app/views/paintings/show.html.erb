@@ -142,7 +142,7 @@
     for(var i = 0 ; i < paintingImg.length ; i++){
       paintingImg[i].style.width = paintingImg[i].offsetWidth + 'px';
       paintingImg[i].style.height = paintingImg[i].offsetHeight + 'px';
-      magnify(paintingImg[i], 3);
+      magnify(paintingImg[i], 2);
     }
   })
 
@@ -207,7 +207,6 @@
   // MAGNIFY when hovered
   function magnify(img, zoom) {
     var glass, w, h, bw;
-    // img = document.getElementById(imgID);
 
     /* Create magnifier glass: */
     glass = document.createElement("DIV");
@@ -224,17 +223,14 @@
     // glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
     glass.style.backgroundSize = (img.offsetWidth * zoom) + "px " + (img.offsetHeight * zoom) + "px";
 
-    bw = 3;
-    w = glass.offsetWidth / 2;
-    h = glass.offsetHeight / 2;
+    glass.style.width = img.style.width;
+    glass.style.height = img.style.height;
 
-    if(w==0){
-      w = 100
-    }
-    if(h==0){
-      h = 100
-    }
+    bw = 0;
 
+    w = img.offsetWidth / 2;
+    h = img.offsetHeight / 2;
+    
     <% if @is_mobile %>
       /*and also for touch screens:*/
       glass.addEventListener("touchmove", moveMagnifier);
@@ -246,7 +242,7 @@
     <% end %>    
 
     function moveMagnifier(e) {
-      
+      e.preventDefault();
       var pos, x, y;
       /* Prevent any other actions that may occur when moving over the image */
       e.preventDefault();
@@ -268,10 +264,13 @@
       if (y < h / zoom) {y = h / zoom;}
       /* Set the position of the magnifier glass: */
       
-      glass.style.left = (x - w) + "px";
-      glass.style.top = (y - h) + "px";
+      // glass.style.left = (x - w) + "px";
+      // glass.style.top = (y - h) + "px";
       /* Display what the magnifier glass "sees": */
+      
       glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+      
+      
     }
 
     function getCursorPos(e) {
