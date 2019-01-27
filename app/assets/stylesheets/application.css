@@ -97,6 +97,7 @@
   padding: 0px 10px 0px 0px; 
   display: inline-block;
   float: none;
+  margin-bottom: 0px !important;
 }
 
 .page[data-page=paintings-show] .painting-show-preview::-webkit-scrollbar { 
