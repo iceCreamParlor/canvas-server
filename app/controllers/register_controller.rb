@@ -10,13 +10,12 @@ class RegisterController < ApplicationController
 
   def infoget
     # 이메일 있음
-    if @user.email.present? && @user.email.empty?
+    if !@user.email.present?
       @user.email = params[:email]
       @user.nickname = params[:nickname]
       
     # 이메일 없음 = kakao
     else
-    
       @user.nickname = params[:nickname]
     end
     @user.save

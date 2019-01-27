@@ -7,6 +7,7 @@
           <% provider = "google plus" %>
         <% end %>
         
+        <% if !(@is_mobile && provider.to_s == "google plus") %>
           <button type="button" class="ui fluid <%= provider %> icon button sns">
             <i class="<%= provider %> icon" style="float: left"></i>
             <% if provider.to_s == "facebook" %>
@@ -16,9 +17,10 @@
             <% else %>
               <% sns = '카카오' %>
             <% end %>
+          
             <%= sns %> 계정으로 로그인
           </button>
-        
+        <% end %>
       <% end -%>
     <% end -%>
   
