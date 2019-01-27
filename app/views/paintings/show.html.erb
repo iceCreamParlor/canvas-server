@@ -1,25 +1,32 @@
+<!-- Product Content -->
 <div class="section">
   <div class="container">
-    <div class="row col-spacing-50">
-      <!-- Portfolio Content -->
-
-      <div class="col-12 col-lg-8">
-        <div class="owl-carousel owl-nav-overlay owl-dots-overlay" data-owl-items="1" data-owl-nav="true" data-owl-autoplay="true">
-
-        <% @painting.images.each do |image| %>
-          <div>
-            <a href="#" data-gallery-title="Gallery Image 1">
-              <img class="painting-img" src="<%= image.url %>" alt="">
-            </a>
+    <div class="row">
+      <div class="col-12 col-lg-8 product-single">
+        <div class="product-single-img" style="padding: 0px;">
+          <div class="owl-carousel product-single-img-slider" data-owl-items="1" data-owl-nav="false" data-owl-dots="false">
+            <% @painting.images.each_with_index do |image, index| %>
+              <div data-hash="painting-img-<%= index+1 %>">
+                <img class="painting-img" src="<%= image.url %>">
+              </div>
+            <% end %>
           </div>
-        <% end %>
-         
-        </div><!-- end owl-carousel -->
+        </div>
+        <div class="row painting-show-preview">
+          
+          <% @painting.images.each_with_index do |image, index| %>
+            <div class="col-2 preview-cell">
+              <a href="#painting-img-<%= index+1 %>">
+                <img class="preview-cell-img" src="<%= image.url %>">
+              </a>
+            </div>
+          <% end %>
+        </div>
+        
       </div>
-      <!-- Sidebar -->
+        <!-- Sidebar -->
       <div class="col-12 col-lg-4">
         <div>
-          
           <% if user_signed_in? && @painting.user_id == current_user.id %>
             <%= link_to edit_painting_path(@painting) do %>
               <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">수정</button>
@@ -53,7 +60,7 @@
         <br>
         <br>
         <br>
-
+  
         <div>
           
           <h5>
@@ -90,29 +97,14 @@
         <div class="margin-top-20">
           <h6 class="heading-uppercase no-margin">Price</h6>
           <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
-
-          <!-- <a  
-              class="heading-uppercase no-margin"
-              data-toggle="collapse" 
-              href="#painting-price-<%= @painting.id %>" 
-              role="button" 
-              aria-expanded="false" 
-              aria-controls="collapseExample"
-              style="font-size: 12px;">
-            Price
-          </a>
-          <div class="collapse" id="painting-price-<%= @painting.id %>">
-            <p style="font-size: 12px">
-              <%= number_to_currency(@painting.price, unit: '￦', precision: 0) %>
-            </p>
-          </div> -->
-
-        </div>
-        
-      </div>
+        </div>  
+      </div> 
     </div><!-- end row -->
   </div><!-- end container -->
 </div>
+<!-- end Product Content -->
+
+
 
 <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -235,6 +227,9 @@
       /*and also for touch screens:*/
       glass.addEventListener("touchmove", moveMagnifier);
       img.addEventListener("touchmove", moveMagnifier);
+      glass.addEventListener("touchend", function(){
+        glass.style.display = 'none';
+      })
     <% else %>
       /* Execute a function when someone moves the magnifier glass over the image: */
       glass.addEventListener("mousemove", moveMagnifier);
@@ -242,7 +237,8 @@
     <% end %>    
 
     function moveMagnifier(e) {
-      e.preventDefault();
+      // e.stopPropagation();
+
       var pos, x, y;
       /* Prevent any other actions that may occur when moving over the image */
       e.preventDefault();

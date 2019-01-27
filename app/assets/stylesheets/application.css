@@ -84,3 +84,26 @@
   width: 200px;
   height: 200px; */
 }
+
+.page[data-page=paintings-show] .painting-show-preview{
+  position: relative !important; 
+  margin: 0px !important; 
+  overflow-x: scroll !important; 
+  white-space: nowrap !important; 
+  display: inline-block !important;
+}
+
+.page[data-page=paintings-show] .preview-cell { 
+  padding: 0px 10px 0px 0px; 
+  display: inline-block;
+  float: none;
+}
+
+.page[data-page=paintings-show] .painting-show-preview::-webkit-scrollbar { 
+  display: none; 
+}
+
+.page[data-page=paintings-show] .preview-cell-img { 
+  width: 100%; 
+  margin: 10px 10px 10px 0px;
+}
