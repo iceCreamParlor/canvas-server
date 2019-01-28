@@ -7,20 +7,19 @@
           <% provider = "google plus" %>
         <% end %>
         
-        <% if !(@is_mobile && provider.to_s == "google plus") %>
-          <button type="button" class="ui fluid <%= provider %> icon button sns">
-            <i class="<%= provider %> icon" style="float: left"></i>
-            <% if provider.to_s == "facebook" %>
-              <% sns = '페이스북' %>
-            <% elsif provider.to_s == "google plus" %>
-              <% sns = '구글' %>
-            <% else %>
-              <% sns = '카카오' %>
-            <% end %>
-          
-            <%= sns %> 계정으로 로그인
-          </button>
-        <% end %>
+        <button type="button" class="ui fluid <%= provider %> icon button sns">
+          <i class="<%= provider %> icon" style="float: left"></i>
+          <% if provider.to_s == "facebook" %>
+            <% sns = '페이스북' %>
+          <% elsif provider.to_s == "google plus" %>
+            <% sns = '구글' %>
+          <% else %>
+            <% sns = '카카오' %>
+          <% end %>
+        
+          <%= sns %> 계정으로 로그인
+        </button>
+        
       <% end -%>
     <% end -%>
   

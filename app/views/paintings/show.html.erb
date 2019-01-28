@@ -4,7 +4,11 @@
     <div class="row">
       <div class="col-12 col-lg-8 product-single">
         <div class="product-single-img" style="padding: 0px;">
-          <div class="owl-carousel" data-owl-items="1" data-owl-nav="false" data-owl-autoplay="false" data-owl-dots="false">
+          <div class="owl-carousel" 
+            data-owl-items="1" 
+            data-owl-nav="false" 
+            data-owl-autoplay="false" 
+            data-owl-dots="false">
             <% @painting.images.each_with_index do |image, index| %>
               <div data-hash="painting-img-<%= index+1 %>">
                 <img class="painting-img" src="<%= image.url %>">
