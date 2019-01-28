@@ -100,17 +100,60 @@
                               </div>
                           </div>
             </div> -->
-          </div><!-- end inner row -->
+          </div>
+        <div class="col-12 col-lg-5">
+          
+          <% if !@is_mobile %>
+            <div id="adjust-area">
+              <center>
+                <div class="adjust-item">
+                  <img id="left-move-btn" class="img-btn adjust-left" src="/images/line/left_arrow.png">
+                  <span id="current-date" class="adjust-date">2016</span>
+                  <img id="right-move-btn" class="img-btn adjust-right" src="/images/line/right_arrow.png">
+                </div>
+              </center>
+              
+              <div class="adjust-item">
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-3">
+                    <span data-range="2" onclick="dateRangeAdjustClicked(event)" class="date-range-adjust">1 Month</span>
+                  </div>
+                  <div class="col-3">
+                    <span data-range="1" onclick="dateRangeAdjustClicked(event)" class="date-range-adjust">1 Year</span>
+                  </div>
+                  <div class="col-3">
+                    <span data-range="0" onclick="dateRangeAdjustClicked(event)" class="date-range-adjust">5 years</span>
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+                
+                <center style="display: none;">
+                  <img id="left-adjust-btn" class="img-btn adjust-left" src="/images/line/left_arrow.png">
+                  <span class="adjust-date" id="adjust-date"></span>
+                  <img id="right-adjust-btn" class="img-btn adjust-right" src="/images/line/right_arrow.png">
+                </center>
+              </div>
+            </div>
+          <% end %>
+
+
         </div>
-        <div class="col-12 col-lg-5"></div>
       </div><!-- end row -->
     </div><!-- end container -->
   </div>
+  <!-- Line section -->
+  <% if !@is_mobile %>
+    <%= render 'line' %>
+  <% end %>
+  <!-- End Line section -->
 </div>
 <!-- end Home section -->
 
+
+
 <!-- Portfolio section -->
-<div class="section-lg bg-grey-lighter profile-portfolio margin-top-area">
+<div class="section-lg bg-grey-lighter profile-portfolio margin-top-area" style="z-index: 1">
   <div class="container">
     <div class="section-title" style="margin-bottom: 20px;">
       <h2 class="font-weight-normal">Artworks</h2>

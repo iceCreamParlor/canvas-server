@@ -114,3 +114,120 @@
   font-style: italic;
   font-size: 12px;
 }
+
+/* LINE (BEGIN) */
+.page[data-page=profiles-show] .gray {
+  color: gray;
+}
+.page[data-page=profiles-show] div.info-area {
+  margin-top: 100px;
+}
+.page[data-page=profiles-show] div#line {
+  position: absolute;
+  height: 2px;
+  left: 5%;
+  width: 93%;
+  background-color: gray;
+}
+.page[data-page=profiles-show] div.under-profile-img {
+  margin-top: 10px;
+}
+.page[data-page=profiles-show] .profile-control {
+  font-size: 30px;
+  margin: 20px;
+}
+.page[data-page=profiles-show] img.img-btn {
+  width: 20px;
+  height: 20px;
+}
+.page[data-page=profiles-show] .date-range-adjust {
+  font-size: 15px;
+}
+.page[data-page=profiles-show] .adjust-left {
+  margin-right: 40px;
+}
+.page[data-page=profiles-show] .adjust-right {
+  margin-left: 40px;
+}
+.page[data-page=profiles-show] div.adjust-item {
+  margin-top: 10px;
+}
+.page[data-page=profiles-show] div#adjust-area {
+  margin-top: 20px;
+}
+.page[data-page=profiles-show] span#current-date {
+  font-size: 20px;
+}
+.page[data-page=profiles-show] span.adjust-date {
+  margin-top: 100px;
+  color: gray;
+  font-size: 22px;
+  font-weight: 700;
+}
+.page[data-page=profiles-show] div.circle {
+  position: absolute;
+  
+  /* border: 1.25px solid gray; */
+}
+.page[data-page=profiles-show] img.profile-img {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 200px;
+  float: right;
+}
+.page[data-page=profiles-show] img.card-thumbnail {
+  width: 100px;
+  height: 100px;
+}
+.page[data-page=profiles-show] div.card-under-line {
+  margin-top: 10px;
+  display: none;
+}
+.page[data-page=profiles-show] div.card-under-line.active {
+  margin-top: 10px;
+  display: block;
+}
+.page[data-page=profiles-show] div.card-under-line.pinned {
+  margin-top: 10px;
+  display: block;
+}
+
+.page[data-page=profiles-show] .modal-dialog{
+  margin-left: 0px;
+  margin-right: 0px;
+  height: 92%;
+}
+
+.page[data-page=profiles-show] .modal-content {
+  height: 100%;
+}
+
+.page[data-page=profiles-show] #portfolio-left-modal{
+  position: absolute;
+  left: 5%;
+  width: 25%;
+}
+
+
+.page[data-page=profiles-show] #portfolio-right-modal{
+  position: absolute;
+  left: 25%;
+  width: 68%;
+}
+
+.page[data-page=profiles-show] #xButton {
+  z-index: 2000;
+  display: none;
+  position: absolute;
+  top: 3%;
+  left: 94%;
+  width: 2%;
+}
+
+.page[data-page=profiles-show] .line-card {
+  position: relative !important;
+  z-index: 1000;
+  background-color: white !important;
+}
+/* LINE (END) */

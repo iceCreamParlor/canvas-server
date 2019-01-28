@@ -1,0 +1,576 @@
+<script>
+// GLOBAL VARIABLES
+var activities = [];
+
+var circles;
+var planets;
+// 가장 오른쪽에 가상의 행성이 있다고 가정!!
+var circleCount = 6;
+// 실제로 존재하는 행성의 수
+var actualCircleCount = circleCount - 1;
+// ['요가', '필라테스', '헬스']
+var checkedSupertags = [];
+let planetArray = ['jupiter.png', 'mars.png', 'venus.png', 'saturn.png'];
+
+
+var lineOffsetLeft; // 선의 왼쪽 간격을 의미
+var lineOffsetWidth; // 선의 넓이를 의미
+var lineOffsetTop; // 선의 상단 간격을 의미
+
+// Initialize Date
+let today = new Date(); 
+var endDate = new Date(today.getFullYear(), 0, 1); // 연도 기준일 경우, 1월 1일으로 해야 UX적으로 옳기 때문에, 1월 1일로 객체를 생성
+var startDate = new Date(endDate.getFullYear() - actualCircleCount, 0, 1);
+var dateArr; // 행성들에 해당하는 날짜 객체가 담긴 배열
+var dateMode = 0; // 4 years (0), 1 years (1), 1 months (2)
+
+// 기타 UI 관련된 변수들
+let lineTop = 100; // 수평선이 위로부터 얼마정도 떨어뜨려 놓을지 나타내는 변수
+let circleUnit = 60; // 행성의 가로, 세로 길이를 나타내는 변수
+
+var circleArea;
+var singleCircleWidth; // 행성 한 마디의 길이(카드 길이 조정할 때 필요함)
+
+document.addEventListener('DOMContentLoaded', function(){
+  // 페이지가 로드되었을 때
+  
+  // Sample Data 생성(장고랑 연결할 때에는 서버 정보로 연결해야 함)
+  activities = createSampleData();
+  
+  // 행성들의 시간 좌표를 초기화해주는 함수
+  dateArr = initDate(startDate, endDate, circleCount, dateMode);
+  
+  // Initialize line (수평선의 UI 설정을 하는 부분)
+  let lineArea = document.getElementById('line-area');     
+  let line = document.getElementById('line');
+
+  // lineArea.style.marginTop = lineTop / 2 + 'px';
+  line.style.top = lineTop + 'px';
+  
+  lineOffsetLeft = line.offsetLeft;
+  lineOffsetWidth = line.offsetWidth;
+  lineOffsetTop = line.offsetTop;
+  
+  // Initialize planets
+  circleArea = document.getElementById('circle-area');
+  singleCircleWidth = lineOffsetWidth / actualCircleCount // 하나의 circle 구역이 차지하는 영역을 의미함
+
+  // 행성과 카드를 생성한다 (행성과 카드는 묶여있음 <div class="circle"></div>)
+  // 카드의 내용은 입력하지 않고 단순히 카드의 형식만 입력시킴
+  for(var i = 0 ; i < actualCircleCount ; i++){
+        
+    circleArea.innerHTML += `
+      <div class="circle animated bounceInRight" style="z-index: 900">
+        <img class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
+        <span class="badge badge-light planet-label"></span>   
+        <div class="card border-dark mb-3 card-under-line line-card">
+          <div class="card-header">슈퍼태그? 태그?</div>
+          <div class="card-content" id="card-`+i+`-content">
+          </div>
+        </div>
+      </div>
+    `
+  }
+
+  // 체크된 슈퍼태그들을 생성함 ex) ['헬스', '요가', '필라테스']
+  checkedSupertags = setSupertags(activities);
+
+  // 활동 내역들을 카드에 추가하는 함수
+  addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
+
+  circles = document.getElementsByClassName('circle');
+  planets = document.getElementsByClassName('planet-icon');
+
+  // 행성 / 카드들에 대한 UI 설정, eventListener 걸어두기
+  for(var i = 0 ; i < actualCircleCount ; i++){
+    
+    circles[i].style.top = lineOffsetTop - circleUnit / 2 + 'px';
+    circles[i].style.borderRadius = circleUnit + 'px';
+    circles[i].style.width = singleCircleWidth * 0.95 + 'px';
+    // planets[i].style.width = circleUnit + 'px';
+    planets[i].style.height = circleUnit + 'px';
+    circles[i].style.left = lineOffsetLeft + (singleCircleWidth * i) - circleUnit / 2 + 'px'
+    circles[i].dataset.parsedDate = Date.parse(dateArr[i]);
+
+    // circles 에 hover EventListener 달기
+    circles[i].addEventListener('mouseover', whenMouseHovered);
+    circles[i].addEventListener('mouseout', whenMouseLeaved);
+    circles[i].addEventListener('click', whenMouseClicked);
+
+  }
+
+  // 행성이 나타내는 카드들을 UI적으로 표시하는 함수
+  markUnitDate(dateMode, dateArr, actualCircleCount);
+
+  let leftMoveBtn = document.getElementById('left-move-btn');
+  let rightMoveBtn = document.getElementById('right-move-btn');
+  // let leftAdjustBtn = document.getElementById('left-adjust-btn');
+  // let rightAdjustBtn = document.getElementById('right-adjust-btn');
+
+  leftMoveBtn.addEventListener('click', function(){
+    switch(dateMode){
+      case 0: // 4 years
+        
+        startDate = new Date(startDate.getFullYear() - actualCircleCount, 0, 1);
+        endDate = new Date(startDate.getFullYear() + actualCircleCount, 0, 1);
+        break;
+      case 1: // 1 years
+        
+        startDate = new Date(startDate.getFullYear()-1, 0, 1);
+        endDate = new Date(startDate.getFullYear()+1, 0, 1);
+        break;
+
+      case 2: // 1 months
+        
+        startDate = new Date(startDate.getFullYear(), endDate.getMonth()+1, 1);
+        endDate = new Date(startDate.getFullYear(), endDate.getMonth()+1, 1);
+        break;
+        
+    }
+      /*
+        initDate : startDate, endDate 행성 갯수를 입력하면, 행성들의 시간을 계산하기 만듬
+        markUnitDate : 위에서 구한 시간을 UI적으로 그려주는 함수
+      */
+    dateArr = initDate(startDate, endDate, actualCircleCount, dateMode);
+    markUnitDate(dateMode, dateArr, actualCircleCount);
+    addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
+    animatePlanet();
+
+  })
+
+  rightMoveBtn.addEventListener('click', function(){
+    switch(dateMode){
+      case 0:
+        endDate = new Date(endDate.getFullYear()+actualCircleCount, 0, 1);
+        startDate = new Date(endDate.getFullYear()-actualCircleCount, 0, 1);
+        break;
+      case 1:
+        endDate = new Date(endDate.getFullYear()+1, 0, 1);
+        startDate = new Date(endDate.getFullYear()-1, 0, 1);
+        break;
+      case 2:
+        endDate = new Date(endDate.getFullYear(), endDate.getMonth()+6, 1);
+        startDate = new Date(endDate.getFullYear(), endDate.getMonth()-6, 1);
+        break;
+      case 3:
+        endDate = new Date(endDate.getFullYear(), endDate.getMonth()+1, 1);
+        startDate = new Date(endDate.getFullYear(), endDate.getMonth()-1, 1);
+        break;
+    }
+
+    dateArr = initDate(startDate, endDate, actualCircleCount, dateMode);
+    markUnitDate(dateMode, dateArr, actualCircleCount);
+    addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
+    animatePlanet();
+
+  })
+
+  // leftAdjustBtn.addEventListener('click', function(){
+  //   switch(dateMode){
+  //     case 0:
+  //       dateMode = 3;
+  //       break;
+  //     case 1:
+  //     case 2:
+  //       dateMode -= 1;
+  //       break;
+  //   }
+
+  //   switch(dateMode){
+  //     case 0:
+  //       resetPlanetCount(6)
+  //       endDate = new Date(startDate.getFullYear() + actualCircleCount , 0, 1);
+        
+  //       break;
+  //     case 1:
+  //       resetPlanetCount(5)
+  //       endDate = new Date(startDate.getFullYear()+1, 0, 1);
+        
+  //       break;
+
+  //     case 2:
+  //       endDate = new Date(startDate.getFullYear(), startDate.getMonth()+1, 1);
+        
+  //       break;
+  //   }
+    
+  //   dateArr = initDate(startDate, endDate, actualCircleCount, dateMode);
+  //   markUnitDate(dateMode, dateArr, actualCircleCount);
+  //   addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
+  //   animatePlanet();
+
+    
+
+  // })
+
+  // rightAdjustBtn.addEventListener('click', function(){
+  //   switch(dateMode){
+  //     case 0:
+  //     case 1:
+  //       dateMode += 1;        
+  //       break;
+  //     case 2:
+  //       dateMode = 0;
+  //       break;
+  //   }
+  //   switch(dateMode){
+  //     case 0:
+  //       endDate = new Date(startDate.getFullYear()+actualCircleCount, 0, 1);
+        
+  //       break;
+  //     case 1:
+  //       resetPlanetCount(5);
+  //       endDate = new Date(startDate.getFullYear()+1, 0, 1);
+        
+  //       break;
+  //     case 2:
+  //       resetPlanetCount(6);
+  //       endDate = new Date(startDate.getFullYear(), startDate.getMonth()+1, 1);
+        
+  //       break;
+  
+  //   }
+    
+  //   dateArr = initDate(startDate, endDate, actualCircleCount, dateMode);
+  //   markUnitDate(dateMode, dateArr, actualCircleCount);
+  //   addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
+  //   animatePlanet();
+    
+  // })
+
+  function setSupertags(activities){
+    // let supertags = document.getElementById('supertags');
+    var supertagArr = [];
+
+    activities.forEach(function(activity){
+      supertagArr.push(activity.supertag);
+    })
+    supertagArr = supertagArr.filter( onlyUnique );
+    
+    // supertagArr.forEach(function(supertag){
+    //   supertags.innerHTML += `
+    //     <li class="nav-item">
+    //     <div class="input-group-prepend nav-link">
+    //       <input onchange="supertagCheckboxChanged(event)" type="checkbox" checked aria-label="Checkbox for following text input" value="`+ supertag +`"> 
+    //       <span>`+ supertag +`</span> 
+    //     </div>
+    //   `
+    // })
+    return supertagArr;
+  }
+
+  function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+  }
+  
+})
+function animatePlanet(){
+  // 카드를 숨기고, 행성에 애니메이션 효과 부여
+  
+  $('.planet-icon').removeClass('bounce animated').addClass('bounce animated').on('animationend', function(){
+    $(this).removeClass('bounce animated');
+  });
+  
+}
+
+function addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags){
+    
+  for(var i = 0 ; i < actualCircleCount ; i++){
+    var currentCard = document.getElementById('card-'+ i +'-content');
+    currentCard.innerHTML = '';
+  }
+
+  activities.forEach(function(activity){
+
+    if(checkedSupertags.indexOf(activity.supertag) != -1){
+      // 만약 활동의 슈퍼태그가 현재 체크박스에 체크되어 있다면,
+      var cardIndex = -1;
+      
+      for(var i = 0 ; i < dateArr.length ; i++){
+
+        if(i == 0){
+          
+          if(dateArr[0] < activity.date && activity.date < dateArr[i+1] ){
+            
+            cardIndex = i;
+            break;
+          }
+        } else if(i == dateArr.length - 1){
+          if(dateArr[i] < activity.date && activity.date < dateArr[i+1]){
+            cardIndex = i;
+            break;
+          }
+        } else {
+          if(dateArr[i] < activity.date && activity.date < dateArr[i+1]){
+            cardIndex = i;
+            break;
+          }
+        }
+        
+      }
+
+      if(cardIndex != -1){
+
+        var currentCard = document.getElementById('card-'+ cardIndex +'-content');
+        var currentCardContentsCount = currentCard.childNodes.length;
+        if(currentCardContentsCount < 4){
+            currentCard.innerHTML += `
+            <div class="card-body text-dark activity-card-content" 
+                onmouseover="activityHovered(this)" 
+                onmouseout="activityMouseOuted(this)"
+                onclick="activityClicked(this)">
+              <p class="card-text">`+ activity.title +`</p>
+              <p class="card-text">`+ activity.supertag +`</p>
+              <p class="card-text">`+ activity.date.getFullYear() + `/` + (activity.date.getMonth()+1) + `/` + activity.date.getDay() +`</p>
+            </div>
+          `
+        } else if(currentCardContentsCount == 4) {
+          currentCard.innerHTML += `
+            <a href="">더 보기</a>
+          `
+        }
+      }
+      
+    }
+    
+  });
+
+}
+
+function supertagCheckboxChanged(event){
+  let isChecked = event.target.checked;
+  let supertag = event.target.value;
+  let index = checkedSupertags.indexOf(supertag);
+  if(isChecked){
+    // 선택된 상태
+    if(index == -1){
+      checkedSupertags.push(supertag);
+    }
+  } else {
+    // 선택 해제된 상태
+    if(index != -1){
+      checkedSupertags.splice(index, 1);
+    }    
+  }
+  addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
+  animatePlanet();
+}
+
+function getRandomValueFromArray(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function createSampleData(){
+  var result = [];
+  let supertag = ['요가', '필라테스', '헬스'];
+  for(var i = 0 ; i < 20 ; i++){
+    var data = {
+      supertag: getRandomValueFromArray(supertag),
+      title: 'example title ' + i,
+      content: 'example content ' + i,
+      date: randomDate(new Date(2012, 0, 1), new Date())
+    };
+    result.push(data);
+  }
+  return result;
+}
+
+function randomDate(start, end) {
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
+
+function dateRangeAdjustClicked(event){
+  let target = event.target;
+  dateMode = parseInt(target.dataset.range);
+
+  switch(dateMode){
+    case 0:
+      endDate = new Date(startDate.getFullYear()+actualCircleCount, 0, 1);
+      
+      break;
+    case 1:
+      resetPlanetCount(5);
+      endDate = new Date(startDate.getFullYear()+1, 0, 1);
+      
+      break;
+    case 2:
+      resetPlanetCount(6);
+      endDate = new Date(startDate.getFullYear(), startDate.getMonth()+1, 1);
+      
+      break;
+  }
+  
+  dateArr = initDate(startDate, endDate, actualCircleCount, dateMode);
+  markUnitDate(dateMode, dateArr, actualCircleCount);
+  addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
+  animatePlanet();
+}
+function resetPlanetCount(newCircleCount){
+
+  // 전역변수 리셋
+  circleCount = newCircleCount;
+  actualCircleCount = circleCount - 1;
+  singleCircleWidth = lineOffsetWidth / actualCircleCount // 하나의 circle 구역이 차지하는 
+  document.getElementById('circle-area').innerHTML = '';
+
+  // 행성을 생성한다
+  for(var i = 0 ; i < actualCircleCount ; i++){
+  
+    circleArea.innerHTML += `
+        <div class="circle animated bounceInRight">
+          <img class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
+          <span class="badge badge-light planet-label"></span>   
+          <div class="card border-dark mb-3 card-under-line">
+            <div class="card-header">슈퍼태그? 태그?</div>
+            <div class="card-content" id="card-`+i+`-content">
+            </div>
+          </div>
+        </div>
+      `
+  }
+
+  for(var i = 0 ; i < actualCircleCount ; i++){
+  
+    circles[i].style.top = lineOffsetTop - circleUnit / 2 + 'px';
+    circles[i].style.borderRadius = circleUnit + 'px';
+    circles[i].style.width = singleCircleWidth * 0.95 + 'px';
+    // planets[i].style.width = circleUnit + 'px';
+    planets[i].style.height = circleUnit + 'px';
+    circles[i].style.left = lineOffsetLeft + (singleCircleWidth * i) - circleUnit / 2 + 'px'
+    circles[i].dataset.parsedDate = Date.parse(dateArr[i]);
+
+    // circles 에 hover EventListener 달기
+    circles[i].addEventListener('mouseover', whenMouseHovered);
+    circles[i].addEventListener('mouseout', whenMouseLeaved);
+    circles[i].addEventListener('click', whenMouseClicked);
+
+  }
+
+  // 카드에 입력된 활동의 수를 바탕으로 행성의 크기를 변화시킨다.
+  let cardActivities = document.getElementsByClassName('card-content')
+  
+  for(var i = 0 ; i < cardActivities.length ; i++){
+
+    let activityContained = cardActivities[i].childNodes.length;
+    let icons = document.getElementsByClassName('planet-icon');
+    icons[i].style.width = circleUnit + (activityContained * 10) + 'px';
+    icons[i].style.height = circleUnit + (activityContained * 10) + 'px';
+
+  }
+}
+
+function whenMouseClicked(event){
+
+  let planet = event.target;
+  let circle = planet.parentNode;
+  let card = circle.getElementsByClassName('card-under-line')[0];
+  if(card) {
+    card.classList.toggle('pinned');
+    card.classList.toggle('animated');
+    card.classList.toggle('bounce');
+  }
+}
+
+function whenMouseHovered(event){
+  
+  let planet = event.target;
+  if(planet.classList.contains('planet-icon')){
+    let circle = planet.parentNode;
+    let card = circle.getElementsByClassName('card-under-line')[0];
+    card.classList.add('active');
+  }
+  
+}
+
+function whenMouseLeaved(event) {
+
+  let planet = event.target;
+  let circle = planet.parentNode;
+
+  let card = circle.getElementsByClassName('card-under-line')[0];
+  if(card){
+    card.classList.remove('active');
+  }
+
+}
+
+function initDate(startDate, endDate, circleCount, dateMode) {
+  var result = [];
+
+  switch(dateMode){
+    case 0: // 5 years
+      
+      for(var i = 0 ; i < circleCount ; i++){
+        result[i] = new Date(startDate.getFullYear() + i, 0, 1);
+      }
+      break;
+    case 1: // 1 years
+    case 2: // 1 months
+      let startDateInt = Date.parse(startDate);
+      let endDateInt = Date.parse(endDate);
+      let unitDate = (endDateInt - startDateInt) / (circleCount-1);
+
+      for(var i = 0 ; i < circleCount ; i++) {
+        result[i] = new Date(startDateInt + unitDate * i);
+      }    
+      
+      break;
+  }
+  
+  return result;
+
+}
+
+function markUnitDate(dateMode, dateArr, circleCount){
+    
+  var planetLabels = document.getElementsByClassName('planet-label');
+  for(var i = 0 ; i < planetLabels.length ; i++){
+    
+    switch(dateMode) {
+      case 0:
+        planetLabels[i].innerText = dateArr[i].getFullYear() + '년';
+        document.getElementById('current-date').innerText = dateArr[i].getFullYear();
+        document.getElementById('adjust-date').innerText = actualCircleCount + ' Years';
+        break;
+
+      case 1:
+        document.getElementById('current-date').innerText = startDate.getFullYear() + '년' + (startDate.getMonth() + 1) + '월';
+        planetLabels[i].innerText = dateArr[i].getFullYear() + '년' + (dateArr[i].getMonth() + 1) + '월';
+        document.getElementById('adjust-date').innerText = '1 Years';
+        break;
+
+      case 2: 
+        document.getElementById('current-date').innerText = startDate.getFullYear() + '년' + (startDate.getMonth() + 1) + '월';
+        planetLabels[i].innerText = dateArr[i].getFullYear() + '년' + (dateArr[i].getMonth() + 1) + '월';
+        document.getElementById('adjust-date').innerText = '1 Months';
+        break;
+      
+    } 
+  }
+}
+function activityMouseOuted(element){
+  element.style.backgroundColor = "transparent";
+  element.style.opacity = "1";
+}
+
+function activityHovered(element){
+  element.style.backgroundColor = 'lightgray';
+  element.style.opacity = "0.5";
+}
+
+function activityClicked(element) {
+  $('#portfolio-left-modal').modal({
+    backdrop: 'static',
+  });
+  $('#portfolio-right-modal').modal({
+    backdrop: 'static',
+  });
+  $('#xButton').show();
+}
+
+document.getElementById('xButton').addEventListener('click', function(){
+  $('#portfolio-left-modal').modal('hide');
+  $('#portfolio-right-modal').modal('hide');
+  $('#xButton').hide();
+})
+</script>
