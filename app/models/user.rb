@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+
   mount_uploader :image, ImageUploader
   has_many :paintings
   has_many :magazines

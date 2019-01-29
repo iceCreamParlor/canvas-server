@@ -8,6 +8,18 @@ class ProfilesController < ApplicationController
   def show
     @user_category = @user.user_categories
     @is_following = false
+    
+    @paintings = Painting.where(user_id: @user.id)
+    @paintings_json = []
+    @paintings.each do |painting|
+      painting_hash = Hash.new
+      painting_hash['supertag'] = painting.category.name
+      painting_hash['date'] = painting.created_at.to_i * 1000
+      painting_hash['content'] = painting.desc
+      painting_hash['title'] = painting.name
+      @paintings_json << painting_hash.to_json
+    end
+    # @painting_json = @painting_json.to_json
 
     if user_signed_in?
       if current_user.is_following(@user)

@@ -33,6 +33,9 @@ gem 'figaro'
 gem 'carrierwave'
 gem 'mini_magick'
 
+# google 계정으로 이메일 보내기
+gem 'dotenv-rails'
+
 # CKEDITOR
 gem 'ckeditor', github: 'galetahub/ckeditor'
 

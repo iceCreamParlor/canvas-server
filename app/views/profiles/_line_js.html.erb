@@ -2,10 +2,17 @@
 // GLOBAL VARIABLES
 var activities = [];
 
+let activitiesStrArr = <%= raw @paintings_json %>;
+activitiesStrArr.forEach(function(activityStr){
+  var activityJson = (JSON.parse(activityStr));
+  activityJson['date'] = new Date(activityJson['date']);
+  activities.push(activityJson);
+})
+
 var circles;
 var planets;
 // 가장 오른쪽에 가상의 행성이 있다고 가정!!
-var circleCount = 6;
+var circleCount = 5;
 // 실제로 존재하는 행성의 수
 var actualCircleCount = circleCount - 1;
 // ['요가', '필라테스', '헬스']
@@ -18,11 +25,12 @@ var lineOffsetWidth; // 선의 넓이를 의미
 var lineOffsetTop; // 선의 상단 간격을 의미
 
 // Initialize Date
-let today = new Date(); 
+let today = new Date(new Date().setFullYear(new Date().getFullYear() + 1)); 
+
 var endDate = new Date(today.getFullYear(), 0, 1); // 연도 기준일 경우, 1월 1일으로 해야 UX적으로 옳기 때문에, 1월 1일로 객체를 생성
 var startDate = new Date(endDate.getFullYear() - actualCircleCount, 0, 1);
 var dateArr; // 행성들에 해당하는 날짜 객체가 담긴 배열
-var dateMode = 0; // 4 years (0), 1 years (1), 1 months (2)
+var dateMode = 1; // 4 years (0), 1 years (1), 1 months (2)
 
 // 기타 UI 관련된 변수들
 let lineTop = 100; // 수평선이 위로부터 얼마정도 떨어뜨려 놓을지 나타내는 변수
@@ -35,11 +43,11 @@ document.addEventListener('DOMContentLoaded', function(){
   // 페이지가 로드되었을 때
   
   // Sample Data 생성(장고랑 연결할 때에는 서버 정보로 연결해야 함)
-  activities = createSampleData();
+  // activities = createSampleData();
   
   // 행성들의 시간 좌표를 초기화해주는 함수
   dateArr = initDate(startDate, endDate, circleCount, dateMode);
-  
+  console.log(dateArr)
   // Initialize line (수평선의 UI 설정을 하는 부분)
   let lineArea = document.getElementById('line-area');     
   let line = document.getElementById('line');
