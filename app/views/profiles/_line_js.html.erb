@@ -426,7 +426,7 @@ function resetPlanetCount(newCircleCount){
   for(var i = 0 ; i < actualCircleCount ; i++){
   
     circleArea.innerHTML += `
-        <div class="circle animated bounceInRight">
+        <div class="circle animated bounceInRight" style="z-index: 900">
           <img style="background-color: white;" class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
           <span class="badge badge-light planet-label"></span>   
           <div class="card border-dark mb-3 card-under-line line-card">
