@@ -117,6 +117,9 @@ document.addEventListener('DOMContentLoaded', function(){
   // let rightAdjustBtn = document.getElementById('right-adjust-btn');
 
   leftMoveBtn.addEventListener('click', function(){
+
+    removeCards();
+
     switch(dateMode){
       case 0: // 4 years
         
@@ -148,6 +151,9 @@ document.addEventListener('DOMContentLoaded', function(){
   })
 
   rightMoveBtn.addEventListener('click', function(){
+
+    removeCards();
+
     switch(dateMode){
       case 0:
         endDate = new Date(endDate.getFullYear()+actualCircleCount, 0, 1);
@@ -344,6 +350,23 @@ function addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupe
     
   });
 
+  for(var i = 0 ; i < actualCircleCount ; i++){
+    var currentCard = document.getElementById('card-'+ i +'-content');
+    
+    if(currentCard.childElementCount == 0){
+      currentCard.innerHTML = `
+          <center><p>
+            해당 기간의 게시물이 없습니다.
+          </p></center>
+      `
+    }
+  }
+
+}
+
+function removeCards(){
+  $('.card-under-line.line-card').removeClass('active');
+  $('.card-under-line.line-card').removeClass('pinned');
 }
 
 function supertagCheckboxChanged(event){
