@@ -36,21 +36,27 @@
                   </div> -->
                 <% end %>
                 <div class="product-img-hover">
-                  <h6 class="heading-uppercase"><a href="#">보러가기</a></h6>
+                  <!-- <h6 class="heading-uppercase"> -->
+                    <a href="#">
+                      <%= painting.name %>
+                    </a>
+                    <span class="float: right">
+                      <%= painting.category.name %>
+                    </span>
+                  <!-- </h6> -->
                 </div>
               </div><!-- end product-img -->
               <div class="product-info">
-                <h6>
+                <!-- <h6>
                   <a href="#">
                     <%= painting.name %>
                   </a>
                 </h6>
-                <!-- Product Category -->
                 <ul class="list-horizontal">
                   <li>
                     <%= painting.category.name %>
                   </li>
-                </ul>
+                </ul> -->
                 <!-- Product Price -->
                 <div class="product-price float-right text-right">
                   <a  data-toggle="collapse" 

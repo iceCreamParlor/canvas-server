@@ -28,7 +28,7 @@ class LikesController < ApplicationController
 
   private
     def set_like
-      puts "SET"
+      
       painting_id = params[:painting_id].to_i
       @like = Like.find_by(painting_id: painting_id, user_id: current_user.id)
     end 

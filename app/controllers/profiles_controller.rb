@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
     @paintings.each do |painting|
       painting_hash = Hash.new
       painting_hash['supertag'] = painting.category.name
-      painting_hash['date'] = painting.created_at.to_i * 1000
+      painting_hash['date'] = painting.completed_date.to_i * 1000
       painting_hash['content'] = painting.desc
       painting_hash['title'] = painting.name
       @paintings_json << painting_hash.to_json

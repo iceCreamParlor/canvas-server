@@ -41,7 +41,9 @@ class PaintingsController < ApplicationController
   # POST /paintings
   # POST /paintings.json
   def create
+    completed_date = Time.at(params[:painting][:completed_date].to_i)
     @painting = Painting.new(painting_params)
+    @painting.completed_date = completed_date
     @painting.user_id = current_user.id
 
     respond_to do |format|

@@ -37,20 +37,40 @@
       </div>
 
       <% if painting.thumbnail.present? %>
-        <%= form.file_field :thumbnail, accept:"image/*" %>
+        <div class="form-group">
+          <%= form.label :thumbnail, '썸네일' %>
+          <%= form.file_field :thumbnail, accept:"image/*" %>
+        </div>
       <% else %>
-        <%= form.file_field :thumbnail, required: true, accept:"image/*" %>
+        <div class="form-group">
+          <%= form.label :thumbnail, '썸네일' %>
+          <%= form.file_field :thumbnail, required: true, accept:"image/*" %>
+        </div>
       <% end %>
 
       <% if painting.images.blank? %>
-        <%= form.file_field :images, multiple: true, required: true, accept:"file_extension|image/*" %>
+        <div class="form-group">
+          <%= form.label :images, '상세 이미지(다중 선택 가능)' %>
+          <%= form.file_field :images, multiple: true, required: true, accept:"file_extension|image/*" %>
+        </div>
       <% else %>
-        <%= form.file_field :images, multiple: true, accept:"image/*"  %>
+        <div class="form-group">
+          <%= form.label :images, '상세 이미지(다중 선택 가능)' %>
+          <%= form.file_field :images, multiple: true, accept:"image/*"  %>
+        </div>
       <% end %>
       
 
+      <div  class="form-group">
+        <%= form.label :completed_date, '작업한 날짜' %>
+        <input id="completed-date-picker" placeholder="작업한 날짜를 설정해 주세요." type="text" class="form-control" readonly="readonly">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+      </div>
+
+      <%= form.hidden_field :completed_date %>
+
       <div class="actions">
-        <%= form.submit %>
+        <%= form.submit "작품 등록" %>
       </div>
     </div>
     <div class="col-12 col-md-4">
@@ -58,3 +78,23 @@
     </div>
   </div>
 <% end %>
+
+<script type='text/javascript'>
+  $(function(){
+    $('#completed-date-picker').datepicker({
+      calendarWeeks: false,
+      todayHighlight: true,
+      autoclose: true,
+      format: "yyyy/mm/dd",
+      language: "kr",
+      // onChangeDateTime: dateSelected
+    }).on('change', function (e) {
+      let completedDateStr = $('#completed-date-picker').val();
+      let completedDateArr = completedDateStr.split('/').map(x => parseInt(x));
+      let completedDate = new Date(completedDateArr[0], completedDateArr[1]-1, completedDateArr[2]);
+      
+      $('#painting_completed_date').val(Date.parse(completedDate) / 1000);
+    });;
+  });
+  
+</script>

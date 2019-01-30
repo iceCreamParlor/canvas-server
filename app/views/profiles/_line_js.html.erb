@@ -17,7 +17,7 @@ var circleCount = 5;
 var actualCircleCount = circleCount - 1;
 // ['요가', '필라테스', '헬스']
 var checkedSupertags = [];
-let planetArray = ['jupiter.png', 'mars.png', 'venus.png', 'saturn.png'];
+let planetArray = ['circle-brush1.png', 'circle-brush2.png', 'circle-brush3.png', 'circle-brush4.png', 'circle-brush5.png'];
 
 
 var lineOffsetLeft; // 선의 왼쪽 간격을 의미
@@ -28,7 +28,8 @@ var lineOffsetTop; // 선의 상단 간격을 의미
 let today = new Date(new Date().setFullYear(new Date().getFullYear() + 1)); 
 
 var endDate = new Date(today.getFullYear(), 0, 1); // 연도 기준일 경우, 1월 1일으로 해야 UX적으로 옳기 때문에, 1월 1일로 객체를 생성
-var startDate = new Date(endDate.getFullYear() - actualCircleCount, 0, 1);
+// var startDate = new Date(endDate.getFullYear() - actualCircleCount, 0, 1);
+var startDate = new Date(endDate.getFullYear() - 1, 0, 1);
 var dateArr; // 행성들에 해당하는 날짜 객체가 담긴 배열
 var dateMode = 1; // 4 years (0), 1 years (1), 1 months (2)
 
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function(){
         
     circleArea.innerHTML += `
       <div class="circle animated bounceInRight" style="z-index: 900">
-        <img class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
+        <img style="background-color: white;" class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
         <span class="badge badge-light planet-label"></span>   
         <div class="card border-dark mb-3 card-under-line line-card">
           <div class="card-header">슈퍼태그? 태그?</div>
@@ -513,6 +514,7 @@ function initDate(startDate, endDate, circleCount, dateMode) {
       }
       break;
     case 1: // 1 years
+      
     case 2: // 1 months
       let startDateInt = Date.parse(startDate);
       let endDateInt = Date.parse(endDate);

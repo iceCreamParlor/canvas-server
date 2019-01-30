@@ -18,6 +18,9 @@
 .page[data-page=paintings-index] .custom-select {
   width: 80%;
 }
+.page[data-page=paintings-index] .product-info {
+  padding-top: 0px;
+}
 .ui.fluid.kakao.icon.button.sns{
   background-color: #FBDD04;
   border-radius: 0px;
