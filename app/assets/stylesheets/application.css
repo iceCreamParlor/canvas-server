@@ -18,6 +18,9 @@
 .page[data-page=paintings-index] .custom-select {
   width: 80%;
 }
+.page[data-page=paintings-index] .product.item {
+  margin-bottom: 30px;
+}
 .page[data-page=paintings-index] .product-info {
   padding-top: 0px;
 }
