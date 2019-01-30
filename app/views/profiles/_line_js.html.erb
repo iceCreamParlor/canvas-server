@@ -8,6 +8,7 @@ activitiesStrArr.forEach(function(activityStr){
   activityJson['date'] = new Date(activityJson['date']);
   activities.push(activityJson);
 })
+console.log(activities)
 
 var circles;
 var planets;
@@ -73,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function(){
         <img style="background-color: white;" class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
         <span class="badge badge-light planet-label"></span>   
         <div class="card border-dark mb-3 card-under-line line-card">
-          <div class="card-header">슈퍼태그? 태그?</div>
           <div class="card-content" id="card-`+i+`-content">
           </div>
         </div>
@@ -324,7 +324,7 @@ function addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupe
         var currentCardContentsCount = currentCard.childNodes.length;
         if(currentCardContentsCount < 4){
             currentCard.innerHTML += `
-            <div class="card-body text-dark activity-card-content" 
+            <div style=" background-image: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.5) 100%), url('`+ activity.thumbnail +`');" class="card-body text-dark activity-card-content" 
                 onmouseover="activityHovered(this)" 
                 onmouseout="activityMouseOuted(this)"
                 onclick="activityClicked(this)">
@@ -430,7 +430,6 @@ function resetPlanetCount(newCircleCount){
           <img style="background-color: white;" class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
           <span class="badge badge-light planet-label"></span>   
           <div class="card border-dark mb-3 card-under-line line-card">
-            <div class="card-header">슈퍼태그? 태그?</div>
             <div class="card-content" id="card-`+i+`-content">
             </div>
           </div>

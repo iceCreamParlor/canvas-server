@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
       painting_hash['date'] = painting.completed_date.to_i * 1000
       painting_hash['content'] = painting.desc
       painting_hash['title'] = painting.name
+      painting_hash['thumbnail'] = painting.thumbnail.url
       @paintings_json << painting_hash.to_json
     end
     # @painting_json = @painting_json.to_json

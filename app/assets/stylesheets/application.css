@@ -182,6 +182,11 @@
   border-radius: 200px;
   float: right;
 }
+
+.page[data-page=profiles-show] .card-text {
+  color: black;
+}
+
 .page[data-page=profiles-show] img.card-thumbnail {
   width: 100px;
   height: 100px;
