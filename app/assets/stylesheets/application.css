@@ -100,7 +100,7 @@
 }
 
 .page[data-page=paintings-show] .preview-cell { 
-  padding: 0px 10px 0px 0px; 
+  padding: 0px 2px 0px 0px; 
   display: inline-block;
   float: none;
   margin-bottom: 0px !important;
