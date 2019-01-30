@@ -330,14 +330,16 @@ function addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupe
         var currentCardContentsCount = currentCard.childNodes.length;
         if(currentCardContentsCount < 4){
             currentCard.innerHTML += `
-            <div style=" background-image: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.4) 100%), url('`+ activity.thumbnail +`');" class="card-body text-dark activity-card-content" 
-                onmouseover="activityHovered(this)" 
-                onmouseout="activityMouseOuted(this)"
-                onclick="activityClicked(this)">
-              <p class="card-text">`+ activity.title +`</p>
-              <p class="card-text">`+ activity.supertag +`</p>
-              <p class="card-text">`+ activity.date.getFullYear() + `/` + (activity.date.getMonth()+1) + `/` + activity.date.getDay() +`</p>
-            </div>
+            <a href="/paintings/`+ activity.id +`">
+              <div style=" background-image: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.4) 100%), url('`+ activity.thumbnail +`');" class="card-body text-dark activity-card-content" 
+                  onmouseover="activityHovered(this)" 
+                  onmouseout="activityMouseOuted(this)"
+                  onclick="activityClicked(this)">
+                <p class="card-text">`+ activity.title +`</p>
+                <p class="card-text">`+ activity.supertag +`</p>
+                <p class="card-text">`+ activity.date.getFullYear() + `/` + (activity.date.getMonth()+1) + `/` + activity.date.getDay() +`</p>
+              </div>
+            </a>
           `
         } else if(currentCardContentsCount == 4) {
           currentCard.innerHTML += `
