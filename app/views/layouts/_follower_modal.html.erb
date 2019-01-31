@@ -13,7 +13,11 @@
             <li class="list-group-item" style="display: flex; align-items: center;justify-content: space-between; padding-top: 5px; padding-bottom: 5px;">
               <%= link_to profile_path(user) do %>
                 <div>
-                  <img style="height: 40px; width: 40px; border-radius: 20px;" src="<%= user.image.url %>" alt="">
+                  <% if user.image.present? && user.image.url.present? %>
+                    <img style="height: 40px; width: 40px; border-radius: 20px;" src="<%= user.image.url %>" alt="">
+                  <% else %>
+                    <img style="height: 40px; width: 40px; border-radius: 20px;" src="/images/default_profile.png" alt="">
+                  <% end %>
                   <span style="margin-left: 10px;"><%= user.nickname %></span>
                 </div>
               <% end %>
