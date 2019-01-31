@@ -60,6 +60,10 @@ class PaintingsController < ApplicationController
   # PATCH/PUT /paintings/1
   # PATCH/PUT /paintings/1.json
   def update
+
+    completed_date = Time.at(params[:painting][:completed_date].to_i)
+    @painting.completed_date = completed_date
+
     respond_to do |format|
       if @painting.update(painting_params)
         format.html { redirect_to @painting, notice: 'Painting was successfully updated.' }
