@@ -7,7 +7,8 @@ $('#paintings-container').append('<%= j render @paintings %>');
   $('.pagination').remove();
 <% end %>
 
-$('#paintings-container').masonry('destroy')
+// $('#paintings-container').masonry('destroy')
+$('#paintings-container').removeData('masonry');
 setInterval(function(){
   // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
   $('#paintings-container').masonry({
