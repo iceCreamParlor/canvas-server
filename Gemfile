@@ -36,6 +36,9 @@ gem 'mini_magick'
 # google 계정으로 이메일 보내기
 gem 'dotenv-rails'
 
+# INFINITE SCROLL
+gem 'will_paginate'
+
 # CKEDITOR
 gem 'ckeditor', github: 'galetahub/ckeditor'
 

@@ -7,9 +7,16 @@ class PaintingsController < ApplicationController
   # GET /paintings
   # GET /paintings.json
   def index
-    @paintings = Painting.all.order(created_at: :desc)
+    @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC')
+    # @paintings = Painting.all.order(created_at: :desc)
     @categories = Category.all
     @colors = Color.all
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # GET /paintings/1

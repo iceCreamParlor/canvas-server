@@ -20,78 +20,16 @@
             </select>
           </div>
         </div>
-        <div id="product-container" class="row product-wrapper product-hover-style-2 margin-top-50">
+        <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
           <% @paintings.each do |painting| %>
-            <div class="col-6 col-md-6 col-lg-4 product item">
-              <div class="product-img">
-                <%= link_to painting_path(painting) do %>
-                  <img src="<%= painting.thumbnail.url %>" alt="">
-                  <!-- Badge: Sale -->
-                  <!-- <div class="product-sale">
-                    <h6 class="heading-uppercase">-30%</h6>
-                  </div> -->
-                  <!-- Badge: New -->
-                  <!-- <div class="product-new">
-                    <span class="heading-uppercase">New</span>
-                  </div> -->
-                <% end %>
-                <div class="product-img-hover">
-                  <!-- <h6 class="heading-uppercase"> -->
-                    <a href="#">
-                      <%= painting.name %>
-                    </a>
-                    <span class="float: right">
-                      <%= painting.category.name %>
-                    </span>
-                  <!-- </h6> -->
-                </div>
-              </div><!-- end product-img -->
-              <div class="product-info">
-                <% if @is_mobile %>
-                  <h6>
-                    <a href="#">
-                      <%= painting.name %>
-                    </a>
-                  </h6>
-                  <ul class="list-horizontal">
-                    <li>
-                      <%= painting.category.name %>
-                    </li>
-                  </ul>
-                <% end %>
-                <!-- Product Price -->
-                <div class="product-price float-right text-right">
-                  <a  data-toggle="collapse" 
-                      href="#painting-price-<%= painting.id %>" 
-                      role="button" 
-                      aria-expanded="false" 
-                      aria-controls="collapseExample"
-                      style="font-size: 12px;">
-                    Price
-                  </a>
-                  <div class="collapse" id="painting-price-<%= painting.id %>">
-                    <p style="font-size: 12px">
-                      <%= number_to_currency(painting.price, unit: '￦', precision: 0) %>
-                    </p>
-                  </div>
-                </div>
-                <!-- Add to Wishlist button -->
-                <a class="product-wishlist" href="#">
-                  <i class="fa fa-heart-o"></i>
-                </a>
-                <!-- Product Rating -->
-                <!-- <div class="product-rating">
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                  <span><i class="fas fa-star"></i></span>
-                </div> -->
-              </div><!-- end product-info -->
-            </div>
+            <%= render 'painting', painting: painting %>
             
           <% end %>
           
+          <div id="infinite-scrolling" style="display: none;">
+            <%= will_paginate @paintings %>
+          </div>
+
         </div><!-- end row(inner) -->
         <!-- Pagination -->
         <!-- <nav>
@@ -157,12 +95,31 @@
 $(function(){
   setInterval(function(){
     // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
-    $('#product-container').masonry({
+    $('#paintings-container').masonry({
       // options
       itemSelector : '.item',
     
     });
   })
   
+
+  if($('#infinite-scrolling')[0]){
+    // infinite-scroll이 존재하면
+    
+    $(window).scroll(function(){
+      let needLoad = $(window).scrollTop() > $(document).height() - $(window).height() - 60;
+      
+      if(needLoad){
+        let morePostUrl = $('.pagination .next_page').attr('href');
+        // ACTIVATE PRELOADER
+        $.ajax({
+          url: morePostUrl,
+          dataType: "script", // important! (js.erb 실행)
+          method: "GET"
+        })
+      }
+    })
+  }
+
 }, 300);
 </script>

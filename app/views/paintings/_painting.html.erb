@@ -1,0 +1,67 @@
+<div class="col-6 col-md-6 col-lg-4 product item animated fadeIn">
+  <div class="product-img">
+    <%= link_to painting_path(painting) do %>
+      <img src="<%= painting.thumbnail.url %>" alt="">
+      <!-- Badge: Sale -->
+      <!-- <div class="product-sale">
+        <h6 class="heading-uppercase">-30%</h6>
+      </div> -->
+      <!-- Badge: New -->
+      <!-- <div class="product-new">
+        <span class="heading-uppercase">New</span>
+      </div> -->
+    <% end %>
+    <div class="product-img-hover">
+      <!-- <h6 class="heading-uppercase"> -->
+        <a href="#">
+          <%= painting.name %>
+        </a>
+        <span class="float: right">
+          <%= painting.category.name %>
+        </span>
+      <!-- </h6> -->
+    </div>
+  </div><!-- end product-img -->
+  <div class="product-info">
+    <% if @is_mobile %>
+      <h6>
+        <a href="#">
+          <%= painting.name %>
+        </a>
+      </h6>
+      <ul class="list-horizontal">
+        <li>
+          <%= painting.category.name %>
+        </li>
+      </ul>
+    <% end %>
+    <!-- Product Price -->
+    <div class="product-price float-right text-right">
+      <a  data-toggle="collapse" 
+          href="#painting-price-<%= painting.id %>" 
+          role="button" 
+          aria-expanded="false" 
+          aria-controls="collapseExample"
+          style="font-size: 12px;">
+        Price
+      </a>
+      <div class="collapse" id="painting-price-<%= painting.id %>">
+        <p style="font-size: 12px">
+          <%= number_to_currency(painting.price, unit: '￦', precision: 0) %>
+        </p>
+      </div>
+    </div>
+    <!-- Add to Wishlist button -->
+    <a class="product-wishlist" href="#">
+      <i class="fa fa-heart-o"></i>
+    </a>
+    <!-- Product Rating -->
+    <!-- <div class="product-rating">
+      <span><i class="fas fa-star"></i></span>
+      <span><i class="fas fa-star"></i></span>
+      <span><i class="fas fa-star"></i></span>
+      <span><i class="fas fa-star"></i></span>
+      <span><i class="fas fa-star"></i></span>
+    </div> -->
+  </div><!-- end product-info -->
+</div>
