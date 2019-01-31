@@ -1,5 +1,4 @@
-let newPaintings = '<%= j render @paintings %>';
-$('#paintings-container').append(newPaintings);
+$('#paintings-container').append('<%= j render @paintings %>');
 
 <% if @paintings.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @paintings %>');
@@ -8,6 +7,7 @@ $('#paintings-container').append(newPaintings);
   $('.pagination').remove();
 <% end %>
 
+// MASONRY 를 파괴했다 다시 로드한다.
 $('#paintings-container').masonry('destroy')
 setInterval(function(){
   // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
