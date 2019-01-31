@@ -47,16 +47,18 @@
                 </div>
               </div><!-- end product-img -->
               <div class="product-info">
-                <!-- <h6>
-                  <a href="#">
-                    <%= painting.name %>
-                  </a>
-                </h6>
-                <ul class="list-horizontal">
-                  <li>
-                    <%= painting.category.name %>
-                  </li>
-                </ul> -->
+                <% if @is_mobile %>
+                  <h6>
+                    <a href="#">
+                      <%= painting.name %>
+                    </a>
+                  </h6>
+                  <ul class="list-horizontal">
+                    <li>
+                      <%= painting.category.name %>
+                    </li>
+                  </ul>
+                <% end %>
                 <!-- Product Price -->
                 <div class="product-price float-right text-right">
                   <a  data-toggle="collapse" 
