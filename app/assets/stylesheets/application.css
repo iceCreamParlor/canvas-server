@@ -19,7 +19,14 @@
   width: 80%;
 }
 .page[data-page=paintings-index] .product.item {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 5px;
+}
+.page[data-page=paintings-index] .product-price {
+
+  margin-top: 0px !important;
 }
 .page[data-page=paintings-index] .product-info {
   padding-top: 0px;
