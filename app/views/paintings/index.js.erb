@@ -8,7 +8,7 @@ $('#paintings-container').append(newPaintings);
   $('.pagination').remove();
 <% end %>
 
-$('#paintings-container').masonry('prepended', newPaintings)
+$('#paintings-container').masonry('appended', newPaintings)
 // setInterval(function(){
 //   // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
 //   $('#paintings-container').masonry({
