@@ -33,6 +33,11 @@
   font-weight: 700;
 }
 
+.page[data-page=paintings-index] .shop-sidebar-box.mobile {
+  padding: 15px;
+  margin-bottom: 2px;
+}
+
 .page[data-page=paintings-index] .custom-select {
   width: 80%;
 }

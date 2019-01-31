@@ -1,3 +1,4 @@
+<% if !@is_mobile %>
 <!-- Products section -->
 <div class="section">
   <div class="container">
@@ -42,7 +43,7 @@
           </ul>
         </nav> -->
       </div>
-      <% if !@is_mobile %>
+      <% if true || !@is_mobile %>
         <!-- Sidebar -->
         <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
           <!-- Sidebar box 1 - Category -->
@@ -100,7 +101,119 @@
   </div><!-- end container -->
 </div>
 <!-- end Products section -->
+<% else %>
+<div class="section">
+  <div class="container">
+    <div class="row">
+      
+      
+      <!-- Sidebar -->
+      <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
+        <!-- Sidebar box 1 - Category -->
+        <div class="shop-sidebar-box mobile">
+          <h5  class="font-weight-light margin-bottom-20">
+            Category
+            <a data-toggle="collapse" href="#categoryCollapse" role="button" aria-expanded="false" aria-controls="categoryCollapse" class="float-right">+</a>
+          </h5>
+          <ul id="categoryCollapse" class="shop-sidebar-category collapse">
+            <% @categories.each do |category| %>
+              <li>
+                
+                <%= link_to "javascript:void(0);", 
+                    data: { category: category.id }, 
+                    onclick: "filterByCategory(this)",
+                    class: "category-option option" do %>
+                  <%= category.name %> 
+                  <span><%= category.paintings.count %></span>
+                <% end %>
+                
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- Sidebar box 2 - Color -->
+        <div class="shop-sidebar-box mobile">
+          <h5  class="font-weight-light">
+            Color
+            <a data-toggle="collapse" href="#colorCollapse" role="button" aria-expanded="false" aria-controls="colorCollapse" class="float-right">+</a>
+          </h5>
+          <ul id="colorCollapse" class="shop-sidebar-color collapse">
+            <% @colors.each do |color| %>
+              <li>
+                <%= link_to "javascript:void(0);",
+                    data: { color: color.id },
+                    onclick: "filterByColor(this)",
+                    class: "color-option option" do %>
+                  <%= color.name %> 
+                  <span style="background: <%= color.hex %>"></span>
+                <% end %>
+              </li>
+            <% end %>
+            <!-- You can use (style="background: ..") to set custom colors 
+              <li><a href="#">Custom Color <span style="background: #ff7373"></span></a></li> -->
+          </ul>
+        </div>
+        <!-- Sidebar box 3 - Size -->
+        <div class="shop-sidebar-box mobile">
+          <h5 class="font-weight-light margin-bottom-20">
+            Size
+            <a data-toggle="collapse" href="#sizeCollapse" role="button" aria-expanded="false" aria-controls="sizeCollapse" class="float-right">+</a>
+          </h5>
+          <ul id="sizeCollapse" class="shop-sidebar-size collapse">
+            <li><a href="#">Extra Small <span>XS</span></a></li>
+            <li><a href="#">Small <span>SM</span></a></li>
+            <li><a href="#">Medium <span>MD</span></a></li>
+            <li><a href="#">Large <span>LG</span></a></li>
+            <li><a href="#">Extra Large <span>XL</span></a></li>
+          </ul>
+        </div>
+      </div>
+      
 
+      <!-- Products -->
+      <div class="col-12 col-lg-9 order-lg-2">
+        <div class="row align-items-center">
+          <div class="col-6 text-left">
+            <%= link_to new_painting_path do %>
+              <button type="button" class="btn btn-outline-dark">작품 등록하기</button>
+            <% end %>
+          </div>
+          <div class="col-6 text-right">
+            <select class="custom-select">
+              <option selected>Newest</option>
+              <option value="1">Sort by Popularity</option>
+              <option value="1">Sort by Rating</option>
+              <option value="2">Sort by Price: high to low</option>
+              <option value="3">Sort by Price: low to high</option>
+            </select>
+          </div>
+        </div>
+        <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
+          <% @paintings.each do |painting| %>
+            <%= render 'painting', painting: painting %>
+            
+          <% end %>
+          
+          <div id="infinite-scrolling" style="display: none;">
+            <%= will_paginate @paintings %>
+          </div>
+
+        </div><!-- end row(inner) -->
+        <!-- Pagination -->
+        <!-- <nav>
+          <ul class="pagination justify-content-center margin-top-70">
+            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+          </ul>
+        </nav> -->
+      </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
+</div>
+<% end %>
 <script>
 var sentRequest = true;
 var isFinished = false;
