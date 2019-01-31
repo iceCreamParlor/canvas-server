@@ -20,7 +20,7 @@
           
           <% @painting.images.each_with_index do |image, index| %>
             <div class="col-2 preview-cell">
-              <a href="#painting-img-<%= index+1 %>">
+              <a style="cursor:crosshair" href="#painting-img-<%= index+1 %>">
                 <img class="preview-cell-img" src="<%= image.url %>">
               </a>
             </div>
@@ -213,6 +213,8 @@
     glass = document.createElement("DIV");
     
     glass.setAttribute("class", "img-magnifier-glass");
+    glass.style.cursor = "crosshair";
+    
 
     /* Insert magnifier glass: */
     img.parentElement.insertBefore(glass, img);
