@@ -95,6 +95,9 @@
 
 <script>
 $(function(){
+
+  var sentRequest = false;
+
   setInterval(function(){
     // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
     $('#paintings-container').masonry({
@@ -111,13 +114,19 @@ $(function(){
     $(window).scroll(function(){
       let needLoad = $(window).scrollTop() > $(document).height() - $(window).height() - 60;
       
-      if(needLoad){
+      sentRequest = true;
+
+      if(needLoad && sentRequest){
         let morePostUrl = $('.pagination .next_page').attr('href');
         // ACTIVATE PRELOADER
         $.ajax({
           url: morePostUrl,
           dataType: "script", // important! (js.erb 실행)
-          method: "GET"
+          method: "GET",
+          success: function(){
+            console.log("success");
+            sentRequest = false;
+          }
         })
       }
     })
