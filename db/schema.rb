@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2019_01_31_053719) do
     t.string "thumbnail"
     t.string "desc"
     t.bigint "user_id"
-    t.datetime "completed_date", default: "2019-01-30 15:13:13"
+    t.datetime "completed_date", default: "2019-01-30 15:42:29"
     t.index ["category_id"], name: "index_paintings_on_category_id"
     t.index ["color_id"], name: "index_paintings_on_color_id"
     t.index ["user_id"], name: "index_paintings_on_user_id"

@@ -4,16 +4,20 @@
       <h3>메세지</h3>
     </div>
     <div class="row">
-      <div class="col-6">
-        <h4>쪽지함</h4>
+      <div class="col-6 no-padding">
+        
         <ul class="list-group">
           <% @messages.each do |message| %>
-            <li class="list-group-item" onclick="showMessage(this)"
+            <li class="list-group-item no-padding-vertical" onclick="showMessage(this)"
                 data-message="<%= message.id %>">
               <div>
-                <h6 class="heading-uppercase message-content"><%= message.content %></h6>
+                <h6 class="heading-uppercase message-content">
+                  <%= message.content %>
+                  <span class="card-text float-right"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d") %></small></span>
+                </h6>
+                
               </div>
-              <button type="button" 
+              <!-- <button type="button" 
                     class="btn btn-outline-dark float-right reply-btn"
                     data-seller="<%= message.seller_id %>"
                     data-buyer="<%= message.buyer_id %>"
@@ -24,7 +28,7 @@
                     data-painting="-1"
                     <% end %>
                     data-toggle="modal" 
-                    data-target="#replyModal">답장</button>
+                    data-target="#replyModal">답장</button> -->
                 <!-- <div class="accordion-content">
                   <% if message.painting.present? %>
                   <p class="painting-price"><%= message.painting.price %></p>
@@ -44,30 +48,39 @@
                     data-target="#replyModal">답장</button>
                   </p>
                 </div> -->
+                
             </li>
           <% end %>
         </ul>  
 
 
       </div>
-      <div id="message-specific" class="col-6" style="border: 1px solid #e6e6e6;">
-        <h4>상세 내용</h4>
+      <div id="message-specific" class="col-6">
         
-        <div id="message-sender">
-
-        </div>
-        <div id="message-painting">
-          <div id="painting-name">
-
+        <div class="card">
+          <div id="painting-img"></div>
+          <!-- <img src="..." class="card-img-top" alt="..."> -->
+          <div class="card-body">
+            <h5 id="message-sender" class="card-title">Card title</h5>
+            
+            <div id="message-painting">
+              <div id="painting-name">
+    
+              </div>
+              <div id="painting-img">
+    
+              </div>
+    
+            </div>
+            <p id="message-content" class="card-text"></p>
+            
+            
+            
           </div>
-          <div id="painting-img">
-
-          </div>
-
         </div>
-        <div id="message-content">
 
-        </div>
+
+        
 
       </div>
     </div>

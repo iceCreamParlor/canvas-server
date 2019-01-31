@@ -476,7 +476,7 @@ function setPlanetSize(){
     let activityContained = cardActivities[i].getElementsByClassName('card-body').length;
     let circles = document.getElementsByClassName('circle');
     let icons = document.getElementsByClassName('planet-icon');
-    let iconWidth = circleUnit + (activityContained * 13)
+    let iconWidth = circleUnit + (activityContained * 9)
     icons[i].style.width = iconWidth + 'px';
     icons[i].style.height = iconWidth + 'px';
     circles[i].style.top = lineOffsetTop - iconWidth / 2 + 'px';
