@@ -1,6 +1,7 @@
-<h1>Editing Magazine</h1>
-
-<%= render 'form', magazine: @magazine %>
-
-<%= link_to 'Show', @magazine %> |
-<%= link_to 'Back', magazines_path %>
+<div class="section">
+  <div class="container">
+    <h1>매거진 수정</h1>
+    <%= link_to 'Back', magazines_path, style: "float: right;" %>
+    <%= render 'form', magazine: @magazine %>
+  </div>
+</div>

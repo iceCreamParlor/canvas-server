@@ -1,4 +1,14 @@
-<!-- Blog Post section -->
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <div class="container" style="padding-top: 100px;">
+    <%= link_to magazine_path, method: :delete do %>
+      <button type="button" class="btn btn-outline-dark float-right">삭제</button>
+    <% end %>
+    <%= link_to edit_magazine_path do %>
+      <button type="button" class="btn btn-outline-dark float-right">수정</button>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="section">
   <div class="container margin-top-20">
     <div class="row">
