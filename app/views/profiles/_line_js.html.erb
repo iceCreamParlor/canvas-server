@@ -8,7 +8,7 @@ activitiesStrArr.forEach(function(activityStr){
   activityJson['date'] = new Date(activityJson['date']);
   activities.push(activityJson);
 })
-console.log(activities)
+// console.log(activities)
 
 var circles;
 var planets;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function(){
   
   // 행성들의 시간 좌표를 초기화해주는 함수
   dateArr = initDate(startDate, endDate, circleCount, dateMode);
-  console.log(dateArr)
+  
   // Initialize line (수평선의 UI 설정을 하는 부분)
   let lineArea = document.getElementById('line-area');     
   let line = document.getElementById('line');
