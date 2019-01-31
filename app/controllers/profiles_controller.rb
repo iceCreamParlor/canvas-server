@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
     @user_category = @user.user_categories
     @is_following = false
     
-    @paintings = Painting.where(user_id: @user.id)
+    @paintings = Painting.where(user_id: @user.id).exclude_images
     @paintings_json = []
     @paintings.each do |painting|
       painting_hash = Hash.new
