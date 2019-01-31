@@ -42,50 +42,52 @@
           </ul>
         </nav> -->
       </div>
-      <!-- Sidebar -->
-      <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
-        <!-- Sidebar box 1 - Category -->
-        <div class="shop-sidebar-box">
-          <h5 class="font-weight-light margin-bottom-20">Category</h5>
-          <ul class="shop-sidebar-category">
-            <% @categories.each do |category| %>
-              <li>
-                <a href="#">
-                  <%= category.name %> 
-                  <span><%= category.paintings.count %></span>
-                </a>
-              </li>
-            <% end %>
-          </ul>
+      <% if !@is_mobile %>
+        <!-- Sidebar -->
+        <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
+          <!-- Sidebar box 1 - Category -->
+          <div class="shop-sidebar-box">
+            <h5 class="font-weight-light margin-bottom-20">Category</h5>
+            <ul class="shop-sidebar-category">
+              <% @categories.each do |category| %>
+                <li>
+                  <a href="#">
+                    <%= category.name %> 
+                    <span><%= category.paintings.count %></span>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <!-- Sidebar box 2 - Color -->
+          <div class="shop-sidebar-box">
+            <h5 class="font-weight-light margin-bottom-20">Color</h5>
+            <ul class="shop-sidebar-color">
+              <% @colors.each do |color| %>
+                <li>
+                  <a href="#">
+                    <%= color.name %> 
+                    <span style="background: <%= color.hex %>"></span>
+                  </a>
+                </li>
+              <% end %>
+              <!-- You can use (style="background: ..") to set custom colors 
+                <li><a href="#">Custom Color <span style="background: #ff7373"></span></a></li> -->
+            </ul>
+          </div>
+          <!-- Sidebar box 3 - Size -->
+          <div class="shop-sidebar-box">
+            <h5 class="font-weight-light margin-bottom-20">Size</h5>
+            <ul class="shop-sidebar-size">
+              <li><a href="#">Extra Small <span>XS</span></a></li>
+              <li><a href="#">Small <span>SM</span></a></li>
+              <li><a href="#">Medium <span>MD</span></a></li>
+              <li><a href="#">Large <span>LG</span></a></li>
+              <li><a href="#">Extra Large <span>XL</span></a></li>
+            </ul>
+          </div>
         </div>
-        <!-- Sidebar box 2 - Color -->
-        <div class="shop-sidebar-box">
-          <h5 class="font-weight-light margin-bottom-20">Color</h5>
-          <ul class="shop-sidebar-color">
-            <% @colors.each do |color| %>
-              <li>
-                <a href="#">
-                  <%= color.name %> 
-                  <span style="background: <%= color.hex %>"></span>
-                </a>
-              </li>
-            <% end %>
-            <!-- You can use (style="background: ..") to set custom colors 
-              <li><a href="#">Custom Color <span style="background: #ff7373"></span></a></li> -->
-          </ul>
-        </div>
-        <!-- Sidebar box 3 - Size -->
-        <div class="shop-sidebar-box">
-          <h5 class="font-weight-light margin-bottom-20">Size</h5>
-          <ul class="shop-sidebar-size">
-            <li><a href="#">Extra Small <span>XS</span></a></li>
-            <li><a href="#">Small <span>SM</span></a></li>
-            <li><a href="#">Medium <span>MD</span></a></li>
-            <li><a href="#">Large <span>LG</span></a></li>
-            <li><a href="#">Extra Large <span>XL</span></a></li>
-          </ul>
-        </div>
-      </div>
+      <% end %>
     </div><!-- end row -->
   </div><!-- end container -->
 </div>
