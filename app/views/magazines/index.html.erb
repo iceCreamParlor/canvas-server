@@ -1,6 +1,15 @@
+<% if user_signed_in? && current_user.user_type == "admin" %>
+  <div class="container" style="padding-top: 100px;">
+    <%= link_to new_magazine_path do %>
+      <button type="button" class="btn btn-outline-dark float-right">매거진 등록하기</button>
+    <% end %>
+  </div>
+<% end %>
 <!-- Blog Posts -->
 <div class="section">
+  
   <div class="container text-center">
+    
     <div class="blog-masonry blog-column-3"><!-- 'blog-column-1' to 'blog-column-6' -->
       <% @magazines.each do |magazine| %>
         <div class="blog-post-box">

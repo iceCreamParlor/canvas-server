@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_30_144637) do
+ActiveRecord::Schema.define(version: 2019_01_31_053719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(version: 2019_01_30_144637) do
     t.string "content"
     t.string "thumbnail"
     t.bigint "user_id"
+    t.integer "magazine_type", default: 0
+    t.integer "priority", default: 0
     t.index ["user_id"], name: "index_magazines_on_user_id"
   end
 
