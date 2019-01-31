@@ -220,13 +220,13 @@
   display: block;
 }
 
-.page[data-page=profiles-show] .modal-dialog{
+.page[data-page=profiles-show] .modal-dialog.portfolio{
   margin-left: 0px;
   margin-right: 0px;
   height: 92%;
 }
 
-.page[data-page=profiles-show] .modal-content {
+.page[data-page=profiles-show] .modal-content.portfolio {
   height: 100%;
 }
 
