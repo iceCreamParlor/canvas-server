@@ -1,0 +1,1 @@
+CKEDITOR.editorConfig=function(i){i.toolbar_mini=[["Bold","Italic","Underline","Strike","-","Subscript","Superscript"]],i.toolbar="simple",i.height=1e3};

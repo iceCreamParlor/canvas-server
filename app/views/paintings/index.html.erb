@@ -51,10 +51,15 @@
             <ul class="shop-sidebar-category">
               <% @categories.each do |category| %>
                 <li>
-                  <a href="#">
+                  
+                  <%= link_to "javascript:void(0);", 
+                      data: { category: category.id }, 
+                      onclick: "filterByCategory(this)",
+                      class: "category-option option" do %>
                     <%= category.name %> 
                     <span><%= category.paintings.count %></span>
-                  </a>
+                  <% end %>
+                  
                 </li>
               <% end %>
             </ul>
@@ -65,10 +70,13 @@
             <ul class="shop-sidebar-color">
               <% @colors.each do |color| %>
                 <li>
-                  <a href="#">
+                  <%= link_to "javascript:void(0);",
+                      data: { color: color.id },
+                      onclick: "filterByColor(this)",
+                      class: "color-option option" do %>
                     <%= color.name %> 
                     <span style="background: <%= color.hex %>"></span>
-                  </a>
+                  <% end %>
                 </li>
               <% end %>
               <!-- You can use (style="background: ..") to set custom colors 
@@ -131,4 +139,50 @@ $(function(){
   }
 
 }, 300);
+
+function filterByCategory(element){
+  let categoryId = parseInt(element.dataset.category);
+  
+  toggleSelected(element, '.category-option');
+  makeAjaxFilter();
+}
+
+function filterByColor(element){
+  let colorId = parseInt(element.dataset.color);
+
+  toggleSelected(element, '.color-option');
+  makeAjaxFilter();
+}
+
+function toggleSelected(element, className){
+  if(element.classList.contains('selected')){
+    $(className).removeClass('selected');
+    element.classList.remove('selected');  
+  } else {
+    $(className).removeClass('selected');
+    element.classList.add('selected');
+  }
+}
+
+function makeAjaxFilter(){
+  let selectedArr = document.getElementsByClassName('selected');
+  var queryString = '?';
+  var url = '';
+  for(var i = 0 ; i < selectedArr.length ; i++){
+    var dataset = selectedArr[i].dataset;
+    for(var key in dataset){
+      queryString += key + '_id=' + dataset[key] + '&'
+    }
+  }
+  url = '<%= paintings_path %>' + queryString.slice(0, queryString.length - 1);
+  
+  $.ajax({
+    url: url,
+    method: 'GET',
+    dataType: "script",
+    success: function(){
+      
+    }
+  })
+}
 </script>

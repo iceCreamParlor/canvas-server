@@ -7,7 +7,24 @@ class PaintingsController < ApplicationController
   # GET /paintings
   # GET /paintings.json
   def index
-    @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+    
+    @is_filtering = false
+    # 필터링을 하는 경우
+    if params[:category_id].present?
+      @is_filtering = true
+      @paintings = Painting.where(category_id: params[:category_id])
+    end
+    if params[:color_id].present?
+      @paintings = @paintings.where(color_id: params[:color_id])
+      @is_filtering = true
+    end
+    if @is_filtering
+      @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+    end
+    # 필터링을 하지 않는 경우
+    if !@is_filtering
+      @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+    end
     # @paintings = Painting.all.order(created_at: :desc)
     @categories = Category.all
     @colors = Color.all

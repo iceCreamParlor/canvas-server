@@ -1,3 +1,7 @@
+<% if @is_filtering %>
+$('#paintings-container').html('');
+<% end %>
+
 $('#paintings-container').append('<%= j render @paintings %>');
 
 <% if @paintings.next_page %>

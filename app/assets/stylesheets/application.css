@@ -28,6 +28,11 @@
   color: white;
 }
 
+.page[data-page=paintings-index] .option.selected {
+  font-style: italic;
+  font-weight: 700;
+}
+
 .page[data-page=paintings-index] .custom-select {
   width: 80%;
 }

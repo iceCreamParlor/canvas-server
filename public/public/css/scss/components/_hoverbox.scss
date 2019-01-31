@@ -1,0 +1,299 @@
+//
+// Hover box Styles //
+//
+.hoverbox-1, 
+.hoverbox-2, 
+.hoverbox-3, 
+.hoverbox-4, 
+.hoverbox-5, 
+.hoverbox-6, 
+.hoverbox-7 {
+	overflow: hidden;
+	position: relative;
+	display: inline-block;
+	img {
+		@include transition(ease-out 0.2s);
+	}
+}
+//
+// Hover box - Style 1, 2 //
+//
+.hoverbox-1, 
+.hoverbox-2 {
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		opacity: 0;
+		background: $color-black-07;
+		width: 100%;
+		height: 100%;
+		@include transition(ease-out 0.2s);
+	}
+	.hover-content {
+		position: absolute;
+		z-index: 2;
+		visibility: hidden;
+		opacity: 0;
+		color: $color-white-07;
+		@include transition(ease-out 0.2s);
+		h1,h2,h3,h4,h5,h6 {
+			color: $color-white;
+		}
+	}
+	&:hover {
+		&:before {
+			opacity: 1;
+		}
+		img {
+			@include transform(scale(1.02));
+		}
+		.hover-content {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+.hoverbox-1 {
+	.hover-content {
+		top: 50%;
+		right: 0;
+		left: 0;
+		@include transform(translateY(-50%));
+		width: 100%;
+		margin-top: 5px;
+		padding: 0 30px;
+		
+	}
+	&:hover {
+		.hover-content {
+			margin-top: 0;
+		}
+	}
+}
+.hoverbox-2 {
+	.hover-content {
+		right: 0;
+		bottom: 0;
+		left: 0;
+		@include transform(translateY(5px));
+		width: 100%;
+		padding: 30px;
+	}
+	&:hover {
+		.hover-content {
+			@include transform(translateY(0));
+		}
+	}
+}
+//
+// Hover box - Style 3 //
+//
+.hoverbox-3 {
+	&:before {
+		content: '';
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		bottom: 20px;
+		left: 20px;
+		@include transform(translateY(5px));
+		z-index: 1;
+		opacity: 0;
+		background: $color-white;
+		@include transition(ease-out 0.2s);
+	}
+	.hover-content {
+		position: absolute;
+		top: 50%;
+		right: 20px;
+		left: 20px;
+		@include transform(translateY(-50%));
+		z-index: 2;
+		visibility: hidden;
+		opacity: 0;
+		margin-top: 5px;
+		padding: 0 30px;
+		@include transition(ease-out 0.2s);
+	}
+	&:hover {
+		&:before {
+			@include transform(translateY(0));
+			opacity: 1;
+		}
+		img {
+			@include transform(scale(1.02));
+		}
+		.hover-content {
+			visibility: visible;
+			opacity: 1;
+			margin-top: 0;
+		}
+	}
+}
+//
+// Hover box - Style 4 //
+//
+.hoverbox-4 {
+	.hover-content {
+		position: absolute;
+		right: 20px;
+		bottom: 20px;
+		left: 20px;
+		@include transform(translateY(5px));
+		z-index: 1;
+		visibility: hidden;
+		opacity: 0;
+		background: $color-white;
+		padding: 30px;
+		@include transition(ease-out 0.2s);
+	}
+	&:hover {
+		img {
+			@include transform(scale(1.02));
+		}
+		.hover-content {
+			@include transform(translateY(0));
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+//
+// Hover box - Style 5, 6 //
+//
+.hoverbox-5, 
+.hoverbox-6 {
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		background: $color-black-06;
+		width: 100%;
+		height: 100%;
+		@include transition(ease-out 0.2s);
+	}
+	.content, 
+	.hover-content {
+		position: absolute;
+		z-index: 2;
+		color: $color-white-07;
+		@include transition(ease-out 0.2s);
+		h1,h2,h3,h4,h5,h6 {
+			color: $color-white;
+		}
+	}
+	.hover-content {
+		visibility: hidden;
+		opacity: 0;
+	}
+	&:hover {
+		&:before {
+			background: $color-black-07;
+		}
+		img {
+			@include transform(scale(1.02));
+		}
+		.hover-content {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+.hoverbox-5 {
+	.content, 
+	.hover-content {
+		top: 50%;
+		left: 0;
+		@include transform(translateY(-50%));
+		width: 100%;
+		padding: 0 30px;
+	}
+	.hover-content {
+		margin-top: 5px;
+	}
+	&:hover {
+		.content {
+			visibility: hidden;
+			opacity: 0;
+			margin-top: -5px;
+		}
+		.hover-content {
+			margin-top: 0;
+		}
+	}
+}
+.hoverbox-6 {
+	.content, 
+	.hover-content {
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		padding: 30px;
+	}
+	.hover-content {
+		@include transform(translateY(5px));
+	}
+	&:hover {
+		.content {
+			@include transform(translateY(-5px));
+			visibility: hidden;
+			opacity: 0;
+		}
+		.hover-content {
+			@include transform(translateY(0));
+		}
+	}
+}
+.hoverbox-7 {
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		background: $color-black-06;
+		width: 100%;
+		height: 100%;
+		@include transition(ease-out 0.2s);
+	}
+	.content, 
+	.hover-content {
+		position: absolute;
+		z-index: 2;
+		left: 0;
+		width: 100%;
+		padding: 30px;
+		color: $color-white-07;
+		h1,h2,h3,h4,h5,h6 {
+			color: $color-white;
+		}
+	}
+	.content {
+		top: 0;
+	}
+	.hover-content {
+		bottom: 0;
+		@include transform(translateY(5px));
+		visibility: hidden;
+		opacity: 0;
+		@include transition(ease-out 0.2s);
+	}
+	&:hover {
+		&:before {
+			background: $color-black-07;
+		}
+		img {
+			@include transform(scale(1.02));
+		}
+		.hover-content {
+			@include transform(translateY(0));
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
