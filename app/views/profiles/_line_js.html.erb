@@ -513,17 +513,24 @@ function whenMouseHovered(event){
     let circle = planet.parentNode;
     let card = circle.getElementsByClassName('card-under-line')[0];
     card.classList.add('active');
+    card.classList.add('just-hovered');
+    setInterval(function(){
+      /* 클릭하지 않은 상태에서 아래 카드 내용들을 클릭해보고 싶을때를 위에서 아래의 내용을 추가했다.
+         hover 된 후 1초동안은 카드가 사라지지 않고, whenMouseLeave 에서 카드를 숨기지 못하게 기능을 수정하였다.
+      */
+      card.classList.remove('just-hovered');
+      card.classList.remove('active');
+    }, 1000);
   }
   
 }
 
 function whenMouseLeaved(event) {
-
   let planet = event.target;
   let circle = planet.parentNode;
 
   let card = circle.getElementsByClassName('card-under-line')[0];
-  if(card){
+  if(card && card.classList.contains('just-hovered') == false){
     card.classList.remove('active');
   }
 
