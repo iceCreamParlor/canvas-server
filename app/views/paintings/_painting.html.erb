@@ -2,8 +2,11 @@
   <div class="product-img">
     <%= link_to painting_path(painting) do %>
       <!-- !!!!@# -->
-      <!-- <img src="<%= painting.thumbnail.url %>" alt=""> -->
-      <img src="/images/col-3-tall.jpg" alt="">
+        <% if painting.thumbnail.present? && painting.thumbnail.url.present? %>
+      <img src="<%= painting.thumbnail.url %>" alt="">
+      <% else %>
+        <img src="/images/col-3-tall.jpg" alt="">
+      <% end %>
       <!-- Badge: Sale -->
       <!-- <div class="product-sale">
         <h6 class="heading-uppercase">-30%</h6>
