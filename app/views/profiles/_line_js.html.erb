@@ -70,16 +70,15 @@ document.addEventListener('DOMContentLoaded', function(){
   // 카드의 내용은 입력하지 않고 단순히 카드의 형식만 입력시킴
   for(var i = 0 ; i < actualCircleCount ; i++){
         
-    circleArea.innerHTML += `
-      <div class="circle animated bounceInRight" style="z-index: 900">
-        <img style="background-color: white;" class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
-        <span class="badge badge-light planet-label"></span>   
-        <div class="card border-dark mb-3 card-under-line line-card">
-          <div class="card-content" id="card-`+i+`-content">
-          </div>
-        </div>
-      </div>
-    `
+    circleArea.innerHTML += 
+     '<div class="circle animated bounceInRight" style="z-index: 900">'+
+        '<img style="background-color: white;" class="planet-icon" src="/images/line/'+ getRandomValueFromArray(planetArray) +'" id="circle'+ i +'">'+
+        '<span class="badge badge-light planet-label"></span>'+
+        '<div class="card border-dark mb-3 card-under-line line-card">'+
+          '<div class="card-content" id="card-'+i+'-content">'+
+          '</div>'+
+        '</div>'+
+      '</div>'
   }
 
   // 체크된 슈퍼태그들을 생성함 ex) ['헬스', '요가', '필라테스']
@@ -263,15 +262,6 @@ document.addEventListener('DOMContentLoaded', function(){
     })
     supertagArr = supertagArr.filter( onlyUnique );
     
-    // supertagArr.forEach(function(supertag){
-    //   supertags.innerHTML += `
-    //     <li class="nav-item">
-    //     <div class="input-group-prepend nav-link">
-    //       <input onchange="supertagCheckboxChanged(event)" type="checkbox" checked aria-label="Checkbox for following text input" value="`+ supertag +`"> 
-    //       <span>`+ supertag +`</span> 
-    //     </div>
-    //   `
-    // })
     return supertagArr;
   }
 
@@ -330,23 +320,21 @@ function addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupe
         var currentCard = document.getElementById('card-'+ cardIndex +'-content');
         var currentCardContentsCount = currentCard.childNodes.length;
         if(currentCardContentsCount < 4){
-            currentCard.innerHTML += `
-            <a href="/paintings/`+ activity.id +`">
-              <div style="background-position: center center;
-  background-repeat: no-repeat; background-image: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.4) 100%), url('`+ activity.thumbnail +`');" class="card-body text-dark activity-card-content" 
-                  onmouseover="activityHovered(this)" 
-                  onmouseout="activityMouseOuted(this)"
-                  onclick="activityClicked(this)">
-                <p class="card-text">`+ activity.title +`</p>
-                <p class="card-text category">`+ activity.supertag +`</p>
-                <p class="card-text date">`+ activity.date.getFullYear() + `년 ` + (activity.date.getMonth()+1) + `월 ` + activity.date.getDay() +`일</p>
-              </div>
-            </a>
-          `
+            currentCard.innerHTML += 
+            '<a href="/paintings/'+ activity.id +'">'+
+              '<div style="background-position: center center;'+
+  'background-repeat: no-repeat; background-image: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.4) 100%), url("'+ activity.thumbnail +'");" class="card-body text-dark activity-card-content"'+
+                  'onmouseover="activityHovered(this)"'+
+                  'onmouseout="activityMouseOuted(this)"'+
+                  'onclick="activityClicked(this)">'+
+                '<p class="card-text">'+ activity.title +'</p>'+
+                '<p class="card-text category">'+ activity.supertag +'</p>'+
+                '<p class="card-text date">'+ activity.date.getFullYear() + '년 ' + (activity.date.getMonth()+1) + '월 ' + activity.date.getDay() +'일</p>'+
+              '</div>'+
+            '</a>'
         } else if(currentCardContentsCount == 4) {
-          currentCard.innerHTML += `
-            <a href="">더 보기</a>
-          `
+          currentCard.innerHTML += '<a href="">더 보기</a>'
+          
         }
       }
       
@@ -358,11 +346,8 @@ function addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupe
     var currentCard = document.getElementById('card-'+ i +'-content');
     
     if(currentCard.childElementCount == 0){
-      currentCard.innerHTML = `
-          <center><p>
-            해당 기간의 게시물이 없습니다.
-          </p></center>
-      `
+      currentCard.innerHTML = 
+      '<center><p>해당 기간의 게시물이 없습니다.</p></center>'
     }
   }
   setPlanetSize();
@@ -452,16 +437,15 @@ function resetPlanetCount(newCircleCount){
   // 행성을 생성한다
   for(var i = 0 ; i < actualCircleCount ; i++){
   
-    circleArea.innerHTML += `
-        <div class="circle animated bounceInRight" style="z-index: 900">
-          <img style="background-color: white;" class="planet-icon" src="/images/line/`+ getRandomValueFromArray(planetArray) +`" id="circle`+ i +`">
-          <span class="badge badge-light planet-label"></span>   
-          <div class="card border-dark mb-3 card-under-line line-card">
-            <div class="card-content" id="card-`+i+`-content">
-            </div>
-          </div>
-        </div>
-      `
+    circleArea.innerHTML += 
+        '<div class="circle animated bounceInRight" style="z-index: 900">'+
+          '<img style="background-color: white;" class="planet-icon" src="/images/line/'+ getRandomValueFromArray(planetArray) +'" id="circle'+ i +'">'+
+          '<span class="badge badge-light planet-label"></span>'+
+          '<div class="card border-dark mb-3 card-under-line line-card">'+
+            '<div class="card-content" id="card-'+i+'-content">'+
+            '</div>'+
+          '</div>'+
+        '</div>'
   }
 
   for(var i = 0 ; i < actualCircleCount ; i++){
