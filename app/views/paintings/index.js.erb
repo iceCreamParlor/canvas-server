@@ -1,4 +1,6 @@
-$('#paintings-container').append('<%= j render @paintings %>');
+let newPaintings = '<%= j render @paintings %>';
+$('#paintings-container').append(newPaintings);
+
 <% if @paintings.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @paintings %>');
 <% else %>
@@ -6,6 +8,7 @@ $('#paintings-container').append('<%= j render @paintings %>');
   $('.pagination').remove();
 <% end %>
 
+// $('#paintings-container').masonry('prepended', newPaintings)
 // setInterval(function(){
 //   // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
 //   $('#paintings-container').masonry({
