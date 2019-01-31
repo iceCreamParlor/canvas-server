@@ -125,6 +125,22 @@
 .page[data-page=profiles-show] .gray {
   color: gray;
 }
+.page[data-page=profiles-show] .card-text {
+  color: gray;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.page[data-page=profiles-show] .card-text.category {
+  font-style: italic;
+  font-size: 12px;
+}
+
+.page[data-page=profiles-show] .card-text.date {
+  font-style: italic;
+  font-size: 12px;
+}
+
 .page[data-page=profiles-show] div.info-area {
   margin-top: 100px;
 }

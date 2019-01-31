@@ -338,8 +338,8 @@ function addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupe
                   onmouseout="activityMouseOuted(this)"
                   onclick="activityClicked(this)">
                 <p class="card-text">`+ activity.title +`</p>
-                <p class="card-text">`+ activity.supertag +`</p>
-                <p class="card-text">`+ activity.date.getFullYear() + `/` + (activity.date.getMonth()+1) + `/` + activity.date.getDay() +`</p>
+                <p class="card-text category">`+ activity.supertag +`</p>
+                <p class="card-text date">`+ activity.date.getFullYear() + `년 ` + (activity.date.getMonth()+1) + `월 ` + activity.date.getDay() +`일</p>
               </div>
             </a>
           `
