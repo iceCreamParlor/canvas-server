@@ -4,6 +4,22 @@ $('#message-sender').html(`
 $('#message-content').html(`
   <%= @message.content %>
 `)
+
+$('#reply-btn-area').html(`
+  <button type="button" 
+  class="btn btn-outline-dark float-right reply-btn"
+  data-seller="<%= @message.seller_id %>"
+  data-buyer="<%= @message.buyer_id %>"
+  data-buyer-name="<%= @message.buyer.nickname %>"
+  <% if @message.painting.present? %>
+  data-painting="<%= @message.painting_id %>"
+  <% else %>
+  data-painting="-1"
+  <% end %>
+  data-toggle="modal" 
+  data-target="#replyModal">답장</button>
+`)
+
 <% if @painting.present? %>
   $('#painting-name').html(`
     <%= @painting.name %>
