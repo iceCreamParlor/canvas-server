@@ -15,11 +15,20 @@ class PaintingsController < ApplicationController
       @paintings = Painting.where(category_id: params[:category_id])
     end
     if params[:color_id].present?
-      @paintings = @paintings.where(color_id: params[:color_id])
+      if @paintings.present?
+        @paintings = @paintings.where(color_id: params[:color_id])
+      else 
+        @paintings = Painting.where(color_id: params[:color_id])
+      end
       @is_filtering = true
     end
     if @is_filtering
-      @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+      @paintings = @paintings .paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+    end
+    if params[:refresh].present?
+      @need_refresh = true
+    else 
+      @need_refresh = false
     end
     # 필터링을 하지 않는 경우
     if !@is_filtering

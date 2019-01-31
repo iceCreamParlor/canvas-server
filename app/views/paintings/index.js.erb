@@ -1,5 +1,8 @@
-<% if @is_filtering %>
-$('#paintings-container').html('');
+<% if @is_filtering && @need_refresh %>
+$('#paintings-container').html(`
+  <div id="infinite-scrolling" style="display: none;">
+    <%= will_paginate @paintings %>
+  </div>`);
 <% end %>
 
 $('#paintings-container').append('<%= j render @paintings %>');
@@ -7,8 +10,9 @@ $('#paintings-container').append('<%= j render @paintings %>');
 <% if @paintings.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @paintings %>');
 <% else %>
-  $(window).off('scroll');
-  $('.pagination').remove();
+  isFinished = true;
+  // $(window).off('scroll');
+  // $('.pagination').remove();
 <% end %>
 
 // $('#paintings-container').masonry('destroy')
