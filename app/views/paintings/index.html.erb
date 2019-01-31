@@ -96,7 +96,7 @@
 <script>
 $(function(){
 
-  var sentRequest = false;
+  var sentRequest = true;
 
   setInterval(function(){
     // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
@@ -113,11 +113,9 @@ $(function(){
     
     $(window).on('scroll', function(){
       let needLoad = $(window).scrollTop() > $(document).height() - $(window).height() - 60;
-      
-      sentRequest = true;
 
       if(needLoad && sentRequest){
-        sentRequest =false;
+        sentRequest = false;
         let morePostUrl = $('.pagination .next_page').attr('href');
         // ACTIVATE PRELOADER
         $.ajax({
