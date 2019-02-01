@@ -76,13 +76,15 @@
               <ion-icon onclick="filterInit('price')" name="sync" class="float-right"></ion-icon>
             </h5>
             <ul class="shop-sidebar-size">
-              <% @prices.each do |price| %>
+              <% @prices.each_with_index do |price, index| %>
                 <li>
                   <%= link_to "javascript:void(0);",
                   data: { price: price.id },
                   onclick: "filterByPrice(this)",
                   class: "price-option option" do %>
-                    - <%= number_to_currency(price.value, unit: '', precision: 0) %>
+                    <% cheap_price = index!= 0 ? number_to_currency(@prices[index-1].value, unit: '', precision: 0) : 0 %>
+                    <%= cheap_price %>원
+                    - <%= number_to_currency(price.value, unit: '', precision: 0) %>원
                   <% end %>
                 </li>
               <% end %>
@@ -173,15 +175,23 @@
         <!-- Sidebar box 3 - Size -->
         <div class="shop-sidebar-box mobile">
           <h5 class="font-weight-light margin-bottom-20">
-            Size
-            <a data-toggle="collapse" href="#sizeCollapse" role="button" aria-expanded="false" aria-controls="sizeCollapse" class="float-right">+</a>
+            Price
+            <a data-toggle="collapse" href="#priceCollapse" role="button" aria-expanded="false" aria-controls="priceCollapse" class="float-right">+</a>
           </h5>
-          <ul id="sizeCollapse" class="shop-sidebar-size collapse">
-            <li><a href="#">Extra Small <span>XS</span></a></li>
-            <li><a href="#">Small <span>SM</span></a></li>
-            <li><a href="#">Medium <span>MD</span></a></li>
-            <li><a href="#">Large <span>LG</span></a></li>
-            <li><a href="#">Extra Large <span>XL</span></a></li>
+          <ul id="priceCollapse" class="shop-sidebar-size collapse">
+            <% @prices.each_with_index do |price, index| %>
+              <li>
+                <%= link_to "javascript:void(0);",
+                data: { price: price.id },
+                onclick: "filterByPrice(this)",
+                class: "price-option option" do %>
+                  <% cheap_price = index!= 0 ? number_to_currency(@prices[index-1].value, unit: '', precision: 0) : 0 %>
+                  <%= cheap_price %>원
+                  - <%= number_to_currency(price.value, unit: '', precision: 0) %>원
+                <% end %>
+              </li>
+              
+            <% end %>
           </ul>
         </div>
       </div>

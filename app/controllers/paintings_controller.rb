@@ -8,6 +8,10 @@ class PaintingsController < ApplicationController
   # GET /paintings.json
   def index
     
+    @categories = Category.all
+    @colors = Color.all
+    @prices = Price.all.order(:value)
+
     @is_filtering = false
     # 필터링을 하는 경우
     if params[:category_id].present?
@@ -20,9 +24,15 @@ class PaintingsController < ApplicationController
       
       price = Price.find(params[:price_id][0])
       
-      if @paintings.present?
-        @paintings = @paintings.where("price <= ?", price.value)
-      else 
+      cheap_price = @prices.index(price) == 0 ? nil : @prices[@prices.index(price)-1]
+      
+      if @paintings.present? && cheap_price.present?
+        
+        @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
+      elsif cheap_price.present? 
+        
+        @paintings = Painting.where("price <= ? AND price > ?", price.value, cheap_price.value)
+      else
         @paintings = Painting.where("price <= ?", price.value)
       end
       
@@ -53,9 +63,7 @@ class PaintingsController < ApplicationController
     end
     # @paintings = Painting.all.order(created_at: :desc)
 
-    @categories = Category.all
-    @colors = Color.all
-    @prices = Price.all
+    
 
     respond_to do |format|
       format.html
