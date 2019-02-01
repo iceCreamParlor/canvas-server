@@ -73,7 +73,7 @@
           <div class="shop-sidebar-box">
             <h5 class="font-weight-light margin-bottom-20">
               Price
-              <ion-icon onclick="filterInit('size')" name="sync" class="float-right"></ion-icon>
+              <ion-icon onclick="filterInit('price')" name="sync" class="float-right"></ion-icon>
             </h5>
             <ul class="shop-sidebar-size">
               <% @prices.each do |price| %>
@@ -303,8 +303,20 @@ function filterByPrice(element){
   
   let priceId = parseInt(element.dataset.price);
   isFinished = false;
+  var selected = false;
+  if(element.classList.contains('selected')){
+    selected = true;
+  }
+
   $('.price-option').removeClass('selected');
-  element.classList.add('selected');
+  
+  if(selected){
+    
+    element.classList.remove('selected');  
+  } else {
+    
+    element.classList.add('selected');
+  }
 
   initLoad();
 

@@ -17,17 +17,17 @@ class PaintingsController < ApplicationController
     end
 
     if params[:price_id].present?
-      puts params[:price_id]
+      
       price = Price.find(params[:price_id][0])
-      puts price
+      
       if @paintings.present?
-        @paintings = @paintings.where("price < ?", price.value)
+        @paintings = @paintings.where("price <= ?", price.value)
       else 
-        @paintings = Painting.where("price < ?", price.value)
+        @paintings = Painting.where("price <= ?", price.value)
       end
       
       @is_filtering = true
-      @paintings = Painting.where("price < ?", price.value)
+      
     end
 
     if params[:color_id].present?
