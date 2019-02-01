@@ -226,6 +226,8 @@
 <script>
 var sentRequest = true;
 var isFinished = false;
+var isInitialized = false;
+
 $(function(){
 
   setInterval(function(){
@@ -247,7 +249,7 @@ function activateScroll(){
     
     $(window).on('scroll', function(){
       let needLoad = $(window).scrollTop() > $(document).height() - $(window).height() - 60;
-
+      
       if(needLoad && sentRequest && !isFinished){
         
         if(document.getElementsByClassName('selected').length == 0){
@@ -274,6 +276,7 @@ function initLoad(){
 
   if(document.getElementsByClassName('selected').length == 0){
     makeAjaxLoad();
+
   } else {
     makeAjaxFilter(true);  
   }
@@ -294,7 +297,6 @@ function filterByColor(element){
   isFinished = false;
   toggleSelected(element, '.color-option');
   
-  
   initLoad();
 }
 
@@ -310,7 +312,8 @@ function toggleSelected(element, className){
 
 function makeAjaxLoad(){
   sentRequest = false;
-  let morePostUrl = $('.pagination .next_page').attr('href');
+  var morePostUrl = $('.pagination .next_page').attr('href');
+  
   // ACTIVATE PRELOADER
   $.ajax({
     url: morePostUrl,
@@ -318,6 +321,7 @@ function makeAjaxLoad(){
     method: "GET",
     success: function(){
       sentRequest = true;
+      isInitialized = false
     }
   })
 }
@@ -342,6 +346,7 @@ function makeAjaxFilter(needRefresh){
   }
   
   
+  
   $.ajax({
     url: morePostUrl,
     method: 'GET',
@@ -353,7 +358,17 @@ function makeAjaxFilter(needRefresh){
 }
 
 function filterInit(name){
-  $('.' + name + '-option').removeClass('selected');
-  initLoad();
+  
+  if(!isInitialized){
+    $('#paintings-container').html(`
+    <div id="infinite-scrolling" style="display: none;">
+      <%= will_paginate @paintings %>
+    </div>`);
+    isFinished = false;
+  
+    $('.' + name + '-option').removeClass('selected');
+    initLoad();
+    isInitialized = true;
+  }
 }
 </script>

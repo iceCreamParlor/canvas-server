@@ -1,9 +1,11 @@
-<% if @is_filtering && @need_refresh %>
+<% if (@is_filtering && @need_refresh) || @strong_need_refresh %>
 $('#paintings-container').html(`
   <div id="infinite-scrolling" style="display: none;">
     <%= will_paginate @paintings %>
   </div>`);
+
 <% end %>
+
 
 $('#paintings-container').append('<%= j render @paintings %>');
 

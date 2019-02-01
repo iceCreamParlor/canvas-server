@@ -31,6 +31,7 @@ class PaintingsController < ApplicationController
     else 
       @need_refresh = false
     end
+    
     # 필터링을 하지 않는 경우
     if !@is_filtering
       @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
