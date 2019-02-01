@@ -226,7 +226,6 @@
 <script>
 var sentRequest = true;
 var isFinished = false;
-var isInitialized = false;
 
 $(function(){
 
@@ -321,7 +320,6 @@ function makeAjaxLoad(){
     method: "GET",
     success: function(){
       sentRequest = true;
-      isInitialized = false
     }
   })
 }
@@ -359,16 +357,15 @@ function makeAjaxFilter(needRefresh){
 
 function filterInit(name){
   
-  if(!isInitialized){
-    $('#paintings-container').html(`
-    <div id="infinite-scrolling" style="display: none;">
-      <%= will_paginate @paintings %>
-    </div>`);
-    isFinished = false;
   
-    $('.' + name + '-option').removeClass('selected');
-    initLoad();
-    isInitialized = true;
-  }
+  $('#paintings-container').html(`
+  <div id="infinite-scrolling" style="display: none;">
+    <%= will_paginate @paintings %>
+  </div>`);
+  isFinished = false;
+
+  $('.' + name + '-option').removeClass('selected');
+  initLoad();
+  
 }
 </script>
