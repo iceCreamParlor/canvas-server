@@ -73,7 +73,11 @@
                   </div> -->
                   
                   <div class="blog-post-content">
-                    <img src="/images/col-1.jpg" alt="">
+                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                      <img src="<%= magazine.thumbnail.url %>" alt="">
+                    <% else %>
+                      <img src="/images/col-1.jpg" alt="">
+                    <% end %>
                     <div class="blog-post-title margin-top-20">
                       <h5>
                         <%= link_to magazine_path(magazine) do %>
@@ -93,7 +97,11 @@
                 <div class="blog-post-box">
                   
                   <div class="blog-post-content">
-                    <img src="/images/col-1.jpg" alt="">
+                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                      <img src="<%= magazine.thumbnail.url %>" alt="">
+                    <% else %>
+                      <img src="/images/col-1.jpg" alt="">
+                    <% end %>
                     <div class="blog-post-title margin-top-20">
                       <h5>
                         <%= link_to magazine_path(magazine) do %>
