@@ -23,12 +23,12 @@
     <% if magazine.thumbnail.blank? %>
       <div class="form-group">
         <%= form.label :thumbnail, '썸네일' %>
-        <%= form.file_field :images, required: true, accept:"file_extension|image/*" %>
+        <%= form.file_field :thumbnail, required: true, accept:"file_extension|image/*" %>
       </div>
     <% else %>
       <div class="form-group">
         <%= form.label :thumbnail, '썸네일' %>
-        <%= form.file_field :images, accept:"file_extension|image/*" %>
+        <%= form.file_field :thumbnail, accept:"file_extension|image/*" %>
       </div>
     <% end %>
 
