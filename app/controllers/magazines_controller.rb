@@ -1,7 +1,13 @@
 class MagazinesController < InheritedResources::Base
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+
 
   def index
-    @magazines = Magazine.order("created_at DESC")
+    @normal_magazines = Magazine.where(priority: "normal").order("created_at DESC")
+    @head_magazines = Magazine.where(priority: "head").order("created_at DESC")
+    @main_magazines = Magazine.where(priority: "main").order("created_at DESC")
+    @painting_magazines = Magazine.where(magazine_type: "painting") - @head_magazines - @main_magazines
+    @artist_magazines = Magazine.where(magazine_type: "artist") - @head_magazines - @main_magazines
   end
 
   def show
@@ -15,7 +21,8 @@ class MagazinesController < InheritedResources::Base
 
   def create
     @magazine = Magazine.new(magazine_params)
-    if @magazine.save
+    
+    if @magazine.save!
       redirect_to magazines_path, notice: "The article has been successfully created."
     else
       render action: "new"

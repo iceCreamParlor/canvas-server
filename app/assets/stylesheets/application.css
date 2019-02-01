@@ -290,3 +290,21 @@
   background-color: white !important;
 }
 /* LINE (END) */
+hr {
+  display: block;
+  height: 1px !important;
+  border: 0;
+  border-top: 1px solid #ccc !important;
+  margin: 1em 0 !important;
+  margin-bottom: 0px !important;
+  padding: 0; 
+}
+
+.magazine-type{
+  font-size: 14px; 
+  font-style: italic;
+}
+
+.popular-post{
+  font-size: 8px;
+}

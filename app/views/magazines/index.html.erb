@@ -5,47 +5,156 @@
     <% end %>
   </div>
 <% end %>
-<!-- Blog Posts -->
-<div class="section">
+<!-- HEAD MAGAZINES Posts -->
+<% if @head_magazines.present? %>
+  <!-- Blog section  -->
   
-  <div class="container text-center">
+  <div class="section" style="padding-top: 30px;">
     
-    <div class="blog-masonry blog-column-3"><!-- 'blog-column-1' to 'blog-column-6' -->
-      <% @magazines.each do |magazine| %>
-        <div class="blog-post-box">
-          <div class="blog-post-img">
-            <%= link_to magazine_path(magazine) do %>
-              <% if magazine.thumbnail.present? %>
-                <img src="<%= magazine.thumbnail.url %>" alt="">
-              <% end %>
-            <% end %>
+    <div class="container">
+      <!-- <hr>    -->
+      <br>
+      <div class="row">
+        <!-- Blog Posts -->
+        
+        <div class="col-12 col-lg-8 blog-small-thumbnail">
+          <div class="margin-bottom-20">
+            <span class="magazine-type">헤드</span>
           </div>
-
-          <div class="blog-post-content text-left">
-            <div class="blog-post-title margin-bottom-10">
-              <h5>
+          
+          <!-- Blog Post box 1 -->
+          <% @head_magazines.each do |magazine| %>
+            <div class="blog-post-box">
+              <div class="blog-post-img">
                 <%= link_to magazine_path(magazine) do %>
-                  <%= magazine.title %>
+                  <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                    <img src="<%= magazine.thumbnail.url %>" alt="">
+                  <% else %>
+                    <img src="/images/col-3.jpg" alt="">
+                  <% end %>
                 <% end %>
-              </h5>
-              <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+              </div>
+              <div class="blog-post-content">
+                <div class="blog-post-title margin-bottom-10">
+                  <h5>
+                    <%= link_to magazine_path(magazine) do %>
+                      <%= magazine.title %>
+                    <% end %>
+                  </h5>
+                  <ul class="list-horizontal-dash font-small margin-bottom-10">
+                    <li>
+                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                    </li>
+                  </ul>
+                  
+                </div>
+                <%= magazine.content.html_safe %>
+                <%= link_to magazine_path(magazine), class:"text-btn-3 margin-top-20" do %>
+                  자세히
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <hr>
+          
+          <div class="row margin-top-20">
+            
+            <div class="col-12 col-lg-6">
+              <!-- Blog Post box 1 -->
+              <h6 class="heading-uppercase"><a class="magazine-type">신진 작가</a></h6>
+              <% @artist_magazines.each do |magazine| %>
+                <div class="blog-post-box">
+                  <!-- <div class="blog-post-img">
+                    <a href="#">
+                      <img src="/images/col-1.jpg" alt="">
+                    </a>
+                  </div> -->
+                  
+                  <div class="blog-post-content">
+                    <img src="/images/col-1.jpg" alt="">
+                    <div class="blog-post-title margin-top-20">
+                      <h5>
+                        <%= link_to magazine_path(magazine) do %>
+                          <%= magazine.title %>
+                        <% end %>
+                      </h5>
+                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-12 col-lg-6">
+              <!-- Blog Post box 1 -->
+              <h6 class="heading-uppercase"><a class="magazine-type">이슈 작품</a></h6>
+              <% @painting_magazines.each do |magazine| %>
+                <div class="blog-post-box">
+                  
+                  <div class="blog-post-content">
+                    <img src="/images/col-1.jpg" alt="">
+                    <div class="blog-post-title margin-top-20">
+                      <h5>
+                        <%= link_to magazine_path(magazine) do %>
+                          <%= magazine.title %>
+                        <% end %>
+                      </h5>
+                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
             </div>
             
-            <%#= link_to 'Read More', magazine_path(magazine), class: "text-btn margin-top-20" %>
           </div>
         </div>
-      <% end %>
+        
+        
+        <!-- Blog Sidebar -->
+        <div class="col-12 col-lg-4 sidebar-wrapper">
 
+          <!-- Sidebar box 3 - Popular Posts -->
+          <div class="sidebar-box">
+            <% if @main_magazines.present? %>
+              <h6 class="heading-uppercase">Popular Posts</h6>
+              <!-- Popular post 1 -->
+              <% @main_magazines.each do |magazine| %>  
+                <div class="popular-post">
+                  <%= link_to magazine_path(magazine) do %>
+                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                      <img src="<%= magazine.thumbnail.url %>" alt="">
+                    <% else %>
+                      <img src="/images/col-3-tall.jpg" alt="">
+                    <% end %>
+                  <% end %>
+                  <div>
+                    <h6 class="font-weight-normal">
+                      <%= link_to magazine_path(magazine) do %>
+                        <span class="popular-post"><%= magazine.title %></span>
+                      <% end %>
+                    </h6>
+                    <span class="popular-post"><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div> 
+            
+          <!-- Sidebar box 6 - Facebook Like box -->
+          <div class="sidebar-box text-center">
+            <h6 class="heading-uppercase">Follow on <br> CANVAS</h6>
+            <ul class="list-horizontal-unstyled">
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+              <li><a href="#"><i class="fab fa-behance"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- end Blog Sidebar -->
       
-    <!-- <nav>
-      <ul class="pagination justify-content-center margin-top-70">
-        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-      </ul>
-    </nav> -->
-  </div><!-- end container -->
-</div>
-<!-- end Blog Posts -->
+      </div><!-- end row -->
+    </div><!-- end container -->
+  </div>
+<% end %>
