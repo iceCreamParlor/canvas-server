@@ -6,7 +6,7 @@
   </div>
 <% end %>
 <!-- HEAD MAGAZINES Posts -->
-<% if @head_magazines.present? %>
+
   <!-- Blog section  -->
   
   <div class="section" style="padding-top: 30px;">
@@ -18,44 +18,45 @@
         <!-- Blog Posts -->
         
         <div class="col-12 col-lg-8 blog-small-thumbnail">
-          <div class="margin-bottom-20">
-            <span class="magazine-type">헤드</span>
-          </div>
-          
-          <!-- Blog Post box 1 -->
-          <% @head_magazines.each do |magazine| %>
-            <div class="blog-post-box">
-              <div class="blog-post-img">
-                <%= link_to magazine_path(magazine) do %>
-                  <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                    <img src="<%= magazine.thumbnail.url %>" alt="">
-                  <% else %>
-                    <img src="/images/col-3.jpg" alt="">
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="blog-post-content">
-                <div class="blog-post-title margin-bottom-10">
-                  <h5>
-                    <%= link_to magazine_path(magazine) do %>
-                      <%= magazine.title %>
-                    <% end %>
-                  </h5>
-                  <ul class="list-horizontal-dash font-small margin-bottom-10">
-                    <li>
-                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
-                    </li>
-                  </ul>
-                  
-                </div>
-                <%= magazine.content.html_safe %>
-                <%= link_to magazine_path(magazine), class:"text-btn-3 margin-top-20" do %>
-                  자세히
-                <% end %>
-              </div>
+          <% if @head_magazines.present? %>
+            <div class="margin-bottom-20">
+              <span class="magazine-type">헤드</span>
             </div>
+            
+            <!-- Blog Post box 1 -->
+            <% @head_magazines.each do |magazine| %>
+              <div class="blog-post-box">
+                <div class="blog-post-img">
+                  <%= link_to magazine_path(magazine) do %>
+                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                      <img src="<%= magazine.thumbnail.url %>" alt="">
+                    <% else %>
+                      <img src="/images/col-3.jpg" alt="">
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="blog-post-content">
+                  <div class="blog-post-title margin-bottom-10">
+                    <h5>
+                      <%= link_to magazine_path(magazine) do %>
+                        <%= magazine.title %>
+                      <% end %>
+                    </h5>
+                    <ul class="list-horizontal-dash font-small margin-bottom-10">
+                      <li>
+                        <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                      </li>
+                    </ul>
+                    
+                  </div>
+                  <%= magazine.content.html_safe %>
+                  <%= link_to magazine_path(magazine), class:"text-btn-3 margin-top-20" do %>
+                    자세히
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           <% end %>
-
           <hr>
           
           <div class="row margin-top-20">
@@ -157,4 +158,4 @@
       </div><!-- end row -->
     </div><!-- end container -->
   </div>
-<% end %>
+
