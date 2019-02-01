@@ -11,6 +11,7 @@ class PaintingsController < ApplicationController
     @is_filtering = false
     # 필터링을 하는 경우
     if params[:category_id].present?
+      
       @is_filtering = true
       @paintings = Painting.where(category_id: params[:category_id])
     end

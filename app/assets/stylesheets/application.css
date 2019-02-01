@@ -30,6 +30,7 @@
 
 .page[data-page=paintings-index] .option.selected {
   font-style: italic;
+  text-decoration: underline;
   font-weight: 700;
 }
 
