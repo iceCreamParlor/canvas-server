@@ -15,6 +15,21 @@ class PaintingsController < ApplicationController
       @is_filtering = true
       @paintings = Painting.where(category_id: params[:category_id])
     end
+
+    if params[:price_id].present?
+      puts params[:price_id]
+      price = Price.find(params[:price_id][0])
+      puts price
+      if @paintings.present?
+        @paintings = @paintings.where("price < ?", price.value)
+      else 
+        @paintings = Painting.where("price < ?", price.value)
+      end
+      
+      @is_filtering = true
+      @paintings = Painting.where("price < ?", price.value)
+    end
+
     if params[:color_id].present?
       if @paintings.present?
         @paintings = @paintings.where(color_id: params[:color_id])
@@ -37,8 +52,10 @@ class PaintingsController < ApplicationController
       @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
     end
     # @paintings = Painting.all.order(created_at: :desc)
+
     @categories = Category.all
     @colors = Color.all
+    @prices = Price.all
 
     respond_to do |format|
       format.html

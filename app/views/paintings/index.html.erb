@@ -72,15 +72,20 @@
           <!-- Sidebar box 3 - Size -->
           <div class="shop-sidebar-box">
             <h5 class="font-weight-light margin-bottom-20">
-              Size
+              Price
               <ion-icon onclick="filterInit('size')" name="sync" class="float-right"></ion-icon>
             </h5>
             <ul class="shop-sidebar-size">
-              <li><a href="#">Extra Small <span>XS</span></a></li>
-              <li><a href="#">Small <span>SM</span></a></li>
-              <li><a href="#">Medium <span>MD</span></a></li>
-              <li><a href="#">Large <span>LG</span></a></li>
-              <li><a href="#">Extra Large <span>XL</span></a></li>
+              <% @prices.each do |price| %>
+                <li>
+                  <%= link_to "javascript:void(0);",
+                  data: { price: price.id },
+                  onclick: "filterByPrice(this)",
+                  class: "price-option option" do %>
+                    - <%= number_to_currency(price.value, unit: '', precision: 0) %>
+                  <% end %>
+                </li>
+              <% end %>
             </ul>
           </div>
 
@@ -294,6 +299,17 @@ function filterByCategory(element){
   
 }
 
+function filterByPrice(element){
+  
+  let priceId = parseInt(element.dataset.price);
+  isFinished = false;
+  $('.price-option').removeClass('selected');
+  element.classList.add('selected');
+
+  initLoad();
+
+}
+
 function filterByColor(element){
   let colorId = parseInt(element.dataset.color);
   isFinished = false;
@@ -371,4 +387,6 @@ function filterInit(name){
   initLoad();
   
 }
+
+
 </script>
