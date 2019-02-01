@@ -90,7 +90,11 @@
                 </div>
               <% end %>
             </div>
-            <div class="col-12 col-lg-6" style="border-left: 1px solid #ddd;">
+            <div class="col-12 col-lg-6" 
+              <% if !@is_mobile %>
+              style="border-left: 1px solid #ddd;"
+              <% end %>
+            >
               <!-- Blog Post box 1 -->
               <h6 class="heading-uppercase"><a class="magazine-type">이슈 작품</a></h6>
               <% @painting_magazines.each do |magazine| %>
