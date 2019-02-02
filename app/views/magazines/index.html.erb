@@ -1,18 +1,18 @@
-<% if user_signed_in? && current_user.user_type == "admin" %>
-  <div class="container" style="padding-top: 100px;">
-    <%= link_to new_magazine_path do %>
-      <button type="button" class="btn btn-outline-dark float-right">매거진 등록하기</button>
-    <% end %>
-  </div>
-<% end %>
 <!-- HEAD MAGAZINES Posts -->
   <!-- Blog section  -->
   <div class="section 
     <% if @is_mobile %> mobile <% end %>"
   >
     <div class="container">
+      <div>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <%= link_to new_magazine_path do %>
+            <button type="button" class="btn btn-outline-dark float-right">매거진 등록하기</button>
+          <% end %>
+        <% end %>
+      </div>
       <br>
-      <div class="row">
+      <div class="row" style="margin-top: 30px;">
         <!-- Blog Posts -->
         <div class="col-12 col-lg-8 blog-small-thumbnail">
           <% if @head_magazines.present? %>
@@ -188,7 +188,7 @@
               <% end %>
             <% end %>
           </div> 
-            
+
           <!-- Sidebar box 6 - Facebook Like box -->
           <div class="sidebar-box text-center">
             <h6 class="heading-uppercase">Follow<br> CANVAS</h6>
@@ -200,6 +200,33 @@
               <li><a href="#"><i class="fab fa-instagram"></i></a></li>
             </ul>
           </div>
+
+          <!-- Sidebar box 3 - Popular Posts -->
+          <div class="sidebar-box">
+            <% if @main_magazines.present? %>
+              <h6 class="heading-uppercase">Announcement</h6>
+              <!-- Popular post 1 -->
+              <% @main_magazines.each do |magazine| %>  
+                <div class="popular-post">
+                  <%= link_to magazine_path(magazine) do %>
+                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                      <img class="popular-post-img" src="<%= magazine.thumbnail.url %>" alt="">
+                    <% else %>
+                      <img class="popular-post-img" src="/images/col-3-tall.jpg" alt="">
+                    <% end %>
+                  <% end %>
+                  <div>
+                    <h6 class="font-weight-normal" style="line-height: 20px; ">
+                      <%= link_to magazine_path(magazine) do %>
+                        <span><%= magazine.title %></span>
+                      <% end %>
+                    </h6>
+                    <span style="bottom: 0px;"><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div> 
         </div>
         <!-- end Blog Sidebar -->
       
