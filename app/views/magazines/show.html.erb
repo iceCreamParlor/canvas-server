@@ -16,7 +16,9 @@
         <div class="margin-bottom-30">
           <div class="row gallery-wrapper spacing-30">
             <h4><%= @magazine.title %></h4>      
-            <%= @magazine.content.html_safe %>    
+            <div style="margin-top: 20px;">
+              <%= @magazine.content.html_safe %>    
+            </div>
           </div><!-- end row/gallery-wrapper -->
           
           <!-- <div class="col-6 text-right">
