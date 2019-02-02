@@ -45,6 +45,10 @@
                     </ul>
                   </div>
                   <%= truncate magazine.content.html_safe, length: 150, :omission => "..." , :escape => false %>
+                  <% if !@is_mobile %>
+                    <br>
+                    <%= link_to '자세히', magazine_path(magazine) %>
+                  <% end %>
                 </div>
               </div>
             <% end %>
