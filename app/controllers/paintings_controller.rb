@@ -1,7 +1,7 @@
 class PaintingsController < ApplicationController
   before_action :set_options, only: [:new, :edit]
   before_action :set_painting, only: [:show, :edit, :update, :destroy]
-  
+  before_action :recent_paintings , only: [:index, :show, :new, :edit]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /paintings
@@ -75,6 +75,8 @@ class PaintingsController < ApplicationController
   # GET /paintings/1
   # GET /paintings/1.json
   def show
+    session[:recent_paintings] << @painting.id
+    
     @user = @painting.user
     @user_category = @user.user_categories
 

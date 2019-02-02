@@ -190,12 +190,23 @@
 		</header>
 
 		<!-- Scroll to top button -->
-		<div class="scrolltotop">
+		
+		<!-- <div class="scrolltotop">
 			<a class="button-circle button-circle-sm button-circle-dark" href="#"><i class="ti-arrow-up"></i></a>
-		</div>
+		</div> -->
 		<!-- end Scroll to top button -->
 		<div class="page" data-page="<%= controller_name %>-<%= action_name %>">
 			
+			<div class="recent-paintings" id="recent-paintings">
+				<% if @recent_paintings.present? && !@is_mobile %>
+					<% @recent_paintings.each do |painting| %>
+						<%= link_to painting_path(painting) do %>
+							<%= image_tag painting.thumbnail.url, class: "recent-paintings-icon" %>
+						<% end %>
+					<% end %>
+				<% end %>
+				
+			</div>
 			<%= yield %>
 
 		</div>

@@ -339,3 +339,19 @@ hr {
   height: 18px;
   font-size: 18px;
 }
+
+.recent-paintings-icon{
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: block !important;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.recent-paintings{
+  position: fixed; 
+  right: 20px; 
+  bottom: 20px;
+  z-index: 900;
+}
