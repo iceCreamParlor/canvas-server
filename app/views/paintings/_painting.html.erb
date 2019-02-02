@@ -34,6 +34,13 @@
               name="heart-empty"
               <% end %>
             ></ion-icon>
+          <% else %>
+            <ion-icon 
+            id="like-button" 
+            class="like-button" 
+            name="heart-empty"
+          ></ion-icon>
+          
           <% end %>
           <span class="like-counts">
             <%= painting.likes.count %>
@@ -71,6 +78,13 @@
               data-liked="false"
               name="heart-empty"
               <% end %>
+            ></ion-icon>
+          <% else %>
+            <ion-icon 
+              id="like-button" 
+              class="like-button" 
+              name="heart-empty"
+              
             ></ion-icon>
           <% end %>
           <span class="like-counts">
