@@ -87,12 +87,11 @@
 									<% end %>
 								</li>	
 								<li>
-									<%= link_to '프로필', profile_path(current_user.id) %>
-								</li>
-								<li>
 									<%= link_to '마이페이지', profiles_path %>
 								</li>
-								
+								<li>
+									<%= link_to '프로필', profile_path(current_user.id) %>
+								</li>
 							</ul>
 						</li>
 						<% end %>
