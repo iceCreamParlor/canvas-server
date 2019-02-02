@@ -40,17 +40,18 @@
                         <%= magazine.title %>
                       <% end %>
                     </h5>
-                    <ul class="list-horizontal-dash font-small margin-bottom-10">
-                      <li>
-                        <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
-                      </li>
-                    </ul>
+                    
                   </div>
                   <%= truncate magazine.content.html_safe, length: 150, :omission => "..." , :escape => false %>
                   <% if !@is_mobile %>
                     <br>
                     <%= link_to '자세히', magazine_path(magazine) %>
                   <% end %>
+                  <ul class="list-horizontal-dash font-small margin-bottom-10">
+                    <li>
+                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             <% end %>
