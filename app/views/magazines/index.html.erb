@@ -7,7 +7,9 @@
 <% end %>
 <!-- HEAD MAGAZINES Posts -->
   <!-- Blog section  -->
-  <div class="section">
+  <div class="section 
+    <% if @is_mobile %> mobile <% end %>"
+  >
     <div class="container">
       <br>
       <div class="row">
@@ -19,7 +21,9 @@
             </div>
             <!-- Blog Post box 1 -->
             <% @head_magazines.each do |magazine| %>
-              <div class="blog-post-box">
+              <div class="blog-post-box 
+                <% if @is_mobile %> mobile <% end %>"
+              >
                 <div class="blog-post-img">
                   <%= link_to magazine_path(magazine) do %>
                     <%= link_to magazine_path(magazine) do %>
@@ -60,7 +64,9 @@
               <!-- Blog Post box 1 -->
               <h6 class="heading-uppercase"><a class="magazine-type">신진 작가</a></h6>
               <% @artist_magazines.each do |magazine| %>
-                <div class="blog-post-box">
+                <div class="blog-post-box 
+                  <% if @is_mobile %> mobile <% end %>"
+                >
                   <!-- <div class="blog-post-img">
                     <a href="#">
                       <img src="/images/col-1.jpg" alt="">
@@ -86,15 +92,21 @@
                 </div>
               <% end %>
             </div>
+
             <div class="col-12 col-lg-4" 
               <% if !@is_mobile %>
               style="border-left: 1px solid #ddd;"
               <% end %>
             >
+              <% if @is_mobile %>
+                <hr>
+              <% end %>
               <!-- Blog Post box 1 -->
               <h6 class="heading-uppercase"><a class="magazine-type">이슈 작품</a></h6>
               <% @painting_magazines.each do |magazine| %>
-                <div class="blog-post-box">
+                <div class="blog-post-box 
+                  <% if @is_mobile %> mobile <% end %>"
+                >
                   <div class="blog-post-content">
                     <%= link_to magazine_path(magazine) do %>
                       <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
@@ -120,9 +132,14 @@
               style="border-left: 1px solid #ddd;"
               <% end %>
             >
+              <% if @is_mobile %>
+                <hr>
+              <% end %>
               <h6 class="heading-uppercase"><a class="magazine-type">경매</a></h6>
               <% @head_magazines.each do |magazine| %>
-                <div class="blog-post-box">
+                <div class="blog-post-box 
+                  <% if @is_mobile %> mobile <% end %>"
+                >
                   <div class="blog-post-content">
                     <%= link_to magazine_path(magazine) do %>
                       <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
@@ -149,7 +166,9 @@
         
         
         <!-- Blog Sidebar -->
-        <div class="col-12 col-lg-4 sidebar-wrapper">
+        <div class="col-12 col-lg-4 
+          <% if !@is_mobile %> sidebar-wrapper <% end %>"
+        >
 
           <!-- Sidebar box 3 - Popular Posts -->
           <div class="sidebar-box">

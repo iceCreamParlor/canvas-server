@@ -313,3 +313,11 @@ hr {
 .popular-post-img{
   height: 100%;
 }
+
+.blog-post-box.mobile{
+  margin-bottom: 0px;
+}
+
+.section.mobile{
+  padding-top: 40px;
+}
