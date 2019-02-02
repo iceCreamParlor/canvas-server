@@ -161,6 +161,10 @@
 .page[data-page=profiles-show] .gray {
   color: gray;
 }
+
+.page[data-page=profiles-show] .container.mobile {
+  padding-top: 30px !important;
+}
 .page[data-page=profiles-show] .card-text {
   color: gray;
   font-size: 14px;
