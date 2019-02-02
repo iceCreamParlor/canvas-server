@@ -79,16 +79,21 @@
             <%= @painting.name %>
             <% if user_signed_in? %>
               <span class="float-right">
-                <ion-icon 
-                  id="like-button" 
-                  onclick="likeButtonClicked()" 
-                  class="like-button" 
-                  <% if @like.present? %>
-                  name="heart"
-                  <% else %>
-                  name="heart-empty"
-                  <% end %>
-                ></ion-icon>
+                <div class="like-area">
+                  <ion-icon 
+                    id="like-button" 
+                    onclick="likeButtonClicked()" 
+                    class="like-button" 
+                    <% if @like.present? %>
+                    name="heart"
+                    <% else %>
+                    name="heart-empty"
+                    <% end %>
+                  ></ion-icon>
+                  <span id="like-cnt" class="like-cnt">
+                    <%= @painting.likes.count %>
+                  </span>
+                </div>
               </span>
             <% end %>
           </h5>

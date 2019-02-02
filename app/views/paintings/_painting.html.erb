@@ -17,18 +17,36 @@
       </div> -->
     <% end %>
     <% if !@is_mobile %>
-      <div class="product-img-hover">
-        <!-- <h6 class="heading-uppercase"> -->
-          <a href="#">
-            <%= painting.name %>
-          </a>
-          <span class="float: right">
-            <%= painting.category.name %>
+      <div class="product-img-hover text-right" >
+        <div class="text-left">
+          <ion-icon 
+            id="like-button" 
+            onclick="likeButtonClicked(this)" 
+            data-painting="<%= painting.id %>"
+            data-likes="<%= painting.likes.count %>"
+            class="like-button" 
+            <% if painting.user_likes?(current_user) %>
+            name="heart"
+            data-liked="true"
+            <% else %>
+            data-liked="false"
+            name="heart-empty"
+            <% end %>
+          ></ion-icon>
+          <span class="like-counts">
+            <%= painting.likes.count %>
           </span>
-          <p style="font-size: 12px">
-            <%= number_to_currency(painting.price, unit: '￦', precision: 0) %>
-          </p>
-        <!-- </h6> -->
+        </div>
+        <%= link_to painting_path(painting) do %>
+          <%= painting.name %>
+        <% end %>
+        <span>
+          <%= painting.category.name %>
+        </span>
+        <p style="font-size: 12px">
+          <%= number_to_currency(painting.price, unit: '￦', precision: 0) %>
+        </p>
+        
       </div>
     <% end %>
   </div><!-- end product-img -->
@@ -36,6 +54,26 @@
   <div class="product-info">
     <% if @is_mobile %>
       <h6>
+        <div class="text-left">
+          <ion-icon 
+            id="like-button" 
+            onclick="likeButtonClicked(this)" 
+            data-painting="<%= painting.id %>"
+            data-likes="<%= painting.likes.count %>"
+            class="like-button" 
+            <% if painting.user_likes?(current_user) %>
+            name="heart"
+            data-liked="true"
+            <% else %>
+            data-liked="false"
+            name="heart-empty"
+            <% end %>
+          ></ion-icon>
+          <span class="like-counts">
+            <%= painting.likes.count %>
+          </span>
+        </div>
+
         <a href="#">
           <%= painting.name %>
         </a>
@@ -77,3 +115,49 @@
     </div> -->
   </div><!-- end product-info -->
 </div>
+
+<script>
+  function likeButtonClicked(element){
+    <% if user_signed_in? %>
+      
+      let painting_id = parseInt(element.dataset.painting);
+      let likeCounts = parseInt(element.dataset.likes);
+      let likeCountsArea = element.parentNode.getElementsByClassName('like-counts')[0];
+      let liked = element.dataset.liked == 'true';
+
+      $.ajax({
+        method: 'GET',
+        url: '/likes/toggle_like/'+ painting_id,
+        success: function(){
+          if(liked){
+            element.setAttribute('name', 'heart-empty');
+            element.dataset.liked = 'false';
+            element.dataset.likes = likeCounts - 1;
+            likeCountsArea.innerText = likeCounts - 1;
+          } else {
+            element.setAttribute('name', 'heart');
+            element.dataset.liked = 'true';
+            element.dataset.likes = likeCounts + 1;
+            likeCountsArea.innerText = likeCounts + 1;
+          }
+          
+        },
+        fail: function(){
+          // rollback
+          if(liked){
+            element.setAttribute('name', 'heart-empty');
+            element.dataset.liked = 'false';
+            likeCountsArea.innerText = likeCounts - 1;
+            element.dataset.likes = likeCounts - 1;
+          } else {
+            element.setAttribute('name', 'heart');
+            element.dataset.liked = 'true';
+            likeCountsArea.innerText = likeCounts + 1;
+            element.dataset.likes = likeCounts + 1;
+          }
+          
+        }
+      });
+    <% end %>
+  }
+</script>

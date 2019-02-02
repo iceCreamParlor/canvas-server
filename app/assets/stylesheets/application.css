@@ -104,10 +104,6 @@
   border-radius: 30px;
 }
 
-.like-button {
-  font-size: 20px;
-}
-
 * {box-sizing: border-box;}
 
 .img-magnifier-container {
@@ -324,4 +320,22 @@ hr {
 
 .section.mobile{
   padding-top: 40px;
+}
+
+.like-area {
+  line-height: 1;
+  font-size: 18px;
+  height: 18px;
+}
+.like-cnt {
+  display: inline-block;
+  vertical-align: middle;
+  height: 18px;
+  font-size: 18px;
+}
+.like-button {
+  display: inline-block;
+  vertical-align: middle;
+  height: 18px;
+  font-size: 18px;
 }

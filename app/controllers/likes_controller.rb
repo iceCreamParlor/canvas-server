@@ -3,7 +3,9 @@ class LikesController < ApplicationController
   before_action :authenticate_user!
 
   def toggle_like
+    
     if @like.present?
+      
       @like.destroy
       if @like.destroyed?
         @is_destroyed = true
@@ -17,13 +19,15 @@ class LikesController < ApplicationController
         like.painting_id = painting_id
         like.user_id = user_id
       end
-  
+      
       if @like.save
         @is_saved = true
       else
         @is_saved = false
       end
     end
+    
+    @like_cnt = @like.painting.likes.count
   end
 
   private

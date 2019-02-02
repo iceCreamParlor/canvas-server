@@ -1,5 +1,9 @@
-<% if @is_saved %>
-  document.getElementById('like-button').setAttribute('name', 'heart')
-<% elsif @is_destroyed %>
-  document.getElementById('like-button').setAttribute('name', 'heart-empty')
-<% end %>
+if(document.querySelector('.page[data-page=paintings-show]')){
+  <% if @is_saved %>
+    document.getElementById('like-button').setAttribute('name', 'heart')
+  <% elsif @is_destroyed %>
+    document.getElementById('like-button').setAttribute('name', 'heart-empty')
+  <% end %>
+}
+
+$('#like-cnt').text('<%= @like_cnt %>');
