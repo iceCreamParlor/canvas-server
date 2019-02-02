@@ -24,10 +24,10 @@ class ApplicationController < ActionController::Base
     return false
   end
   def recent_paintings
-    if session[:recent_paintings].count > 4
+    session[:recent_paintings] ||= []
+    if session[:recent_paintings].count > 8
       session[:recent_paintings].delete_at(0)
     end
     @recent_paintings = session[:recent_paintings].map{ |id| Painting.find(id) }
-    session[:recent_paintings] ||= []
   end
 end
