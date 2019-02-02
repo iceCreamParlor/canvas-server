@@ -1,11 +1,9 @@
 <div class="section">
-  
   <div class="container">
     <div class="section-title">
       <h3>메세지</h3>
       <hr> 
     </div>
-        
     <div class="row">
       <div class="col-6 no-padding">
         <ul class="list-group">
@@ -80,7 +78,9 @@
     </div>
   </div>
 </div>
+
 <%= render 'reply' %>
+
 <script>
   let messages = <%= @messages_json.html_safe %>;
   

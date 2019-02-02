@@ -21,17 +21,18 @@
             </select>
           </div>
         </div>
+        
         <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
           <% @paintings.each do |painting| %>
             <%= render 'painting', painting: painting %>
-            
           <% end %>
           
           <div id="infinite-scrolling" style="display: none;">
             <%= will_paginate @paintings %>
           </div>
 
-        </div><!-- end row(inner) -->
+        </div>
+        
         <!-- Pagination -->
         <!-- <nav>
           <ul class="pagination justify-content-center margin-top-70">
@@ -190,12 +191,10 @@
                   - <%= number_to_currency(price.value, unit: '', precision: 0) %>원
                 <% end %>
               </li>
-              
             <% end %>
           </ul>
         </div>
       </div>
-      
 
       <!-- Products -->
       <div class="col-12 col-lg-9 order-lg-2">
@@ -384,8 +383,6 @@ function makeAjaxFilter(needRefresh){
     morePostUrl = morePostUrl.replace('&refresh=true', '');
   }
   
-  
-  
   $.ajax({
     url: morePostUrl,
     method: 'GET',
@@ -398,7 +395,6 @@ function makeAjaxFilter(needRefresh){
 
 function filterInit(name){
   
-  
   $('#paintings-container').html(`
   <div id="infinite-scrolling" style="display: none;">
     <%= will_paginate @paintings %>
@@ -409,6 +405,5 @@ function filterInit(name){
   initLoad();
   
 }
-
 
 </script>

@@ -16,20 +16,23 @@
         <span class="heading-uppercase">New</span>
       </div> -->
     <% end %>
-    <div class="product-img-hover">
-      <!-- <h6 class="heading-uppercase"> -->
-        <a href="#">
-          <%= painting.name %>
-        </a>
-        <span class="float: right">
-          <%= painting.category.name %>
-        </span>
-        <p style="font-size: 12px">
-          <%= number_to_currency(painting.price, unit: '￦', precision: 0) %>
-        </p>
-      <!-- </h6> -->
-    </div>
+    <% if @is_mobile %>
+      <div class="product-img-hover">
+        <!-- <h6 class="heading-uppercase"> -->
+          <a href="#">
+            <%= painting.name %>
+          </a>
+          <span class="float: right">
+            <%= painting.category.name %>
+          </span>
+          <p style="font-size: 12px">
+            <%= number_to_currency(painting.price, unit: '￦', precision: 0) %>
+          </p>
+        <!-- </h6> -->
+      </div>
+    <% end %>
   </div><!-- end product-img -->
+  
   <div class="product-info">
     <% if @is_mobile %>
       <h6>
