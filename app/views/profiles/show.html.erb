@@ -37,6 +37,12 @@
             <% end %>
             
           </ul>
+          
+          <div>
+            <% if @user.desc.present? %>
+              <p><%= @user.desc %></p>
+            <% end %>
+          </div>
           <div class="row margin-top-area">
             <div class="col-4 text-center">
               <span class="profile-text">게시물 
@@ -52,12 +58,6 @@
                 </span>
               </span>
             </div>
-            
-          </div>
-          <div class="margin-top-middle">
-            <% if @user.desc.present? %>
-              <p><%= @user.desc %></p>
-            <% end %>
           </div>
           <!-- Skills -->
           <!-- <div class="row margin-top-30">
