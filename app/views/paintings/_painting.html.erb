@@ -19,20 +19,22 @@
     <% if !@is_mobile %>
       <div class="product-img-hover text-right" >
         <div class="text-left">
-          <ion-icon 
-            id="like-button" 
-            onclick="likeButtonClicked(this)" 
-            data-painting="<%= painting.id %>"
-            data-likes="<%= painting.likes.count %>"
-            class="like-button" 
-            <% if painting.user_likes?(current_user) %>
-            name="heart"
-            data-liked="true"
-            <% else %>
-            data-liked="false"
-            name="heart-empty"
-            <% end %>
-          ></ion-icon>
+          <% if user_signed_in? %>
+            <ion-icon 
+              id="like-button" 
+              onclick="likeButtonClicked(this)" 
+              data-painting="<%= painting.id %>"
+              data-likes="<%= painting.likes.count %>"
+              class="like-button" 
+              <% if painting.user_likes?(current_user) %>
+              name="heart"
+              data-liked="true"
+              <% else %>
+              data-liked="false"
+              name="heart-empty"
+              <% end %>
+            ></ion-icon>
+          <% end %>
           <span class="like-counts">
             <%= painting.likes.count %>
           </span>
@@ -55,20 +57,22 @@
     <% if @is_mobile %>
       <h6>
         <div class="text-left">
-          <ion-icon 
-            id="like-button" 
-            onclick="likeButtonClicked(this)" 
-            data-painting="<%= painting.id %>"
-            data-likes="<%= painting.likes.count %>"
-            class="like-button" 
-            <% if painting.user_likes?(current_user) %>
-            name="heart"
-            data-liked="true"
-            <% else %>
-            data-liked="false"
-            name="heart-empty"
-            <% end %>
-          ></ion-icon>
+          <% if user_signed_in? %>
+            <ion-icon 
+              id="like-button" 
+              onclick="likeButtonClicked(this)" 
+              data-painting="<%= painting.id %>"
+              data-likes="<%= painting.likes.count %>"
+              class="like-button" 
+              <% if painting.user_likes?(current_user) %>
+              name="heart"
+              data-liked="true"
+              <% else %>
+              data-liked="false"
+              name="heart-empty"
+              <% end %>
+            ></ion-icon>
+          <% end %>
           <span class="like-counts">
             <%= painting.likes.count %>
           </span>
