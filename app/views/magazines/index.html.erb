@@ -21,9 +21,7 @@
             </div>
             <!-- Blog Post box 1 -->
             <% @head_magazines.each do |magazine| %>
-              <div class="blog-post-box 
-                <% if @is_mobile %> mobile <% end %>"
-              >
+              <div class="blog-post-box">
                 <div class="blog-post-img">
                   <%= link_to magazine_path(magazine) do %>
                     <%= link_to magazine_path(magazine) do %>
@@ -64,9 +62,7 @@
               <!-- Blog Post box 1 -->
               <h6 class="heading-uppercase"><a class="magazine-type">신진 작가</a></h6>
               <% @artist_magazines.each do |magazine| %>
-                <div class="blog-post-box 
-                  <% if @is_mobile %> mobile <% end %>"
-                >
+                <div class="blog-post-box">
                   <!-- <div class="blog-post-img">
                     <a href="#">
                       <img src="/images/col-1.jpg" alt="">
@@ -104,9 +100,7 @@
               <!-- Blog Post box 1 -->
               <h6 class="heading-uppercase"><a class="magazine-type">이슈 작품</a></h6>
               <% @painting_magazines.each do |magazine| %>
-                <div class="blog-post-box 
-                  <% if @is_mobile %> mobile <% end %>"
-                >
+                <div class="blog-post-box">
                   <div class="blog-post-content">
                     <%= link_to magazine_path(magazine) do %>
                       <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
@@ -137,9 +131,7 @@
               <% end %>
               <h6 class="heading-uppercase"><a class="magazine-type">경매</a></h6>
               <% @head_magazines.each do |magazine| %>
-                <div class="blog-post-box 
-                  <% if @is_mobile %> mobile <% end %>"
-                >
+                <div class="blog-post-box">
                   <div class="blog-post-content">
                     <%= link_to magazine_path(magazine) do %>
                       <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>

@@ -123,6 +123,10 @@
   height: 200px; */
 }
 
+.page[data-page=magazines-index] .blog-post-box{
+  margin-bottom: 0px !important;
+}
+
 .page[data-page=paintings-show] .painting-show-preview{
   position: relative !important; 
   margin: 0px !important; 
@@ -312,10 +316,6 @@ hr {
 
 .popular-post-img{
   height: 100%;
-}
-
-.blog-post-box.mobile{
-  margin-bottom: 0px;
 }
 
 .section.mobile{
