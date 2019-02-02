@@ -6,32 +6,28 @@
   </div>
 <% end %>
 <!-- HEAD MAGAZINES Posts -->
-
   <!-- Blog section  -->
-  
   <div class="section">
-    
     <div class="container">
-      <!-- <hr>    -->
       <br>
       <div class="row">
         <!-- Blog Posts -->
-        
         <div class="col-12 col-lg-8 blog-small-thumbnail">
           <% if @head_magazines.present? %>
             <div class="margin-bottom-20">
               <span class="magazine-type">헤드</span>
             </div>
-            
             <!-- Blog Post box 1 -->
             <% @head_magazines.each do |magazine| %>
               <div class="blog-post-box">
                 <div class="blog-post-img">
                   <%= link_to magazine_path(magazine) do %>
-                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                      <img src="<%= magazine.thumbnail.url %>" alt="">
-                    <% else %>
-                      <img src="/images/col-3.jpg" alt="">
+                    <%= link_to magazine_path(magazine) do %>
+                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                        <img src="<%= magazine.thumbnail.url %>" alt="">
+                      <% else %>
+                        <img src="/images/col-3.jpg" alt="">
+                      <% end %>
                     <% end %>
                   <% end %>
                 </div>
@@ -47,12 +43,8 @@
                         <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
                       </li>
                     </ul>
-                    
                   </div>
-                  <%#= magazine.content.html_safe %>
-                  <%= link_to magazine_path(magazine), class:"text-btn-3 margin-top-20" do %>
-                    자세히
-                  <% end %>
+                  <%= truncate magazine.content.html_safe, length: 150, :omission => "..." , :escape => false %>
                 </div>
               </div>
             <% end %>
@@ -60,7 +52,6 @@
           <hr>
           
           <div class="row margin-top-20">
-            
             <div class="col-12 col-lg-6">
               <!-- Blog Post box 1 -->
               <h6 class="heading-uppercase"><a class="magazine-type">신진 작가</a></h6>
@@ -71,12 +62,13 @@
                       <img src="/images/col-1.jpg" alt="">
                     </a>
                   </div> -->
-                  
                   <div class="blog-post-content">
-                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                      <img src="<%= magazine.thumbnail.url %>" alt="">
-                    <% else %>
-                      <img src="/images/col-1.jpg" alt="">
+                    <%= link_to magazine_path(magazine) do %>
+                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                        <img src="<%= magazine.thumbnail.url %>" alt="">
+                      <% else %>
+                        <img src="/images/col-1.jpg" alt="">
+                      <% end %>
                     <% end %>
                     <div class="blog-post-title margin-top-20">
                       <h5>
@@ -99,12 +91,13 @@
               <h6 class="heading-uppercase"><a class="magazine-type">이슈 작품</a></h6>
               <% @painting_magazines.each do |magazine| %>
                 <div class="blog-post-box">
-                  
                   <div class="blog-post-content">
-                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                      <img src="<%= magazine.thumbnail.url %>" alt="">
-                    <% else %>
-                      <img src="/images/col-1.jpg" alt="">
+                    <%= link_to magazine_path(magazine) do %>
+                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                        <img src="<%= magazine.thumbnail.url %>" alt="">
+                      <% else %>
+                        <img src="/images/col-1.jpg" alt="">
+                      <% end %>
                     <% end %>
                     <div class="blog-post-title margin-top-20">
                       <h5>
