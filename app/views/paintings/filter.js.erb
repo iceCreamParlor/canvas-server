@@ -1,0 +1,28 @@
+// $('#paintings-container').html(`
+//   <div id="infinite-scrolling" style="display: none;">
+//     <%= will_paginate @paintings %>
+//   </div>
+//   <%= hidden_field_tag 'loaded_paintings', @loaded_paintings %>
+// `);
+// var loadedPaintings = JSON.parse('<%= @loaded_paintings %>');
+
+// $('#loaded_paintings').val('[' + loadedPaintings.toString() + ']');
+
+// $('#paintings-container').append('<%= j render @paintings %>');
+
+// <% if @paintings.next_page %>
+//   $('.pagination').replaceWith('<%= j will_paginate @paintings %>');
+// <% else %>
+//   isFinished = true;
+//   console.log("!!")
+//   // $(window).off('scroll');
+//   // $('.pagination').remove();
+// <% end %>
+
+
+// $('#paintings-container').removeData('masonry');
+// // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
+// $('#paintings-container').masonry({
+//   // options
+//   itemSelector : '.item',
+// });

@@ -12,17 +12,19 @@
             <% end %>
           </div>
           <div class="col-6 text-right">
-            <select class="custom-select">
-              <option selected>Newest</option>
-              <option value="1">Sort by Popularity</option>
-              <option value="1">Sort by Rating</option>
-              <option value="2">Sort by Price: high to low</option>
-              <option value="3">Sort by Price: low to high</option>
-            </select>
+
+            <!-- <select id="filter-select" onchange="filterChanged(this)" class="custom-select">
+              <option value="0" selected>최신순</option>
+              <option value="1">좋아요 순</option>
+              <option value="2">낮은 가격 순</option>
+              <option value="3">높은 가격 순</option>
+              <option value="4">Sort by Price: low to high</option>
+            </select> -->
           </div>
         </div>
         
         <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
+          
           <% @paintings.each do |painting| %>
             <%= render 'painting', painting: painting %>
           <% end %>
@@ -126,76 +128,6 @@
   <div class="container">
     <div class="row">
       
-      
-      <!-- Sidebar -->
-      <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
-        <!-- Sidebar box 1 - Category -->
-        <div class="shop-sidebar-box mobile">
-          <h5  class="font-weight-light margin-bottom-20">
-            Category
-            <a data-toggle="collapse" href="#categoryCollapse" role="button" aria-expanded="false" aria-controls="categoryCollapse" class="float-right">+</a>
-          </h5>
-          <ul id="categoryCollapse" class="shop-sidebar-category collapse">
-            <% @categories.each do |category| %>
-              <li>
-                
-                <%= link_to "javascript:void(0);", 
-                    data: { category: category.id }, 
-                    onclick: "filterByCategory(this)",
-                    class: "category-option option" do %>
-                  <%= category.name %> 
-                  <span><%= category.paintings.count %></span>
-                <% end %>
-                
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <!-- Sidebar box 2 - Color -->
-        <div class="shop-sidebar-box mobile">
-          <h5  class="font-weight-light">
-            Color
-            <a data-toggle="collapse" href="#colorCollapse" role="button" aria-expanded="false" aria-controls="colorCollapse" class="float-right">+</a>
-          </h5>
-          <ul id="colorCollapse" class="shop-sidebar-color collapse">
-            <% @colors.each do |color| %>
-              <li>
-                <%= link_to "javascript:void(0);",
-                    data: { color: color.id },
-                    onclick: "filterByColor(this)",
-                    class: "color-option option" do %>
-                  <%= color.name %> 
-                  <span style="background: <%= color.hex %>"></span>
-                <% end %>
-              </li>
-            <% end %>
-            <!-- You can use (style="background: ..") to set custom colors 
-              <li><a href="#">Custom Color <span style="background: #ff7373"></span></a></li> -->
-          </ul>
-        </div>
-        <!-- Sidebar box 3 - Size -->
-        <div class="shop-sidebar-box mobile">
-          <h5 class="font-weight-light margin-bottom-20">
-            Price
-            <a data-toggle="collapse" href="#priceCollapse" role="button" aria-expanded="false" aria-controls="priceCollapse" class="float-right">+</a>
-          </h5>
-          <ul id="priceCollapse" class="shop-sidebar-size collapse">
-            <% @prices.each_with_index do |price, index| %>
-              <li>
-                <%= link_to "javascript:void(0);",
-                data: { price: price.id },
-                onclick: "filterByPrice(this)",
-                class: "price-option option" do %>
-                  <% cheap_price = index!= 0 ? number_to_currency(@prices[index-1].value, unit: '', precision: 0) : 0 %>
-                  <%= cheap_price %>원
-                  - <%= number_to_currency(price.value, unit: '', precision: 0) %>원
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-
       <!-- Products -->
       <div class="col-12 col-lg-9 order-lg-2">
         <div class="row align-items-center">
@@ -205,13 +137,19 @@
             <% end %>
           </div>
           <div class="col-6 text-right">
-            <select class="custom-select">
+            <!-- <select class="custom-select">
               <option selected>Newest</option>
               <option value="1">Sort by Popularity</option>
               <option value="1">Sort by Rating</option>
               <option value="2">Sort by Price: high to low</option>
               <option value="3">Sort by Price: low to high</option>
-            </select>
+            </select> -->
+
+            <!-- Button trigger modal -->
+            <button data-toggle="modal" data-target="#mobileFilter" type="button" class="btn btn-outline-dark">필터</button>
+            
+            <%= render 'filter_mobile' %>
+
           </div>
         </div>
         <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
@@ -265,17 +203,21 @@ function activateScroll(){
     
     $(window).on('scroll', function(){
       let needLoad = $(window).scrollTop() > $(document).height() - $(window).height() - 60;
+      loadPaintings(needLoad);
       
-      if(needLoad && sentRequest && !isFinished){
-        
-        if(document.getElementsByClassName('selected').length == 0){
-          makeAjaxLoad();
-        } else {
-          makeAjaxFilter(false);  
-        }
-        
-      }
     })
+  }
+}
+
+function loadPaintings(needLoad){
+  if(needLoad && sentRequest && !isFinished){
+        
+    if(document.getElementsByClassName('selected').length == 0){
+      makeAjaxLoad(false);
+    } else {
+      makeAjaxFilter(false);  
+    }
+    
   }
 }
 
@@ -291,7 +233,7 @@ function initLoad(){
   $('.pagination .next_page').attr('href', '/paintings?page=1');
 
   if(document.getElementsByClassName('selected').length == 0){
-    makeAjaxLoad();
+    makeAjaxLoad(false);
 
   } else {
     makeAjaxFilter(true);  
@@ -335,7 +277,6 @@ function filterByColor(element){
   let colorId = parseInt(element.dataset.color);
   isFinished = false;
   toggleSelected(element, '.color-option');
-  
   initLoad();
 }
 
@@ -349,10 +290,17 @@ function toggleSelected(element, className){
   }
 }
 
-function makeAjaxLoad(){
+function makeAjaxLoad(needRefresh){
   sentRequest = false;
+  let filterType = $('#filter-select').val();
   var morePostUrl = $('.pagination .next_page').attr('href');
   
+  if(needRefresh){
+    morePostUrl += '&refresh=true';
+  } else {
+    morePostUrl = morePostUrl.replace('&refresh=true', '');
+  }
+
   // ACTIVATE PRELOADER
   $.ajax({
     url: morePostUrl,
@@ -366,6 +314,7 @@ function makeAjaxLoad(){
 
 function makeAjaxFilter(needRefresh){
   sentRequest = false;
+  let filterType = $('#filter-select').val();
   let morePostUrl = $('.pagination .next_page').attr('href');
   let selectedArr = document.getElementsByClassName('selected');
   // var queryString = '?';

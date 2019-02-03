@@ -14,12 +14,12 @@
  *= require_self
  */
 
- @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,500|Noto+Sans:400,700');
+ /* @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,500|Noto+Sans:400,700'); */
 
-p, a, span, div, h1, h2, h3, h4, h5, ul, li, ol{
+/* p, a, span, div, h1, h2, h3, h4, h5, ul, li, ol{
   font-family: 'Noto Sans KR', sans-serif !important;
   font-family: 'Noto Sans', sans-serif;
-}
+} */
 
 .no-padding {
   padding: 0px;
@@ -361,4 +361,9 @@ hr {
   right: 20px; 
   bottom: 20px;
   z-index: 900;
+}
+
+.nodots{
+  list-style-type: none;
+  float: left;
 }

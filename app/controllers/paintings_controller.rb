@@ -49,7 +49,7 @@ class PaintingsController < ApplicationController
       @is_filtering = true
     end
     if @is_filtering
-      @paintings = @paintings .paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+      @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
     end
     if params[:refresh].present?
       @need_refresh = true
@@ -61,9 +61,12 @@ class PaintingsController < ApplicationController
     if !@is_filtering
       @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
     end
-    # @paintings = Painting.all.order(created_at: :desc)
 
-    
+    # 우측 상단의 필터 select 창 반영
+    filter_type = params[:filter_type]
+    if filter_type.present?
+      @paintings = filter(@paintings, filter_type.to_i)
+    end
 
     respond_to do |format|
       format.html
@@ -76,7 +79,8 @@ class PaintingsController < ApplicationController
   # GET /paintings/1.json
   def show
     session[:recent_paintings] << @painting.id
-    
+    session[:recent_paintings] = session[:recent_paintings].uniq
+
     @user = @painting.user
     @user_category = @user.user_categories
 
@@ -145,6 +149,27 @@ class PaintingsController < ApplicationController
       format.html { redirect_to paintings_url, notice: 'Painting was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def filter(paintings, filter_type)
+
+    case filter_type
+    when 0 
+      # 최신순
+      @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+    when 1
+      # 좋아요 순
+
+    when 2
+      # 낮은 가격 순
+      @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('price ASC').exclude_images
+    when 3
+      # 높은 가격 순
+      @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('price DESC').exclude_images
+    else
+      puts "undefined filter"
+    end
+    
   end
 
   private
