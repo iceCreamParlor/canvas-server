@@ -14,13 +14,12 @@
  *= require_self
  */
 
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans|Noto+Sans+KR');
+ @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,500|Noto+Sans:400,700');
 
 *{
   font-family: 'Noto Sans KR', sans-serif;
-  /* font-family: 'Nanum Gothic', sans-serif; */
+  font-family: 'Noto Sans', sans-serif;
 }
-
 
 .no-padding {
   padding: 0px;
