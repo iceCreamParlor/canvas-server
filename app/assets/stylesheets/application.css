@@ -41,6 +41,23 @@
   font-weight: 700;
 }
 
+.page[data-page=paintings-index] .modal-dialog.mobile {
+  height: 100%;
+}
+
+.page[data-page=paintings-index] .modal-content.mobile {
+  height: 98%;
+}
+
+.page[data-page=paintings-index] .modal-body.mobile {
+  overflow-y: scroll;
+}
+
+.page[data-page=paintings-index] .modal-body.mobile::-webkit-scrollbar {
+  display: none;
+}
+
+
 .page[data-page=paintings-index] .shop-sidebar-box.mobile {
   padding: 15px;
   margin-bottom: 2px;

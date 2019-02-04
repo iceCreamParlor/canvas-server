@@ -46,84 +46,85 @@
           </ul>
         </nav> -->
       </div>
-      <% if true || !@is_mobile %>
-        <!-- Sidebar -->
-        <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
-          <!-- Sidebar box 1 - Category -->
-          <div class="shop-sidebar-box">
-            <h5 class="font-weight-light margin-bottom-20">
-              Category
-              <ion-icon onclick="filterInit('category')" name="sync" class="float-right"></ion-icon>
-            </h5>
-            <ul class="shop-sidebar-category">
-              <% @categories.each do |category| %>
-                <li>
-                  
-                  <%= link_to "javascript:void(0);", 
-                      data: { category: category.id }, 
-                      onclick: "filterByCategory(this)",
-                      class: "category-option option" do %>
-                    <%= category.name %> 
-                    <span><%= category.paintings.count %></span>
-                  <% end %>
-                  
-                </li>
-              <% end %>
-            </ul>
-          </div>
-
-          <!-- Sidebar box 3 - Size -->
-          <div class="shop-sidebar-box">
-            <h5 class="font-weight-light margin-bottom-20">
-              Price
-              <ion-icon onclick="filterInit('price')" name="sync" class="float-right"></ion-icon>
-            </h5>
-            <ul class="shop-sidebar-size">
-              <% @prices.each_with_index do |price, index| %>
-                <li>
-                  <%= link_to "javascript:void(0);",
-                  data: { price: price.id },
-                  onclick: "filterByPrice(this)",
-                  class: "price-option option" do %>
-                    <% cheap_price = index!= 0 ? number_to_currency(@prices[index-1].value, unit: '', precision: 0) : 0 %>
-                    <%= cheap_price %>원
-                    - <%= number_to_currency(price.value, unit: '', precision: 0) %>원
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-
-          <!-- Sidebar box 2 - Color -->
-          <div class="shop-sidebar-box">
-            <h5 class="font-weight-light margin-bottom-20">
-              Color
-              <ion-icon onclick="filterInit('color')" name="sync" class="float-right"></ion-icon>
-            </h5>
-            <ul class="shop-sidebar-color">
-              <% @colors.each do |color| %>
-                <li>
-                  <%= link_to "javascript:void(0);",
-                      data: { color: color.id },
-                      onclick: "filterByColor(this)",
-                      class: "color-option option" do %>
-                    <%= color.name %> 
-                    <span style="background: <%= color.hex %>"></span>
-                  <% end %>
-                </li>
-              <% end %>
-              <!-- You can use (style="background: ..") to set custom colors 
-                <li><a href="#">Custom Color <span style="background: #ff7373"></span></a></li> -->
-            </ul>
-          </div>
-          
+      
+      <!-- Sidebar -->
+      <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
+        <!-- Sidebar box 1 - Category -->
+        <div class="shop-sidebar-box">
+          <h5 class="font-weight-light margin-bottom-20">
+            Category
+            <ion-icon onclick="filterInit('category')" name="sync" class="float-right"></ion-icon>
+          </h5>
+          <ul class="shop-sidebar-category">
+            <% @categories.each do |category| %>
+              <li>
+                
+                <%= link_to "javascript:void(0);", 
+                    data: { category: category.id }, 
+                    onclick: "filterByCategory(event)",
+                    class: "category-option option" do %>
+                  <%= category.name %> 
+                  <span><%= category.paintings.count %></span>
+                <% end %>
+                
+              </li>
+            <% end %>
+          </ul>
         </div>
-      <% end %>
+
+        <!-- Sidebar box 3 - Size -->
+        <div class="shop-sidebar-box">
+          <h5 class="font-weight-light margin-bottom-20">
+            Price
+            <ion-icon onclick="filterInit('price')" name="sync" class="float-right"></ion-icon>
+          </h5>
+          <ul class="shop-sidebar-size">
+            <% @prices.each_with_index do |price, index| %>
+              <li>
+                <%= link_to "javascript:void(0);",
+                data: { price: price.id },
+                onclick: "filterByPrice(this)",
+                class: "price-option option" do %>
+                  <% cheap_price = index!= 0 ? number_to_currency(@prices[index-1].value, unit: '', precision: 0) : 0 %>
+                  <%= cheap_price %>원
+                  - <%= number_to_currency(price.value, unit: '', precision: 0) %>원
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
+        <!-- Sidebar box 2 - Color -->
+        <div class="shop-sidebar-box">
+          <h5 class="font-weight-light margin-bottom-20">
+            Color
+            <ion-icon onclick="filterInit('color')" name="sync" class="float-right"></ion-icon>
+          </h5>
+          <ul class="shop-sidebar-color">
+            <% @colors.each do |color| %>
+              <li>
+                <%= link_to "javascript:void(0);",
+                    data: { color: color.id },
+                    onclick: "filterByColor(event)",
+                    class: "color-option option" do %>
+                  <%= color.name %> 
+                  <span style="background: <%= color.hex %>"></span>
+                <% end %>
+              </li>
+            <% end %>
+            <!-- You can use (style="background: ..") to set custom colors 
+              <li><a href="#">Custom Color <span style="background: #ff7373"></span></a></li> -->
+          </ul>
+        </div>
+        
+      </div>
+      
     </div><!-- end row -->
   </div><!-- end container -->
 </div>
 <!-- end Products section -->
 <% else %>
+<!-- MOBILE MODE -->
 <div class="section">
   <div class="container">
     <div class="row">
@@ -240,7 +241,9 @@ function initLoad(){
   }
 }
 
-function filterByCategory(element){
+function filterByCategory(e){
+  e.stopPropagation();
+  let element = e.target;
   let categoryId = parseInt(element.dataset.category);
   isFinished = false;
   toggleSelected(element, '.category-option');
@@ -273,7 +276,9 @@ function filterByPrice(element){
 
 }
 
-function filterByColor(element){
+function filterByColor(e){
+  e.stopPropagation();
+  let element = e.target;
   let colorId = parseInt(element.dataset.color);
   isFinished = false;
   toggleSelected(element, '.color-option');

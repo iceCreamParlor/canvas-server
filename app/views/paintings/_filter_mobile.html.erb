@@ -1,22 +1,22 @@
 <!-- Modal -->
 <div class="modal fade" id="mobileFilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+  <div class="modal-dialog mobile" role="document">
+    <div class="modal-content mobile">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">필터</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span style="font-size: 1rem;" aria-hidden="true">완료</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body mobile">
         <div class="row">
          <!-- Sidebar -->
           <div class="col-12">
             <!-- Sidebar box 1 - Category -->
-            <div class="mobile">
+            <div data-toggle="collapse" href="#categoryCollapse" role="button" aria-expanded="false" aria-controls="categoryCollapse" class="mobile">
               <h5 class="float-left font-weight-light margin-bottom-20">
                 Category
-                <a data-toggle="collapse" href="#categoryCollapse" role="button" aria-expanded="false" aria-controls="categoryCollapse" class="float-right">+</a>
+                <a href="javascript:void(0);" class="float-right">+</a>
               </h5>
               <br>
               <div class="row margin-top-20">
@@ -26,7 +26,7 @@
                       
                       <%= link_to "javascript:void(0);", 
                           data: { category: category.id }, 
-                          onclick: "filterByCategory(this)",
+                          onclick: "filterByCategory(event)",
                           class: "category-option option margin-top-10" do %>
                         <%= category.name %> 
                         <span><%= category.paintings.count %></span>
@@ -39,13 +39,13 @@
             </div>
           </div>
 
-          <div class="col-12 margin-top-20">
+          <div data-toggle="collapse" href="#priceCollapse" role="button" aria-expanded="false" aria-controls="priceCollapse" class="col-12 margin-top-20">
             <!-- Sidebar box 3 - Size -->
             <div class="mobile">
               
               <h5 class="float-left font-weight-light margin-bottom-20">
                 Price
-                <a data-toggle="collapse" href="#priceCollapse" role="button" aria-expanded="false" aria-controls="priceCollapse" class="float-right">+</a>
+                <a href="javascript:void(0);" class="float-right">+</a>
               </h5>
               <br>
               <div class="row margin-top-20">
@@ -69,10 +69,10 @@
 
           <div class="col-12 margin-top-20">
             <!-- Sidebar box 2 - Color -->
-            <div class="mobile">
+            <div data-toggle="collapse" href="#colorCollapse" role="button" aria-expanded="false" aria-controls="colorCollapse" class="mobile">
               <h5 class="float-left font-weight-light">
                 Color
-                <a data-toggle="collapse" href="#colorCollapse" role="button" aria-expanded="false" aria-controls="colorCollapse" class="float-right">+</a>
+                <a href="javascript:void(0);" class="float-right">+</a>
               </h5>
               <br>
               <div class="row margin-top-20">
@@ -81,7 +81,7 @@
                     <li class="text-left">
                       <%= link_to "javascript:void(0);",
                           data: { color: color.id },
-                          onclick: "filterByColor(this)",
+                          onclick: "filterByColor(event)",
                           class: "color-option option margin-top-10" do %>
                         <%= color.name %> 
                         <span style="background: <%= color.hex %>"></span>
