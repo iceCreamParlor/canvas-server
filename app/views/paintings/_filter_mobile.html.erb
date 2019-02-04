@@ -22,12 +22,12 @@
               <div class="row margin-top-20">
                 <ul id="categoryCollapse" class="nodots shop-sidebar-category collapse">
                   <% @categories.each do |category| %>
-                    <li class="text-left">
+                    <li class="text-left margin-top-20">
                       
                       <%= link_to "javascript:void(0);", 
                           data: { category: category.id }, 
                           onclick: "filterByCategory(event)",
-                          class: "category-option option margin-top-10" do %>
+                          class: "category-option option" do %>
                         <%= category.name %> 
                         <span><%= category.paintings.count %></span>
                       <% end %>
@@ -51,11 +51,11 @@
               <div class="row margin-top-20">
                 <ul id="priceCollapse" class="nodots shop-sidebar-size collapse">
                   <% @prices.each_with_index do |price, index| %>
-                    <li class="text-left">
+                    <li class="text-left margin-top-20">
                       <%= link_to "javascript:void(0);",
                       data: { price: price.id },
                       onclick: "filterByPrice(this)",
-                      class: "price-option option margin-top-10" do %>
+                      class: "price-option option" do %>
                         <% cheap_price = index!= 0 ? number_to_currency(@prices[index-1].value, unit: '', precision: 0) : 0 %>
                         <%= cheap_price %>원
                         - <%= number_to_currency(price.value, unit: '', precision: 0) %>원
@@ -78,11 +78,11 @@
               <div class="row margin-top-20">
                 <ul id="colorCollapse" class="nodots shop-sidebar-color collapse">
                   <% @colors.each do |color| %>
-                    <li class="text-left">
+                    <li class="text-left margin-top-20">
                       <%= link_to "javascript:void(0);",
                           data: { color: color.id },
                           onclick: "filterByColor(event)",
-                          class: "color-option option margin-top-10" do %>
+                          class: "color-option option" do %>
                         <%= color.name %> 
                         <span style="background: <%= color.hex %>"></span>
                       <% end %>
