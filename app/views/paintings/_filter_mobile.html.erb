@@ -22,7 +22,7 @@
               <div class="row margin-top-20">
                 <ul id="categoryCollapse" class="nodots shop-sidebar-category collapse">
                   <% @categories.each do |category| %>
-                    <li class="text-left margin-top-20">
+                    <li class="text-left margin-top-10">
                       
                       <%= link_to "javascript:void(0);", 
                           data: { category: category.id }, 
@@ -51,7 +51,7 @@
               <div class="row margin-top-20">
                 <ul id="priceCollapse" class="nodots shop-sidebar-size collapse">
                   <% @prices.each_with_index do |price, index| %>
-                    <li class="text-left margin-top-20">
+                    <li class="text-left margin-top-10">
                       <%= link_to "javascript:void(0);",
                       data: { price: price.id },
                       onclick: "filterByPrice(this)",
@@ -78,7 +78,7 @@
               <div class="row margin-top-20">
                 <ul id="colorCollapse" class="nodots shop-sidebar-color collapse">
                   <% @colors.each do |color| %>
-                    <li class="text-left margin-top-20">
+                    <li class="text-left margin-top-10">
                       <%= link_to "javascript:void(0);",
                           data: { color: color.id },
                           onclick: "filterByColor(event)",
