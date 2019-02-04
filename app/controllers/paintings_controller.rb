@@ -32,7 +32,12 @@ class PaintingsController < ApplicationController
       elsif cheap_price.present? 
         
         @paintings = Painting.where("price <= ? AND price > ?", price.value, cheap_price.value)
+
+      elsif @paintings.present? 
+        @paintings = @paintings.where("price <= ?", price.value)
+
       else
+        
         @paintings = Painting.where("price <= ?", price.value)
       end
       
@@ -60,12 +65,6 @@ class PaintingsController < ApplicationController
     # 필터링을 하지 않는 경우
     if !@is_filtering
       @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
-    end
-
-    # 우측 상단의 필터 select 창 반영
-    filter_type = params[:filter_type]
-    if filter_type.present?
-      @paintings = filter(@paintings, filter_type.to_i)
     end
 
     respond_to do |format|
