@@ -21,6 +21,26 @@
   font-family: 'Noto Sans', sans-serif;
 } */
 
+a{
+  color: black !important;
+}
+
+a.white{
+  color: lightgray !important;
+  font: 300 16px "Heebo", sans-serif;
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-variant-east-asian: normal;
+  font-weight: 300;
+  font-stretch: normal;
+  font-size: 16px;
+  line-height: normal;
+  font-family: Heebo, sans-serif;
+  letter-spacing: 0;
+}
+
 .no-padding {
   padding: 0px;
 }

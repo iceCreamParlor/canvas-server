@@ -79,7 +79,7 @@
 							</a>
 				      <ul class="dropdown-menu">
 								<li>
-									<%= link_to messages_path do %>
+									<%= link_to messages_path, class: "white" do %>
 										쪽지 
 										<span style="float: right;" class="badge badge-light">
 											<%= current_user.arrived_messages.count %>
@@ -87,10 +87,10 @@
 									<% end %>
 								</li>	
 								<li>
-									<%= link_to '마이페이지', profiles_path %>
+									<%= link_to '마이페이지', profiles_path, class: "white" %>
 								</li>
 								<li>
-									<%= link_to '프로필', profile_path(current_user.id) %>
+									<%= link_to '프로필', profile_path(current_user.id), class: "white" %>
 								</li>
 							</ul>
 						</li>
