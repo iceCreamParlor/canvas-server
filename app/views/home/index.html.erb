@@ -1,5 +1,139 @@
-<!-- Home section -->
+<main>
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+        <div class="section">
+          <div class="menu-desc selected" id="desc-0">
+            <!-- PAINTINGS -->
+            <span class="menu-desc-text">
+              Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.
+            </span>
+          </div>
+          <div class="menu-desc"  id="desc-1">
+            <span class="menu-desc-text">
+              Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들의 게시물들이 수록됩니다.
+            </span>
+          </div>
+          <div class="menu-desc" id="desc-2">
+            <span class="menu-desc-text">
+              About Greedy Turtles
+            </span>
+          </div>
+          <!-- <div class="menu-desc" id="desc-3">
+            <span class="menu-desc-text">
+              Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들의 게시물들이 수록됩니다.
+            </span>
+          </div>
+          <div class="menu-desc" id="desc-4">
+            <span class="menu-desc-text">
+              Greedy Turtles
+            </span>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-8 col-xl-8">
+        <div class="frame">
+          <div id="grid-animate-area">
+            <link rel="stylesheet" type="text/css" href="/css/base.css" />
+
+            <nav class="menu">
+              <div class="menu__item">
+                <span class="menu__item-number">01</span>
+                <span class="menu__item-textwrap"><span class="menu__item-text">Paintings</span></span>
+                <%= link_to '자세히', paintings_path, class: "menu__item-link" %>
+                <!-- <a class="menu__item-link">자세히</a> -->
+              </div>
+              <div class="menu__item">
+                <span class="menu__item-number">02</span>
+                <span class="menu__item-textwrap"><span class="menu__item-text">Magazines</span></span>
+                <%= link_to '자세히', magazines_path, class: "menu__item-link" %>
+                <!-- <a class="menu__item-link">자세히</a> -->
+              </div>
+              <div class="menu__item">
+                <span class="menu__item-number">05</span>
+                <span class="menu__item-textwrap"><span class="menu__item-text">About us</span></span>
+                <a class="menu__item-link">자세히</a>
+              </div>
+              <!-- <div class="menu__item">
+                <span class="menu__item-number">03</span>
+                <span class="menu__item-textwrap"><span class="menu__item-text">Objects</span></span>
+                <a class="menu__item-link">자세히</a>
+              </div>
+              <div class="menu__item">
+                <span class="menu__item-number">04</span>
+                <span class="menu__item-textwrap"><span class="menu__item-text">Delta</span></span>
+                <a class="menu__item-link">자세히</a>
+              </div> -->
+              
+            </nav>
+            
+            <div class="page page--preview">
+              <div class="gridwrap">
+                <div class="grid grid--layout-1">
+                  <% @paintings1.each do |painting| %>
+                    <div class="grid__item" style="background-image: url('<%= painting['thumbnail'] %>')"></div>
+                  <% end %>
+                </div>
+                <div class="grid grid--layout-2">
+                  <% @magazines.each do |magazine| %>
+                    <div class="grid__item" style="background-image: url('<%= magazine.url %>')"></div>
+                  <% end %>
+                </div>
+                <div class="grid grid--layout-3">
+                  <% @magazines.each do |magazine| %>
+                    <div class="grid__item" style="background-image: url('<%= magazine.url %>')"></div>
+                  <% end %>
+                  
+                </div>
+                <div class="grid grid--layout-4">
+                  <% @magazines.each do |magazine| %>
+                    <div class="grid__item" style="background-image: url('<%= magazine.url %>')"></div>
+                  <% end %>
+                
+                </div>
+                <div class="grid grid--layout-5">
+                  <% @magazines.each do |magazine| %>
+                    <div class="grid__item" style="background-image: url('<%= magazine.url %>')"></div>
+                  <% end %>
+              
+                </div>
+                <button style="z-index: 10000" class="gridback">이전으로</button>
+                <!-- <div class="content">
+                  <div class="content__item">
+                    Emerged into consciousness tesseract invent the universe Cambrian explosion how far away from which we spring? Brain is the seed of intelligence white dwarf inconspicuous motes of rock and gas two ghostly white figures in coveralls and helmets are soflty dancing extraordinary claims require extraordinary evidence dispassionate extraterrestrial observer. Hundreds of thousands great turbulent clouds concept of the number one made in the interiors of collapsing stars the sky calls to us encyclopaedia galactica.
+                  </div>
+                  <div class="content__item">
+                    Billions upon billions cosmic ocean prime number descended from astronomers finite but unbounded Euclid? White dwarf hearts of the stars the carbon in our apple pies a very small stage in a vast cosmic arena brain is the seed of intelligence permanence of the stars? Vastness is bearable only through love concept of the number one Sea of Tranquility courage of our questions how far away a still more glorious dawn awaits.
+                  </div>
+                  <div class="content__item">
+                    At the edge of forever white dwarf a mote of dust suspended in a sunbeam citizens of distant epochs take root and flourish tesseract. Bits of moving fluff rings of Uranus across the centuries tendrils of gossamer clouds made in the interiors of collapsing stars muse about. A very small stage in a vast cosmic arena emerged into consciousness network of wormholes network of wormholes dispassionate extraterrestrial observer emerged into consciousness.
+                  </div>
+                  <div class="content__item">
+                    Explorations Apollonius of Perga Sea of Tranquility great turbulent clouds realm of the galaxies two ghostly white figures in coveralls and helmets are soflty dancing. Dispassionate extraterrestrial observer are creatures of the cosmos a mote of dust suspended in a sunbeam hundreds of thousands extraordinary claims require extraordinary evidence something incredible is waiting to be known. Citizens of distant epochs dispassionate extraterrestrial observer something incredible is waiting to be known of brilliant syntheses network of wormholes rich in heavy atoms.
+                  </div>
+                  <div class="content__item">
+                    Hundreds of thousands take root and flourish tingling of the spine consciousness ship of the imagination paroxysm of global death. Rich in mystery realm of the galaxies realm of the galaxies something incredible is waiting to be known hearts of the stars rich in mystery? Kindling the energy hidden in matter the carbon in our apple pies Cambrian explosion the sky calls to us encyclopaedia galactica citizens of distant epochs.
+                  </div>
+                </div> -->
+                <!-- <button class="gridback"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></button> -->
+                
+                <script src="js/imagesloaded.pkgd.min.js"></script>
+                <script src="js/TweenMax.min.js"></script>
+                <script src="js/demo.js"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<% if false %>
+<!-- Home section -->  
 <div class="section-xl">
+  
   <div class="container">
     <div class="row col-spacing-50">
       <div class="col-12 col-lg-10">
@@ -84,6 +218,8 @@
   </div><!-- end container -->
 </div>
 <!-- end Portfolio section -->
+
+
 
 <!-- About section -->
 <div class="section-lg bg-dark-lighter">
@@ -363,3 +499,4 @@
     </div><!-- end container -->
   </div><!-- end footer-bottom -->
 </footer>
+<% end %>
