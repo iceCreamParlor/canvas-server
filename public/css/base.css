@@ -390,7 +390,7 @@ div#grid-animate-area .content__item {
 
 div#grid-animate-area .page--preview {
 	position: relative;
-	/* overflow: hidden; */
+	overflow: hidden;
 	height: 100vh;
 }
 
