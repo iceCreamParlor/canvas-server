@@ -8,6 +8,8 @@ div#grid-animate-area article,aside,details,figcaption,figure,footer,header,hgro
 /* KHJ 김희재 */
 .menu-desc-text{
 	font-style: italic;
+	font-size: 13px;
+	font-weight: 600;
 }
 .menu-desc{
 	display: none;

@@ -183,6 +183,7 @@
                 left : document.body.scrollLeft + document.documentElement.scrollLeft, 
                 top : document.body.scrollTop + document.documentElement.scrollTop
             };
+            
             // Mouse position relative to the main element.
             const relmousepos = { 
                 x : mousepos.x - docScrolls.left, 
@@ -343,7 +344,6 @@
             this.DOM = {el: el};
         }
         toggleCurrent() {
-            console.log("current!!")
             this.DOM.el.classList[this.DOM.el.classList.contains('content__item--current') ? 'remove' : 'add']('content__item--current');
         }
     }
