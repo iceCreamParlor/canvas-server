@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_021800) do
+ActiveRecord::Schema.define(version: 2019_02_07_164808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,26 @@ ActiveRecord::Schema.define(version: 2019_02_01_021800) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "auction_candidates", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "auction_id"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auction_id"], name: "index_auction_candidates_on_auction_id"
+    t.index ["user_id"], name: "index_auction_candidates_on_user_id"
+  end
+
+  create_table "auctions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "painting_id"
+    t.datetime "expire_date", default: "2019-02-21 16:16:53"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["painting_id"], name: "index_auctions_on_painting_id"
+    t.index ["user_id"], name: "index_auctions_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -139,6 +159,7 @@ ActiveRecord::Schema.define(version: 2019_02_01_021800) do
     t.string "desc"
     t.bigint "user_id"
     t.datetime "completed_date", default: "2019-01-30 15:42:29"
+    t.integer "status", default: 0
     t.index ["category_id"], name: "index_paintings_on_category_id"
     t.index ["color_id"], name: "index_paintings_on_color_id"
     t.index ["user_id"], name: "index_paintings_on_user_id"
@@ -167,6 +188,10 @@ ActiveRecord::Schema.define(version: 2019_02_01_021800) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "auction_candidates", "auctions"
+  add_foreign_key "auction_candidates", "users"
+  add_foreign_key "auctions", "paintings"
+  add_foreign_key "auctions", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "likes", "paintings"
   add_foreign_key "likes", "users"

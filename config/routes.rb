@@ -17,16 +17,6 @@ Rails.application.routes.draw do
   get 'messages/load_message/:id', to: 'messages#load_message'
   get 'likes/toggle_like/:painting_id', to: 'likes#toggle_like', as: 'toggle_like'
 
-  resources :paintings, :messages
-  resources :magazines
-  resources :magazine_comments
-  
-  resources :profiles do 
-    member do 
-      
-    end
-  end
-  
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+  resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles
+
 end

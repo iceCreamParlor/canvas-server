@@ -404,3 +404,8 @@ hr {
   list-style-type: none;
   float: left;
 }
+
+.auction-table-head{
+  padding-left: 10px !important;
+   padding-right: 10px !important;
+}

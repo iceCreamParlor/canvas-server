@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-12 col-lg-7">
+
+    <div class="table-responsive">
+      
+      <table class="product-table text-center">
+        <thead>
+          <tr>
+            <th class="auction-table-head" width="25%" scope="col">작품</th>
+            <th class="auction-table-head" width="25%" scope="col">상태</th>
+            <th class="auction-table-head" width="25%" scope="col">좋아요</th>
+            <th class="auction-table-head" width="25%" scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table row 1 -->
+          <% @paintings.each do |painting| %>
+            <tr>
+              <td align="center" width="25%" class="wishlist-product-thumbnail">
+                <%= link_to painting_path(painting) do %>
+                  
+                  <img src="<%= painting.thumbnail.url %>" alt="">
+                  
+                <% end %>
+                <p style="font-weight: 600;"><%= painting.name %></p>
+              </td>
+              <td width="27%">
+                <!-- <p class="text-dark"> -->
+                  <!-- <div class="row painting-status"> -->
+                    <i class="fas fa-check"></i>
+                    <p><%= painting.translate_status %></p>
+                  <!-- </div> -->
+                <!-- </p> -->
+              </td>
+              <td width="28%">
+                <p><%= painting.likes.count %></p>
+              </td>
+              <td width="20%">
+                <button 
+                data-painting="<%= painting.id %>"
+                onclick="auctionButtonClicked(this)"
+                class="btn btn-outline-dark float-right">추가</button>
+              </td>
+              <!-- <td class="wishlist-product-remove">
+                <button><i class="ti-close"></i></button>											
+              </td> -->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+    </div><!-- end table-responsive -->
+  </div>
+  <div class="col-12 col-lg-5"></div>
+</div>
+
+  <script>
+    function auctionButtonClicked(element){
+      console.log(element)
+    }
+  </script>

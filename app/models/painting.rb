@@ -5,8 +5,22 @@ class Painting < ApplicationRecord
   belongs_to :category
   belongs_to :user
   has_many :likes
+  has_many :auctions
   
+  enum :status => ["normal", "auction", "sold"]
+
   scope :exclude_images, ->  { select( Painting.attribute_names - ['images'] ) }
+
+  def translate_status
+    case self.status
+    when "normal"
+      "일반"
+    when "auction"
+      "경매중"
+    when "sold"
+      "판매 완료"
+    end
+  end
 
   def user_likes? user
     painting = Like.find_by(user_id: user.id, painting_id: self.id)

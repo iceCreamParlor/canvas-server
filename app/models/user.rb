@@ -11,6 +11,7 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :paintings
   has_many :magazines
+  has_many :auctions
   has_many :likes
   has_many :follows, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
