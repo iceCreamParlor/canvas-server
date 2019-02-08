@@ -121,7 +121,27 @@
 </div>
 <!-- end Product Content -->
 
+<!-- Comments section -->
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h4 class="margin-bottom-50 text-left">Comments</h4>
+        <div id="comment-area">
+        <!-- Comment box 1 -->
+          <% @painting_comments.each do |painting_comment| %>
+            <%= render 'painting_comment', painting_comment: painting_comment %>
+          <% end %>
+        </div>
+      </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
+</div>
+<!-- end Comments section -->
 
+<% if user_signed_in? %>
+  <%= render 'comment_form' %>
+<% end %>
 
 <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

@@ -2,7 +2,7 @@
 <div class="section border-top">
   <div class="container">
     <div class="row">
-      <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2">
+      <div class="col-12 col-lg-8">
         <h4 class="margin-bottom-50 text-left">댓글 작성</h4>
         <div class="text-right">
           
@@ -26,11 +26,11 @@
     $.ajax({
 
       headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-      url: '<%= magazine_comments_path %>',
+      url: '<%= painting_comments_path %>',
       method: 'POST',
       data: {
         user_id: user_id,
-        magazine_id: <%= @magazine.id %>,
+        painting_id: <%= @painting.id %>,
         content: comment
       },
       success: function(){

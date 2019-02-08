@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_164808) do
+ActiveRecord::Schema.define(version: 2019_02_08_011324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,16 @@ ActiveRecord::Schema.define(version: 2019_02_07_164808) do
     t.index ["painting_id"], name: "index_messages_on_painting_id"
   end
 
+  create_table "painting_comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "content"
+    t.bigint "painting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["painting_id"], name: "index_painting_comments_on_painting_id"
+    t.index ["user_id"], name: "index_painting_comments_on_user_id"
+  end
+
   create_table "paintings", force: :cascade do |t|
     t.string "name"
     t.integer "price"
@@ -199,6 +209,8 @@ ActiveRecord::Schema.define(version: 2019_02_07_164808) do
   add_foreign_key "magazine_comments", "users"
   add_foreign_key "magazines", "users"
   add_foreign_key "messages", "paintings"
+  add_foreign_key "painting_comments", "paintings"
+  add_foreign_key "painting_comments", "users"
   add_foreign_key "paintings", "categories"
   add_foreign_key "paintings", "colors"
   add_foreign_key "paintings", "users"

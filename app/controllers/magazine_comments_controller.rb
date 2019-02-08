@@ -1,5 +1,8 @@
 class MagazineCommentsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :set_magazine_comment, only: [:destroy]
+
   def index
   end
 
@@ -31,5 +34,17 @@ class MagazineCommentsController < ApplicationController
   def update
   end
 
-  
+  def destroy
+    @is_destroyed = false
+    magazine_id = @magazine_comment.magazine_id
+    if @magazine_comment.destroy
+      @magazine_comments = MagazineComment.where(magazine_id: magazine_id).order("created_at ASC")
+      @is_destroyed = true
+    end
+  end
+
+  private
+    def set_magazine_comment  
+      @magazine_comment = MagazineComment.find(params[:id])
+    end
 end

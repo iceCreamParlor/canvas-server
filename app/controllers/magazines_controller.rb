@@ -12,7 +12,7 @@ class MagazinesController < InheritedResources::Base
 
   def show
     @magazine = Magazine.find(params[:id])
-    @magazine_comments = MagazineComment.where(magazine_id: @magazine.id)
+    @magazine_comments = MagazineComment.where(magazine_id: @magazine.id).order("created_at DESC")
   end
 
   def new

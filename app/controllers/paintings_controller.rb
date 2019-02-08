@@ -83,6 +83,8 @@ class PaintingsController < ApplicationController
     @user = @painting.user
     @user_category = @user.user_categories
 
+    @painting_comments = PaintingComment.where(painting_id: @painting.id).order("created_at DESC")
+
     @is_following = false
     if user_signed_in?
       if current_user.is_following(@user)

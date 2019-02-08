@@ -1,18 +1,18 @@
 let newComment = `
 <div class="comment-box">
   <div class="comment-user-avatar">
-    <%  if @magazine_comment.user.image.present? %>
-      <img class="magazine-comment-image" src="<%= @magazine_comment.user.image.url %>" alt="">
+    <%  if @painting_comment.user.image.present? %>
+      <img class="magazine-comment-image" src="<%= @painting_comment.user.image.url %>" alt="">
     <% else %>
       <i class="fa fa-user"></i>
     <% end %>
   </div>
   <div class="comment-content">
-    <span class="comment-time"><%= @magazine_comment.created_at.strftime("%Y년 %m월 %d일") %></span>
-    <h6 class="font-weight-normal"><%= @magazine_comment.user.nickname %></h6>
+    <span class="comment-time"><%= @painting_comment.created_at.strftime("%Y년 %m월 %d일") %></span>
+    <h6 class="font-weight-normal"><%= @painting_comment.user.nickname %></h6>
     <p>
-      <%= @magazine_comment.content %>
-      <%= link_to magazine_comment_path(@magazine_comment), 
+      <%= @painting_comment.content %>
+      <%= link_to painting_comment_path(@painting_comment), 
         method: :delete, 
         data: {
           "remote": "true"
@@ -24,5 +24,6 @@ let newComment = `
   </div>
 </div>
 `
+console.log("!!!")
 $('#comment-area').append(newComment);
 $('#comment').val('');

@@ -6,6 +6,7 @@ class Painting < ApplicationRecord
   belongs_to :user
   has_many :likes
   has_many :auctions
+  has_many :painting_comments
   
   enum :status => ["normal", "auction", "sold"]
 

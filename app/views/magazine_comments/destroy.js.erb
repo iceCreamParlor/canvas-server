@@ -1,0 +1,4 @@
+// 댓글 부분을 갱신
+<% if @is_destroyed %>
+  $('#comment-area').html('<%= j render @magazine_comments %>');
+<% end %>

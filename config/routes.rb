@@ -17,6 +17,6 @@ Rails.application.routes.draw do
   get 'messages/load_message/:id', to: 'messages#load_message'
   get 'likes/toggle_like/:painting_id', to: 'likes#toggle_like', as: 'toggle_like'
 
-  resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles
+  resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles, :painting_comments
 
 end

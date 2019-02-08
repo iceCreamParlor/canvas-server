@@ -91,6 +91,16 @@
                 <% end %>
                 <p>
                   <%= comment.content %>
+                  <% if user_signed_in? && comment.user == current_user %>
+                    <%= link_to magazine_comment_path(comment), 
+                      method: :delete, 
+                      data: {
+                        "remote": "true"
+                      } do 
+                    %>
+                      <button style="font-style: italic;" class="float-right">삭제</button>
+                    <% end %>
+                  <% end %>
                 </p>
               </div>
             </div>
