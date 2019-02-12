@@ -39,7 +39,7 @@
             <div id="grid-animate-area">
               <link rel="stylesheet" type="text/css" href="/css/base.css" />
   
-              <nav class="menu">
+              <nav class="menu" <% if @is_mobile %> style="width: 100%;" <% end %>>
                 <div class="menu__item">
                   <span class="menu__item-number">01</span>
                   <span class="menu__item-textwrap"><span class="menu__item-text">Paintings</span></span>
@@ -73,25 +73,37 @@
                 <!-- PAINTINGS -->
                 <span class="menu-desc-text float-right text-right">
                   
-                  Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고,<br> 판매하는 플랫폼 서비스입니다.<br>
-                  
+                  Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고,<br>
+                  판매하는 플랫폼 서비스입니다.<br>
+                  <br>
+                  여러분의 소중한 작품들을 캔버스에 담아주세요.<br><br>
+                  <%= link_to magazines_path do %>
+                    <button type="button" class="btn btn-outline-dark">보러가기</button>  
+                  <% end %>
                   
                   
                 </span>
               </div>
               <div class="menu-desc"  id="desc-1">
                 <span class="menu-desc-text float-right text-right">
-                  Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들의 게시물들이 수록됩니다.<br>
-                  Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들의 게시물들이 수록됩니다.<br>
-                  
+                  Canvas 는 작품 공유, 판매 서비스 뿐만 아니라, <br>
+                  최신 예술 동향을 파악할 수 있는 Magazine 이 있습니다. <br>
+                  Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들에 관한 <br>
+                  게시물들이 수록됩니다.<br>
+                  <br>
+                  <%= link_to magazines_path do %>
+                    <button type="button" class="btn btn-outline-dark">보러가기</button>  
+                  <% end %>
                 </span>
+                
               </div>
               <div class="menu-desc" id="desc-2">
                 <span class="menu-desc-text float-right text-right">
                   About Greedy Turtles
                 </span>
               </div>
-              <div style="width: 100%;" class="page page--preview">
+              
+              <div style="width: 100%; top: 20px;" class="page page--preview">
                 
                 <div class="gridwrap">
                     
