@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 'like/create'
   get 'like/destroy'
   mount Ckeditor::Engine => '/ckeditor'
@@ -20,3 +20,5 @@ Rails.application.routes.draw do
   resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles, :painting_comments
 
 end
+
+

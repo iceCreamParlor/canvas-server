@@ -38,56 +38,73 @@
         <div class="frame">
           <div id="grid-animate-area">
             <link rel="stylesheet" type="text/css" href="/css/base.css" />
-
-            <nav class="menu">
-              <div class="menu__item">
-                <span class="menu__item-number">01</span>
-                <span class="menu__item-textwrap"><span class="menu__item-text">Paintings</span></span>
-                <%= link_to '자세히', paintings_path, class: "menu__item-link" %>
-                <!-- <a class="menu__item-link">자세히</a> -->
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <nav class="menu">
+                  <div class="menu__item">
+                    <span class="menu__item-number">01</span>
+                    <span class="menu__item-textwrap"><span class="menu__item-text">Paintings</span></span>
+                    <%= link_to '자세히', paintings_path, class: "menu__item-link" %>
+                    <!-- <a class="menu__item-link">자세히</a> -->
+                  </div>
+                  <div class="menu__item">
+                    <span class="menu__item-number">02</span>
+                    <span class="menu__item-textwrap"><span class="menu__item-text">Magazines</span></span>
+                    <%= link_to '자세히', magazines_path, class: "menu__item-link" %>
+                    <!-- <a class="menu__item-link">자세히</a> -->
+                  </div>
+                  <div class="menu__item">
+                    <span class="menu__item-number">05</span>
+                    <span class="menu__item-textwrap"><span class="menu__item-text">About us</span></span>
+                    <a class="menu__item-link">자세히</a>
+                  </div>
+                  <!-- <div class="menu__item">
+                    <span class="menu__item-number">03</span>
+                    <span class="menu__item-textwrap"><span class="menu__item-text">Objects</span></span>
+                    <a class="menu__item-link">자세히</a>
+                  </div>
+                  <div class="menu__item">
+                    <span class="menu__item-number">04</span>
+                    <span class="menu__item-textwrap"><span class="menu__item-text">Delta</span></span>
+                    <a class="menu__item-link">자세히</a>
+                  </div> -->
+                  
+                </nav>
               </div>
-              <div class="menu__item">
-                <span class="menu__item-number">02</span>
-                <span class="menu__item-textwrap"><span class="menu__item-text">Magazines</span></span>
-                <%= link_to '자세히', magazines_path, class: "menu__item-link" %>
-                <!-- <a class="menu__item-link">자세히</a> -->
+              <div class="col-12 col-lg-6">
+                <div class="menu-desc selected" id="desc-0">
+                  <!-- PAINTINGS -->
+                  <span class="menu-desc-text">
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
+                    
+                  </span>
+                </div>
+                <div class="menu-desc"  id="desc-1">
+                  <span class="menu-desc-text">
+                    Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들의 게시물들이 수록됩니다.<br>
+                    Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들의 게시물들이 수록됩니다.<br>
+                    
+                  </span>
+                </div>
+                <div class="menu-desc" id="desc-2">
+                  <span class="menu-desc-text">
+                    About Greedy Turtles
+                  </span>
+                </div>
               </div>
-              <div class="menu__item">
-                <span class="menu__item-number">05</span>
-                <span class="menu__item-textwrap"><span class="menu__item-text">About us</span></span>
-                <a class="menu__item-link">자세히</a>
-              </div>
-              <!-- <div class="menu__item">
-                <span class="menu__item-number">03</span>
-                <span class="menu__item-textwrap"><span class="menu__item-text">Objects</span></span>
-                <a class="menu__item-link">자세히</a>
-              </div>
-              <div class="menu__item">
-                <span class="menu__item-number">04</span>
-                <span class="menu__item-textwrap"><span class="menu__item-text">Delta</span></span>
-                <a class="menu__item-link">자세히</a>
-              </div> -->
-              
-            </nav>
-            <div class="menu-desc selected" id="desc-0">
-              <!-- PAINTINGS -->
-              <span class="menu-desc-text">
-                Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
-                Canvas 는 미술에 관심있는 작가들이 자유롭게 작품을 공유하고, 판매하는 플랫폼 서비스입니다.<br>
-                
-              </span>
-            </div>
-            <div class="menu-desc"  id="desc-1">
-              <span class="menu-desc-text">
-                Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들의 게시물들이 수록됩니다.<br>
-                Canvas Magazine 에는 올해의 문제작가 인터뷰 / 이슈 작품들의 게시물들이 수록됩니다.<br>
-                
-              </span>
-            </div>
-            <div class="menu-desc" id="desc-2">
-              <span class="menu-desc-text">
-                About Greedy Turtles
-              </span>
             </div>
             <div class="page page--preview">
               
