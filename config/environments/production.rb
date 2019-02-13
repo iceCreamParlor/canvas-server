@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
-
+  # 'SECRETS.YML'
+  config.read_encrypted_secrets = true
   # MAIL CUSTOMIZATION
   config.action_mailer.default_url_options = { :host => "www.imheej.com" }
   config.action_mailer.delivery_method = :smtp
