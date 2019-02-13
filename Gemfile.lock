@@ -335,9 +335,9 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   capistrano (~> 3.10)
-  capistrano-passenger (~> 0.2.0)
+  capistrano-passenger
   capistrano-rails (~> 1.4)
-  capistrano-rbenv (~> 2.1)
+  capistrano-rbenv
   capybara (>= 2.15)
   carrierwave
   chromedriver-helper

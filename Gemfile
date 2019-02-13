@@ -37,8 +37,8 @@ gem 'mini_magick'
 group :development do
   gem "capistrano", "~> 3.10", require: false
   gem "capistrano-rails", "~> 1.4", require: false
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rbenv', '~> 2.1'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rbenv'
 end
 
 # google 계정으로 이메일 보내기
