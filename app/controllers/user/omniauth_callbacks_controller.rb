@@ -53,14 +53,14 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.find(current_user.id)
     if @user.persisted?
       if @identity.provider == "kakao"
-        register_info2_path
-        
+        # register_info2_path
+        root_path
       else
-        register_info1_path
-        
+        # register_info1_path
+        root_path
       end
     else
-      visitor_main_path
+      root_path
     end
   end
 end

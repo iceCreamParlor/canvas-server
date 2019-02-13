@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_02_08_011324) do
   create_table "auctions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "painting_id"
-    t.datetime "expire_date", default: "2019-02-21 16:16:53"
+    t.datetime "expire_date", default: "2019-02-22 02:50:25"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["painting_id"], name: "index_auctions_on_painting_id"

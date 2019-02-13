@@ -7,7 +7,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
-
   mount_uploader :image, ImageUploader
   has_many :paintings
   has_many :magazines
@@ -79,16 +78,25 @@ class User < ApplicationRecord
               # 이 부분은 AWS S3와 연동할 때 프로필 이미지를 저장하기 위해 필요한 부분입니다.
 
               # remote_profile_img_url: auth.info.image.gsub('http://','https://'),
-
+              email: "kakaoUser@#{auth.uid}.com",
+              remote_image_url: auth.info.image,
+              nickname: auth.info.name,
               password: Devise.friendly_token[0,20]
             )
-
+          elsif auth.provider == "google_oauth2" 
+            
+            user = User.new(
+              email: auth.info.email,
+              remote_image_url: auth.info.image,
+              nickname: auth.info.name,
+              password: Devise.friendly_token[0,20]
+            )
           else
+            
             user = User.new(
               email: auth.info.email,
               # profile_img: auth.info.image,
               # remote_profile_img_url: auth.info.image.gsub('http://','https://'),
-
               password: Devise.friendly_token[0,20]
             )
           end
