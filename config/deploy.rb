@@ -6,8 +6,8 @@ set :repo_url, "https://github.com/iceCreamParlor/canvas_factory.git"
 set :deploy_to, '/home/ubuntu/canvas'
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads", "config/application.yml" #, "config/database.yml", "config/
-
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads" #, "config/database.yml", "config/
+append :linked_files, "config/application.yml"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
