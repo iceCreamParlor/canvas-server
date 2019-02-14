@@ -144,6 +144,10 @@ a.white{
   float: left;
 }
 
+.margin-bottom-10{
+  margin-bottom: 10px !important;
+}
+
 .magazine-comment-image{
   border-radius: 30px;
 }

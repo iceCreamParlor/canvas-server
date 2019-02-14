@@ -9,13 +9,13 @@ $(function(){
     
     <div class="row">
       <% if @parent_message.sender_id == current_user.id %>
-        <div class="col-7 offset-5">
+        <div class="col-7 offset-5 margin-bottom-10">
           <div style="display: inline-block;" class="alert alert-secondary text-right float-right" role="alert">
             <%= @parent_message.content %> : <%= @parent_message.sender.nickname %>
           </div>
         </div>
       <% else %>
-        <div class="col-7">
+        <div class="col-7 margin-bottom-10">
           <div style="display: inline-block;" class="alert alert-secondary" role="alert">
             <%= @parent_message.sender.nickname %> : <%= @parent_message.content %>
           </div>
@@ -23,13 +23,13 @@ $(function(){
       <% end %>
       <% @children_messages.each do |message| %>
         <% if message.sender_id == current_user.id %>
-          <div class="col-7 offset-5">
+          <div class="col-7 offset-5 margin-bottom-10">
             <div style="display: inline-block;" class="alert alert-secondary text-right float-right" role="alert">
               <%= message.content %> : <%= message.sender.nickname %>
             </div>
           </div>
         <% else %>
-          <div class="col-7">
+          <div class="col-7 margin-bottom-10">
             <div style="display: inline-block;" class="alert alert-secondary" role="alert">
               <%= message.sender.nickname %> : <%= message.content %>  
             </div>
