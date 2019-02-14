@@ -3,13 +3,17 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    messages = current_user.arrived_messages
+    messages = current_user.arrived_messages.order("created_at DESC")
     @messages = []
     messages.each do |message|
       @messages << message.find_parent_message
     end
-
-    @messages_json = @messages.uniq.to_json
+    @messages = @messages.uniq
+    @messages = @messages.map{ |m| 
+      m.find_children_messages.last
+    }
+    @messages_json = @messages.to_json
+    
 
     if @is_mobile
       render 'mobile_index.html.erb'
@@ -17,6 +21,7 @@ class MessagesController < ApplicationController
       render 'index.html.erb'
     end
   end
+
   def create
     
     sender_id = params[:sender_id]
@@ -44,7 +49,8 @@ class MessagesController < ApplicationController
 
     @parent_message = Message.find(params[:id]).find_parent_message
     @sender = User.find(@parent_message.sender_id)
-    @children_messages = @parent_message.find_children_messages.order("created_at ASC")
+    @children_messages = @parent_message.find_children_messages
+    @last_message = @children_messages.last
     puts "!!!!"
     puts @parent_message.id
     puts @parent_message.painting_id

@@ -20,9 +20,20 @@ class Message < ApplicationRecord
 
   def find_children_messages
     if self.original_msg_id.present?
+      # 최상위 부모 메세지가 아닌 메세지에서 호출된 경우 nil을 반환
       return nil
     else
-      messages = Message.where(original_msg_id: self.id)
+      messages = [self]
+      puts "line 27"
+      puts messages
+      children_messages = Message.where(original_msg_id: self.id).order("created_at ASC").to_a
+      if !children_messages.blank?
+        messages += children_messages
+      end
+      puts "line 31"
+      puts messages
+      puts "line 33"
+      puts messages.last
       return messages
     end
   end

@@ -13,7 +13,9 @@
               <div class="row" style="cursor: pointer;">
                 <div class="col-2">
                   <h6 class="heading-uppercase">
-                    <span class="card-text"><small class="text-muted">김희재</small></span>
+                    <span class="card-text"><small class="text-muted">
+                      <%= message.sender.nickname %>
+                    </small></span>
                   </h6>
                 </div>
                 <div class="col-10">
@@ -58,12 +60,12 @@
           <% end %>
         </ul>  
       </div>
-      <div id="message-specific" class="col-6">
+      <div id="message-specific" class="col-6" >
         <div class="card">
           <div id="painting-img"></div>
           <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="card-body">
-            <h5 id="message-sender" class="card-title">Card title</h5>
+            <h5 id="message-sender" class="card-title">메세지 상세내역</h5>
             <div id="message-painting">
               <div id="painting-name">
               </div>

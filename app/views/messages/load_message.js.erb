@@ -1,26 +1,14 @@
 $(function(){
 
   $('#message-sender').html(`
-    <%= @sender.nickname %>
+    <%= @painting.user.nickname %>
   `)
   $('#message-content').html(`
     <hr class="margin-top-20">
     <h6>대화 내용</h6>
     
     <div class="row">
-      <% if @parent_message.sender_id == current_user.id %>
-        <div class="col-7 offset-5 margin-bottom-10">
-          <div style="display: inline-block;" class="alert alert-secondary text-right float-right" role="alert">
-            <%= @parent_message.content %> : <%= @parent_message.sender.nickname %>
-          </div>
-        </div>
-      <% else %>
-        <div class="col-7 margin-bottom-10">
-          <div style="display: inline-block;" class="alert alert-secondary" role="alert">
-            <%= @parent_message.sender.nickname %> : <%= @parent_message.content %>
-          </div>
-        </div>
-      <% end %>
+      
       <% @children_messages.each do |message| %>
         <% if message.sender_id == current_user.id %>
           <div class="col-7 offset-5 margin-bottom-10">
@@ -43,9 +31,9 @@ $(function(){
     <div style="margin-top: 80px;>
       <button type="button" 
       class="btn btn-outline-dark float-right reply-btn"
-      data-receiver="<%= @parent_message.receiver_id %>"
-      data-sender="<%= @parent_message.sender_id %>"
-      data-sender-name="<%= @parent_message.sender.nickname %>"
+      data-receiver="<%= @last_message.sender_id %>"
+      data-sender="<%= @last_message.receiver_id %>"
+      data-sender-name="<%= @last_message.sender.nickname %>"
       data-message="<%= @parent_message.id %>"
       <% if @parent_message.painting.present? %>
       data-painting="<%= @parent_message.painting_id %>"
