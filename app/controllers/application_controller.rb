@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_sns
+  before_action :check_app, :app?
 
   protected
 
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::Base
     @is_mobile = mobile_device?
   end
   def mobile_device?
+    # 단순히 모바일 디바이스인지를 판별한다 (웹 브라우저의 경우, 여기에서 true가 반환됨)
     agent = request.user_agent
     return true if agent =~ /(tablet|ipad)|(android(?!.*mobile))/i
     return true if agent =~ /Mobile/
@@ -29,5 +31,32 @@ class ApplicationController < ActionController::Base
       session[:recent_paintings].delete_at(0)
     end
     @recent_paintings = session[:recent_paintings].map{ |id| Painting.find(id) }
+  end
+
+  def check_app
+    # 모바일 앱인지 / 브라우저인지 확인하는 함수
+    if params[:platform].present?
+      
+      if %w[ios android].include?(params[:platform])
+        cookies[:platform] = params[:platform]
+      else
+        cookies[:platform] = nil
+      end
+    end
+  end
+
+  def ios?
+    cookies[:platform] == "ios"
+  end
+
+  def android?
+    cookies[:platform] == "android"
+  end
+
+  def app?
+    # 앱인지 확인하는 함수이다. (모바일 브라우저에서는 false 가 반환됨)
+    @is_app = %w[ios android].include? cookies[:platform]
+    puts @is_app
+    @is_app
   end
 end
