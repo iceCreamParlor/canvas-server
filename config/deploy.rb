@@ -3,7 +3,7 @@ lock "~> 3.11.0"
 
 set :application, "canvas"
 # set :repo_url, "https://github.com/iceCreamParlor/canvas_factory.git"
-set :repo_url, "git@github.com/iceCreamParlor/canvas_factory.git"
+set :repository, "git@github.com/iceCreamParlor/canvas_factory.git"
 set :deploy_to, '/home/ubuntu/canvas'
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
