@@ -25,9 +25,9 @@
               </div>
               <!-- <button type="button" 
                     class="btn btn-outline-dark float-right reply-btn"
-                    data-seller="<%= message.seller_id %>"
-                    data-buyer="<%= message.buyer_id %>"
-                    data-buyer-name="<%= message.buyer.nickname %>"
+                    data-receiver="<%= message.receiver_id %>"
+                    data-sender="<%= message.sender_id %>"
+                    data-sender-name="<%= message.sender.nickname %>"
                     <% if message.painting.present? %>
                     data-painting="<%= message.painting_id %>"
                     <% else %>
@@ -39,12 +39,12 @@
                   <% if message.painting.present? %>
                   <p class="painting-price"><%= message.painting.price %></p>
                   <% end %>
-                  <p class="sender-nickname"><%= User.find(message.buyer_id).nickname %>
+                  <p class="sender-nickname"><%= User.find(message.sender_id).nickname %>
                   <button type="button" 
                     class="btn btn-outline-dark float-right reply-btn"
-                    data-seller="<%= message.seller_id %>"
-                    data-buyer="<%= message.buyer_id %>"
-                    data-buyer-name="<%= message.buyer.nickname %>"
+                    data-receiver="<%= message.receiver_id %>"
+                    data-sender="<%= message.sender_id %>"
+                    data-sender-name="<%= message.sender.nickname %>"
                     <% if message.painting.present? %>
                     data-painting="<%= message.painting_id %>"
                     <% else %>

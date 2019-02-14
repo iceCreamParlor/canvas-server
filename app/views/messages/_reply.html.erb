@@ -8,11 +8,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <input type="hidden" id="sellerId">
-        <input type="hidden" id="buyerId">
+        <input type="hidden" id="receiverId">
+        <input type="hidden" id="senderId">
         <input type="hidden" id="paintingId">
+        <input type="hidden" id="messageId">
         <div class="form-group">
-          <input disabled type="text" class="form-control" id="buyer">
+          <input disabled type="text" class="form-control" id="sender">
         </div>
         <div class="form-group">
           <textarea class="form-control" id="content" cols="30" rows="10"></textarea>
@@ -27,21 +28,24 @@
 
 <script>
 $(document).on("click", ".reply-btn", function () {
-  let sellerId = $(this).data('seller');
-  let buyerId = $(this).data('buyer');
-  let buyerName = $(this).data('buyerName');
+  let receiverId = $(this).data('receiver');
+  let senderId = $(this).data('sender');
+  let senderName = $(this).data('senderName');
   let paintingId = $(this).data('painting');
-  $('#buyer').val(buyerName)
-  $('#sellerId').val(sellerId);
-  $('#buyerId').val(buyerId);
+  let messageId = $(this).data('message');
+  $('#sender').val(senderName)
+  $('#receiverId').val(receiverId);
+  $('#senderId').val(senderId);
   $('#paintingId').val(paintingId);
+  $('#messageId').val(messageId);
   
   // $('#addBookDialog').modal('show');
 });
 function messageButtonClicked(){
-  let sellerId = $('#sellerId').val();
-  let buyerId = $('#buyerId').val();
+  let receiverId = $('#receiverId').val();
+  let senderId = $('#senderId').val();
   let paintingId = $('#paintingId').val();
+  let messageId = $('#messageId').val();
   let content = $('#content').val();
 
   if(paintingId != -1){
@@ -51,8 +55,9 @@ function messageButtonClicked(){
       method: 'POST',
       data: {
         painting_id: paintingId,    
-        sender_id: sellerId,
-        seller_id: buyerId,
+        sender_id: receiverId,
+        receiver_id: senderId,
+        message_id: messageId,
         content: content
       },
       success: function(){
@@ -66,8 +71,8 @@ function messageButtonClicked(){
       url: '<%= messages_path %>',
       method: 'POST',
       data: {
-        sender_id: sellerId,
-        seller_id: buyerId,
+        sender_id: receiverId,
+        receiver_id: senderId,
         content: content
       },
       success: function(){

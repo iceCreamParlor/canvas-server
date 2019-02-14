@@ -1,33 +1,72 @@
-$('#message-sender').html(`
-  <%= @sender.nickname %>
-`)
-$('#message-content').html(`
-  <%= @message.content %>
-`)
+$(function(){
 
-$('#reply-btn-area').html(`
-  <button type="button" 
-  class="btn btn-outline-dark float-right reply-btn"
-  data-seller="<%= @message.seller_id %>"
-  data-buyer="<%= @message.buyer_id %>"
-  data-buyer-name="<%= @message.buyer.nickname %>"
-  <% if @message.painting.present? %>
-  data-painting="<%= @message.painting_id %>"
+  $('#message-sender').html(`
+    <%= @sender.nickname %>
+  `)
+  $('#message-content').html(`
+    <hr class="margin-top-20">
+    <h6>대화 내용</h6>
+    
+    <div class="row">
+      <% if @parent_message.sender_id == current_user.id %>
+        <div class="col-7 offset-5">
+          <div style="display: inline-block;" class="alert alert-secondary text-right float-right" role="alert">
+            <%= @parent_message.content %> : <%= @parent_message.sender.nickname %>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-7">
+          <div style="display: inline-block;" class="alert alert-secondary" role="alert">
+            <%= @parent_message.sender.nickname %> : <%= @parent_message.content %>
+          </div>
+        </div>
+      <% end %>
+      <% @children_messages.each do |message| %>
+        <% if message.sender_id == current_user.id %>
+          <div class="col-7 offset-5">
+            <div style="display: inline-block;" class="alert alert-secondary text-right float-right" role="alert">
+              <%= message.content %> : <%= message.sender.nickname %>
+            </div>
+          </div>
+        <% else %>
+          <div class="col-7">
+            <div style="display: inline-block;" class="alert alert-secondary" role="alert">
+              <%= message.sender.nickname %> : <%= message.content %>  
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  `)
+
+  $('#reply-btn-area').html(`
+    <div style="margin-top: 80px;>
+      <button type="button" 
+      class="btn btn-outline-dark float-right reply-btn"
+      data-receiver="<%= @parent_message.receiver_id %>"
+      data-sender="<%= @parent_message.sender_id %>"
+      data-sender-name="<%= @parent_message.sender.nickname %>"
+      data-message="<%= @parent_message.id %>"
+      <% if @parent_message.painting.present? %>
+      data-painting="<%= @parent_message.painting_id %>"
+      <% else %>
+      data-painting="-1"
+      <% end %>
+      data-toggle="modal" 
+      data-target="#replyModal">답장</button>
+    </div>
+  `)
+  console.log("<%= @painting.id %>")
+  <% if @painting.present? %>
+  
+    $('#painting-name').html(`
+      <%= @painting.name %>
+    `)
+    $('#painting-img').html(`
+      <img src="<%= @painting.thumbnail.url %>" style="width: 100%;">
+    `)
   <% else %>
-  data-painting="-1"
+    $('#painting-name').html(``)
+    $('#painting-img').html(``)
   <% end %>
-  data-toggle="modal" 
-  data-target="#replyModal">답장</button>
-`)
-
-<% if @painting.present? %>
-  $('#painting-name').html(`
-    <%= @painting.name %>
-  `)
-  $('#painting-img').html(`
-    <img src="<%= @painting.thumbnail.url %>" style="width: 100%;">
-  `)
-<% else %>
-  $('#painting-name').html(``)
-  $('#painting-img').html(``)
-<% end %>
+})

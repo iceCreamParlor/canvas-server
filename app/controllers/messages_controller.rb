@@ -3,8 +3,14 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @messages = current_user.arrived_messages
-    @messages_json = @messages.to_json
+    messages = current_user.arrived_messages
+    @messages = []
+    messages.each do |message|
+      @messages << message.find_parent_message
+    end
+
+    @messages_json = @messages.uniq.to_json
+
     if @is_mobile
       render 'mobile_index.html.erb'
     else
@@ -13,23 +19,37 @@ class MessagesController < ApplicationController
   end
   def create
     
-    buyer_id = params[:sender_id]
-    seller_id = params[:seller_id]
+    sender_id = params[:sender_id]
+    receiver_id = params[:receiver_id]
     content = params[:content]
     painting_id = params[:painting_id]
+    message_id = params[:message_id]
 
     if painting_id.present?
-      Message.create!(buyer_id: buyer_id, seller_id: seller_id, painting_id: painting_id, content: content, message_type: 'question')
+      if message_id.present?
+        Message.create!(sender_id: sender_id, receiver_id: receiver_id, painting_id: painting_id, content: content, original_msg_id: message_id, message_type: 'question')
+      else
+        Message.create!(sender_id: sender_id, receiver_id: receiver_id, painting_id: painting_id, content: content, message_type: 'question')
+      end
     else
-      Message.create(buyer_id: buyer_id, seller_id: seller_id, content: content, message_type: 'question')
+      if message_id.present?
+        Message.create!(sender_id: sender_id, receiver_id: receiver_id, content: content, original_msg_id: message_id, message_type: 'question')
+      else
+        Message.create!(sender_id: sender_id, receiver_id: receiver_id, content: content, message_type: 'question')
+      end
     end
     
   end
   def load_message
-    @message = Message.find(params[:id])
-    @sender = User.find(@message.buyer_id)
-    if @message.painting_id.present?
-      @painting = Painting.find(@message.painting_id)
+
+    @parent_message = Message.find(params[:id]).find_parent_message
+    @sender = User.find(@parent_message.sender_id)
+    @children_messages = @parent_message.find_children_messages.order("created_at ASC")
+    puts "!!!!"
+    puts @parent_message.id
+    puts @parent_message.painting_id
+    if @parent_message.painting_id.present?
+      @painting = Painting.find(@parent_message.painting_id)
     end
   end
 end

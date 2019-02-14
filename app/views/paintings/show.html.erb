@@ -143,11 +143,11 @@
   <%= render 'comment_form' %>
 <% end %>
 
-<div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">메세지 보내기</h5>
+        <h5 class="modal-title" id="messageModalLabel">메세지 보내기</h5>
         <button id="message-close-btn" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -201,24 +201,33 @@
 
     <% if user_signed_in? %>
 
-      let senderId = <%= current_user.id %>;
-      let sellerId = <%= @painting.user_id %>;
-      let content = $('#content').val();
+      if(confirm("메세지를 보내시겠습니까?")){
 
-      $.ajax({
-        headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: '<%= messages_path %>',
-        method: 'POST',
-        data: {
-          painting_id: <%= @painting.id %>,
-          sender_id: senderId,
-          seller_id: sellerId,
-          content: content
-        },
-        success: function(){
-          $('#message-close-btn').click();
-        }
-      })
+        let senderId = <%= current_user.id %>;
+        let receiverId = <%= @painting.user_id %>;
+        let content = $('#content').val();
+
+        $.ajax({
+          headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          url: '<%= messages_path %>',
+          method: 'POST',
+          data: {
+            painting_id: <%= @painting.id %>,
+            sender_id: senderId,
+            receiver_id: receiverId,
+            content: content
+          },
+          success: function(){
+            alert("메세지를 성공적으로 보냈습니다.");
+            $('#message-close-btn').click();
+          },
+          fail : function(){
+            alert("메세지 전송에 실패하였습니다.");
+            $('#message-close-btn').click();
+          }
+        })
+
+      }
       
     <% else %>
       // 로그인 화면을 띄운다.
