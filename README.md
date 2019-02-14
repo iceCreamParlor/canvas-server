@@ -15,10 +15,20 @@
 
 * 개발 PC 에 minimagick 설치(이미지 업로드, 에디터 이미지 작업 등에 필요합니다.)
 
+
+# 브랜치 관리
+
+- 각 개발자님들은 각자의 이름으로 브랜치 하나씩 생성해 주세요.
+  (규모가 작은 개발 팀이기 때문에, 이 방식이 효율적이라고 판단하였습니다.)
+- 개인용 브랜치는 테스트서버 / 실서버 반영 금지 !
+- 실서버에 반영하는 브랜치는 master 브랜치 / 테스트서버에 반영하는 브랜치는 develop 브랜치입니다.
+- 개인용 브랜치에서 작업하신 후, develop / master 브랜치에 merge 한 후 서버 배포해주세요.
+
+
 # 서버 배포 방법
 
 - 특정 브랜치에서 배포할 경우
 
-* bundle exec cap staging deploy BRANCH='브랜치 이름' => 테스트서버
+* bundle exec cap staging deploy BRANCH='develop' => 테스트서버
 
 * bundle exec cap production deploy => 실서버
