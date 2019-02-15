@@ -37,7 +37,7 @@
               <% else %>
                 <div class="col-9 margin-bottom-0">
                   <span class="message-date-text card-text float-left"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d %_H : %M") %></small></span>
-                  <div style="display: inline-block;" class="alert alert-secondary" role="alert">
+                  <div style="display: inline-block;" class="alert alert-secondary margin-bottom-0" role="alert">
                     <%= message.sender.nickname %> : <%= message.content %>  
                   </div>
                   
