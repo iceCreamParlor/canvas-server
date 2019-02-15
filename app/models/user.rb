@@ -100,6 +100,8 @@ class User < ApplicationRecord
               password: Devise.friendly_token[0,20]
             )
           end
+          # SNS 로그인한 경우, 이메일 인증을 하지 않게 함
+          user.confirmed
           user.save!
         end
       end
