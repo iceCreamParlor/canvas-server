@@ -29,7 +29,7 @@
               <% if message.sender_id == current_user.id %>
                 <div class="col-9 offset-3 margin-bottom-0">
                   <span class="message-date-text card-text float-right text-right"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d %e %_H : %M") %></small></span>
-                  <div style="display: inline-block;" class="alert alert-secondary float-right" role="alert">
+                  <div style="display: inline-block;" class="alert alert-secondary float-right margin-bottom-0" role="alert">
                   <%= message.sender.nickname %> : <%= message.content %>
                   </div>
                   
