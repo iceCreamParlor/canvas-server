@@ -3,12 +3,17 @@ class ApplicationController < ActionController::Base
   before_action :check_sns
   before_action :check_app, :app?
 
+  # ApplicationController 에 현재 접속된 클라이언트의 플랫폼을 분류하는 코드 작성
+  # by heej (2019.02.02)
+
   protected
 
   def configure_permitted_parameters
+    # FOR DEVISE
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :image, :instagram, :desc])
     devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :image, :instagram, :desc])
   end
+
   def check_sns
     @is_sns = (user_signed_in? && Identity.find_by(user_id: current_user.id).present?) ? true : false
     @is_mobile = mobile_device?
@@ -27,6 +32,7 @@ class ApplicationController < ActionController::Base
     return true if agent =~ /Mobile/
     return false
   end
+
   def recent_paintings
     session[:recent_paintings] ||= []
     if session[:recent_paintings].count > 8
@@ -58,6 +64,5 @@ class ApplicationController < ActionController::Base
   def app?
     # 앱인지 확인하는 함수이다. (모바일 브라우저에서는 false 가 반환됨)
     @is_app = %w[ios android].include? cookies[:platform]
-    @is_app
   end
 end

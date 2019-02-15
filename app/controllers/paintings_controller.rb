@@ -7,6 +7,8 @@ class PaintingsController < ApplicationController
   # GET /paintings
   # GET /paintings.json
   def index
+    # 필터링, infinite-scroll 을 위한 자바스크립트 고도화로 인해
+    # 코드가 좀 길어졌습니다 ^^;; - heej (2019.01.28)
     
     @categories = Category.all
     @colors = Color.all
