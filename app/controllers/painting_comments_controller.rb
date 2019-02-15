@@ -20,11 +20,13 @@ class PaintingCommentsController < ApplicationController
     @painting_comment = PaintingComment.new(content: content, painting_id: painting_id, user_id: user_id)
     @painting = Painting.find(painting_id)
 
-    if @painting_comment.save
-      @is_saved = true
-    else
-      @is_saved = false
-    end
+    @is_saved = @painting_comment.save ? true : false
+
+    # if @painting_comment.save
+    #   @is_saved = true
+    # else
+    #   @is_saved = false
+    # end
   end
 
   def edit

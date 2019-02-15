@@ -1,7 +1,6 @@
 class MagazinesController < InheritedResources::Base
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
-
   def index
     @normal_magazines = Magazine.where(priority: "normal").order("created_at DESC")
     @head_magazines = Magazine.where(priority: "head").order("created_at DESC")
@@ -43,7 +42,6 @@ class MagazinesController < InheritedResources::Base
   end
 
   private
-
     def magazine_params
       params.require(:magazine).permit(:title, :content, :thumbnail, :user_id, :magazine_type, :priority)
     end

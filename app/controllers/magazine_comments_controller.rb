@@ -21,11 +21,8 @@ class MagazineCommentsController < ApplicationController
     @magazine_comment = MagazineComment.new(content: content, magazine_id: magazine_id, user_id: user_id)
     @magazine = Magazine.find(magazine_id)
 
-    if @magazine_comment.save
-      @is_saved = true
-    else
-      @is_saved = false
-    end
+    @is_saved = @magazine_comment.save ? true : false
+
   end
 
   def edit
