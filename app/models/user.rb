@@ -101,7 +101,7 @@ class User < ApplicationRecord
             )
           end
           # SNS 로그인한 경우, 이메일 인증을 하지 않게 함
-          user.confirmed
+          user.confirm
           user.save!
         end
       end
