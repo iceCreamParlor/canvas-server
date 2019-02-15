@@ -5,9 +5,9 @@
       <hr> 
     </div>
     <div class="row">
-      <div class="col-6 no-padding">
+      <div class="col-12 col-lg-6 no-padding">
         <ul class="list-group">
-          <% @messages.each do |message| %>
+          <% @messages.each_with_index do |message, index| %>
             <li class="list-group-item no-padding-vertical" onclick="showMessage(this)"
                 data-message="<%= message.id %>">
               <div class="row" style="cursor: pointer;">
@@ -21,51 +21,23 @@
                 <div class="col-10">
                   <h6 class="heading-uppercase message-content">
                     <%= truncate message.content, length: 35, omission: "...", escape: false %>
+                    <span> (<%= @messages_count[index] %>) </span>
                     <span class="card-text float-right"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d") %></small></span>
                   </h6>
                 </div>
               </div>
-              <!-- <button type="button" 
-                    class="btn btn-outline-dark float-right reply-btn"
-                    data-receiver="<%= message.receiver_id %>"
-                    data-sender="<%= message.sender_id %>"
-                    data-sender-name="<%= message.sender.nickname %>"
-                    <% if message.painting.present? %>
-                    data-painting="<%= message.painting_id %>"
-                    <% else %>
-                    data-painting="-1"
-                    <% end %>
-                    data-toggle="modal" 
-                    data-target="#replyModal">답장</button> -->
-                <!-- <div class="accordion-content">
-                  <% if message.painting.present? %>
-                  <p class="painting-price"><%= message.painting.price %></p>
-                  <% end %>
-                  <p class="sender-nickname"><%= User.find(message.sender_id).nickname %>
-                  <button type="button" 
-                    class="btn btn-outline-dark float-right reply-btn"
-                    data-receiver="<%= message.receiver_id %>"
-                    data-sender="<%= message.sender_id %>"
-                    data-sender-name="<%= message.sender.nickname %>"
-                    <% if message.painting.present? %>
-                    data-painting="<%= message.painting_id %>"
-                    <% else %>
-                    data-painting="-1"
-                    <% end %>
-                    data-toggle="modal" 
-                    data-target="#replyModal">답장</button>
-                  </p>
-                </div> -->
+
             </li>
           <% end %>
         </ul>  
       </div>
-      <div id="message-specific" class="col-6" >
+      
+      <div id="message-specific" class="col-lg-6" >
         <div class="card">
           <div id="painting-img"></div>
           <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="card-body">
-            <h5 id="message-sender" class="card-title">메세지 상세내역</h5>
+            <h5 id="artist-name" class="card-title"></h5>
             <div id="message-painting">
               <div id="painting-name">
               </div>
@@ -85,7 +57,7 @@
 
 <script>
   let messages = <%= @messages_json.html_safe %>;
-  
+
   function showMessage(element){
 
     let messageId = parseInt(element.dataset.message);
@@ -106,4 +78,5 @@
     let messageSpecific = document.getElementById('message-specific');
     messageSpecific.style.height = window.innerHeight - messageSpecific.getBoundingClientRect().top + 'px';
   })
+
 </script>

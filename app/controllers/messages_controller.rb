@@ -1,17 +1,20 @@
 class MessagesController < ApplicationController
 
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!
+  before_action :load_message, only: [:show]
 
   def index
     messages = current_user.arrived_messages.order("created_at DESC")
+    
     @messages = []
+    
     messages.each do |message|
       @messages << message.find_parent_message
     end
     @messages = @messages.uniq
-    @messages = @messages.map{ |m| 
-      m.find_children_messages.last
-    }
+    @messages_count = @messages.map{ |m| m.find_children_messages.count }
+    @messages = @messages.map{ |m| m.find_children_messages.last }
+    
     @messages_json = @messages.to_json
     
 
@@ -20,6 +23,9 @@ class MessagesController < ApplicationController
     else
       render 'index.html.erb'
     end
+  end
+  
+  def show
   end
 
   def create
@@ -32,15 +38,16 @@ class MessagesController < ApplicationController
 
     if painting_id.present?
       if message_id.present?
-        Message.create!(sender_id: sender_id, receiver_id: receiver_id, painting_id: painting_id, content: content, original_msg_id: message_id, message_type: 'question')
+        
+        @message = Message.create!(sender_id: sender_id, receiver_id: receiver_id, painting_id: painting_id, content: content, original_msg_id: message_id, message_type: 'question')
       else
-        Message.create!(sender_id: sender_id, receiver_id: receiver_id, painting_id: painting_id, content: content, message_type: 'question')
+        @message = Message.create!(sender_id: sender_id, receiver_id: receiver_id, painting_id: painting_id, content: content, message_type: 'question')
       end
     else
       if message_id.present?
-        Message.create!(sender_id: sender_id, receiver_id: receiver_id, content: content, original_msg_id: message_id, message_type: 'question')
+        @message = Message.create!(sender_id: sender_id, receiver_id: receiver_id, content: content, original_msg_id: message_id, message_type: 'question')
       else
-        Message.create!(sender_id: sender_id, receiver_id: receiver_id, content: content, message_type: 'question')
+        @message = Message.create!(sender_id: sender_id, receiver_id: receiver_id, content: content, message_type: 'question')
       end
     end
     

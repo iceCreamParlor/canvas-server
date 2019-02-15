@@ -30,10 +30,10 @@
 $(document).on("click", ".reply-btn", function () {
   let receiverId = $(this).data('receiver');
   let senderId = $(this).data('sender');
-  let senderName = $(this).data('senderName');
+  let receiverName = $(this).data('receiverName');
   let paintingId = $(this).data('painting');
   let messageId = $(this).data('message');
-  $('#sender').val(senderName)
+  $('#sender').val(receiverName)
   $('#receiverId').val(receiverId);
   $('#senderId').val(senderId);
   $('#paintingId').val(paintingId);
@@ -61,6 +61,11 @@ function messageButtonClicked(){
         content: content
       },
       success: function(){
+        alert("메세지를 성공적으로 전송하였습니다.");
+        $('#message-close-btn').click();
+      },
+      fail: function(){
+        alert("메세지를 전송에 실패하였습니다..");
         $('#message-close-btn').click();
       }
     })
@@ -76,6 +81,11 @@ function messageButtonClicked(){
         content: content
       },
       success: function(){
+        alert("메세지를 성공적으로 전송하였습니다.");
+        $('#message-close-btn').click();
+      },
+      fail: function(){
+        alert("메세지 전송에 실패하였습니다.");
         $('#message-close-btn').click();
       }
     })

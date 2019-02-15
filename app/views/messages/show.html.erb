@@ -1,0 +1,73 @@
+<!-- message#show 는 모바일 앱 / 모바일 웹 브라우저에서만 사용되는 페이지입니다. -->
+<div class="section">
+  <div class="container">
+    <h6>메세지 상세내역</h6>
+    <%= link_to messages_path do %>
+      <button type="button" class="btn btn-outline-dark margin-little float-right">목록</button>
+    <% end %>
+    <br>
+    <br>
+
+    <div class="card margin-top-20">
+      <!-- <img src="..." class="card-img-top" alt="..."> -->
+      <div class="card-body">
+        <div id="message-painting">
+          <div id="painting-name">
+            <h6><%= @painting.name if @painting.present? %></h6>
+          </div>
+          <div id="painting-img">
+            <img src="<%= @painting.thumbnail.url if @painting.present? %>" style="width: 100%;">
+          </div>
+        </div>
+        <p id="message-content" class="card-text">
+          <hr class="margin-top-20">
+          <h6>대화 내용</h6>
+          
+          <div id="message-specific-area" class="row">
+            
+            <% @children_messages.each do |message| %>
+              <% if message.sender_id == current_user.id %>
+                <div class="col-9 offset-3 margin-bottom-10">
+                  <span class="message-date-text card-text float-right text-right"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d %e %_H : %M") %></small></span>
+                  <div style="display: inline-block;" class="alert alert-secondary float-right" role="alert">
+                  <%= message.sender.nickname %> : <%= message.content %>
+                  </div>
+                  
+                </div>
+              <% else %>
+                <div class="col-9 margin-bottom-10">
+                  <span class="message-date-text card-text float-left"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d %_H : %M") %></small></span>
+                  <div style="display: inline-block;" class="alert alert-secondary" role="alert">
+                    <%= message.sender.nickname %> : <%= message.content %>  
+                  </div>
+                  
+                </div>
+              <% end %>
+            <% end %>
+            
+          </div>
+        </p>
+        <div id="reply-btn-area" class="float-right">
+            <div style="margin-top: 40px;>
+              <button type="button" 
+              class="btn btn-outline-dark float-right reply-btn"
+              data-receiver="<%= @last_message.find_reply_receiver(current_user.id).id %>"
+              data-sender="<%= current_user.id %>"
+              data-receiver-name="<%= @last_message.find_reply_receiver(current_user.id).nickname %>"
+              data-message="<%= @parent_message.id %>"
+              <% if @parent_message.painting.present? %>
+              data-painting="<%= @parent_message.painting_id %>"
+              <% else %>
+              data-painting="-1"
+              <% end %>
+              data-toggle="modal" 
+              data-target="#replyModal">답장</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%= render 'reply' %>

@@ -6,6 +6,12 @@ class Message < ApplicationRecord
 
   belongs_to :original_msg, class_name: "Message", foreign_key: "original_msg_id", optional: true
 
+  def find_reply_receiver current_user_id
+    return self.sender if (current_user_id != self.sender_id && current_user_id == self.receiver_id)
+    return self.receiver if (current_user_id != self.receiver_id && current_user_id == self.sender_id)
+    return nil
+  end
+
   def find_parent_message
     # 메세지의 가장 최상위 노드 메세지를 찾아주는 함수
     if self.original_msg_id.nil?

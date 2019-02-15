@@ -1,42 +1,41 @@
 <div class="section">
   <div class="container">
-    <div class="section-title text-center">
+    <div class="section-title">
       <h3>메세지</h3>
+      <hr> 
     </div>
-    <ul class="accordion accordion-oneopen">
-      <% @messages.each do |message| %>
-        <li>
-          <div class="accordion-title">
-            <h6 class="heading-uppercase">
-              <%= message.content %>
-            </h6>
-          </div>
-          <div class="accordion-content">
-            <p><%= message.sender.nickname %></p>
-            <% if message.painting.present? %>
-              <div class="margin-top-area">
-                <img src="<%= message.painting.thumbnail.url %>" alt="">
-                <p><%= message.painting.name %></p>
-              </div>
+    <div class="row">
+      <div class="col-12 col-lg-6 no-padding">
+        <ul class="list-group">
+          <% @messages.each_with_index do |message, index| %>
+            <%= link_to message_path(message) do %>
+              <li class="list-group-item no-padding-vertical""
+                  data-message="<%= message.id %>">
+                <div class="row" style="cursor: pointer;">
+                  <div class="col-3">
+                    <h6 class="heading-uppercase">
+                      <span class="card-text"><small class="text-muted">
+                        <%= message.sender.nickname %>
+                      </small></span>
+                    </h6>
+                  </div>
+                  <div class="col-9">
+                    <h6 class="heading-uppercase message-content">
+                      <%= truncate message.content, length: 35, omission: "...", escape: false %>
+                      <span> (<%= @messages_count[index] %>) </span>
+                      <span class="card-text float-right"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d") %></small></span>
+                    </h6>
+                  </div>
+                </div>
+
+              </li>
             <% end %>
-            <button type="button" 
-                    class="btn btn-outline-dark float-right reply-btn"
-                    data-receiver="<%= message.receiver_id %>"
-                    data-sender="<%= message.sender_id %>"
-                    data-sender-name="<%= message.sender.nickname %>"
-                    <% if message.painting.present? %>
-                    data-painting="<%= message.painting_id %>"
-                    <% else %>
-                    data-painting="-1"
-                    <% end %>
-                    data-toggle="modal" 
-                    data-target="#replyModal">답장</button>
-          </div>
-          
-        </li>
-      <% end %>
-    </ul>
+          <% end %>
+        </ul>  
+      </div>
+    
+    </div>
   </div>
 </div>
 
-<%= render 'reply' %>
+</script>

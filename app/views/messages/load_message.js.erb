@@ -1,39 +1,48 @@
 $(function(){
 
-  $('#message-sender').html(`
+  $('#artist-name').html(`
     <%= @painting.user.nickname %>
   `)
   $('#message-content').html(`
     <hr class="margin-top-20">
     <h6>대화 내용</h6>
     
-    <div class="row">
+    <div id="message-specific-area" class="row">
       
       <% @children_messages.each do |message| %>
         <% if message.sender_id == current_user.id %>
           <div class="col-7 offset-5 margin-bottom-10">
+            
+            <span class="message-date-text card-text float-right text-right"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d %_H : %M") %></small></span>
+            
             <div style="display: inline-block;" class="alert alert-secondary text-right float-right" role="alert">
-            <%= message.sender.nickname %> : <%= message.content %>
+              <%= message.sender.nickname %> : <%= message.content %>
             </div>
+            
           </div>
         <% else %>
           <div class="col-7 margin-bottom-10">
+            
+            <span class="message-date-text card-text float-left text-left"><small class="text-muted"><%= message.created_at.strftime("%Y / %_m / %_d %_H : %M") %></small></span>
+            
             <div style="display: inline-block;" class="alert alert-secondary" role="alert">
               <%= message.sender.nickname %> : <%= message.content %>  
             </div>
+            
           </div>
         <% end %>
       <% end %>
+      
     </div>
   `)
 
   $('#reply-btn-area').html(`
-    <div style="margin-top: 80px;>
+    <div style="margin-top: 40px;>
       <button type="button" 
       class="btn btn-outline-dark float-right reply-btn"
-      data-receiver="<%= @last_message.sender_id %>"
-      data-sender="<%= @last_message.receiver_id %>"
-      data-sender-name="<%= @last_message.sender.nickname %>"
+      data-receiver="<%= @last_message.find_reply_receiver(current_user.id).id %>"
+      data-sender="<%= current_user.id %>"
+      data-receiver-name="<%= @last_message.find_reply_receiver(current_user.id).nickname %>"
       data-message="<%= @parent_message.id %>"
       <% if @parent_message.painting.present? %>
       data-painting="<%= @parent_message.painting_id %>"
@@ -51,7 +60,9 @@ $(function(){
       <%= @painting.name %>
     `)
     $('#painting-img').html(`
-      <img src="<%= @painting.thumbnail.url %>" style="width: 100%;">
+      <%= link_to painting_path(@painting) do %>
+        <img src="<%= @painting.thumbnail.url %>" style="width: 100%;">
+      <% end %>
     `)
   <% else %>
     $('#painting-name').html(``)
