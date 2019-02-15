@@ -52,15 +52,6 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @identity = Identity.find_for_oauth(auth)
     @user = User.find(current_user.id)
 
-    if Rails.env.production?
-      # SNS 로그인 했을 때, 유저 세션을 기억하게 하는 코드
-      cookies.signed["remember_user_token"] = {
-        :value => @user.class.serialize_into_cookie(@user.reload),
-        :expires => 3.months.from_now,
-        :domain => ENV["BASE_URL"]
-      }
-    end
-
     if @user.persisted?
       if @identity.provider == "kakao"
         # register_info2_path
