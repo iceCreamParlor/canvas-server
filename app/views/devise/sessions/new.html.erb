@@ -4,7 +4,6 @@
     <div class="row">
       
       <div class="col-sm-12 col-md-6">
-        
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
@@ -23,7 +22,7 @@
           <% end -%>
           
           <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-            <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+            <%= link_to "인증 메일을 받지 못하셨나요?", new_confirmation_path(resource_name), class: "float-right" %><br />
           <% end -%>
           
           <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
@@ -31,7 +30,7 @@
           <% end -%>
 
           <div class="actions">
-            <%= f.submit "Log in" %>
+            <%= f.submit "로그인" %>
           </div>
           <%= render "devise/shared/links" %>
         <% end %>
