@@ -4,7 +4,7 @@ class User < ApplicationRecord
   enum user_type: ["normal", "admin"]
 
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
   mount_uploader :image, ImageUploader

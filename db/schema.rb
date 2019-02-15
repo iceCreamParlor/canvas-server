@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_14_070359) do
+ActiveRecord::Schema.define(version: 2019_02_15_071242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_070359) do
   create_table "auctions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "painting_id"
-    t.datetime "expire_date", default: "2019-02-22 02:50:25"
+    t.datetime "expire_date", default: "2019-03-01 07:17:05"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["painting_id"], name: "index_auctions_on_painting_id"
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 2019_02_14_070359) do
     t.string "thumbnail"
     t.string "desc"
     t.bigint "user_id"
-    t.datetime "completed_date", default: "2019-01-30 15:42:29"
+    t.datetime "completed_date", default: "2019-02-15 07:17:05"
     t.integer "status", default: 0
     t.index ["category_id"], name: "index_paintings_on_category_id"
     t.index ["color_id"], name: "index_paintings_on_color_id"
@@ -195,6 +195,10 @@ ActiveRecord::Schema.define(version: 2019_02_14_070359) do
     t.string "desc"
     t.string "instagram"
     t.integer "user_type", default: 0
+    t.string "confirmation_token"
+    t.string "unconfirmed_email"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
