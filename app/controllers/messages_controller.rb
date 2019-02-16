@@ -58,9 +58,9 @@ class MessagesController < ApplicationController
     @sender = User.find(@parent_message.sender_id)
     @children_messages = @parent_message.find_children_messages
     @last_message = @children_messages.last
-    puts "!!!!"
-    puts @parent_message.id
-    puts @parent_message.painting_id
+    # puts "!!!!"
+    # puts @parent_message.id
+    # puts @parent_message.painting_id
     if @parent_message.painting_id.present?
       @painting = Painting.find(@parent_message.painting_id)
     end

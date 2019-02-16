@@ -7,6 +7,8 @@ class PaintingsController < ApplicationController
   # GET /paintings
   # GET /paintings.json
   def index
+    # 필터링, infinite-scroll 을 위한 자바스크립트 고도화로 인해
+    # 코드가 좀 길어졌습니다 ^^;; - heej (2019.01.28)
     
     @categories = Category.all
     @colors = Color.all
@@ -15,30 +17,35 @@ class PaintingsController < ApplicationController
     @is_filtering = false
     # 필터링을 하는 경우
     if params[:category_id].present?
-      
+      # 카테고리 필터링 조건이 있을 경우
       @is_filtering = true
       @paintings = Painting.where(category_id: params[:category_id])
     end
 
     if params[:price_id].present?
-      
+      # 가격 필터링 조건이 있을 경우
       price = Price.find(params[:price_id][0])
       
+      # cheap_price : 가격 필터링 조건의 하한선(10만원 - 20만원) => 10만원
       cheap_price = @prices.index(price) == 0 ? nil : @prices[@prices.index(price)-1]
       
       if @paintings.present? && cheap_price.present?
-        
+        # 가격 외의 다른 필터링 조건이 있을 경우, 
+        # 다른 필터링 조건과 가격 필터링 조건을 교집합
         @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
+
       elsif cheap_price.present? 
-        
+        # 가격 필터링 조건밖에 없을 경우
         @paintings = Painting.where("price <= ? AND price > ?", price.value, cheap_price.value)
 
-      elsif @paintings.present? 
-        @paintings = @paintings.where("price <= ?", price.value)
+      # elsif @paintings.present? 
+      #   # 
+      #   @paintings = @paintings.where("price <= ?", price.value)
 
       else
-        
+        # 기타 예외 사항 처리
         @paintings = Painting.where("price <= ?", price.value)
+
       end
       
       @is_filtering = true
@@ -46,9 +53,13 @@ class PaintingsController < ApplicationController
     end
 
     if params[:color_id].present?
+      # 색깔 필터링 조건이 있을 경우
       if @paintings.present?
+        # 색 필터링 외에 다른 필터링 조건이 있을 경우,
+        # 색 필터링 조건과 교집합한다.
         @paintings = @paintings.where(color_id: params[:color_id])
       else 
+        # 색 필터링 조건만 조건에 있을 경우
         @paintings = Painting.where(color_id: params[:color_id])
       end
       @is_filtering = true
@@ -57,8 +68,10 @@ class PaintingsController < ApplicationController
       @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
     end
     if params[:refresh].present?
+      # 그림 목록을 모두 지웠다 다시 표시해야 하는 경우 (필터링 등)
       @need_refresh = true
     else 
+      # 그림 목록을 지우지 않고, append 해 나가야 하는 경우 (infinite-scroll 등)
       @need_refresh = false
     end
     
@@ -74,27 +87,21 @@ class PaintingsController < ApplicationController
 
   end
 
-  # GET /paintings/1
-  # GET /paintings/1.json
   def show
+    # 최근 열람한 그림을 세션에 담아놓는다. (최근 본 그림)
     session[:recent_paintings] << @painting.id
     session[:recent_paintings] = session[:recent_paintings].uniq
 
     @user = @painting.user
     @user_category = @user.user_categories
 
+    # COMMENTS
     @painting_comments = PaintingComment.where(painting_id: @painting.id).order("created_at DESC")
 
-    @is_following = false
-    if user_signed_in?
-      if current_user.is_following(@user)
-        @is_following = true
-      end
-      if current_user.id == @user.id
-        @is_following = false
-      end
-      @like = Like.where(user_id: current_user.id, painting_id: @painting.id)
-    end
+    @is_following = (user_signed_in? && current_user.is_following(@user)) ? true : false
+
+    @like = Like.where(user_id: current_user.id, painting_id: @painting.id) if user_signed_in?
+
   end
 
   # GET /paintings/new
@@ -152,30 +159,31 @@ class PaintingsController < ApplicationController
     end
   end
 
-  def filter(paintings, filter_type)
+  # def filter(paintings, filter_type)
 
-    case filter_type
-    when 0 
-      # 최신순
-      @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
-    when 1
-      # 좋아요 순
+  #   case filter_type
+  #   when 0 
+  #     # 최신순
+  #     @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+  #   when 1
+  #     # 좋아요 순
 
-    when 2
-      # 낮은 가격 순
-      @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('price ASC').exclude_images
-    when 3
-      # 높은 가격 순
-      @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('price DESC').exclude_images
-    else
-      puts "undefined filter"
-    end
+  #   when 2
+  #     # 낮은 가격 순
+  #     @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('price ASC').exclude_images
+  #   when 3
+  #     # 높은 가격 순
+  #     @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('price DESC').exclude_images
+  #   else
+  #     puts "undefined filter"
+  #   end
     
-  end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_options
+      # form_for > form.select 에서 사용될 선택지들을 생성해주는 함수
       @painting = Painting.new
       @options_for_category = []
       @options_for_color = []
@@ -193,6 +201,5 @@ class PaintingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def painting_params
       params.require(:painting).permit(:name, :category_id, :color_id, :price, :desc, :thumbnail, {images: []})
-      
     end
 end

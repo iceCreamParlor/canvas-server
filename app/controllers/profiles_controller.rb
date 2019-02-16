@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
     @paintings = Painting.where(user_id: @user.id).exclude_images
     @paintings_json = []
     @paintings.each do |painting|
+      # 수평선을 위한 json화
       painting_hash = Hash.new
       painting_hash['id'] = painting.id
       painting_hash['supertag'] = painting.category.name
@@ -21,17 +22,17 @@ class ProfilesController < ApplicationController
       painting_hash['thumbnail'] = painting.thumbnail.url
       @paintings_json << painting_hash.to_json
     end
-    # @painting_json = @painting_json.to_json
 
-    if user_signed_in?
-      if current_user.is_following(@user)
-        @is_following = true
-      end
-      if current_user.id == @user.id
-        @is_following = false
-      end
-      
-    end
+    @is_following = (user_signed_in? && current_user.is_following(@user)) ? true : false
+
+    # if user_signed_in?
+    #   if current_user.is_following(@user)
+    #     @is_following = true
+    #   end
+    #   if current_user.id == @user.id
+    #     @is_following = false
+    #   end
+    # end
 
     @liked_paintings = Painting.where(id: @user.likes.pluck(:painting_id)).last(10).reverse
     @follow_members = @user.follow_members
@@ -73,5 +74,4 @@ class ProfilesController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-    
 end

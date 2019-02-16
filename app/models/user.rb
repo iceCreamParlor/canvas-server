@@ -8,10 +8,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable
 
   mount_uploader :image, ImageUploader
-  has_many :paintings
-  has_many :magazines
-  has_many :auctions
-  has_many :likes
+  has_many :paintings, dependent: :destroy
+  has_many :magazines, dependent: :destroy
+  has_many :auctions, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :follows, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
 
@@ -47,7 +47,7 @@ class User < ApplicationRecord
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-
+    # SNS 로그인을 위한 함수
     # user와 identity가 nil이 아니라면 받는다
 
     identity = Identity.find_for_oauth(auth)
