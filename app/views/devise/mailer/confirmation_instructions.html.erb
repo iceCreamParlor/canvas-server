@@ -1,5 +1,9 @@
-<p>Welcome <%= @email %>!</p>
+<p>안녕하세요 <%= @email %> 님!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>캔버스에 가입해 주신 것을 진심으로 환영합니다.</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>회원 인증은 아래의 링크를 통해 완료하실 수 있습니다.</p>
+
+<p><%= link_to '회원 인증하기', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>-Canvas</p>
