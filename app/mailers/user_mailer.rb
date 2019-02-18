@@ -6,7 +6,7 @@ class UserMailer < ApplicationMailer
     if Rails.env.development?
       @url  = "127.0.0.1:3000/messages"
     elsif Rails.env.production?
-      @url  = ENV["BASE_URL"] + "/messages"
+      @url  = "www.imheej.com/messages"
     end
     
     mail(to: @user.email, subject: '회원님에게 메세지가 도착했습니다(캔버스).')
