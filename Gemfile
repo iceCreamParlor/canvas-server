@@ -35,6 +35,7 @@ gem 'mini_magick'
 
 # ASYNC 한 이메일 전송을 위해(없으면 이메일 전송할 때 서버가 멈춤)
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 #DEPLOY
 group :development do
