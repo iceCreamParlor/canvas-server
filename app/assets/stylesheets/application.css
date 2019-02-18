@@ -421,3 +421,7 @@ hr {
 .margin-bottom-0{
   margin-bottom: 0px !important;
 }
+
+.no-border-radius{
+  border-radius: 3px !important;
+}

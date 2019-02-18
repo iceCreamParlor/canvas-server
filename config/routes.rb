@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'follow/:follower_id/:followed_id', to: 'profiles#follow'
   get 'messages/load_message/:id', to: 'messages#load_message'
   get 'likes/toggle_like/:painting_id', to: 'likes#toggle_like', as: 'toggle_like'
+  get 'paintings/search', to: 'paintings#search', as: 'painting_search'
 
   resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles, :painting_comments
 

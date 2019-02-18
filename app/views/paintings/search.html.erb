@@ -1,0 +1,80 @@
+<div class="section">
+  <div class="container">
+
+    <div class="row">
+      <% if !@is_mobile %>
+        <div class="col-6 text-right"></div>
+        <div class="col-6 text-right">
+          <form id="painting-search" action="<%= painting_search_path %>">
+            <div class="input-group">
+              <input type="hidden" id="search_category" name="search_category" value="title">
+              <input type="text" id="search_query" name="search_query" class="form-control" aria-label="Text input with segmented dropdown button">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-dark no-border-radius">검색</button>
+                <button type="button" class="btn btn-outline-dark no-border-radius dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a onclick="searchCategoryClicked(this)" data-category="artist" class="dropdown-item" href="#">작가명</a>
+                  <a onclick="searchCategoryClicked(this)" data-category="title" class="dropdown-item" href="#">작품명</a>
+                </div>
+              </div>
+            </div>
+            <span id="search-category-label">작품명</span>
+          </form>
+        </div>
+      <% else %>
+        <div class="col-12">
+          <form id="painting-search" action="<%= painting_search_path %>">
+            <div class="input-group">
+              <input type="hidden" id="search_category" name="search_category" value="title">
+              <button type="button" class="btn btn-outline-dark no-border-radius dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <input type="text" id="search_query" name="search_query" class="form-control" aria-label="Text input with segmented dropdown button">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-dark no-border-radius">검색</button>
+                
+                <div class="dropdown-menu">
+                  <a onclick="searchCategoryClicked(this)" data-category="artist" class="dropdown-item" href="#">작가명</a>
+                  <a onclick="searchCategoryClicked(this)" data-category="title" class="dropdown-item" href="#">작품명</a>
+                </div>
+              </div>
+              
+            </div>
+            <span id="search-category-label">작품명</span>
+          </form>
+        </div>
+      <% end %>
+    </div>
+
+    <h6 class="margin-top-20">
+      "<%= @query %>" 의 검색결과입니다.
+      <%= link_to paintings_path do %>
+        <button type="button" class="btn btn-outline-dark float-right">전체 목록</button>
+      <% end %>
+    </h6>
+    <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
+      <% @paintings.each do |painting| %>
+        <%= render 'painting', painting: painting %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+
+    setInterval(function(){
+      // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
+      $('#paintings-container').masonry({
+        // options
+        itemSelector : '.item',
+      
+      });
+    })
+  });
+</script>
+
+
+  

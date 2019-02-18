@@ -159,6 +159,22 @@ class PaintingsController < ApplicationController
     end
   end
 
+  def search
+    category = params[:search_category]
+    @query = params[:search_query]
+
+    case category
+    when "title"
+      @paintings = Painting.where("name like ?", "%#{@query}%")
+    when "artist"
+      puts "artist"
+      @paintings = Painting.joins(:user).where("nickname like ?", "%#{@query}%")
+    else 
+      puts "exception occured"
+    end
+  end
+
+
   # def filter(paintings, filter_type)
 
   #   case filter_type

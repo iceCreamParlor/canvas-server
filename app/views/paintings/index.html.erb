@@ -15,7 +15,23 @@
             <% end %>
           </div>
           <div class="col-6 text-right">
-
+            <form id="painting-search" action="<%= painting_search_path %>">
+              <div class="input-group">
+                <input type="hidden" id="search_category" name="search_category" value="title">
+                <input type="text" id="search_query" name="search_query" class="form-control" aria-label="Text input with segmented dropdown button">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-outline-dark no-border-radius">검색</button>
+                  <button type="button" class="btn btn-outline-dark no-border-radius dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a onclick="searchCategoryClicked(this)" data-category="artist" class="dropdown-item" href="#">작가명</a>
+                    <a onclick="searchCategoryClicked(this)" data-category="title" class="dropdown-item" href="#">작품명</a>
+                  </div>
+                </div>
+              </div>
+              <span id="search-category-label">작품명</span>
+            </form>
             <!-- <select id="filter-select" onchange="filterChanged(this)" class="custom-select">
               <option value="0" selected>최신순</option>
               <option value="1">좋아요 순</option>
@@ -25,6 +41,8 @@
             </select> -->
           </div>
         </div>
+
+        
         
         <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
           
@@ -154,6 +172,32 @@
             
             <%= render 'filter_mobile' %>
 
+          </div>
+          
+          
+        </div>
+        <div class="row margin-top-20">
+            
+          <div class="col-12">
+            <form id="painting-search" action="<%= painting_search_path %>">
+              <div class="input-group">
+                <input type="hidden" id="search_category" name="search_category" value="title">
+                <button type="button" class="btn btn-outline-dark no-border-radius dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <input type="text" id="search_query" name="search_query" class="form-control" aria-label="Text input with segmented dropdown button">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-outline-dark no-border-radius">검색</button>
+                  
+                  <div class="dropdown-menu">
+                    <a onclick="searchCategoryClicked(this)" data-category="artist" class="dropdown-item" href="#">작가명</a>
+                    <a onclick="searchCategoryClicked(this)" data-category="title" class="dropdown-item" href="#">작품명</a>
+                  </div>
+                </div>
+                
+              </div>
+              <span id="search-category-label">작품명</span>
+            </form>
           </div>
         </div>
         <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
@@ -362,5 +406,17 @@ function filterInit(name){
   initLoad();
   
 }
-
+function searchCategoryClicked(element){
+  let category = element.dataset.category;
+  switch(category){
+    case 'artist':
+      $('#search-category-label').text('작가명');
+      $('#search_category').val('artist');
+      break;
+    case 'title':
+      $('#search_category').val('title');
+      $('#search-category-label').text('작품명');
+      break;
+  }
+}
 </script>
