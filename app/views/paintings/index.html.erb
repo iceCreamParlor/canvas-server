@@ -9,12 +9,12 @@
       <!-- Products -->
       <div class="col-12 col-lg-9 order-lg-2">
         <div class="row align-items-center">
-          <div class="col-6 text-left">
+          <div class="col-7 text-left">
             <%= link_to new_painting_path do %>
               <button type="button" class="btn btn-outline-dark">작품 등록하기</button>
             <% end %>
           </div>
-          <div class="col-6 text-right">
+          <div class="col-5 text-right">
             <form id="painting-search" action="<%= painting_search_path %>">
               <div class="input-group">
                 <input type="hidden" id="search_category" name="search_category" value="title">
