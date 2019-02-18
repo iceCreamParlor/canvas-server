@@ -3,6 +3,7 @@ class UserMailer < ApplicationMailer
  
   def message_arrived_email(user: , message: )
     @user = user
+    @message = message
     if Rails.env.development?
       @url  = "127.0.0.1:3000/messages"
     elsif Rails.env.production?
