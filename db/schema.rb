@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_102225) do
   create_table "auctions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "painting_id"
-    t.datetime "expire_date", default: "2019-03-04 10:52:08"
+    t.datetime "expire_date", default: "2019-02-22 02:50:25"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["painting_id"], name: "index_auctions_on_painting_id"
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_102225) do
     t.string "thumbnail"
     t.string "desc"
     t.bigint "user_id"
-    t.datetime "completed_date", default: "2019-02-18 10:52:08"
+    t.datetime "completed_date", default: "2019-01-30 15:42:29"
     t.integer "status", default: 0
     t.index ["category_id"], name: "index_paintings_on_category_id"
     t.index ["color_id"], name: "index_paintings_on_color_id"
