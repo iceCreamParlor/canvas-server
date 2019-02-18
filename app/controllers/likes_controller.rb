@@ -20,6 +20,7 @@ class LikesController < ApplicationController
     end
     
     @like_cnt = @like.painting.likes.count
+    
   end
 
   private

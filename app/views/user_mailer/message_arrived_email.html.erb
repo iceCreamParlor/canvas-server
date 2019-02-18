@@ -1,0 +1,13 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.nickname %>님, 안녕하세요.</h1>
+    <p>회원님의 캔버스 계정에 메세지가 도착했습니다. 아래의 링크를 눌러 확인해주세요.</p>
+    <p><%= @url %></p>
+    <%= link_to '메세지 확인하기', @url %>
+  </body>
+</html>

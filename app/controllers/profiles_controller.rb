@@ -37,6 +37,7 @@ class ProfilesController < ApplicationController
     @liked_paintings = Painting.where(id: @user.likes.pluck(:painting_id)).last(10).reverse
     @follow_members = @user.follow_members
     @following_members = @user.following_members
+
   end
   
   def edit

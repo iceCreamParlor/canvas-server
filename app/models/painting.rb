@@ -3,6 +3,7 @@ class Painting < ApplicationRecord
   mount_uploader :thumbnail, ImageUploader
   belongs_to :color
   belongs_to :category
+
   belongs_to :user
   has_many :likes
   has_many :auctions
