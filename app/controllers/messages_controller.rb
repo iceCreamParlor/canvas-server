@@ -17,10 +17,10 @@ class MessagesController < ApplicationController
     
     @messages_json = @messages.to_json
     
-
     if @is_mobile
       render 'mobile_index.html.erb'
     else
+      # 데스크탑 / 노트북
       render 'index.html.erb'
     end
   end
@@ -50,7 +50,7 @@ class MessagesController < ApplicationController
         @message = Message.create!(sender_id: sender_id, receiver_id: receiver_id, content: content, message_type: 'question')
       end
     end
-    
+    UserMailer.delay.message_arrived_email(user: @message.receiver, message: @message)
   end
   def load_message
 

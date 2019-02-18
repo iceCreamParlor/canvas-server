@@ -10,6 +10,8 @@ module Canvasfactory
   class Application < Rails::Application
 
     config.time_zone = 'Seoul'
+    # ASYNC 한 처리를 위해서 추가(메일)
+    config.active_job.queue_adapter = :delayed_job
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2

@@ -3,7 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   enum user_type: ["normal", "admin"]
 
-
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
@@ -12,6 +11,7 @@ class User < ApplicationRecord
   has_many :magazines, dependent: :destroy
   has_many :auctions, dependent: :destroy
   has_many :likes, dependent: :destroy
+  
   has_many :follows, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
 
@@ -122,6 +122,7 @@ class User < ApplicationRecord
   end
 
   def destroy_posts
+    # 유저가 삭제되기 
     identity = Identity.find_by(user_id: self.id)
     if identity.present?
       identity.destroy

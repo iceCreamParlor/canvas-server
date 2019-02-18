@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_071242) do
+ActiveRecord::Schema.define(version: 2019_02_18_102225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_071242) do
   create_table "auctions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "painting_id"
-    t.datetime "expire_date", default: "2019-03-02 00:02:09"
+    t.datetime "expire_date", default: "2019-02-22 02:50:25"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["painting_id"], name: "index_auctions_on_painting_id"
@@ -84,6 +84,21 @@ ActiveRecord::Schema.define(version: 2019_02_15_071242) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "hex"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -169,7 +184,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_071242) do
     t.string "thumbnail"
     t.string "desc"
     t.bigint "user_id"
-    t.datetime "completed_date", default: "2019-02-16 00:02:09"
+    t.datetime "completed_date", default: "2019-01-30 15:42:29"
     t.integer "status", default: 0
     t.index ["category_id"], name: "index_paintings_on_category_id"
     t.index ["color_id"], name: "index_paintings_on_color_id"

@@ -15,8 +15,11 @@ class ApplicationController < ActionController::Base
   end
 
   def check_sns
-    @is_sns = (user_signed_in? && Identity.find_by(user_id: current_user.id).present?) ? true : false
+    # @is_sns = (user_signed_in? && Identity.find_by(user_id: current_user.id).present?) ? true : false
     @is_mobile = mobile_device?
+
+    @is_sns = (user_signed_in? && Identity.find_by(user_id: current_user.id).present?) ? true : false
+
     # @is_sns = false
     # if user_signed_in? 
     #   if Identity.find_by(user_id: current_user.id).present?
