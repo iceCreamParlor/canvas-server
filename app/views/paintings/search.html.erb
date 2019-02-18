@@ -74,6 +74,19 @@
       });
     })
   });
+  function searchCategoryClicked(element){
+    let category = element.dataset.category;
+    switch(category){
+      case 'artist':
+        $('#search-category-label').text('작가명');
+        $('#search_category').val('artist');
+        break;
+      case 'title':
+        $('#search_category').val('title');
+        $('#search-category-label').text('작품명');
+        break;
+    }
+  }
 </script>
 
 
