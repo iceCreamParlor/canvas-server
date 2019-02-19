@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'merivaextra';
+    /*src: url('fonts/meriva-extra-webfont.eot');
+    src: url('fonts/meriva-extra-webfont.eot?#iefix') format('embedded-opentype'),
+    url('fonts/meriva-extra-webfont.woff2') format('woff2'),
+    url('fonts/meriva-extra-webfont.woff') format('woff'),
+    url('fonts/meriva-extra-webfont.ttf') format('truetype'),
+    url('fonts/meriva-extra-webfont.svg#merivaextra') format('svg');*/
+    src: url('fonts/Meriva-Extra.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'valueregular';
+    src: url('fonts/Value-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'valueregular';
+    src: url('fonts/Value-Italic.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'basis grotesque regular';
+    src: url('fonts/basis-grotesque-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'basis grotesque regular';
+    src: url('fonts/basis-grotesque-italic.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+
+}
