@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :faqs
   get 'like/create'
   get 'like/destroy'
   mount Ckeditor::Engine => '/ckeditor'

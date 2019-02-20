@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_20_111639) do
+ActiveRecord::Schema.define(version: 2019_02_20_123633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,15 @@ ActiveRecord::Schema.define(version: 2019_02_20_111639) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "faqs", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_faqs_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -229,6 +238,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_111639) do
   add_foreign_key "auction_candidates", "users"
   add_foreign_key "auctions", "paintings"
   add_foreign_key "auctions", "users"
+  add_foreign_key "faqs", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "likes", "paintings"
   add_foreign_key "likes", "users"
