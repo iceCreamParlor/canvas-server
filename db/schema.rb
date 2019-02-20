@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_102225) do
+ActiveRecord::Schema.define(version: 2019_02_20_111639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,13 @@ ActiveRecord::Schema.define(version: 2019_02_18_102225) do
     t.bigint "painting_id"
     t.integer "original_msg_id"
     t.index ["painting_id"], name: "index_messages_on_painting_id"
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "painting_comments", force: :cascade do |t|

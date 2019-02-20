@@ -40,7 +40,7 @@
 		
 		<header>
 			<!-- navbar -->
-			<nav class="navbar navbar-absolute-dark"><!-- add 'navbar-dark/navbar-grey/navbar-transparent/navbar-transparent-dark' -->
+			<nav class="navbar navbar-absolute-dark navbar-fixed"><!-- add 'navbar-dark/navbar-grey/navbar-transparent/navbar-transparent-dark' -->
 				<div class="container">
 					<%= link_to root_path, class: "navbar-brand" do %>
 						<h5>Canvas</h5>
@@ -52,6 +52,12 @@
 						</li>
 						<li class="nav-item">
 							<%= link_to 'Magazines', magazines_path, class:"nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to 'Notice', notices_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to 'About', about_path, class: "nav-link" %>
 						</li>
 							<!-- <a class="nav-link" href="#">Link Only</a> -->
 						<li class="nav-item">

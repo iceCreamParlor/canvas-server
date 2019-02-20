@@ -1,0 +1,101 @@
+<div class="section">
+  <div class="container">
+      <h1>공지사항</h1>
+      <div class="row margin-top-20">
+        <div class="col-12 col-lg-8">
+          <ul class="list-group list-group-flush">
+            <% @notices.each do |notice| %>
+              <%= link_to notice_path(notice) do %>
+                <li class="list-group-item">
+                  <%= notice.title %>
+                  <span class="float-right"><%= notice.created_at.strftime("%Y년 %_m월 %_d일") %></span>
+                </li>
+              <% end %>
+            <% end %>
+            
+          </ul>
+          <ul class="pagination justify-content-center margin-top-70">
+            <li class="page-item">
+              <%= will_paginate @notices %>
+            </li>
+          </ul>
+        <!-- </div> -->
+
+        <!-- Blog Sidebar -->
+        <div class="col-12 col-lg-4 
+          <% if !@is_mobile %> sidebar-wrapper <% end %>"
+        >
+
+        <!-- Sidebar box 3 - Popular Posts -->
+        <div class="sidebar-box">
+          <% if @main_magazines.present? %>
+            <h6 class="heading-uppercase">Popular</h6>
+            <!-- Popular post 1 -->
+            <% @main_magazines.each do |magazine| %>  
+              <div class="popular-post">
+                <%= link_to magazine_path(magazine) do %>
+                  <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                    <img class="popular-post-img" src="<%= magazine.thumbnail.url %>" alt="">
+                  <% else %>
+                    <img class="popular-post-img" src="/images/col-3-tall.jpg" alt="">
+                  <% end %>
+                <% end %>
+                <div>
+                  <h6 class="font-weight-normal" style="line-height: 20px; ">
+                    <%= link_to magazine_path(magazine) do %>
+                      <span><%= magazine.title %></span>
+                    <% end %>
+                  </h6>
+                  <span style="bottom: 0px;"><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div> 
+
+        <!-- Sidebar box 6 - Facebook Like box -->
+        <div class="sidebar-box text-center">
+          <h6 class="heading-uppercase">Follow<br> CANVAS</h6>
+          <ul class="list-horizontal-unstyled">
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+            <li><a href="#"><i class="fab fa-behance"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
+
+        <!-- Sidebar box 3 - Popular Posts -->
+        <div class="sidebar-box">
+          <% if @main_magazines.present? %>
+            <h6 class="heading-uppercase">Announcement</h6>
+            <!-- Popular post 1 -->
+            <% @main_magazines.each do |magazine| %>  
+              <div class="popular-post">
+                <%= link_to magazine_path(magazine) do %>
+                  <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                    <img class="popular-post-img" src="<%= magazine.thumbnail.url %>" alt="">
+                  <% else %>
+                    <img class="popular-post-img" src="/images/col-3-tall.jpg" alt="">
+                  <% end %>
+                <% end %>
+                <div>
+                  <h6 class="font-weight-normal" style="line-height: 20px; ">
+                    <%= link_to magazine_path(magazine) do %>
+                      <span><%= magazine.title %></span>
+                    <% end %>
+                  </h6>
+                  <span style="bottom: 0px;"><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div> 
+      </div>
+      <!-- end Blog Sidebar -->
+    </div>
+  </div>
+</div>
+
+
+

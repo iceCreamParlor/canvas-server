@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks', registrations: "user/registrations"}
 
   root to: 'home#index'
+  get 'about', to: 'home#about', as: 'about'
   get 'register/info1'
   get 'register/info2'
   post 'register/infoget'
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   get 'likes/toggle_like/:painting_id', to: 'likes#toggle_like', as: 'toggle_like'
   get 'paintings/search', to: 'paintings#search', as: 'painting_search'
 
-  resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles, :painting_comments
+  resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles, :painting_comments, :notices
 
 end
 
