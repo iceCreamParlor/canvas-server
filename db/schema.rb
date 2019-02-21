@@ -102,12 +102,10 @@ ActiveRecord::Schema.define(version: 2019_02_20_123633) do
   end
 
   create_table "faqs", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.bigint "user_id"
+    t.string "question"
+    t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_faqs_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -238,7 +236,6 @@ ActiveRecord::Schema.define(version: 2019_02_20_123633) do
   add_foreign_key "auction_candidates", "users"
   add_foreign_key "auctions", "paintings"
   add_foreign_key "auctions", "users"
-  add_foreign_key "faqs", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "likes", "paintings"
   add_foreign_key "likes", "users"
