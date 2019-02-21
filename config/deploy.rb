@@ -4,7 +4,8 @@ lock "~> 3.11.0"
 set :application, "canvas"
 # set :repo_url, "https://github.com/iceCreamParlor/canvas_factory.git"
 set :repo_url, "git@github.com:iceCreamParlor/canvas_factory.git"
-set :deploy_to, '/home/ubuntu/canvas'
+set :deploy_to, '/home/ubuntu/canvas' if ENV['BRANCH']
+set :deploy_to, '/home/deploy/canvas' unless ENV['BRANCH']
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads" #, "config/database.yml", "config/
