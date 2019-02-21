@@ -9,7 +9,7 @@
 $('#paintings-container').append('<%= j render @paintings %>');
 
 <% if @paintings.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate @paintings %>');
+  $('.next_page').replaceWith('<%= j will_paginate @paintings %>');
 <% else %>
   isFinished = true;
   // $(window).off('scroll');

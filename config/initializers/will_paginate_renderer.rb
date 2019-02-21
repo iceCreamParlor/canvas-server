@@ -25,7 +25,7 @@ class WillPaginateRenderer < WillPaginate::ActionView::LinkRenderer
 
   def next_page
     num = @collection.current_page < total_pages && @collection.current_page + 1
-    previous_or_next_page(num, '>', 'page-link')
+    previous_or_next_page(num, '>', 'page-link next_page')
   end
 
   def previous_or_next_page(page, text, classname)

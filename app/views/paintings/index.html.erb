@@ -270,7 +270,7 @@ function loadPaintings(needLoad){
 }
 
 function initLoad(){
-  if($('.pagination .next_page')[0]){
+  if($('.next_page')[0]){
 
   } else {
     $('#paintings-container').html(`
@@ -278,7 +278,7 @@ function initLoad(){
       <%= will_paginate @paintings %>
     </div>`);
   }
-  $('.pagination .next_page').attr('href', '/paintings?page=1');
+  $('.next_page').attr('href', '/paintings?page=1');
 
   if(document.getElementsByClassName('selected').length == 0){
     makeAjaxLoad(false);
@@ -345,7 +345,7 @@ function toggleSelected(element, className){
 function makeAjaxLoad(needRefresh){
   sentRequest = false;
   let filterType = $('#filter-select').val();
-  var morePostUrl = $('.pagination .next_page').attr('href');
+  var morePostUrl = $('.next_page').attr('href');
   
   if(needRefresh){
     morePostUrl += '&refresh=true';
@@ -367,7 +367,7 @@ function makeAjaxLoad(needRefresh){
 function makeAjaxFilter(needRefresh){
   sentRequest = false;
   let filterType = $('#filter-select').val();
-  let morePostUrl = $('.pagination .next_page').attr('href');
+  let morePostUrl = $('.next_page').attr('href');
   let selectedArr = document.getElementsByClassName('selected');
   // var queryString = '?';
   var url = '';
