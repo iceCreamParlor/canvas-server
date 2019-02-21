@@ -1,74 +1,22 @@
-<div class="section">
+<div class="section margin-top-70">
   <div class="container">
     <div class="row">
       <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
         <div class="section-title text-center">
-          <h3>Frequently Asked Questions</h3>
+          <h3>자주 묻는 질문</h3>
         </div>
         <ul class="accordion accordion-oneopen">
-          <!-- 1 -->
-          <li class="active">
-            <div class="accordion-title">
-              <h6 class="heading-uppercase">Question?</h6>
-            </div>
-            <div class="accordion-content">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            </div>
-          </li>
-          <!-- 2 -->
-          <li>
-            <div class="accordion-title">
-              <h6 class="heading-uppercase">Question?</h6>
-            </div>
-            <div class="accordion-content">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            </div>
-          </li>
-          <!-- 3 -->
-          <li>
-            <div class="accordion-title">
-              <h6 class="heading-uppercase">Question?</h6>
-            </div>
-            <div class="accordion-content">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            </div>
-          </li>
-          <!-- 4 -->
-          <li>
-            <div class="accordion-title">
-              <h6 class="heading-uppercase">Question?</h6>
-            </div>
-            <div class="accordion-content">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            </div>
-          </li>
-          <!-- 5 -->
-          <li>
-            <div class="accordion-title">
-              <h6 class="heading-uppercase">Question?</h6>
-            </div>
-            <div class="accordion-content">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            </div>
-          </li>
-          <!-- 6 -->
-          <li>
-            <div class="accordion-title">
-              <h6 class="heading-uppercase">Question?</h6>
-            </div>
-            <div class="accordion-content">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            </div>
-          </li>
-          <!-- 7 -->
-          <li>
-            <div class="accordion-title">
-              <h6 class="heading-uppercase">Question?</h6>
-            </div>
-            <div class="accordion-content">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            </div>
-          </li>
+          <% @faqs.each_with_index do |faq, index| %>
+            <!-- 1 -->
+            <li <% if index == 0 %> class="active" <% end %> >
+              <div class="accordion-title">
+                <h6 class="heading-uppercase"><%= faq.question %></h6>
+              </div>
+              <div class="accordion-content">
+                <p><%= faq.answer %></p>
+              </div>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div><!-- end row -->
