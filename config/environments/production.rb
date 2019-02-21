@@ -3,8 +3,8 @@ Rails.application.configure do
   # 'SECRETS.YML'
   config.read_encrypted_secrets = true
   # MAIL CUSTOMIZATION
-  # config.action_mailer.default_url_options = { :host => "www.imheej.com" }
-  config.action_mailer.default_url_options = { :host => "test.greedyturtles.com" }
+  # config.action_mailer.default_url_options = { :host => "www.imheej.com" }  # 테스트서버
+  config.action_mailer.default_url_options = { :host => "test.greedyturtles.com" }  # 실서버
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { 
     :authentication => :plain,
