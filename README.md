@@ -35,8 +35,13 @@
 
 # Imagemagick 설치되어 있어야 기능이 정상적으로 작동합니다.
 
-** 메일 관련 기능 수정 후 실서버 / 테스트서버 배포했을 때, delayed_job 을 restart 해 주어야 합니다.
+# 실서버 배포 시 주의 사항
+
+* 메일 관련 기능 수정 후 실서버 / 테스트서버 배포했을 때, delayed_job 을 restart 해 주어야 합니다.
+```console
   $ RAILS_ENV=production bin/delayed_job restart (start / stop)
-  
-** (개발 환경에서 async 작업 테스트할때)
+```
+* (개발 환경에서 async 작업 테스트할때)
+```console
   $ rails jobs:work
+```
