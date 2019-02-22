@@ -32,6 +32,13 @@
             <% end %>
           <% end %>
         </ul>  
+
+        <ul class="pagination justify-content-center margin-top-20">
+          <li class="page-item">
+            <%= will_paginate @messages %>
+          </li>
+        </ul>
+
       </div>
     
     </div>

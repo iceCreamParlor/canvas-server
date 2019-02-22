@@ -4,17 +4,17 @@ class MessagesController < ApplicationController
   before_action :load_message, only: [:show]
 
   def index
-    messages = current_user.arrived_messages.order("created_at DESC")
+    @messages_total = current_user.arrived_messages.order("created_at DESC")
     
     @messages = []
     
-    messages.each do |message|
+    @messages_total.each do |message|
       @messages << message.find_parent_message
     end
     @messages = @messages.uniq
     @messages_count = @messages.map{ |m| m.find_children_messages.count }
     @messages = @messages.map{ |m| m.find_children_messages.last }
-    
+    @messages = @messages.paginate(:page => params[:page], :per_page => Message::PER_PAGE)
     @messages_json = @messages.to_json
     
     if @is_mobile

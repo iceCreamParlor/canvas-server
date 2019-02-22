@@ -6,6 +6,8 @@ class Message < ApplicationRecord
 
   belongs_to :original_msg, class_name: "Message", foreign_key: "original_msg_id", optional: true
 
+  PER_PAGE = 9
+
   def find_reply_receiver current_user_id
     return self.sender if (current_user_id != self.sender_id && current_user_id == self.receiver_id)
     return self.receiver if (current_user_id != self.receiver_id && current_user_id == self.sender_id)
