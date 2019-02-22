@@ -2,7 +2,7 @@ require 'will_paginate/view_helpers/action_view.rb'
 
 class WillPaginateRenderer < WillPaginate::ActionView::LinkRenderer
   def container_attributes
-    {class: ""}
+    {class: "a"}
   end
 
   def page_number(page)

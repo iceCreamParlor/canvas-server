@@ -12,15 +12,16 @@
                 </li>
               <% end %>
             <% end %>
-            
           </ul>
           <ul class="pagination justify-content-center margin-top-70">
             <li class="page-item">
               <%= will_paginate @notices %>
             </li>
           </ul>
-        <!-- </div> -->
-
+          <!-- will_paginate render 하면 마지막에 </div> 가 생성되는 이슈로 인해 아래와 같은 코드 추가 -->
+      <% if @notices.count < Notice::PER_PAGE %>
+        </div>
+      <% end %>
         <!-- Blog Sidebar -->
         <div class="col-12 col-lg-4 
           <% if !@is_mobile %> sidebar-wrapper <% end %>"
@@ -96,6 +97,3 @@
     </div>
   </div>
 </div>
-
-
-
