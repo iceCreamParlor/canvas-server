@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="62px" viewBox="0 0 50 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>wigroup-arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="5b264491d7fb57027df225db_arrow-white-short" transform="translate(2.000000, 1.000000)" fill="#FFDD18" fill-rule="nonzero" stroke="#FFDD18" stroke-width="3">
+            <polygon id="wigroup-arrow" transform="translate(23.000000, 29.500000) rotate(90.000000) translate(-23.000000, -29.500000) " points="29.82143 7 25.90321 10.975 41.39125 26.6875 -6 26.6875 -6 32.3125 44.98241 32.3125 41.39125 32.3125 25.90321 48.025 29.82143 52 52 29.5"></polygon>
+        </g>
+    </g>
+</svg>
