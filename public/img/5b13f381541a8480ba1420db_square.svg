@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2232px" height="2234px" viewBox="0 0 2232 2234" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="1" width="576" height="576"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="shape" transform="translate(0.000000, -1.000000)">
+            <polygon id="Rectangle-4" fill="#FF1F25" transform="translate(1116.000000, 1116.000000) rotate(-45.000000) translate(-1116.000000, -1116.000000) " points="709 -55 1522.57222 -54.2628234 1523 2287 709 2287"></polygon>
+            <polygon id="Rectangle-4-Copy" fill="#E61C22" transform="translate(973.543242, 1261.811929) rotate(-45.000000) translate(-973.543242, -1261.811929) " points="769.499698 89.1392446 1177.58679 92.484614 1177.58679 2434.48461 770.586786 2434.48461"></polygon>
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Rectangle-3" fill="#FFDD18" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

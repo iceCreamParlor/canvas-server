@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="62px" viewBox="0 0 50 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>wigroup-arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Homepage-HD-Desktop" transform="translate(-1630.000000, -2763.000000)" fill="#005CEF" fill-rule="nonzero" stroke="#005CEF" stroke-width="3">
+            <g id="Our-Work" transform="translate(0.000000, 2429.000000)">
+                <g id="wiGroup" transform="translate(240.000000, 311.000000)">
+                    <polygon id="wigroup-arrow" transform="translate(1415.000000, 53.500000) rotate(-270.000000) translate(-1415.000000, -53.500000) " points="1421.82143 31 1417.90321 34.975 1433.39125 50.6875 1386 50.6875 1386 56.3125 1436.98241 56.3125 1433.39125 56.3125 1417.90321 72.025 1421.82143 76 1444 53.5"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
