@@ -531,6 +531,9 @@
          }
          }
       </style>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <%= javascript_include_tag 'application' %>
    </head>
    <body class="body">
       <div id="container" class="container">
@@ -540,8 +543,14 @@
                   <a href="/" class="nav-brand w-nav-brand w--current">
                      <p style="font-weight: 550;padding-top:43px; padding-bottom: 40px;">ChackNZzick</p>
                   </a>
-                  <nav role="navigation" class="nav-menu w-nav-menu"><a href="/" class="nav-item is-active w-nav-link w--current">Home</a><a href="/paintings" class="nav-item w-nav-link">Paintings</a><a href="/magazines" class="nav-item w-nav-link">Magazine</a><a href="/about" class="nav-item is-last-h w-nav-link">About</a>
-                     <% if user_signed_in? == false %>
+                  <nav role="navigation" class="nav-menu w-nav-menu">
+                     <a href="/paintings" class="nav-item is-last-h w-nav-link">Paintings</a>
+                     <a href="/magazines" class="nav-item is-last-h w-nav-link">Magazine</a>
+                     <a href="/about" class="nav-item is-last-h w-nav-link">About</a>
+                     <a href="/notices" class="nav-item is-last-h w-nav-link w--current">Notice</a>
+                     <% if user_signed_in? %>
+                        <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
+                     <% else %>
                         <a href="/users/sign_in" class="nav-item is-last-h w-nav-link">Login</a>
                      <% end %>
                   </nav>
