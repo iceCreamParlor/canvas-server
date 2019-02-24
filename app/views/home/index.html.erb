@@ -541,7 +541,12 @@
             <div class="wrapper w-container">
                <div class="nav-body">
                   <a href="/" class="nav-brand w-nav-brand w--current">
-                     <p style="font-weight: 550;padding-top:43px; padding-bottom: 40px;">ChackNZzick</p>
+                     <% if @is_mobile %>
+                        <p style="font-weight: 550;padding-top:28px; padding-bottom: 28px;">ChackNZzick</p>
+
+                     <% else %> 
+                        <p style="font-weight: 550;padding-top:43px; padding-bottom: 40px;">ChackNZzick</p>
+                     <% end %>
                   </a>
                   <nav role="navigation" class="nav-menu w-nav-menu">
                      <a href="/paintings" class="nav-item is-last-h w-nav-link">Paintings</a>
