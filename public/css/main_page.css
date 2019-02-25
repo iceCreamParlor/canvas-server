@@ -3989,7 +3989,7 @@ blockquote {
 	width: 200px; 
 	z-index: 901; 
 	left: 50%;
-	top: 0%;
+	top: 7%;
 }
 
 .green-square {
@@ -5390,6 +5390,7 @@ blockquote {
 	}
 	.postit-sticker-top{
 		width: 200px;
+		top: 5%;
 	}
 	.section {
 		padding-top: 100px;
@@ -6207,6 +6208,8 @@ blockquote {
 	}
 	.postit-sticker-top{
 		width: 100px;
+		left: 40%;
+		top: 1%;
 	}
 	.green-square {
 		width: 200px;
