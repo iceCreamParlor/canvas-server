@@ -583,20 +583,43 @@
          <div id="about" class="section section-blue" style="background-color: #fff; padding-top: 8%;" >
             <img class="postit-sticker-top" src="/img/green_sticker.svg" /> 
             <div class="wrapper w-clearfix" style="background-color: #F29737; padding: 20px;">
-                           
+                
                <h3 class="header color-white header-light">
                   <!-- <span class="color-blue-dark">Chack & Zzick?</span> -->
-                  <span class="color-blue-white">Chack & Zzick?</span>
-                  <br><br>
-                  <p class="paragraph color-white">착 & 찍은 마음에 드는 작업물을<br> 자유롭게 공유 / 거래하는 공간입니다.<br> 여러분의 마음에 착~ 붙는 <br> 그래픽을 찾아보세요 !</p>
+                  <!-- <span class="color-blue-white">Chack & Zzick?</span> -->
+                  
+                  <p class="paragraph color-white" style="font-weight: 400;">
+                  <% if @is_mobile %>   
+                     착 & 찍은 마음에 드는 작업물을
+                     <br> 
+                     자유롭게 공유 / 거래하는 공간입니다.
+                     <br> 
+                     여러분의 마음에 착~ 붙는 
+                     <br> 
+                     그래픽을 찾아보세요 !
+                  <% else %>
+                     착 & 찍은 마음에 드는 작업물을 자유롭게 공유 / 거래하는 공간입니다.
+                     <br> 
+                     여러분의 마음에 착~ 붙는 그래픽을 찾아보세요 !
+                  <% end %>
+               </p>
                </h3>
-               <p class="paragraph color-white">
-                  "어떻게 예술을 가까이에 둘 수 있을까?"<br>
-                  라는 질문에 대한 답을 찾던 도중,<br>
-                  착 & 찍이 태어나게 되었습니다.<br>
-                  그림을 착~, 자유롭게 찍! <br>
-                  냉장고에 자석을 붙이듯이,<br>
-                  자유롭게 나만의 작품을 찾아보세요 !
+               <p class="paragraph color-white" style="font-weight: 400;">
+                  <% if @is_mobile %>
+                     "어떻게 예술을 가까이에 둘 수 있을까?"<br>
+                     라는 질문에 대한 답을 찾던 도중,<br>
+                     착 & 찍이 태어나게 되었습니다.<br>
+                     그림을 착~, 자유롭게 찍! <br>
+                     냉장고에 자석을 붙이듯이,<br>
+                     자유롭게 나만의 작품을 찾아보세요 !
+                  <% else %>
+                     "어떻게 예술을 가까이에 둘 수 있을까?"
+                     라는 질문에 대한 답을 찾던 도중,<br>
+                     착 & 찍이 태어나게 되었습니다.<br>
+                     그림을 착~, 자유롭게 찍! 
+                     냉장고에 자석을 붙이듯이,<br>
+                     자유롭게 나만의 작품을 찾아보세요 !
+                  <% end %>
                </p>
             </div>
          </div>

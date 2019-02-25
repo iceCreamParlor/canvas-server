@@ -3821,7 +3821,8 @@ blockquote {
 .wrapper {
 	position: relative;
 	z-index: 900;
-	width: 85%;
+	/* width: 85%; */
+	width: 92%;
 	max-width: 1980px;
 	margin-right: auto;
 	margin-left: auto;
