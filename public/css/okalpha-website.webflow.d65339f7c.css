@@ -3980,7 +3980,24 @@ blockquote {
 	left: 60%;
 	z-index: 800;
 	display: block;
-	width: 500px;
+	width: 700px;
+	max-width: none;
+}
+
+.postit-sticker-top{
+	position: absolute; 
+	width: 200px; 
+	z-index: 901; 
+	left: 50%;
+	top: 0%;
+}
+
+.green-square {
+	position: absolute;
+	left: 0%;
+	top: 0%;
+	display: block;
+	width: 400px;
 	max-width: none;
 }
 
@@ -5371,6 +5388,9 @@ blockquote {
 	.square {
 		width: 1400px;
 	}
+	.postit-sticker-top{
+		width: 200px;
+	}
 	.section {
 		padding-top: 100px;
 		padding-bottom: 100px;
@@ -5741,6 +5761,9 @@ blockquote {
 	}
 	.square {
 		width: 1000px;
+	}
+	.postit-sticker-top{
+		width: 170px;
 	}
 	.section {
 		overflow: hidden;
@@ -6180,7 +6203,13 @@ blockquote {
 		padding-top: 30px;
 	}
 	.square {
-		width: 600px;
+		width: 300px;
+	}
+	.postit-sticker-top{
+		width: 100px;
+	}
+	.green-square {
+		width: 200px;
 	}
 	.section.section-red {
 		padding-top: 20px;
