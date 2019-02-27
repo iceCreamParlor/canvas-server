@@ -8,19 +8,27 @@ class Painting < ApplicationRecord
   has_many :likes
   has_many :auctions
   has_many :painting_comments
+
+  # scope :only_sale, -> {where(status: "sale")}
   
-  enum :status => ["normal", "auction", "sold"]
+  enum :status => ["sale", "sold", "not_sale"]
 
   scope :exclude_images, ->  { select( Painting.attribute_names - ['images'] ) }
+
+  def self.options_for_status
+    Painting.statuses.map{ |p| [ I18n.t("painting.#{p[0]}"), p[0]] }
+  end
 
   def translate_status
     case self.status
     when "normal"
-      "일반"
+      "판매"
     when "auction"
       "경매중"
     when "sold"
       "판매 완료"
+    when "not_sale"
+      "판매 안함"
     end
   end
 

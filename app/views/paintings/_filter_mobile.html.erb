@@ -12,8 +12,15 @@
         <div class="row">
          <!-- Sidebar -->
           <div class="col-12">
+            <input type="hidden" id="painting_status" value="sale">
+            <select style="width: 50%;" class="custom-select" id="sale-category" onchange="filterByStatus(event)">
+              <% Painting.options_for_status.each do |option| %>
+                <option value="<%= option[1] %>"><%= option[0] %></option>
+              <% end %>
+              <option value="all">전체</option>
+            </select>
             <!-- Sidebar box 1 - Category -->
-            <div data-toggle="collapse" href="#categoryCollapse" role="button" aria-expanded="false" aria-controls="categoryCollapse" class="mobile">
+            <div data-toggle="collapse" href="#categoryCollapse" role="button" aria-expanded="false" aria-controls="categoryCollapse" class="mobile margin-top-20">
               <h5 class="float-left font-weight-light margin-bottom-20">
                 Category
                 <a href="javascript:void(0);" class="float-right">+</a>
