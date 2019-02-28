@@ -26718,7 +26718,7 @@ Webflow.require('ix2').init({
                 "selector": ".circle-container.is-horizontal",
                 "selectorGuids": ["fcf014b3-4989-fba2-577f-e23c02f60f7f", "1180c7cf-1bbd-8aab-e370-87170cdcadf3"]
               },
-              "xValue": 120,
+              "xValue": 170,
               "xUnit": "%",
               "yUnit": "PX",
               "zUnit": "PX"
