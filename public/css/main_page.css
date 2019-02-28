@@ -3897,6 +3897,10 @@ blockquote {
 	background-color: #000;
 }
 
+.font-bold{
+	font-weight: 900;
+}
+
 .hr.hr-blue {
 	height: 8px;
 	float: left;
@@ -5387,7 +5391,7 @@ blockquote {
 		padding-top: 40px;
 	}
 	.square {
-		width: 1400px;
+		width: 800px;
 	}
 	.postit-sticker-top{
 		width: 200px;
@@ -5711,6 +5715,7 @@ blockquote {
 		padding-bottom: 15px;
 		font-size: 20px;
 	}
+
 	.hr.hr-blue {
 		height: 4px;
 	}

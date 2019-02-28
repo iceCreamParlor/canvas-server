@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1878.24 897">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff7900;
+        stroke: #707070;
+      }
+
+      .cls-2 {
+        filter: url(#맨아래_주황_오에서_왼으로_슬라이드_);
+      }
+    </style>
+    <filter id="맨아래_주황_오에서_왼으로_슬라이드_" x="0" y="0" width="1878.24" height="897" filterUnits="userSpaceOnUse">
+      <feOffset dx="-20" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="맨아래_주황_오에서_왼으로_슬라이드_2" data-name="맨아래 주황 ( 오에서 왼으로 슬라이드)" class="cls-1" d="M13029,3188s92.862,69.642,59.968,164.5c-11.053,31.872-32.488,52.579-42.443,73-19.4,39.778-12.523,100.41,0,150.125,18.86,74.872,50.817,114.146,27.021,178.994s-64.817,68.463-17.531,167.445S13029,4066,13029,4066h1846.948V3188Z" transform="translate(-12998.21 -3178.5)"/>
+  </g>
+</svg>

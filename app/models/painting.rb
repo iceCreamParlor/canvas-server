@@ -11,7 +11,7 @@ class Painting < ApplicationRecord
 
   # scope :only_sale, -> {where(status: "sale")}
   
-  enum :status => ["sale", "sold", "not_sale"]
+  enum :status => ["sale", "sold", "not_sale", "auction"]
 
   scope :exclude_images, ->  { select( Painting.attribute_names - ['images'] ) }
 
