@@ -13,8 +13,8 @@ module Iamport
           imp_key = "8720155705703066"
           imp_secret = "igWbMHACqRIznihoP2te39QVzcRMmByFRuQEbrgCiYbFht46wxlzHbvgom3KYCpP6ftiGKUZJ6E0AI77"
         else
-          imp_key = ""
-          imp_secret = ""
+          imp_key = 8720155705703066
+          imp_secret = "igWbMHACqRIznihoP2te39QVzcRMmByFRuQEbrgCiYbFht46wxlzHbvgom3KYCpP6ftiGKUZJ6E0AI77"
         end
         @access_token = HTTParty.post(
           "#{BASE_URL}/users/getToken",

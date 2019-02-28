@@ -1,7 +1,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
   var pay = function() {
-    IMP.init('<%= Rails.env.development? ? "imp84392177":"" %>');
+    IMP.init('<%= Rails.env.development? ? "imp84392177":"imp84392177" %>');
     IMP.request_pay(
       {
         pg : 'inicis', // version 1.1.0부터 지원.
