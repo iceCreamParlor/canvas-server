@@ -112,6 +112,8 @@ class PaintingsController < ApplicationController
 
     @like = Like.where(user_id: current_user.id, painting_id: @painting.id) if user_signed_in?
 
+    @line_item = LineItem.new
+
   end
 
   # GET /paintings/new

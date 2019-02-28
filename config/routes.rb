@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'options/show'
+  get 'options/create'
+  get 'options/edit'
+  get 'options/update'
+  get 'options/destroy'
   resources :faqs
   get 'like/create'
   get 'like/destroy'
@@ -21,6 +26,30 @@ Rails.application.routes.draw do
   get 'paintings/search', to: 'paintings#search', as: 'painting_search'
 
   resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles, :painting_comments, :notices
+
+  resources :orders, param: :order_number do
+    collection do
+      get :cart
+      get :order_list
+      get :cancel_list
+      get :cart_cancel
+      get :empty_cart
+    end
+    member do
+      get :cancel
+      # patch :canceling
+      patch :request_cancel
+      get :pay
+      post :paying
+      get :complete
+    end
+  end
+  resources :line_items do
+    collection do
+      post :add_to_cart
+      post :direct
+    end
+  end
 
 end
 

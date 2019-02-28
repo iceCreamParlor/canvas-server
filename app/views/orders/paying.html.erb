@@ -1,0 +1,58 @@
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript">
+  var pay = function() {
+    IMP.init('<%= Rails.env.development? ? "imp84392177":"" %>');
+    IMP.request_pay(
+      {
+        pg : 'inicis', // version 1.1.0부터 지원.
+        pay_method : 'card',
+        merchant_uid: "merchant_" + "<%= @order.order_number %>",
+        name: "페이팔:결제테스트",
+        // amount: "<%= @payment_amount %>",
+        amount: 100,
+        buyer_email: "<%= @order.user.email %>",
+        buyer_name: "<%= @order.name %>",
+        buyer_tel: "<%= @order.phone %>",
+        buyer_addr: "<%= @order.address1 + " " + @order.address2 %>",
+        buyer_postcode: "<%= @order.zipcode %>",
+        m_redirect_url:
+          '<%= "#{request.protocol}#{request.host_with_port}" %>/orders/<%= @order.order_number %>/complete'
+      }, 
+      function(rsp) {
+        let imp_uid = rsp["imp_uid"];
+        let imp_success = "false";
+
+        if ( rsp.success ) {
+          console.log(rsp);
+          imp_success = "true";
+          var msg = '결제가 완료되었습니다.';
+          msg += '고유ID : ' + rsp.imp_uid;
+          msg += '상점 거래ID : ' + rsp.merchant_uid;
+          msg += '결제 금액 : ' + rsp.paid_amount;
+          msg += '카드 승인번호 : ' + rsp.apply_num;
+
+          $.ajax({
+            headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "<%= complete_order_path %>",
+            method: "GET",
+            data: {
+              imp_uid: imp_uid,
+              imp_success: imp_success
+            },
+            success: function(){
+              console.log("AJAX SUCCESS");
+              window.location.href="/";
+            }
+          })
+
+        } else {
+          var msg = '결제에 실패하였습니다.';
+          msg += '에러내용 : ' + rsp.error_msg;
+        }
+        alert(msg);
+      });
+
+      
+  }
+  document.addEventListener('DOMContentLoaded', pay);
+</script>

@@ -9,6 +9,8 @@ class Painting < ApplicationRecord
   has_many :auctions
   has_many :painting_comments
 
+  has_many :options, dependent: :nullify
+
   # scope :only_sale, -> {where(status: "sale")}
   
   enum :status => ["sale", "sold", "not_sale", "auction"]
@@ -30,6 +32,15 @@ class Painting < ApplicationRecord
     when "not_sale"
       "판매 안함"
     end
+  end
+
+  def generate_options
+    
+    Option.create painting: self, title: "10호", position: 0, price: 0
+    Option.create painting: self, title: "13호", position: 1, price: 10000
+    Option.create painting: self, title: "16호", position: 2, price: 20000
+    Option.create painting: self, title: "20호", position: 3, price: 30000
+    
   end
 
   def user_likes? user

@@ -1,0 +1,64 @@
+<div class="section">
+  <div class="container">
+    <%= form_for @order, url: paying_order_path(@order), method: :post do |f| %>
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <!-- Billing details -->
+          <h4 class="margin-bottom-20">Billing Details</h4>
+          
+            <div class="row">
+              <div class="col-12 col-sm-6">
+                <label class="required">이름</label>
+                <%= f.text_field :name, required: "true" %>
+                
+              </div>
+            </div>
+            
+            <div>
+              <label>주소</label>
+              <%= f.text_field :address1, required: "true" %>
+              <%= f.text_field :address2, required: "true" %>
+            </div>
+            <div>
+              <label class="required">우편번호</label>
+              <%= f.text_field :zipcode, required: "true" %>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-6">
+                <label class="required">전화번호</label>
+                <%= f.text_field :phone, required: "true" %>
+              </div>
+            </div>
+            <div>
+              <label>배송 시 요청사항(선택)</label>
+              <%= f.text_area :note %>
+            </div>
+            <input type="hidden" name="item_total">
+            <input type="hidden" name="shipment_total">
+            
+          <% end %>
+        </div>
+        
+        <div class="col-12 col-lg-4">
+          <div class="payment-detail-box">
+            <h5 class="margin-bottom-20">주문내역</h5>
+            <!-- <h6 class="heading-uppercase">Product:</h6> -->
+            <ul class="payment-detail-product-list">
+              <% if @order.line_items.present? %>
+                <% @order.line_items.each do |line_item| %>
+                  <li><%= line_item.painting.name %><span class="payment-detail-product-quantity"><%= line_item.quantity %></span><span><%= line_item.amount %></span></li>
+                <% end %>
+              
+            </ul>
+            <ul>
+              <li><h6 class="heading-uppercase">가격:</h6><span><%= @payment_amount[1] %></span></li>
+              <li><h6 class="heading-uppercase">배송비:</h6><span><%= @payment_amount[2] %></span></li>
+              <li><h6 class="heading-uppercase">총계:</h6><span class="text-dark"><%= @payment_amount[0] %></span></li>
+            </ul>
+          </div>
+          <button type="submit" class="button button-xl button-dark button-fullwidth">결제하기</button>
+        </div>
+      </div><!-- end row -->
+    <% end %>
+  </div><!-- end container -->
+</div>

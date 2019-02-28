@@ -114,6 +114,27 @@
         <div class="margin-top-20">
           <h6 class="heading-uppercase no-margin">Price</h6>
           <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
+          <div class="margin-top-20 margin-bottom-20">
+              <div class="row margin-top-70">
+                <select class="custom-select" id="option-select" onchange="optionSelected(event)">
+                  <% @painting.options.each do |option| %>
+                    <option value="<%= option.id %>"><%= option.title %></option>
+                  <% end %>
+                </select>
+                <select class="custom-select" id="quantity-select" onchange="quantitySelected(event)">
+                  <% 10.times do |index| %>
+                    <option value="<%= index+1 %>"><%= index+1 %></option>
+                  <% end %>
+                </select>
+                <%= form_for @line_item, url: add_to_cart_line_items_path, style: "display: none;" ,remote: true do |f| %>
+                  <%= f.hidden_field :painting_id, value:  @painting.id %>
+                  <%= f.hidden_field :option_id, value: @painting.options.first.id %>
+                  <%= f.hidden_field :quantity, value: "1" %>
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <% end %>
+                <button type="button" id="addToCart" class="btn btn-outline-dark margin-little float-right">장바구니</button>
+              </div>
+						</div>
         </div>  
       </div> 
     </div><!-- end row -->
@@ -181,6 +202,29 @@
     }
   })
 
+
+  $("#addToCart").on("click", function(){
+    if(window.confirm("장바구니에 담으시겠습니까?")){
+      elem = document.getElementById('new_line_item');
+      // $("#new_line_item").submit();
+      Rails.fire(elem, 'submit');
+    }
+    return false;
+  });
+
+  function optionSelected(event){
+    let sel = document.getElementById("option-select");
+    console.log(sel.options[sel.selectedIndex].value)
+    let value = sel.options[sel.selectedIndex].value;
+    $('#line_item_option_id').val(value);
+  }
+
+  function quantitySelected(event){
+    let sel = document.getElementById("quantity-select");
+    console.log(sel.options[sel.selectedIndex].value)
+    let value = sel.options[sel.selectedIndex].value;
+    $('#line_item_quantity').val(value);
+  }
 
   function followUser(){
     <% if user_signed_in? %>

@@ -2,11 +2,17 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_sns
   before_action :check_app, :app?
+  
+  helper_method :get_cart
 
   # ApplicationController 에 현재 접속된 클라이언트의 플랫폼을 분류하는 코드 작성
   # by heej (2019.02.02)
 
   protected
+
+  def get_cart
+    order = current_user.orders.carts.first_or_create
+  end
 
   def configure_permitted_parameters
     # FOR DEVISE
