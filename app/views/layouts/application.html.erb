@@ -104,6 +104,9 @@
 									<%= link_to '프로필', profile_path(current_user.id), class: "white" %>
 								</li>
 								<li>
+									<%= link_to '주문내역', order_list_orders_path, class: "white" %>
+								</li>
+								<li>
 									<%= link_to '장바구니', cart_orders_path, class: "white" %>
 								</li>
 							</ul>
