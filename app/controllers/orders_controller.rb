@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
+  
   include Iamport
   before_action :check_authorization
   before_action :load_cart, only: %i[cart pay]
-  before_action :load_order, only: %i[pay paying show complete cancel request_cancel]
+  before_action :load_order, only: %i[pay paying show complete cancel canceling request_cancel]
 
   def show
     redirect_to paintings_path if @order.cart? || @order.direct? || (@order.user != current_user)
@@ -74,9 +75,7 @@ class OrdersController < ApplicationController
   end
 
   def cancel
-    
-
-    
+    @line_item = LineItem.find(params[:line_item_id])
   end
   def request_cancel
     @order = Order.find(cancel_params[:id])
@@ -84,32 +83,25 @@ class OrdersController < ApplicationController
     redirect_to cancel_list_orders_path
   end
   # 부분 취소시 참고하면 좋을 꺼 같아요! 개꿀
-  # def canceling    
-  #   total_cancel_amount = 0
-  #   cancel_line_items = []
-  #   cancel_params[:line_items_attributes].each_pair do |k,v|
-  #     if v[:state] == "1"
-  #       line_item = @order.line_items.find(v[:id])
-  #       total_cancel_amount += line_item.amount
-  #       cancel_line_items << line_item
-  #     end
-  #   end
-  #   uid = @order.uid
-  #   code, message, response = iamport_cancel(uid, total_cancel_amount)
-  #   if code.zero? && response['cancel_amount'] == total_cancel_amount && response["imp_uid"] == @order.uid
-  #     cancel_line_items.each  do | cancel_line_item |
-  #       cancel_line_item.update(state: :cancel)
-  #     end
-  #     if total_cancel_amount + 3 == @order.payment_amount #shipment인데 나중에 따로 뭐가 필요할꺼같음. 배송 준비중도 바꿔야하고,,
-  #       @order.update(state: :cancel)
-  #     else
-  #       puts "이건 부분 취소인거"
-  #     end
-  #   else
-  #     puts message
-  #   end
-  #   redirect_to order_list_orders_path
-  # end
+  def canceling    
+    puts "!!!!!!!!!!!!!!@#!@#!@#"
+    line_item = LineItem.find(params[:line_item_id])
+    total_cancel_amount = params[:amount]
+    uid = @order.uid
+    code, message, response = iamport_cancel(uid, total_cancel_amount)
+    # if code.zero? && response['cancel_amount'] == total_cancel_amount && response["imp_uid"] == @order.uid
+    if code.zero? && response["imp_uid"] == @order.uid
+      line_item.update(state: :cancel)
+      if @order.line_items.not_cancels.empty?
+        @order.update(state: :cancel)
+        
+      end
+      
+    else
+      puts message
+    end
+    redirect_to order_list_orders_path
+  end
 
   private
 

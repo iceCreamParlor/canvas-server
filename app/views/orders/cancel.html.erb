@@ -1,0 +1,18 @@
+<div class="section">
+  <div class="container">
+    <form action="<%= canceling_order_path(@order) %>" id="order_cancel_form" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type="hidden" name="_method" value="patch" />
+      <input type="hidden" name="order_number" value="<%= @order.order_number %>">
+      <input type="hidden" name="line_item_id" value="<%= @line_item.id %>" />
+      <input type="hidden" name="amount" value="<%= @line_item.amount %>">
+      <!-- <input type="hidden" name="amount" value="<%= 10 %>"> -->
+    </form>
+  </div>
+</div>
+<script>
+  $(function(){
+    elem = document.getElementById('order_cancel_form');
+    elem.submit();
+  })
+</script>

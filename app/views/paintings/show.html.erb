@@ -204,12 +204,16 @@
 
 
   $("#addToCart").on("click", function(){
-    if(window.confirm("장바구니에 담으시겠습니까?")){
-      elem = document.getElementById('new_line_item');
-      // $("#new_line_item").submit();
-      Rails.fire(elem, 'submit');
-    }
-    return false;
+    <% if user_signed_in? %>
+      if(window.confirm("장바구니에 담으시겠습니까?")){
+        elem = document.getElementById('new_line_item');
+        // $("#new_line_item").submit();
+        Rails.fire(elem, 'submit');
+      }
+      return false;
+    <% else %>
+      window.location.href = "/users/sign_in";
+    <% end %>
   });
 
   function optionSelected(event){

@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     end
     member do
       get :cancel
-      # patch :canceling
+      patch :canceling
       patch :request_cancel
       get :pay
       post :paying

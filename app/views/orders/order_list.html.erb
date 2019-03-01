@@ -1,0 +1,65 @@
+<style>
+  .card-header-text{
+    font-weight: 600;
+  }
+</style>
+
+<div class="section">
+  <div class="container py-3">
+    <% if @orders.present? %>
+      <div class="card" style="margin-bottom: 10px;">
+        <% @orders.each do |order| %>
+          <div class="card-header">
+            <div class="row">
+              <div class="col-12 col-md-2">
+                <%= order.completed_at.strftime("%Y.%m.%d") %>
+              </div>
+              <div class="col-12 col-md-8">
+                <span class="card-header-text">총 주문 금액 : <%= order.payment_amount.to_i %>원</span>
+              </div>
+              <div class="col-12 col-md-2">
+                <span class="card-header-text"><%= order.order_number %></span>
+              </div>
+            </div>
+          </div>
+          <% order.line_items.each do |item| %>
+            <div class="row" style="display: flex;
+            align-items: center;">
+              <div class="col-md-2">
+                <center>
+                  <img src="<%= item.painting.thumbnail.url %>" class="w-100">
+                </center>
+              </div>
+              <div class="col-md-10 px-3">
+                <div class="card-block px-3">
+                  <div class="row">
+                    <div class="col-9">
+                      <h4 class="card-title"><%= item.painting.name %></h4>
+                      <p class="card-text">크기 : <%= item.option.title %></p>
+                      <p class="card-text">수량 : <%= item.quantity %></p>
+                      <p class="card-text">총 주문 금액 : <%= item.amount.to_i %>원</p>
+                    </div>
+                    <div class="col-2">
+                      <div class="float-right">
+                        <p class="card-text"><%= item.state_kr %></p>
+                        <% if item.state != "cancel" %>
+                          <p class="card-text"><%= order.shipment_state_kr %></p>
+                        <% end %>
+                        <% if order.shipment_state == 'ready' && item.state != "cancel" %>
+                          <div class="margin-top-20">
+                            <button type="submit" class="btn btn-outline-dark no-border-radius" onclick='window.location.href="<%= cancel_order_path(order) %>?line_item_id=<%=item.id %>"'>환불 요청</button>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

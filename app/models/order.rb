@@ -53,7 +53,7 @@ class Order < ApplicationRecord
       item_total += (item.amount.to_i)
     end
 
-    shipment_fee = line_items.present? ? 3000 : 0
+    shipment_fee = line_items.present? ? 100 : 0
 
     item_discount = 0
 
