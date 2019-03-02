@@ -84,9 +84,9 @@ class OrdersController < ApplicationController
   end
   # 부분 취소시 참고하면 좋을 꺼 같아요! 개꿀
   def canceling    
-    puts "!!!!!!!!!!!!!!@#!@#!@#"
-    line_item = LineItem.find(params[:line_item_id])
-    total_cancel_amount = params[:amount]
+    
+    line_item = LineItem.find(params[:line_item_id].to_i)
+    total_cancel_amount = params[:amount].to_i
     uid = @order.uid
     code, message, response = iamport_cancel(uid, total_cancel_amount)
     # if code.zero? && response['cancel_amount'] == total_cancel_amount && response["imp_uid"] == @order.uid
