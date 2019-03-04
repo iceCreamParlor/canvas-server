@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_20_123633) do
+ActiveRecord::Schema.define(version: 2019_03_04_040404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_123633) do
   create_table "auctions", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "painting_id"
-    t.datetime "expire_date", default: "2019-03-09 03:22:06"
+    t.datetime "expire_date", default: "2019-02-22 02:50:25"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["painting_id"], name: "index_auctions_on_painting_id"
@@ -136,6 +136,21 @@ ActiveRecord::Schema.define(version: 2019_02_20_123633) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "line_items", force: :cascade do |t|
+    t.integer "state"
+    t.bigint "order_id"
+    t.bigint "option_id"
+    t.bigint "painting_id"
+    t.integer "quantity"
+    t.integer "amount"
+    t.integer "shipment_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_line_items_on_option_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+    t.index ["painting_id"], name: "index_line_items_on_painting_id"
+  end
+
   create_table "magazine_comments", force: :cascade do |t|
     t.bigint "user_id"
     t.string "content"
@@ -177,6 +192,42 @@ ActiveRecord::Schema.define(version: 2019_02_20_123633) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "options", force: :cascade do |t|
+    t.bigint "painting_id"
+    t.string "title"
+    t.string "price"
+    t.string "integer"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["painting_id"], name: "index_options_on_painting_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "state"
+    t.integer "shipment_state"
+    t.string "uid"
+    t.string "order_number"
+    t.string "shipment_number"
+    t.integer "item_total"
+    t.integer "shipment_total"
+    t.bigint "user_id"
+    t.string "name"
+    t.string "phone"
+    t.string "zipcode"
+    t.string "address1"
+    t.string "address2"
+    t.decimal "payment_amount"
+    t.string "payment_info"
+    t.string "note"
+    t.datetime "completed_at"
+    t.integer "payment_method"
+    t.datetime "shipped_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "painting_comments", force: :cascade do |t|
     t.bigint "user_id"
     t.string "content"
@@ -198,7 +249,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_123633) do
     t.string "thumbnail"
     t.string "desc"
     t.bigint "user_id"
-    t.datetime "completed_date", default: "2019-02-23 03:22:06"
+    t.datetime "completed_date", default: "2019-01-30 15:42:29"
     t.integer "status", default: 0
     t.index ["category_id"], name: "index_paintings_on_category_id"
     t.index ["color_id"], name: "index_paintings_on_color_id"
@@ -209,6 +260,15 @@ ActiveRecord::Schema.define(version: 2019_02_20_123633) do
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "register_sellers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.json "images"
+    t.boolean "is_confirmed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_register_sellers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -239,13 +299,19 @@ ActiveRecord::Schema.define(version: 2019_02_20_123633) do
   add_foreign_key "identities", "users"
   add_foreign_key "likes", "paintings"
   add_foreign_key "likes", "users"
+  add_foreign_key "line_items", "options"
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "line_items", "paintings"
   add_foreign_key "magazine_comments", "magazines"
   add_foreign_key "magazine_comments", "users"
   add_foreign_key "magazines", "users"
   add_foreign_key "messages", "paintings"
+  add_foreign_key "options", "paintings"
+  add_foreign_key "orders", "users"
   add_foreign_key "painting_comments", "paintings"
   add_foreign_key "painting_comments", "users"
   add_foreign_key "paintings", "categories"
   add_foreign_key "paintings", "colors"
   add_foreign_key "paintings", "users"
+  add_foreign_key "register_sellers", "users"
 end

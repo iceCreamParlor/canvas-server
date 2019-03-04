@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  is_confirmed: false
+  images: 
+
+two:
+  user: two
+  is_confirmed: false
+  images: 
