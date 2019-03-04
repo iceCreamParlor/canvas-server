@@ -16,10 +16,23 @@ class PaintingsController < ApplicationController
 
     @is_filtering = false
     # 필터링을 하는 경우
+    if params[:status].present?
+      if params[:status] == "all"
+        @paintings = Painting.all
+      else
+        @paintings = Painting.where(status: params[:status])
+      end
+      @is_filtering = true
+    end
+
     if params[:category_id].present?
       # 카테고리 필터링 조건이 있을 경우
       @is_filtering = true
-      @paintings = Painting.where(category_id: params[:category_id])
+      if !@paintings.nil?
+        @paintings = @paintings.where(category_id: params[:category_id])
+      else
+        @paintings = Painting.where(category_id: params[:category_id])
+      end
     end
 
     if params[:price_id].present?
@@ -29,7 +42,7 @@ class PaintingsController < ApplicationController
       # cheap_price : 가격 필터링 조건의 하한선(10만원 - 20만원) => 10만원
       cheap_price = @prices.index(price) == 0 ? nil : @prices[@prices.index(price)-1]
       
-      if @paintings.present? && cheap_price.present?
+      if !@paintings.nil? && cheap_price.present?
         # 가격 외의 다른 필터링 조건이 있을 경우, 
         # 다른 필터링 조건과 가격 필터링 조건을 교집합
         @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
@@ -37,10 +50,6 @@ class PaintingsController < ApplicationController
       elsif cheap_price.present? 
         # 가격 필터링 조건밖에 없을 경우
         @paintings = Painting.where("price <= ? AND price > ?", price.value, cheap_price.value)
-
-      # elsif @paintings.present? 
-      #   # 
-      #   @paintings = @paintings.where("price <= ?", price.value)
 
       else
         # 기타 예외 사항 처리
@@ -54,7 +63,7 @@ class PaintingsController < ApplicationController
 
     if params[:color_id].present?
       # 색깔 필터링 조건이 있을 경우
-      if @paintings.present?
+      if !@paintings.nil?
         # 색 필터링 외에 다른 필터링 조건이 있을 경우,
         # 색 필터링 조건과 교집합한다.
         @paintings = @paintings.where(color_id: params[:color_id])
@@ -77,7 +86,8 @@ class PaintingsController < ApplicationController
     
     # 필터링을 하지 않는 경우
     if !@is_filtering
-      @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+      # @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
+      @paintings = Painting.where(status: "sale").paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
     end
 
     respond_to do |format|
@@ -216,6 +226,6 @@ class PaintingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def painting_params
-      params.require(:painting).permit(:name, :category_id, :color_id, :price, :desc, :thumbnail, {images: []})
+      params.require(:painting).permit(:name, :category_id, :color_id, :price, :desc, :status, :thumbnail, {images: []})
     end
 end

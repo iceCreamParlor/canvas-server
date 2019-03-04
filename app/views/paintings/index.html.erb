@@ -9,12 +9,21 @@
       <!-- Products -->
       <div class="col-12 col-lg-9 order-lg-2">
         <div class="row align-items-center">
-          <div class="col-7 text-left">
-            <%= link_to new_painting_path do %>
-              <button type="button" class="btn btn-outline-dark">작품 등록하기</button>
-            <% end %>
+          <div class="col-5 text-left">
+            <input type="hidden" id="painting_status" value="sale">
+            <select class="custom-select" id="sale-category" onchange="filterByStatus(event)">
+              
+              <% Painting.options_for_status.each do |option| %>
+                <option value="<%= option[1] %>"><%= option[0] %></option>
+              <% end %>
+              <option value="all">전체</option>
+            </select>
+            
           </div>
+            
+          <div class="col-2"></div>
           <div class="col-5 text-right">
+            
             <form id="painting-search" action="<%= painting_search_path %>">
               <div class="input-group">
                 <input type="hidden" id="search_category" name="search_category" value="title">
@@ -32,17 +41,24 @@
               </div>
               <span id="search-category-label">작품명</span>
             </form>
-            <!-- <select id="filter-select" onchange="filterChanged(this)" class="custom-select">
-              <option value="0" selected>최신순</option>
-              <option value="1">좋아요 순</option>
-              <option value="2">낮은 가격 순</option>
-              <option value="3">높은 가격 순</option>
-              <option value="4">Sort by Price: low to high</option>
-            </select> -->
+
+            
           </div>
         </div>
-
         
+        <% if user_signed_in? %>
+          <%= link_to new_painting_path do %>
+            <button type="button" class="btn btn-outline-dark float-right margin-top-20">작품 등록하기</button>
+          <% end %>
+        <% end %>
+          
+        <!-- <div class="form-check margin-top-20" style="width: 150px;">
+          <input class="form-check-input float-right" checked="true" type="checkbox"  id="is-for-sale" onchange="filterByStatus(event)">
+          <input type="hidden" id="for_sale" value="true">
+          <label class="form-check-label" for="is-for-sale">
+            판매중
+          </label>
+        </div> -->
         
         <div id="paintings-container" class="row product-wrapper product-hover-style-2 margin-top-50">
           
@@ -55,17 +71,6 @@
           </div>
 
         </div>
-        
-        <!-- Pagination -->
-        <!-- <nav>
-          <ul class="pagination justify-content-center margin-top-70">
-            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-          </ul>
-        </nav> -->
       </div>
       
       <!-- Sidebar -->
@@ -211,16 +216,6 @@
           </div>
 
         </div><!-- end row(inner) -->
-        <!-- Pagination -->
-        <!-- <nav>
-          <ul class="pagination justify-content-center margin-top-70">
-            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-          </ul>
-        </nav> -->
       </div>
     </div><!-- end row -->
   </div><!-- end container -->
@@ -229,6 +224,9 @@
 <script>
 var sentRequest = true;
 var isFinished = false;
+var isStatusChanged = false;
+var isFilterRemoved = false;
+var isFiltered = false;
 
 $(function(){
 
@@ -279,11 +277,19 @@ function initLoad(){
     </div>`);
   }
   $('.next_page').attr('href', '/paintings?page=1');
-
-  if(document.getElementsByClassName('selected').length == 0){
-    makeAjaxLoad(false);
-
-  } else {
+  
+  if(document.getElementsByClassName('selected').length == 0 && !isStatusChanged){
+    // 선택된 필터가 없고, status 칸이 변경되지 않았을 때
+    // 다른 필터들이 선택되었다가, 모두 선택 해제되었을 때 (버그)
+    if(isFilterRemoved){
+      makeAjaxFilter(true);    
+    } else {
+      makeAjaxLoad(false);
+    }
+    
+    
+  }else {
+    // 필터가 선택되거나, status 가 변경되었을 때
     makeAjaxFilter(true);  
   }
 }
@@ -294,10 +300,21 @@ function filterByCategory(e){
   let categoryId = parseInt(element.dataset.category);
   isFinished = false;
   toggleSelected(element, '.category-option');
-  
+  countSelectedFilter();
   initLoad();
   
   
+}
+
+function filterByStatus(e){
+  let sel = document.getElementById("sale-category");
+  console.log(sel.options[sel.selectedIndex].value)
+  let value = sel.options[sel.selectedIndex].value;
+  $('#painting_status').val(value);
+  isStatusChanged = true;
+  isFinished = false;
+  initLoad();
+  isStatusChanged = false;
 }
 
 function filterByPrice(element){
@@ -314,10 +331,13 @@ function filterByPrice(element){
   if(selected){
     
     element.classList.remove('selected');  
+
   } else {
     
     element.classList.add('selected');
+
   }
+  countSelectedFilter();
 
   initLoad();
 
@@ -329,12 +349,13 @@ function filterByColor(e){
   let colorId = parseInt(element.dataset.color);
   isFinished = false;
   toggleSelected(element, '.color-option');
+  countSelectedFilter();
   initLoad();
 }
 
 function toggleSelected(element, className){
   if(element.classList.contains('selected')){
-    // $(className).removeClass('selected');
+    
     element.classList.remove('selected');  
   } else {
     // $(className).removeClass('selected');
@@ -345,8 +366,11 @@ function toggleSelected(element, className){
 function makeAjaxLoad(needRefresh){
   sentRequest = false;
   let filterType = $('#filter-select').val();
-  var morePostUrl = $('.next_page').attr('href');
   
+  let statusUrl = "&status=" + $('#painting_status').val();
+  var morePostUrl = $('.next_page').attr('href') + statusUrl;
+  console.log(morePostUrl);
+
   if(needRefresh){
     morePostUrl += '&refresh=true';
   } else {
@@ -368,6 +392,7 @@ function makeAjaxFilter(needRefresh){
   sentRequest = false;
   let filterType = $('#filter-select').val();
   let morePostUrl = $('.next_page').attr('href');
+  let statusUrl = "&status=" + $('#painting_status').val();
   let selectedArr = document.getElementsByClassName('selected');
   // var queryString = '?';
   var url = '';
@@ -383,9 +408,9 @@ function makeAjaxFilter(needRefresh){
   } else {
     morePostUrl = morePostUrl.replace('&refresh=true', '');
   }
-  
+  console.log(morePostUrl + statusUrl)
   $.ajax({
-    url: morePostUrl,
+    url: morePostUrl + statusUrl,
     method: 'GET',
     dataType: "script",
     success: function(){
@@ -417,6 +442,13 @@ function searchCategoryClicked(element){
       $('#search_category').val('title');
       $('#search-category-label').text('작품명');
       break;
+  }
+}
+function countSelectedFilter(){
+  if(document.getElementsByClassName('selected').length==0){
+    isFilterRemoved = true;
+  } else {
+    isFilterRemoved = false;
   }
 }
 </script>
