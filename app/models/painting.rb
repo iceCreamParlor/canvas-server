@@ -15,7 +15,7 @@ class Painting < ApplicationRecord
   
   enum :status => ["sale", "sold", "not_sale", "auction"]
 
-  scope :exclude_images, ->  { select( Painting.attribute_names - ['images'] ) }
+  scope :exclude_images, ->  { select( Painting.attribute_names - ['images'] ) } 
 
   def self.options_for_status
     Painting.statuses.map{ |p| [ I18n.t("painting.#{p[0]}"), p[0]] }
