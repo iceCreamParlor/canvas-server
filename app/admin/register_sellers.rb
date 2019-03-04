@@ -1,4 +1,4 @@
-ActiveAdmin.register Painting do
+ActiveAdmin.register RegisterSeller do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -11,23 +11,20 @@ ActiveAdmin.register Painting do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
-  permit_params :name, :price, :category_id, :color_id, :thumbnail, :desc, :completed_date, { images: [] }
+  permit_params :user_id, { images: [] }
 
   form(html: { multipart: true }) do |f|
     f.inputs do
-      f.input :name
-      f.input :price
-      f.input :category, :as => :select, :collection => Category.all.collect {|category| [category.name, category.id] }
-      f.input :color, :as => :select, :collection => Color.all.collect {|color| [color.name, color.id] }
-      f.input :desc
-      f.input :completed_date
-      f.label :thumbnail
-      f.file_field :thumbnail
+      f.input :user, :as => :select, :collection => User.all.collect {|user| [user.nickname, user.id] }
       f.label :images
       f.file_field :images, multiple: true
     end
     f.actions
   end
 
+  show do
+    default_main_content
+    # renders app/views/admin/posts/_some_partial.html.erb
+    render 'seller_images', { register_seller: register_seller }
+  end
 end

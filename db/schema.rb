@@ -265,7 +265,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_040404) do
   create_table "register_sellers", force: :cascade do |t|
     t.bigint "user_id"
     t.json "images"
-    t.boolean "is_confirmed"
+    t.boolean "is_confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_register_sellers_on_user_id"

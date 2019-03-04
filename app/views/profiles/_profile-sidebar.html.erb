@@ -16,7 +16,11 @@
               <% if !@is_sns %>
                 <li>
                   <%= link_to "비밀번호 변경", edit_user_registration_path(), class: "big-button link twitter" %>
-                 
+                </li>
+              <% end %>
+              <% if current_user.user_type != "seller" %>
+                <li>
+                  <%= link_to "작가 등록", register_sellers_profiles_path, class: "big-button link twitter" %>
                 </li>
               <% end %>
             </ul>
