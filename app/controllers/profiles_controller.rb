@@ -90,6 +90,15 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def cancel_seller
+    user = User.find(params[:id])
+
+    @is_confirmed = false
+    if user.update(user_type: "normal")
+      @is_confirmed = true
+    end
+  end
+
   private
     def set_user
       @user = User.find(params[:id])

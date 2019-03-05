@@ -11,11 +11,14 @@ ActiveAdmin.register User do
     column :nickname
     # column :instagram
     column() {|user| link_to "#{ user.instagram }", user.instagram if user.instagram.present? }
+    column("작가승인") { |user| 
+      if user.user_type != "seller"
+        link_to "승인", accept_seller_profile_path(user), remote: "true" if user.user_type != "seller"
+      else
+        link_to "취소", cancel_seller_profile_path(user), remote: "true" if user.user_type == "seller"
+      end
+    }
     
-    actions do |user|
-      link_to "작가승인", accept_seller_profile_path(user), remote: "true"
-    end
-
 end
 
 

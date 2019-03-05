@@ -27,10 +27,10 @@ Rails.application.routes.draw do
     collection do
       get :register_sellers
       post :register_sellers, to: "profiles#create_register_sellers", as: "create_register_sellers"
-      
     end
     member do
       get :accept_seller, to: "profiles#accept_seller", as: "accept_seller"
+      get :cancel_seller, to: "profiles#cancel_seller", as: "cancel_seller"
     end
   end
 

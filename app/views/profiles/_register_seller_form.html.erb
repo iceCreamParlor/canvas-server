@@ -8,10 +8,10 @@
 <script>
   $("#submit_btn").on("click", function(){
     let fileCount = $("#register_seller_images").get(0).files.length;
-    if(fileCount <= 3){
+    if(fileCount < 3){
       alert("작품을 세 개 이상 등록해 주세요 !");
     } else {
-      $("register_seller_form").submit();
+      $("#register_seller_form").submit();
     }
   })
 </script>
