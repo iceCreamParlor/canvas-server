@@ -1,11 +1,15 @@
 ActiveAdmin.register User do
 
-  member_action :import, :method=>:post do
-    
-  end
+  filter :user_type, as: :select, collection: User.user_types
+  filter :email
+  filter :nickname
+  filter :instagram
 
   permit_params :email, :nickname, :image, :desc, :instagram, :user_type
   index :as => :table do
+
+    
+
     column :email
     column :user_type
     column :nickname
