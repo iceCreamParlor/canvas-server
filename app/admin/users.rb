@@ -1,15 +1,22 @@
 ActiveAdmin.register User do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-permit_params :email, :nickname, :image, :desc, :instagram, :user_type
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+
+  member_action :import, :method=>:post do
+    
+  end
+
+  permit_params :email, :nickname, :image, :desc, :instagram, :user_type
+  index :as => :table do
+    column :email
+    column :user_type
+    column :nickname
+    # column :instagram
+    column() {|user| link_to "#{ user.instagram }", user.instagram if user.instagram.present? }
+    
+    actions do |user|
+      link_to "작가승인", accept_seller_profile_path(user), remote: "true"
+    end
+
+end
+
 
 end

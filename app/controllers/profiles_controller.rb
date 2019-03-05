@@ -80,11 +80,12 @@ class ProfilesController < ApplicationController
   end
 
   def accept_seller
-    register_seller = RegisterSeller.find(params[:id])
-    user = register_seller.user
+    user = User.find(params[:id])
+    register_seller = RegisterSeller.where(user_id: user.id)
+
     @is_confirmed = false
     if user.update(user_type: "seller")
-      register_seller.update(is_confirmed: true)
+      register_seller&.update(is_confirmed: true)
       @is_confirmed = true
     end
   end
