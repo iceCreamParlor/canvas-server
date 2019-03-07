@@ -4920,7 +4920,9 @@ p.now-yours-text{
 	margin-bottom: 5px;
 	font-size: 60px;
 	line-height: 1;
+	
 }
+
 
 .header-link.is-large {
 	margin-top: -30px;
@@ -6127,7 +6129,7 @@ p.now-yours-text{
 	}
 	.link {
 		display: inline-block;
-		font-size: 30px;
+		font-size: 25px;
 	}
 	.link.contact-email {
 		margin-top: 16px;
@@ -6368,8 +6370,8 @@ p.now-yours-text{
 		padding-top: 50px;
 	}
 	.sticker-we-provide{
-		width: 100px;
-		top: -22%;
+		width: 80px;
+		top: -7%;
 		left: -2%;
 	}
 	.postit-sticker-top{
