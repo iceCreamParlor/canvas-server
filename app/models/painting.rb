@@ -5,9 +5,9 @@ class Painting < ApplicationRecord
   belongs_to :category
 
   belongs_to :user
-  has_many :likes
-  has_many :auctions
-  has_many :painting_comments
+  has_many :likes, dependent: :destroy
+  has_many :auctions, dependent: :destroy
+  has_many :painting_comments, dependent: :destroy
 
   # scope :only_sale, -> {where(status: "sale")}
   

@@ -1,3 +1,3 @@
 class Color < ApplicationRecord
-  has_many :paintings
+  has_many :paintings, dependent: :nullify
 end
