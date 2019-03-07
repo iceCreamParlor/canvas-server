@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1425.775 976.575">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000fff;
+      }
+
+      .cls-2 {
+        filter: url(#맨위_파랑_아래로_내려옴);
+      }
+    </style>
+    <filter id="맨위_파랑_아래로_내려옴" x="0" y="0" width="1425.775" height="976.575" filterUnits="userSpaceOnUse">
+      <feOffset dx="15" dy="30" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.22"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="맨위_파랑_아래로_내려옴-2" data-name="맨위 파랑 아래로 내려옴" class="cls-1" d="M1151.61,1182.515c23.856,37.953,44.46,27.109,23.856,70.485s-47.713,75.906-23.856,103.016,24.122,39.034,4.737,62.843,24.515,30.089,12.41,47.544,1.287,29.5,6.709,38.173,1260.59,73.738,1260.59,73.738-38-18.157,5.229-78.32-3.5-87.032-18.107-120.619,83.58-48.713,73.956-96.836S1151.61,1182.515,1151.61,1182.515Z" transform="translate(-368.25 -1554.48) rotate(25)"/>
+  </g>
+</svg>
