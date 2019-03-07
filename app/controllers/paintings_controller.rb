@@ -2,7 +2,8 @@ class PaintingsController < ApplicationController
   before_action :set_options, only: [:new, :edit]
   before_action :set_painting, only: [:show, :edit, :update, :destroy]
   before_action :recent_paintings , only: [:index, :show, :new, :edit]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_authority, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /paintings
   # GET /paintings.json
@@ -223,7 +224,14 @@ class PaintingsController < ApplicationController
     def set_painting
       @painting = Painting.find(params[:id])
     end
-
+    def check_authority
+      if user_signed_in? && current_user.user_type == "seller"
+        return true
+      else
+        flash[:notice] = "작가 권한이 없습니다."
+        redirect_to paintings_path
+      end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def painting_params
       params.require(:painting).permit(:name, :category_id, :color_id, :price, :desc, :status, :thumbnail, {images: []})
