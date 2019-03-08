@@ -223,7 +223,6 @@
     currentOptionPrice = parseInt(sel.options[sel.selectedIndex].dataset.price);
     currentPrice = (paintingPrice + currentOptionPrice) * currentQuantity;
     $("#total-price").text("₩" + currentPrice);
-    console.log(currentPrice);
   }
 
   $(window).on('load', function() {
