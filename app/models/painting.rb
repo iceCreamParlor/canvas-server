@@ -11,9 +11,10 @@ class Painting < ApplicationRecord
 
   has_many :options, dependent: :nullify
 
-  # scope :only_sale, -> {where(status: "sale")}
+  scope :only_commerce, -> {where(status: "commerce")}
+  scope :except_commerce, -> {where.not(status: "commerce")}
   
-  enum :status => ["sale", "sold", "not_sale", "auction"]
+  enum :status => ["sale", "sold", "not_sale", "auction", "commerce"]
 
   scope :exclude_images, ->  { select( Painting.attribute_names - ['images'] ) } 
 

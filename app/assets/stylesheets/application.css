@@ -50,6 +50,10 @@ a.white{
   padding-bottom: 0px !important;
 }
 
+.margin-left-20{
+  margin-left: 20px;
+}
+
 .btn.btn-outline-dark.filled{
   background-color: black;
   color: white;

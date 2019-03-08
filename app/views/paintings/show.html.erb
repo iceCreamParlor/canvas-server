@@ -116,19 +116,18 @@
           <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
           <div class="margin-top-70 margin-bottom-20">
               
-              <div class="row" style="display: flex; align-items: center;">
+              <div style="display: flex; align-items: center;">
                 <p style="margin-bottom: 0px;">옵션</p>
-                <select class="custom-select" id="option-select" onchange="optionSelected(event)">
+                <select class="custom-select margin-left-20" id="option-select" onchange="optionSelected(event)">
                   <% @painting.options.each do |option| %>
                     <option data-price="<%= option.price %>" value="<%= option.id %>"><%= option.title %></option>
                   <% end %>
                 </select>
               </div>
               
-              
-              <div class="row margin-top-50" style="display: flex; align-items: center;">
+              <div class="margin-top-20" style="display: flex; align-items: center;">
                 <p style="margin-bottom: 0px;">수량</p>  
-                <select class="custom-select" id="quantity-select" onchange="quantitySelected(event)">
+                <select class="custom-select margin-left-20" id="quantity-select" onchange="quantitySelected(event)">
                   <% 10.times do |index| %>
                     <option value="<%= index+1 %>"><%= index+1 %></option>
                   <% end %>
@@ -143,8 +142,6 @@
               
               <p id="total-price" class="float-right"></p>
               <hr class="margin-top-50">
-              
-              
 
               <div class="margin-top-50">
                 <button type="button" id="addToCart" class="btn btn-outline-dark margin-little float-right">장바구니</button>
