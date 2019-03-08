@@ -17,6 +17,7 @@ class PaintingsController < ApplicationController
 
     if params[:only_commerce]
       @paintings = Painting.only_commerce
+      @only_commerce = true
     else
       @paintings = Painting.except_commerce
     end
@@ -103,6 +104,9 @@ class PaintingsController < ApplicationController
       @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
       
     end
+
+    puts "!!!!"
+    puts @paintings.count
 
     respond_to do |format|
       format.html
