@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  enum user_type: ["normal", "admin"]
+  enum user_type: ["normal", "admin", "seller"]
 
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable, :omniauthable
@@ -17,8 +17,8 @@ class User < ApplicationRecord
 
 
   # 보낸 메세지, 받은 메세지 구성하는 부분
-  has_many :sent_messages, class_name: "Message", foreign_key: "sender_id"
-  has_many :arrived_messages, class_name: "Message", foreign_key: "receiver_id"
+  has_many :sent_messages, class_name: "Message", foreign_key: "sender_id", dependent: :destroy
+  has_many :arrived_messages, class_name: "Message", foreign_key: "receiver_id", dependent: :destroy
 
   has_many :orders, dependent: :nullify
 

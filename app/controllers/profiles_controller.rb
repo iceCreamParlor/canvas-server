@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :authenticate_user!, only: [:index, :follow]
+  before_action :authenticate_user!, only: [:index, :follow, :register_sellers, :create_register_sellers]
 
   def index
   end
@@ -24,15 +24,6 @@ class ProfilesController < ApplicationController
     end
 
     @is_following = (user_signed_in? && current_user.is_following(@user)) ? true : false
-
-    # if user_signed_in?
-    #   if current_user.is_following(@user)
-    #     @is_following = true
-    #   end
-    #   if current_user.id == @user.id
-    #     @is_following = false
-    #   end
-    # end
 
     @liked_paintings = Painting.where(id: @user.likes.pluck(:painting_id)).last(10).reverse
     @follow_members = @user.follow_members
@@ -71,8 +62,48 @@ class ProfilesController < ApplicationController
     @following_members_count = current_user.following_members.count
   end
 
+  def register_sellers
+    @register_seller = RegisterSeller.new
+  end
+  
+  def create_register_sellers
+    register_seller = RegisterSeller.new(register_seller_params)
+    register_seller.user_id = current_user.id
+
+    if register_seller.save
+      flash[:notice] = "작가 신청을 완료하였습니다."
+      redirect_to profiles_path
+    else
+      flash[:notice] = "작가 신청에 실패하였습니다."
+      redirect_to profiles_path
+    end
+  end
+
+  def accept_seller
+    user = User.find(params[:id])
+    register_seller = RegisterSeller.where(user_id: user.id)
+
+    @is_confirmed = false
+    if user.update(user_type: "seller")
+      register_seller&.update(is_confirmed: true)
+      @is_confirmed = true
+    end
+  end
+
+  def cancel_seller
+    user = User.find(params[:id])
+
+    @is_confirmed = false
+    if user.update(user_type: "normal")
+      @is_confirmed = true
+    end
+  end
+
   private
     def set_user
       @user = User.find(params[:id])
+    end
+    def register_seller_params
+      params.require(:register_seller).permit({ images: [] })
     end
 end

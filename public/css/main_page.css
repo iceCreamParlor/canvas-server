@@ -3797,6 +3797,13 @@ blockquote {
 	font-weight: 400;
 }
 
+.sticker-we-provide{
+	position: absolute;
+	width: 230px;
+	top: -20%;
+	left: -2%;
+}
+
 .nav-logo {
 	padding-top: 43px;
 	padding-bottom: 40px;
@@ -3989,12 +3996,54 @@ blockquote {
 	max-width: none;
 }
 
+.now-yours{
+	margin-top: 300px;
+	height: 700px;
+}
+
+.white-rotate{
+	position: absolute; 
+	left: -20%; 
+	background-color: white; 
+	height: 900px; 
+	width: 110%; 
+	transform: rotate(-10deg);
+	transform-origin: top;
+}
+.white-rotate-inner{
+	padding-top: 150px;
+}
+
+.green_sticker_we_provide_top{
+	position: absolute;
+	width: 150px;
+	z-index: 900;
+	left: 70%;
+	top: -180px;
+}
+
+.green_sticker_we_provide_bottom{
+	position: absolute;
+	width: 120px;
+	z-index: 900;
+	left: 10%;
+	top: -30px;
+}
+
 .postit-sticker-top{
 	position: absolute; 
-	width: 200px; 
+	width: 160px; 
 	z-index: 901; 
-	left: 50%;
-	top: 7%;
+	left: 80%;
+	top: 10%;
+}
+
+.postit-sticker-bottom{
+	position: absolute; 
+	width: 160px; 
+	z-index: 901; 
+	left: 80%;
+	top: 72%;
 }
 
 .green-square {
@@ -4077,6 +4126,12 @@ blockquote {
 .header.header-medium.color-white.contact-title {
 	display: block;
 	margin-top: -20px;
+}
+
+p.now-yours-text{
+	color: #005cef;
+	font-size: 40px;
+	font-weight: 600;
 }
 
 .header.header-light {
@@ -4267,6 +4322,22 @@ blockquote {
 
 .project-text.bg-white {
 	background-color: #fff;
+}
+
+.margin-top-20{
+	margin-top: 20px;
+}
+
+.margin-top-50{
+	margin-top: 50px;
+}
+
+.margin-top-now-yours{
+	margin-top: 100px;
+}
+
+.margin-top-100{
+	margin-top: 100px;
 }
 
 .project-img {
@@ -4849,7 +4920,9 @@ blockquote {
 	margin-bottom: 5px;
 	font-size: 60px;
 	line-height: 1;
+	
 }
+
 
 .header-link.is-large {
 	margin-top: -30px;
@@ -5393,9 +5466,36 @@ blockquote {
 	.square {
 		width: 800px;
 	}
+	.now-yours{
+		margin-top: 300px;
+		height: 1000px;
+	}
+	
+	.white-rotate{
+		position: absolute; 
+		left: -30%; 
+		background-color: white; 
+		height: 900px; 
+		width: 110%; 
+		transform: rotate(-10deg);
+		transform-origin: top;
+	}
+	.white-rotate-inner{
+		padding-top: 150px;
+	}
+
+	.sticker-we-provide{
+		width: 230px;
+		top: -20%;
+		left: -2%;
+	}
 	.postit-sticker-top{
 		width: 200px;
 		top: 5%;
+	}
+	.postit-sticker-bottom{
+		width: 200px; 
+		top: 7%;
 	}
 	.section {
 		padding-top: 100px;
@@ -5769,8 +5869,28 @@ blockquote {
 	.square {
 		width: 1000px;
 	}
+	.now-yours{
+		margin-top: 300px;
+		height: 1000px;
+	}
+	
+	.white-rotate{
+		position: absolute; 
+		left: -30%; 
+		background-color: white; 
+		height: 900px; 
+		width: 110%; 
+		transform: rotate(-10deg);
+		transform-origin: top;
+	}
+	.white-rotate-inner{
+		padding-top: 150px;
+	}
 	.postit-sticker-top{
 		width: 170px;
+	}
+	.postit-sticker-bottom{
+		width: 200px; 
 	}
 	.section {
 		overflow: hidden;
@@ -6009,7 +6129,7 @@ blockquote {
 	}
 	.link {
 		display: inline-block;
-		font-size: 30px;
+		font-size: 25px;
 	}
 	.link.contact-email {
 		margin-top: 16px;
@@ -6212,10 +6332,57 @@ blockquote {
 	.square {
 		width: 300px;
 	}
+	.margin-top-now-yours{
+		margin-top: 50px;
+	}
+
+	.green_sticker_we_provide_top{
+		width: 70px;
+		left: 50%;
+		top: -70px;
+	}
+	
+	.green_sticker_we_provide_bottom{
+		width: 50px;
+		left: 5%;
+		top: -30px;
+	}
+
+	p.now-yours-text{
+		font-size: 25px;
+	}
+
+	.now-yours{
+		margin-top: 100px;
+		height: 250px;
+	}
+	
+	.white-rotate{
+		position: absolute; 
+		left: -30%; 
+		background-color: white; 
+		height: 400px; 
+		width: 110%; 
+		transform: rotate(-10deg);
+		transform-origin: top;
+	}
+	.white-rotate-inner{
+		padding-top: 50px;
+	}
+	.sticker-we-provide{
+		width: 80px;
+		top: -7%;
+		left: -2%;
+	}
 	.postit-sticker-top{
 		width: 100px;
-		left: 40%;
+		left: 70%;
 		top: 1%;
+	}
+	.postit-sticker-bottom{
+		width: 100px;
+		left: 70%;
+		top: 71%;
 	}
 	.green-square {
 		width: 200px;

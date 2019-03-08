@@ -567,8 +567,9 @@
          </div>
          <section id="top" class="hero">
             <!-- <img src="/img/5b13f381541a8480ba1420db_square.svg" data-w-id="d741eaf0-fd60-540e-20f9-e70bfe035d5c" alt="" class="square"/> -->
-            <img src="/img/blue_sticker.svg" data-w-id="d741eaf0-fd60-540e-20f9-e70bfe035d5c" alt="" class="square"/>
-            <img src="/img/green_sticker.svg" data-w-id="z741eaf0-fd60-540e-20f9-e70bfe035d5c" alt="" class="green-square"/>
+            <img src="/img/blue_sticker_top_right.svg" data-w-id="d741eaf0-fd60-540e-20f9-e70bfe035d5c" alt="" class="square"/>
+            <!-- <img src="/img/green_sticker.svg" data-w-id="z741eaf0-fd60-540e-20f9-e70bfe035d5c" alt="" class="green-square"/> -->
+            <img src="/img/green_sticker_top_left.svg" alt="" class="green-square"/>
             <div class="wrapper">
                
                <h1 class="hero-title hero-title-main" style="z-index: 900;">
@@ -581,7 +582,10 @@
          </section>
          
          <div id="about" class="section section-blue" style="background-color: #fff; padding-top: 8%;" >
-            <img class="postit-sticker-top" src="/img/green_sticker.svg" /> 
+            <!-- <img class="postit-sticker-top" src="/img/green_sticker.svg" />  -->
+            <img class="postit-sticker-top" src="/img/blue_sticker_middle_top.svg" /> 
+            <img class="postit-sticker-bottom" src="/img/blue_sticker_middle_bottom.svg" /> 
+            
             <div class="w-clearfix" style="background-color: #F29737; padding: 20px; width: 88%;">
                <div class="wrapper">
                   <h3 class="header color-white header-light">
@@ -619,7 +623,12 @@
          </div>
          <div class="section" style="background-color: #0021F5;">
             <div class="wrapper w-clearfix">
-               <h2 class="header header-medium color-white">We Provide</h2>
+               <div class="sticker-we-provide">
+                  <img src="/img/green_sticker_we_provide.svg" />    
+               </div>
+               <div class="wrapper">
+                  <h2 class="header header-medium color-white">We Provide</h2>
+               </div>
                <div class="hr hr-white"></div>
             </div>
             <div class="w-dyn-list">
@@ -720,8 +729,7 @@
                                  <div data-autoplay="true" data-loop="true" data-wf-ignore="true" data-video-urls="" class="project-video w-background-video w-background-video-atom">
                                     <video autoplay="" loop="" muted="" playsinline="" data-wf-ignore="true"></video>
                                     <div class="html-embed w-embed">
-                                       <video width="1500" height="auto" autoplay loop playsinline muted poster="/img/5c0f61febbf5103eba351b3c_Studio_Thumnail.jpg">
-                                          
+                                       <video width="1500" height="auto">
                                        </video>
                                     </div>
                                  </div>
@@ -759,8 +767,7 @@
                                  <div data-autoplay="true" data-loop="true" data-wf-ignore="true" data-video-urls="" class="project-video w-background-video w-background-video-atom">
                                     <video autoplay="" loop="" muted="" playsinline="" data-wf-ignore="true"></video>
                                     <div class="html-embed w-embed">
-                                       <video width="1500" height="auto" autoplay loop playsinline muted poster="/img/5c0f70421b522b84f1de3426_wiGroup---Manifesto-Thumbnail_web.jpg">
-                                          
+                                       <video width="1500" height="auto">
                                        </video>
                                     </div>
                                  </div>
@@ -782,6 +789,31 @@
                         </div>
                      </div>
                   </div>
+                  <% end %>
+               </div>
+            </div>
+            
+            <div class="now-yours">
+               <div style="position: relative;">
+                  <img class="green_sticker_we_provide_top" src="/img/green_sticker_we_provide_top.svg" />    
+                  <img class="green_sticker_we_provide_bottom" src="/img/green_sticker_we_provide_bottom.svg" />    
+               </div>
+               <div class="white-rotate"></div>
+               <div class="wrapper white-rotate-inner" class="wrapper">
+                  <center>
+                     <p class="now-yours-text">Now Yours.</p>
+                  </center>
+                  <div class="margin-top-now-yours w-col w-col-6 w-col-small-small-stack w-col-tiny-tiny-stack">
+                     <!-- <center> -->
+                        <img style="width: 50%; float: right; margin-right: 70px;" src="/seeds/seed_1_thumb.jpg" alt="">
+                     <!-- </center>    -->
+                  </div>
+                  <% if !@is_mobile %>
+                     <div class="margin-top-now-yours w-col w-col-6 w-col-small-small-stack w-col-tiny-tiny-stack">
+                        <center>
+                           <img style="width: 50%; float: left; margin-left: 70px;" src="/seeds/seed_1_thumb.jpg" alt="">
+                        </center>
+                     </div>
                   <% end %>
                </div>
             </div>
@@ -1002,15 +1034,15 @@
             <div class="wrapper w-clearfix">
                <h3 class="header header-medium color-white is-larger">Contact</h3>
                <div class="hr hr-white hr-margin"></div>
-               <div class="footer-row w-row">
+               <div class="footer-row w-row" style="margin-bottom: 20px;">
                   <div class="footer-col w-col w-col-9 w-col-small-9 w-col-tiny-9">
                      <p class="paragraph color-white"><strong>Email:</strong></p>
                      <div class="email-link w-clearfix">
-                        <h3 class="header-link"><a href="mailto:chacknzzick@gmail.com" class="link">chacknzzick@gmail.com</a></h3>
+                        <h4 class="header-link"><a href="mailto:chacknzzick@gmail.com" class="link">chacknzzick@gmail.com</a></h4>
                         <div class="hr hr-white hidden"></div>
                      </div>
                      <p class="paragraph color-white"><strong>powered by:</strong></p>
-                     <p class="paragraph color-white">Greedy Turtles</p>
+                     <p class="link paragraph color-white">Greedy Turtles</p>
                   </div>
                   <div class="footer-col w-clearfix w-col w-col-3 w-col-small-3 w-col-tiny-3"><a href="#container" class="footer-arrow w-inline-block"><img src="/img/5b240bd813f80e1b4f738b32_arrow-white.svg" alt="" class="footer-img"/></a></div>
                </div>

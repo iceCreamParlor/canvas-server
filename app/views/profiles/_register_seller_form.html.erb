@@ -1,0 +1,17 @@
+<div class="row">
+  <%= form_for :register_seller, url: url, html: { id: "register_seller_form" } do |f| %>
+    <%= f.file_field :images, multiple: true %>
+    <%= f.submit "작가 신청", type: "button", id: "submit_btn" %>
+  <% end %>
+</div>
+
+<script>
+  $("#submit_btn").on("click", function(){
+    let fileCount = $("#register_seller_images").get(0).files.length;
+    if(fileCount < 3){
+      alert("작품을 세 개 이상 등록해 주세요 !");
+    } else {
+      $("#register_seller_form").submit();
+    }
+  })
+</script>

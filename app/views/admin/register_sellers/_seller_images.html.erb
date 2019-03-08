@@ -1,0 +1,10 @@
+<div>
+  <%= link_to accept_seller_profile_path(register_seller.user), remote: "true" do %>
+    <button>작가 승인</button>
+  <% end %>
+</div>
+<div>
+  <% register_seller.images.each do |image|  %>
+    <%= image_tag image.url, style: "width: 100%;" %>
+  <% end %>
+</div>

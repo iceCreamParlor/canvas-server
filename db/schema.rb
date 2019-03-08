@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_125452) do
+ActiveRecord::Schema.define(version: 2019_03_04_040404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -262,6 +262,15 @@ ActiveRecord::Schema.define(version: 2019_02_28_125452) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "register_sellers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.json "images"
+    t.boolean "is_confirmed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_register_sellers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -304,4 +313,5 @@ ActiveRecord::Schema.define(version: 2019_02_28_125452) do
   add_foreign_key "paintings", "categories"
   add_foreign_key "paintings", "colors"
   add_foreign_key "paintings", "users"
+  add_foreign_key "register_sellers", "users"
 end

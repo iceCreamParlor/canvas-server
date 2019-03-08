@@ -74,4 +74,5 @@ class ApplicationController < ActionController::Base
     # 앱인지 확인하는 함수이다. (모바일 브라우저에서는 false 가 반환됨)
     @is_app = %w[ios android].include? cookies[:platform]
   end
+
 end
