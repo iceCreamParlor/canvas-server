@@ -114,13 +114,20 @@
         <div class="margin-top-20">
           <h6 class="heading-uppercase no-margin">Price</h6>
           <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
-          <div class="margin-top-20 margin-bottom-20">
-              <div class="row margin-top-70">
+          <div class="margin-top-70 margin-bottom-20">
+              
+              <div class="row" style="display: flex; align-items: center;">
+                <p style="margin-bottom: 0px;">옵션</p>
                 <select class="custom-select" id="option-select" onchange="optionSelected(event)">
                   <% @painting.options.each do |option| %>
-                    <option value="<%= option.id %>"><%= option.title %></option>
+                    <option data-price="<%= option.price %>" value="<%= option.id %>"><%= option.title %></option>
                   <% end %>
                 </select>
+              </div>
+              
+              
+              <div class="row margin-top-50" style="display: flex; align-items: center;">
+                <p style="margin-bottom: 0px;">수량</p>  
                 <select class="custom-select" id="quantity-select" onchange="quantitySelected(event)">
                   <% 10.times do |index| %>
                     <option value="<%= index+1 %>"><%= index+1 %></option>
@@ -132,8 +139,17 @@
                   <%= f.hidden_field :quantity, value: "1" %>
                   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                 <% end %>
+              </div>
+              
+              <p id="total-price" class="float-right"></p>
+              <hr class="margin-top-50">
+              
+              
+
+              <div class="margin-top-50">
                 <button type="button" id="addToCart" class="btn btn-outline-dark margin-little float-right">장바구니</button>
               </div>
+
 						</div>
         </div>  
       </div> 
@@ -187,11 +203,28 @@
 
 <script>
   
+  let sel = document.getElementById("option-select");
+  let value = sel.options[sel.selectedIndex].value;
+  
+
   var isMagnifiable = true;
+  let paintingPrice = <%= @painting.price %>;
+  let currentQuantity;
+  let currentOptionPrice;
+  let currentPrice;
+  setCurrentPrice(paintingPrice, currentQuantity, currentOptionPrice);
 
   <% if @is_mobile %>
     isMagnifiable = false;
   <% end %>
+
+  function setCurrentPrice(paintingPrice, currentQuantity, currentOptionPrice){
+    currentQuantity = parseInt($("#quantity-select").val());
+    currentOptionPrice = parseInt(sel.options[sel.selectedIndex].dataset.price);
+    currentPrice = (paintingPrice + currentOptionPrice) * currentQuantity;
+    $("#total-price").text("₩" + currentPrice);
+    console.log(currentPrice);
+  }
 
   $(window).on('load', function() {
     paintingImg = document.getElementsByClassName('painting-img');
@@ -220,7 +253,10 @@
     let sel = document.getElementById("option-select");
     console.log(sel.options[sel.selectedIndex].value)
     let value = sel.options[sel.selectedIndex].value;
+    currentOptionPrice = parseInt(sel.options[sel.selectedIndex].dataset.price);
+    
     $('#line_item_option_id').val(value);
+    setCurrentPrice(paintingPrice, currentQuantity, currentOptionPrice);
   }
 
   function quantitySelected(event){
@@ -228,6 +264,7 @@
     console.log(sel.options[sel.selectedIndex].value)
     let value = sel.options[sel.selectedIndex].value;
     $('#line_item_quantity').val(value);
+    setCurrentPrice(paintingPrice, currentQuantity, currentOptionPrice);
   }
 
   function followUser(){
