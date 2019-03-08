@@ -18,9 +18,11 @@ class PaintingsController < ApplicationController
     if params[:only_commerce]
       @paintings = Painting.only_commerce
       @only_commerce = true
+      
     else
       @paintings = Painting.except_commerce
     end
+    
 
     @is_filtering = false
     # 필터링을 하는 경우
@@ -32,18 +34,20 @@ class PaintingsController < ApplicationController
       end
       @is_filtering = true
     end
-
+    
     if params[:category_id].present?
       # 카테고리 필터링 조건이 있을 경우
       @is_filtering = true
       if !@paintings.nil?
         @paintings = @paintings.where(category_id: params[:category_id])
+    
       else
         # @paintings = Painting.where(category_id: params[:category_id])
         @paintings = @painting.where(category_id: params[:category_id])
+        
       end
     end
-
+    
     if params[:price_id].present?
       # 가격 필터링 조건이 있을 경우
       price = Price.find(params[:price_id][0])
@@ -104,9 +108,6 @@ class PaintingsController < ApplicationController
       @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
       
     end
-
-    puts "!!!!"
-    puts @paintings.count
 
     respond_to do |format|
       format.html

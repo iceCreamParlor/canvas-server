@@ -10,7 +10,11 @@
       <div class="col-12 col-lg-9 order-lg-2">
         <div class="row align-items-center">
           <div class="col-5 text-left">
-            <input type="hidden" id="painting_status" value="sale">
+            <% if @only_commerce %>
+              <input type="hidden" id="painting_status" value="commerce">
+            <% else %>
+              <input type="hidden" id="painting_status" value="sale">
+            <% end %>
             <select class="custom-select" id="sale-category" onchange="filterByStatus(event)">
               
               <% Painting.options_for_status.each do |option| %>
