@@ -44,9 +44,8 @@ Rails.application.routes.draw do
     collection do
       post :add_to_cart
       post :direct
-  
-
-  
+    end
+  end
 
   resources :profiles do
     collection do

@@ -12,12 +12,13 @@ ActiveAdmin.register Painting do
 #   permitted
 # end
 
-  permit_params :name, :price, :category_id, :color_id, :thumbnail, :desc, :completed_date, { images: [] }
+  permit_params :name, :status, :price, :category_id, :color_id, :thumbnail, :desc, :completed_date, { images: [] }
 
   form(html: { multipart: true }) do |f|
     f.inputs do
       f.input :name
       f.input :price
+      f.input :status
       f.input :category, :as => :select, :collection => Category.all.collect {|category| [category.name, category.id] }
       f.input :color, :as => :select, :collection => Color.all.collect {|color| [color.name, color.id] }
       f.input :desc
