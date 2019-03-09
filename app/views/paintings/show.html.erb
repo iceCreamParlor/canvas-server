@@ -10,7 +10,7 @@
             data-owl-autoplay="false" 
             data-owl-dots="false">
             <% @painting.images.each_with_index do |image, index| %>
-              <div data-hash="painting-img-<%= index+1 %>">
+              <div class="prevent-rightclick" data-hash="painting-img-<%= index+1 %>">
                 <img class="painting-img" src="<%= image.url %>">
               </div>
             <% end %>
@@ -21,7 +21,7 @@
           <% @painting.images.each_with_index do |image, index| %>
             <div class="col-2 preview-cell">
               <a style="cursor:crosshair" href="#painting-img-<%= index+1 %>">
-                <img class="preview-cell-img" src="<%= image.url %>">
+                <img class="preview-cell-img prevent-rightclick" src="<%= image.url %>">
               </a>
             </div>
           <% end %>
@@ -173,6 +173,7 @@
   <% end %>
 
   $(window).on('load', function() {
+
     paintingImg = document.getElementsByClassName('painting-img');
     for(var i = 0 ; i < paintingImg.length ; i++){
       paintingImg[i].style.width = paintingImg[i].offsetWidth + 'px';
@@ -255,7 +256,7 @@
     /* Create magnifier glass: */
     glass = document.createElement("DIV");
     
-    glass.setAttribute("class", "img-magnifier-glass");
+    glass.setAttribute("class", "img-magnifier-glass prevent-rightclick");
     glass.style.cursor = "crosshair";
     
 

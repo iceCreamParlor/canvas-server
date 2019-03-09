@@ -4,7 +4,11 @@
   let screenWidth = window.innerWidth;
   let screenHeight = window.innerHeight;
 
-  
+  $(function(){
+    $('.prevent-rightclick').on('contextmenu', function(e){
+      e.preventDefault();
+    })
+  })
 
   // Check if mobile device
   if( screen.width <= 480 ) {     

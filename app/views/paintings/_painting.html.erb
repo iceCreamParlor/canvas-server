@@ -1,11 +1,11 @@
 <div class="col-6 col-md-6 col-lg-4 product item animated fadeIn">
-  <div class="product-img">
+  <div class="product-img prevent-rightclick">
     <%= link_to painting_path(painting) do %>
       <!-- !!!!@# -->
-        <% if painting.thumbnail.present? && painting.thumbnail.url.present? %>
-      <img src="<%= painting.thumbnail.url %>" alt="">
+      <% if painting.thumbnail.present? && painting.thumbnail.url.present? %>
+        <img class="prevent-rightclick" src="<%= painting.thumbnail.url %>" alt="">
       <% else %>
-        <img src="/images/col-3-tall.jpg" alt="">
+        <img class="prevent-rightclick" src="/images/col-3-tall.jpg" alt="">
       <% end %>
       <!-- Badge: Sale -->
       <!-- <div class="product-sale">
