@@ -15,7 +15,7 @@
           <div id="painting-name">
             <h6><%= @painting.name if @painting.present? %></h6>
           </div>
-          <div id="painting-img">
+          <div id="painting-img" class="prevent-rightclick">
             <img src="<%= @painting.thumbnail.url if @painting.present? %>" style="width: 100%;">
           </div>
         </div>

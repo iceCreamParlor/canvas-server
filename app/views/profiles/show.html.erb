@@ -185,7 +185,7 @@
                     <img src="<%= painting.thumbnail.url %>" alt="">
                   </div>
                   
-                  <div class="portfolio-title">
+                  <div class="portfolio-title prevent-rightclick">
                     <div>
                       <h5 class="font-weight-normal"><%= painting.name %></h5>
                       <span><%= category.name %></span>
@@ -214,7 +214,7 @@
         
         <% @liked_paintings.each do |painting| %>
           <div class="product">
-            <div class="product-img">
+            <div class="product-img prevent-rightclick">
               <%= link_to painting_path(painting) do %>
                 <% if painting.thumbnail.present? %>
                   <img src="<%= painting.thumbnail.url %>" alt="">
