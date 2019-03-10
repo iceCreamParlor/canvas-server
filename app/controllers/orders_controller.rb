@@ -65,7 +65,8 @@ class OrdersController < ApplicationController
   end
 
   def cancel_list
-    @orders = current_user.orders.cancels.or(current_user.orders.request_cancel)
+    # @orders = current_user.orders.cancels.or(current_user.orders.request_cancel)
+    @orders = current_user.orders.finished
   end
 
   def empty_cart
@@ -91,10 +92,10 @@ class OrdersController < ApplicationController
     code, message, response = iamport_cancel(uid, total_cancel_amount)
     # if code.zero? && response['cancel_amount'] == total_cancel_amount && response["imp_uid"] == @order.uid
     if code.zero? && response["imp_uid"] == @order.uid
+
       line_item.update(state: :cancel)
       if @order.line_items.not_cancels.empty?
         @order.update(state: :cancel)
-        
       end
       
     else

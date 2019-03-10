@@ -33,16 +33,15 @@
                 <%= link_to '프로필 변경', 
                   (@is_mobile? edit_profile_path(current_user.id) : profiles_path) %>
               </li>
-              
-              
             </ul>
           </div>
           <!-- Sidebar box 3 - Size -->
           <div class="shop-sidebar-box">
-            <h5 class="font-weight-light margin-bottom-20">Size</h5>
+            <h5 class="font-weight-light margin-bottom-20">결제</h5>
             <ul class="shop-sidebar-size">
-              <li><a href="#">Extra Small <span>XS</span></a></li>
-              
+              <li><%= link_to '주문내역', order_list_orders_path, class: "white" %></li>
+              <li><%= link_to '장바구니', cart_orders_path, class: "white" %></li>
+              <li><%= link_to '환불내역', cancel_list_orders_path, class: "white" %></li>
             </ul>
           </div>
         </div>

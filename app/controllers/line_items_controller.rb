@@ -77,6 +77,6 @@ class LineItemsController < ApplicationController
 
   private
   def line_item_params
-    params.require(:line_item).permit(:order_id, :amount, :state, :painting_id, :option_id, :quantity)
+    params.require(:line_item).permit(:order_id, :amount, :state, :painting_id, :option_id, :quantity, :amount)
   end
 end

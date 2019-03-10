@@ -60,6 +60,7 @@ class Order < ApplicationRecord
     payment_amount = item_total + shipment_fee - item_discount
 
     [payment_amount, item_total, shipment_fee, item_discount]
+    
   end
 
   private
