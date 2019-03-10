@@ -27,8 +27,7 @@
       </div>
 
       <div class="col-12 col-lg-4">
-        <div class="margin-bottom-30">
-        </div>
+        <div class="margin-bottom-30"></div>
         <div class="payment-detail-box">
           <h5 class="margin-bottom-20">장바구니 내역</h5>
           <ul>
@@ -46,17 +45,19 @@
 </div>
 
 <script>
-  function changeQuantity(element, lineItemId){
-
-    let quantity = element.value;
-
+  function changeQuantity(element, lineItemId, price){
+    price = parseInt(price);
+    let quantity = parseInt(element.value);
+    let amount = price * quantity;
+    
     $.ajax({
 
       headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       url: "<%= line_items_path %>" + "/" + lineItemId,
       method: "PUT",
       data: {
-        "line_item[quantity]" : quantity
+        "line_item[quantity]" : quantity,
+        "line_item[amount]" : amount
       },
       success: function(){
         
