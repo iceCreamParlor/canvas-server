@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  state: 1
+  order: one
+  option: one
+  quantity: 1
+  amount: 1
+  shipment_cost: 1
+
+two:
+  state: 1
+  order: two
+  option: two
+  quantity: 1
+  amount: 1
+  shipment_cost: 1

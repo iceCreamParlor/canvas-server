@@ -9,11 +9,14 @@ class Painting < ApplicationRecord
   has_many :auctions, dependent: :destroy
   has_many :painting_comments, dependent: :destroy
 
-  # scope :only_sale, -> {where(status: "sale")}
-  
-  enum :status => ["sale", "sold", "not_sale", "auction"]
+  has_many :options, dependent: :nullify
 
-  scope :exclude_images, ->  { select( Painting.attribute_names - ['images'] ) }
+  scope :only_commerce, -> {where(status: "commerce")}
+  scope :except_commerce, -> {where.not(status: "commerce")}
+  
+  enum :status => ["sale", "sold", "not_sale", "auction", "commerce"]
+
+  scope :exclude_images, ->  { select( Painting.attribute_names - ['images'] ) } 
 
   def self.options_for_status
     Painting.statuses.map{ |p| [ I18n.t("painting.#{p[0]}"), p[0]] }
@@ -30,6 +33,15 @@ class Painting < ApplicationRecord
     when "not_sale"
       "판매 안함"
     end
+  end
+
+  def generate_options
+    
+    Option.create painting: self, title: "10호", position: 0, price: 0
+    Option.create painting: self, title: "13호", position: 1, price: 10000
+    Option.create painting: self, title: "16호", position: 2, price: 20000
+    Option.create painting: self, title: "20호", position: 3, price: 30000
+    
   end
 
   def user_likes? user

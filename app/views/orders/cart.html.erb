@@ -1,0 +1,70 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8">
+        <div class="table-responsive">
+          <table class="product-table text-center">
+            <thead>
+              <tr>
+                <th scope="col"><h6 class="heading-uppercase no-margin">작품</h6></th>
+                <th scope="col"><h6 class="heading-uppercase no-margin">가격</h6></th>
+                <th scope="col"><h6 class="heading-uppercase no-margin">옵션</h6></th>
+                <th scope="col"><h6 class="heading-uppercase no-margin">수량</h6></th>
+                <th scope="col"><h6 class="heading-uppercase no-margin">합계</h6></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Table row 1 -->
+              <% if @order.line_items.present? %>
+                <% @order.line_items.each do |line_item| %>
+                  <%= render 'line_item', line_item: line_item %>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div><!-- end table-responsive -->
+      </div>
+
+      <div class="col-12 col-lg-4">
+        <div class="margin-bottom-30">
+        </div>
+        <div class="payment-detail-box">
+          <h5 class="margin-bottom-20">장바구니 내역</h5>
+          <ul>
+            <li><h6 class="heading-uppercase">가격:</h6><span><%= @payment_amount[1] %></span></li>
+            <li><h6 class="heading-uppercase">배송비:</h6><span><%= @payment_amount[2] %></span></li>
+            <li><h6 class="heading-uppercase">총계:</h6><span class="text-dark"><%= @payment_amount[0] %></span></li>
+          </ul>
+        </div>
+        <%= link_to pay_order_path(@order.order_number) do %>
+          <button id="payButtonClicked(event)" class="button button-xl button-dark button-fullwidth">결제하기</button>
+        <% end %>
+      </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
+</div>
+
+<script>
+  function changeQuantity(element, lineItemId){
+
+    let quantity = element.value;
+
+    $.ajax({
+
+      headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      url: "<%= line_items_path %>" + "/" + lineItemId,
+      method: "PUT",
+      data: {
+        "line_item[quantity]" : quantity
+      },
+      success: function(){
+        
+      },
+      fail: function(){
+        element.value = quantity - 1;
+      }
+    })
+    
+  }
+</script>

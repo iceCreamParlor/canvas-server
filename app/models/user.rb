@@ -15,9 +15,12 @@ class User < ApplicationRecord
   has_many :follows, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
 
+
   # 보낸 메세지, 받은 메세지 구성하는 부분
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id", dependent: :destroy
   has_many :arrived_messages, class_name: "Message", foreign_key: "receiver_id", dependent: :destroy
+
+  has_many :orders, dependent: :nullify
 
   before_destroy :destroy_posts
 
