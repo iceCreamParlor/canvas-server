@@ -3,7 +3,12 @@ class LineItemsController < ApplicationController
   def update
     line_item = LineItem.find params[:id]
     # params[:line_item][:amount] = (line_item_params[:quantity].to_i * line_item.painting.price)
-    @line_item_updated = line_item.update line_item_params ? true : false
+
+    if line_item.update line_item_params
+      @line_item_updated = true
+    else
+      @line_item_updated = false
+    end
     
     respond_to do |format|
       format.js
