@@ -50,6 +50,9 @@
 					<ul class="nav dropdown-dark"><!-- add 'dropdown-dark/dropdown-grey/dropdown-transparent/dropdown-transparent-dark' -->
 						<!-- Basic link -->
 						<li class="nav-item">
+							<%= link_to 'Commerce', paintings_path(only_commerce: "true"), class:"nav-link" %>
+						</li>
+						<li class="nav-item">
 							<%= link_to 'Paintings', paintings_path, class:"nav-link" %>
 						</li>
 						<li class="nav-item">
@@ -102,6 +105,12 @@
 								</li>
 								<li>
 									<%= link_to '프로필', profile_path(current_user.id), class: "white" %>
+								</li>
+								<li>
+									<%= link_to '주문내역', order_list_orders_path, class: "white" %>
+								</li>
+								<li>
+									<%= link_to '장바구니', cart_orders_path, class: "white" %>
 								</li>
 							</ul>
 						</li>

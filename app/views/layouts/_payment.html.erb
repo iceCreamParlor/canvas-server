@@ -1,0 +1,38 @@
+<script>
+// IAMPORT 설정!!
+  var IMP = window.IMP; // 생략가능
+  IMP.init("<%= ENV['IAMPORT_CODE'] %>"); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+  console.log("<%= ENV['IAMPORT_CODE'] %>")
+
+  function payment(buyer_email, price, buyer_name, buyer_phone, buyer_address, buyer_postcode, merchant_name, merchant_id){
+    IMP.request_pay({
+      pg : 'inicis', // version 1.1.0부터 지원.
+      pay_method : 'card',
+      merchant_uid : 'painting_' + new Date().getTime(),
+      name : merchant_name,
+      amount : price,
+      buyer_email : buyer_email,
+      buyer_name : buyer_name,
+      buyer_tel : buyer_phone,
+      buyer_addr : buyer_address,
+      buyer_postcode : buyer_postcode,
+      m_redirect_url:
+        '<%= "#{request.protocol}#{request.host_with_port}" %>/orders/<%= @order.order_number %>/complete'
+    }, function(rsp) {
+      if ( rsp.success ) {
+        var msg = '결제가 완료되었습니다.';
+        msg += '고유ID : ' + rsp.imp_uid;
+        msg += '상점 거래ID : ' + rsp.merchant_uid;
+        msg += '결제 금액 : ' + rsp.paid_amount;
+        msg += '카드 승인번호 : ' + rsp.apply_num;
+      } else {
+        var msg = '결제에 실패하였습니다.';
+        msg += '에러내용 : ' + rsp.error_msg;
+      }
+      <% if @is_mobile %>
+        window.location.href = "<%= paintings_path %>";
+      <% end %>
+      alert(msg);
+    });
+  }
+</script>

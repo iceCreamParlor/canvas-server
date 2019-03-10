@@ -114,6 +114,40 @@
         <div class="margin-top-20">
           <h6 class="heading-uppercase no-margin">Price</h6>
           <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
+          <div class="margin-top-70 margin-bottom-20">
+              
+              <div style="display: flex; align-items: center;">
+                <p style="margin-bottom: 0px;">옵션</p>
+                <select class="custom-select margin-left-20" id="option-select" onchange="optionSelected(event)">
+                  <% @painting.options.each do |option| %>
+                    <option data-price="<%= option.price %>" value="<%= option.id %>"><%= option.title %></option>
+                  <% end %>
+                </select>
+              </div>
+              
+              <div class="margin-top-20" style="display: flex; align-items: center;">
+                <p style="margin-bottom: 0px;">수량</p>  
+                <select class="custom-select margin-left-20" id="quantity-select" onchange="quantitySelected(event)">
+                  <% 10.times do |index| %>
+                    <option value="<%= index+1 %>"><%= index+1 %></option>
+                  <% end %>
+                </select>
+                <%= form_for @line_item, url: add_to_cart_line_items_path, style: "display: none;" ,remote: true do |f| %>
+                  <%= f.hidden_field :painting_id, value:  @painting.id %>
+                  <%= f.hidden_field :option_id, value: @painting.options.first.id %>
+                  <%= f.hidden_field :quantity, value: "1" %>
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <% end %>
+              </div>
+              
+              <p id="total-price" class="float-right"></p>
+              <hr class="margin-top-50">
+
+              <div class="margin-top-50">
+                <button type="button" id="addToCart" class="btn btn-outline-dark margin-little float-right">장바구니</button>
+              </div>
+
+						</div>
         </div>  
       </div> 
     </div><!-- end row -->
@@ -166,11 +200,27 @@
 
 <script>
   
+  let sel = document.getElementById("option-select");
+  let value = sel.options[sel.selectedIndex].value;
+  
+
   var isMagnifiable = true;
+  let paintingPrice = <%= @painting.price %>;
+  let currentQuantity;
+  let currentOptionPrice;
+  let currentPrice;
+  setCurrentPrice(paintingPrice, currentQuantity, currentOptionPrice);
 
   <% if @is_mobile %>
     isMagnifiable = false;
   <% end %>
+
+  function setCurrentPrice(paintingPrice, currentQuantity, currentOptionPrice){
+    currentQuantity = parseInt($("#quantity-select").val());
+    currentOptionPrice = parseInt(sel.options[sel.selectedIndex].dataset.price);
+    currentPrice = (paintingPrice + currentOptionPrice) * currentQuantity;
+    $("#total-price").text("₩" + currentPrice);
+  }
 
   $(window).on('load', function() {
 
@@ -182,6 +232,37 @@
     }
   })
 
+
+  $("#addToCart").on("click", function(){
+    <% if user_signed_in? %>
+      if(window.confirm("장바구니에 담으시겠습니까?")){
+        elem = document.getElementById('new_line_item');
+        // $("#new_line_item").submit();
+        Rails.fire(elem, 'submit');
+      }
+      return false;
+    <% else %>
+      window.location.href = "/users/sign_in";
+    <% end %>
+  });
+
+  function optionSelected(event){
+    let sel = document.getElementById("option-select");
+    console.log(sel.options[sel.selectedIndex].value)
+    let value = sel.options[sel.selectedIndex].value;
+    currentOptionPrice = parseInt(sel.options[sel.selectedIndex].dataset.price);
+    
+    $('#line_item_option_id').val(value);
+    setCurrentPrice(paintingPrice, currentQuantity, currentOptionPrice);
+  }
+
+  function quantitySelected(event){
+    let sel = document.getElementById("quantity-select");
+    console.log(sel.options[sel.selectedIndex].value)
+    let value = sel.options[sel.selectedIndex].value;
+    $('#line_item_quantity').val(value);
+    setCurrentPrice(paintingPrice, currentQuantity, currentOptionPrice);
+  }
 
   function followUser(){
     <% if user_signed_in? %>
