@@ -741,8 +741,10 @@ $(function() {
         newVal = 1;
       }
     }
-
     $qBtn.parent().find("input").val(newVal);
+    // BY KHJ
+    // 수동으로 onchange 이벤트를 발생시킨다.
+    $qBtn.parent().find("input")[0].dispatchEvent(new CustomEvent("change"));
   });
 
 

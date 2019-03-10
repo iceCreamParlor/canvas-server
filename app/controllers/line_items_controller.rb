@@ -3,8 +3,13 @@ class LineItemsController < ApplicationController
   def update
     line_item = LineItem.find params[:id]
     # params[:line_item][:amount] = (line_item_params[:quantity].to_i * line_item.painting.price)
-    line_item.update line_item_params
-    redirect_to cart_orders_path, notice: "성공적으로 변경했습니다."
+    @line_item_updated = line_item.update line_item_params ? true : false
+    
+    respond_to do |format|
+      format.js
+    end
+
+    # redirect_to cart_orders_path, notice: "성공적으로 변경했습니다."
   end
 
   def destroy

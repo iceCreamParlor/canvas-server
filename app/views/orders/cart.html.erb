@@ -18,32 +18,7 @@
               <!-- Table row 1 -->
               <% if @order.line_items.present? %>
                 <% @order.line_items.each do |line_item| %>
-                  <tr>
-                    <td class="cart-product-thumbnail">
-                      <a href="<%= painting_path(line_item.painting) %>"><img src="<%= line_item.painting.thumbnail.url %>" alt="" style="width: 100px;"></a>
-                      <h6><%= line_item.painting.name %></h6>
-                    </td>
-                    <td>
-                      <span><%= line_item.painting.price %></span>
-                    </td>
-                    
-                    <td class="cart-product-subtotal">
-                      <span class="font-weight-bold"><%= line_item.option.price %></span>
-                    </td>
-                    <td class="cart-product-quantity">
-                      <div class="product-quantity">
-                        <button class="button-circle button-circle-xs button-circle-grey dec"><i class="ti-minus"></i></button>
-                        <input type="text" name="quantity" id="quantity" value="<%= line_item.quantity %>">
-                        <button class="button-circle button-circle-xs button-circle-grey inc"><i class="ti-plus"></i></button>
-                      </div>
-                    </td>
-                    <td class="cart-product-subtotal">
-                      <span class="font-weight-bold"><%= line_item.amount %></span>
-                    </td>
-                    <td class="cart-product-remove">
-                      <button><i class="ti-close"></i></button>											
-                    </td>
-                  </tr>
+                  <%= render 'line_item', line_item: line_item %>
                 <% end %>
               <% end %>
             </tbody>
@@ -53,22 +28,6 @@
 
       <div class="col-12 col-lg-4">
         <div class="margin-bottom-30">
-          <!-- <select class="custom-select custom-select-lg select-fullwidth">
-            <option selected>Select your country</option>
-            <option value="1">Australia</option>
-            <option value="2">Brazil</option>
-            <option value="3">Canada</option>
-            <option value="4">France</option>
-            <option value="5">German</option>
-            <option value="6">India</option>
-            <option value="7">Italy</option>
-            <option value="8">Netherland</option>
-            <option value="9">Mongolia</option>
-            <option value="10">Turkey</option>
-            <option value="11">Switzerland</option>
-            <option value="12">United States of America</option>
-          </select> -->
-          <!-- <button class="btn btn-lg btn-light btn-block">Calculate Shipping</button> -->
         </div>
         <div class="payment-detail-box">
           <h5 class="margin-bottom-20">장바구니 내역</h5>
@@ -86,12 +45,26 @@
   </div><!-- end container -->
 </div>
 
-<%#= render 'layouts/payment' %>
+<script>
+  function changeQuantity(element, lineItemId){
 
-<!-- <script>
-  function payButtonClicked(event){
-    let buyerEmail = "<%= current_user.email %>";
-    let price = "<%= @payment_amount[0] %>";
+    let quantity = element.value;
+
+    $.ajax({
+
+      headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      url: "<%= line_items_path %>" + "/" + lineItemId,
+      method: "PUT",
+      data: {
+        "line_item[quantity]" : quantity
+      },
+      success: function(){
+        
+      },
+      fail: function(){
+        element.value = quantity - 1;
+      }
+    })
+    
   }
-  payment(buyer_email, price, buyer_name, buyer_phone, buyer_address, buyer_postcode, merchant_name, merchant_id)
-</script> -->
+</script>

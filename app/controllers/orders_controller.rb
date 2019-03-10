@@ -82,7 +82,7 @@ class OrdersController < ApplicationController
     @order.update(cancel_params.permit(:id, :state))
     redirect_to cancel_list_orders_path
   end
-  # 부분 취소시 참고하면 좋을 꺼 같아요! 개꿀
+  # 부분 취소시 
   def canceling    
     
     line_item = LineItem.find(params[:line_item_id].to_i)
