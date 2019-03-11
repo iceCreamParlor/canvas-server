@@ -41,6 +41,30 @@ a.white{
   letter-spacing: 0;
 } */
 
+input[type=range]{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#slider .ui-slider-handle {
+  outline: 0;
+  width: 0.8em;
+  height: 0.8em;
+  background: black;
+  border-radius: 0%;
+  top: -.3em;
+  
+}
+
+#slider.ui-slider-horizontal {
+  top: 1em;
+  left: 5%;
+  height: .1em;
+  width: 90%;
+  border: none;
+  background: #ccc;
+}
+
 .no-padding {
   padding: 0px;
 }

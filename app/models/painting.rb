@@ -13,6 +13,7 @@ class Painting < ApplicationRecord
 
   scope :only_commerce, -> {where(status: "commerce")}
   scope :except_commerce, -> {where.not(status: "commerce")}
+  scope :order_price, -> {order("price asc")}
   
   enum :status => ["sale", "sold", "not_sale", "auction", "commerce"]
 

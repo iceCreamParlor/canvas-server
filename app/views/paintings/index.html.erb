@@ -102,9 +102,20 @@
         <div class="shop-sidebar-box">
           <h5 class="font-weight-light margin-bottom-20">
             Price
-            <ion-icon onclick="filterInit('price')" name="sync" class="float-right"></ion-icon>
+            <!-- <ion-icon onclick="filterInit('price')" name="sync" class="float-right"></ion-icon> -->
           </h5>
-          <ul class="shop-sidebar-size">
+          <!-- <div class="slidecontainer">
+            <input id="priceRange" type="range" min="1" max="100" value="50" class="slider">
+          </div> -->
+           <p>
+              <!-- <label for = "price">Price range:</label> -->
+              <input style="padding-left: 0px; padding-right: 0px; border:0;" type = "text" id = "price" >
+              
+           </p>
+           <div id ="slider"></div>
+           <input type="hidden" id="min_price">
+           <input type="hidden" id="max_price">
+          <!-- <ul class="shop-sidebar-size">
             <% @prices.each_with_index do |price, index| %>
               <li>
                 <%= link_to "javascript:void(0);",
@@ -117,7 +128,7 @@
                 <% end %>
               </li>
             <% end %>
-          </ul>
+          </ul> -->
         </div>
 
         <!-- Sidebar box 2 - Color -->
@@ -229,6 +240,32 @@ var isFilterRemoved = false;
 var isFiltered = false;
 
 $(function(){
+  // let slider = document.getElementById("priceRange");
+  // slider.onmouseup = function() {
+  //   console.log(this.value);
+    
+  // }
+  $( "#slider" ).slider({
+      range:true,
+      min: <%= @min_price %>,
+      max: <%= @max_price %>,
+      values: [ <%= @min_price %>, <%= @max_price %> ],
+      slide: function( event, ui ) {
+        $( "#price" ).val( "₩" + ui.values[ 0 ] + " - ₩" + ui.values[ 1 ] );
+        $("#min_price").val(ui.values[0]);
+        $("#max_price").val(ui.values[1]);
+      },
+      stop: function(event, ui){
+        
+        isFilterRemoved = true;
+        initLoad();
+        isFilterRemoved = false;
+      }
+  });
+  $( "#price" ).val( "₩" + $( "#slider" ).slider( "values", 0 ) +
+      " -  ₩" + $( "#slider" ).slider( "values", 1 ) );
+  $("#min_price").val($( "#slider" ).slider( "values", 0 ));
+  $("#max_price").val($( "#slider" ).slider( "values", 1 ));
 
   setInterval(function(){
     // masonry 가 원활히 적용되지 않던 이슈 일단 이렇게 적용
@@ -269,7 +306,7 @@ function loadPaintings(needLoad){
 
 function initLoad(){
   if($('.next_page')[0]){
-
+    
   } else {
     $('#paintings-container').html(`
     <div id="infinite-scrolling" style="display: none;">
@@ -277,7 +314,8 @@ function initLoad(){
     </div>`);
   }
   $('.next_page').attr('href', '/paintings?page=1');
-  
+  isFinished = false;
+
   if(document.getElementsByClassName('selected').length == 0 && !isStatusChanged){
     // 선택된 필터가 없고, status 칸이 변경되지 않았을 때
     // 다른 필터들이 선택되었다가, 모두 선택 해제되었을 때 (버그)
@@ -317,31 +355,31 @@ function filterByStatus(e){
   isStatusChanged = false;
 }
 
-function filterByPrice(element){
+// function filterByPrice(element){
   
-  let priceId = parseInt(element.dataset.price);
-  isFinished = false;
-  var selected = false;
-  if(element.classList.contains('selected')){
-    selected = true;
-  }
+//   let priceId = parseInt(element.dataset.price);
+//   isFinished = false;
+//   var selected = false;
+//   if(element.classList.contains('selected')){
+//     selected = true;
+//   }
 
-  $('.price-option').removeClass('selected');
+//   $('.price-option').removeClass('selected');
   
-  if(selected){
+//   if(selected){
     
-    element.classList.remove('selected');  
+//     element.classList.remove('selected');  
 
-  } else {
+//   } else {
     
-    element.classList.add('selected');
+//     element.classList.add('selected');
 
-  }
-  countSelectedFilter();
+//   }
+//   countSelectedFilter();
 
-  initLoad();
+//   initLoad();
 
-}
+// }
 
 function filterByColor(e){
   e.stopPropagation();
@@ -369,7 +407,9 @@ function makeAjaxLoad(needRefresh){
   
   let statusUrl = "&status=" + $('#painting_status').val();
   var morePostUrl = $('.next_page').attr('href') + statusUrl;
-  console.log(morePostUrl);
+  
+  let minPrice = $("#min_price").val();
+  let maxPrice = $("#max_price").val();
 
   <% if @only_commerce %>
     morePostUrl += '&only_commerce=true'
@@ -380,12 +420,16 @@ function makeAjaxLoad(needRefresh){
   } else {
     morePostUrl = morePostUrl.replace('&refresh=true', '');
   }
-
+  console.log(morePostUrl);
   // ACTIVATE PRELOADER
   $.ajax({
     url: morePostUrl,
     dataType: "script", // important! (js.erb 실행)
     method: "GET",
+    data : {
+      min_price: minPrice,
+      max_price: maxPrice
+    },
     success: function(){
       sentRequest = true;
     }
@@ -396,6 +440,9 @@ function makeAjaxFilter(needRefresh){
   sentRequest = false;
   let filterType = $('#filter-select').val();
   let morePostUrl;
+  let minPrice = $("#min_price").val();
+  let maxPrice = $("#max_price").val();
+
   if($('.next_page')[0]){
     morePostUrl = $('.next_page').attr('href');
   } else {
@@ -416,17 +463,21 @@ function makeAjaxFilter(needRefresh){
   <% if @only_commerce %>
     morePostUrl += '&only_commerce=true'
   <% end %>
-
+  
   if(needRefresh){
     morePostUrl += '&refresh=true';
   } else {
     morePostUrl = morePostUrl.replace('&refresh=true', '');
   }
-  console.log(morePostUrl + statusUrl)
+  
   $.ajax({
     url: morePostUrl + statusUrl,
     method: 'GET',
     dataType: "script",
+    data : {
+      min_price: minPrice,
+      max_price: maxPrice
+    },
     success: function(){
       sentRequest = true;
     }

@@ -38,43 +38,41 @@ class PaintingsController < ApplicationController
     if params[:category_id].present?
       # 카테고리 필터링 조건이 있을 경우
       @is_filtering = true
-      if !@paintings.nil?
-        @paintings = @paintings.where(category_id: params[:category_id])
-    
-      else
-        # @paintings = Painting.where(category_id: params[:category_id])
-        @paintings = @painting.where(category_id: params[:category_id])
-        
-      end
+      @paintings = @paintings.where(category_id: params[:category_id])
+      
     end
-    
-    if params[:price_id].present?
-      # 가격 필터링 조건이 있을 경우
-      price = Price.find(params[:price_id][0])
-      
-      # cheap_price : 가격 필터링 조건의 하한선(10만원 - 20만원) => 10만원
-      cheap_price = @prices.index(price) == 0 ? nil : @prices[@prices.index(price)-1]
-      
-      if !@paintings.nil? && cheap_price.present?
-        # 가격 외의 다른 필터링 조건이 있을 경우, 
-        # 다른 필터링 조건과 가격 필터링 조건을 교집합
-        @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
-
-      elsif cheap_price.present? 
-        # 가격 필터링 조건밖에 없을 경우
-        # @paintings = Painting.where("price <= ? AND price > ?", price.value, cheap_price.value)
-        @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
-
-      else
-        # 기타 예외 사항 처리
-        # @paintings = Painting.where("price <= ?", price.value)
-        @paintings = @paintings.where("price <= ?", price.value)
-
-      end
+    if params[:min_price].present? && params[:max_price].present?
+      @paintings = @paintings.where("price <= ? AND price >= ?", params[:max_price].to_i, params[:min_price].to_i)
       
       @is_filtering = true
-      
     end
+    # if params[:price_id].present?
+    #   # 가격 필터링 조건이 있을 경우
+    #   price = Price.find(params[:price_id][0])
+      
+    #   # cheap_price : 가격 필터링 조건의 하한선(10만원 - 20만원) => 10만원
+    #   cheap_price = @prices.index(price) == 0 ? nil : @prices[@prices.index(price)-1]
+      
+    #   if !@paintings.nil? && cheap_price.present?
+    #     # 가격 외의 다른 필터링 조건이 있을 경우, 
+    #     # 다른 필터링 조건과 가격 필터링 조건을 교집합
+    #     @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
+
+    #   elsif cheap_price.present? 
+    #     # 가격 필터링 조건밖에 없을 경우
+    #     # @paintings = Painting.where("price <= ? AND price > ?", price.value, cheap_price.value)
+    #     @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
+
+    #   else
+    #     # 기타 예외 사항 처리
+    #     # @paintings = Painting.where("price <= ?", price.value)
+    #     @paintings = @paintings.where("price <= ?", price.value)
+
+    #   end
+      
+    #   @is_filtering = true
+      
+    # end
 
     if params[:color_id].present?
       # 색깔 필터링 조건이 있을 경우
@@ -108,7 +106,8 @@ class PaintingsController < ApplicationController
       @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
       
     end
-
+    @min_price = Painting.order_price.first.price
+    @max_price = Painting.order_price.last.price
     respond_to do |format|
       format.html
       format.js
