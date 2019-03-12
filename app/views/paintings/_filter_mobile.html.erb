@@ -55,7 +55,14 @@
                 <a href="javascript:void(0);" class="float-right">+</a>
               </h5>
               <br>
-              <div class="row margin-top-20">
+              <p>
+                <!-- <label for = "price">Price range:</label> -->
+                <input style="padding-left: 0px; padding-right: 0px; border:0;" type = "text" id = "price" >
+             </p>
+             <div id ="slider"></div>
+             <input type="hidden" id="min_price">
+             <input type="hidden" id="max_price">
+              <!-- <div class="row margin-top-20">
                 <ul id="priceCollapse" class="nodots shop-sidebar-size collapse">
                   <% @prices.each_with_index do |price, index| %>
                     <li class="text-left margin-top-10">
@@ -70,7 +77,7 @@
                     </li>
                   <% end %>
                 </ul>
-              </div>
+              </div> -->
             </div>
           </div>
 
