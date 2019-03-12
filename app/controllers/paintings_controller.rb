@@ -2,7 +2,6 @@ class PaintingsController < ApplicationController
   before_action :set_options, only: [:new, :edit]
   before_action :set_painting, only: [:show, :edit, :update, :destroy]
   before_action :recent_paintings , only: [:index, :show, :new, :edit]
-  # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :check_authority, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /paintings
@@ -18,20 +17,14 @@ class PaintingsController < ApplicationController
     if params[:only_commerce]
       @paintings = Painting.only_commerce
       @only_commerce = true
-      
     else
       @paintings = Painting.except_commerce
     end
-    
 
     @is_filtering = false
     # 필터링을 하는 경우
     if params[:status].present?
-      if params[:status] == "all"
-        # @paintings = Painting.all
-      else
-        @paintings = @paintings.where(status: params[:status])
-      end
+      @paintings = @paintings.where(status: params[:status]) unless params["status"] == "all"
       @is_filtering = true
     end
     
@@ -39,73 +32,23 @@ class PaintingsController < ApplicationController
       # 카테고리 필터링 조건이 있을 경우
       @is_filtering = true
       @paintings = @paintings.where(category_id: params[:category_id])
-      
     end
+
     if params[:min_price].present? && params[:max_price].present?
       @paintings = @paintings.where("price <= ? AND price >= ?", params[:max_price].to_i, params[:min_price].to_i)
-      
       @is_filtering = true
     end
-    # if params[:price_id].present?
-    #   # 가격 필터링 조건이 있을 경우
-    #   price = Price.find(params[:price_id][0])
-      
-    #   # cheap_price : 가격 필터링 조건의 하한선(10만원 - 20만원) => 10만원
-    #   cheap_price = @prices.index(price) == 0 ? nil : @prices[@prices.index(price)-1]
-      
-    #   if !@paintings.nil? && cheap_price.present?
-    #     # 가격 외의 다른 필터링 조건이 있을 경우, 
-    #     # 다른 필터링 조건과 가격 필터링 조건을 교집합
-    #     @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
-
-    #   elsif cheap_price.present? 
-    #     # 가격 필터링 조건밖에 없을 경우
-    #     # @paintings = Painting.where("price <= ? AND price > ?", price.value, cheap_price.value)
-    #     @paintings = @paintings.where("price <= ? AND price > ?", price.value, cheap_price.value)
-
-    #   else
-    #     # 기타 예외 사항 처리
-    #     # @paintings = Painting.where("price <= ?", price.value)
-    #     @paintings = @paintings.where("price <= ?", price.value)
-
-    #   end
-      
-    #   @is_filtering = true
-      
-    # end
 
     if params[:color_id].present?
       # 색깔 필터링 조건이 있을 경우
-      if !@paintings.nil?
-        # 색 필터링 외에 다른 필터링 조건이 있을 경우,
-        # 색 필터링 조건과 교집합한다.
-        @paintings = @paintings.where(color_id: params[:color_id])
-      else 
-        # 색 필터링 조건만 조건에 있을 경우
-        @paintings = @paintings.where(color_id: params[:color_id])
-        # @paintings = Painting.where(color_id: params[:color_id])
-      end
+      @paintings = @paintings.where(color_id: params[:color_id])
       @is_filtering = true
     end
-    if @is_filtering
-      @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
-    end
-    if params[:refresh].present?
-      # 그림 목록을 모두 지웠다 다시 표시해야 하는 경우 (필터링 등)
-      @need_refresh = true
-    else 
-      # 그림 목록을 지우지 않고, append 해 나가야 하는 경우 (infinite-scroll 등)
-      @need_refresh = false
-    end
-    
-    # 필터링을 하지 않는 경우
-    if !@is_filtering
-      # @paintings = Painting.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
-      # @paintings = Painting.where(status: "sale").paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
 
-      @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
-      
-    end
+    # 그림 목록을 모두 지웠다 다시 표시해야 하는 경우 (필터링 등)
+    @need_refresh = params[:refresh].present? ? true : false
+    
+    @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
     @min_price = Painting.order_price.first.price
     @max_price = Painting.order_price.last.price
     respond_to do |format|
@@ -203,28 +146,6 @@ class PaintingsController < ApplicationController
       puts "exception occured"
     end
   end
-
-
-  # def filter(paintings, filter_type)
-
-  #   case filter_type
-  #   when 0 
-  #     # 최신순
-  #     @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
-  #   when 1
-  #     # 좋아요 순
-
-  #   when 2
-  #     # 낮은 가격 순
-  #     @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('price ASC').exclude_images
-  #   when 3
-  #     # 높은 가격 순
-  #     @paintings = paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('price DESC').exclude_images
-  #   else
-  #     puts "undefined filter"
-  #   end
-    
-  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
