@@ -21,7 +21,9 @@
                 <% if @only_commerce && option[1] == "commerce" %>
                   <option selected value="<%= option[1] %>"><%= option[0] %></option>
                 <% else %>
-                  <option value="<%= option[1] %>"><%= option[0] %></option>
+                  <% if !@only_commerce && option[1] != "commerce" %>
+                    <option value="<%= option[1] %>"><%= option[0] %></option>
+                  <% end %>
                 <% end %>
               <% end %>
               <option value="all">전체</option>

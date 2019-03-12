@@ -51,6 +51,7 @@ class PaintingsController < ApplicationController
     @paintings = @paintings.paginate(page: params[:page], per_page: Painting::PER_PAGE).order('created_at DESC').exclude_images
     @min_price = Painting.order_price.first.price
     @max_price = Painting.order_price.last.price
+
     respond_to do |format|
       format.html
       format.js
