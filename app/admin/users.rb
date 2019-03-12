@@ -22,6 +22,9 @@ ActiveAdmin.register User do
         link_to "취소", cancel_seller_profile_path(user), remote: "true" if user.user_type == "seller"
       end
     }
+    actions default: true do |obj|
+    
+    end
     
 end
 
