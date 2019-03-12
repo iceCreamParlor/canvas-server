@@ -15,7 +15,13 @@
             <input type="hidden" id="painting_status" value="sale">
             <select style="width: 50%;" class="custom-select" id="sale-category" onchange="filterByStatus(event)">
               <% Painting.options_for_status.each do |option| %>
-                <option value="<%= option[1] %>"><%= option[0] %></option>
+                <% if @only_commerce && option[1] == "commerce" %>
+                  <option selected value="<%= option[1] %>"><%= option[0] %></option>
+                <% else %>
+                  <% if !@only_commerce && option[1] != "commerce" %>
+                    <option value="<%= option[1] %>"><%= option[0] %></option>
+                  <% end %>
+                <% end %>
               <% end %>
               <option value="all">전체</option>
             </select>

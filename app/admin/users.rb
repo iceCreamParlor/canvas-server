@@ -9,7 +9,8 @@ ActiveAdmin.register User do
   index :as => :table do
 
     
-
+    selectable_column
+    id_column
     column :email
     column :user_type
     column :nickname
