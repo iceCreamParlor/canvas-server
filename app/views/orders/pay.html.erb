@@ -16,12 +16,12 @@
             
             <div>
               <label>주소</label>
-              <%= f.text_field :address1, required: "true", readonly: "true" %>
+              <%= f.text_field :address1, required: "true", onkeydown: "return false" %>
               <%= f.text_field :address2, required: "true", placeholder: "상세 주소" %>
             </div>
             <div>
               <label class="required">우편번호</label>
-              <%= f.text_field :zipcode, required: "true", readonly: "true" %>
+              <%= f.text_field :zipcode, required: "true", onkeydown: "return false" %>
             </div>
             <div class="row">
               <div class="col-12 col-sm-6">
@@ -72,14 +72,10 @@
                 $("#order_zipcode").val(data.postcode);
             }
         });
-      <% if @is_mobile %>
-        $("#order_address1").add('#order_zipcode').on("touchend", function(){
-          daumPostCode.open();
-        });
-      <% else %>
+      
         $("#order_address1").add('#order_zipcode').on("click", function(){
           daumPostCode.open();
         });
-      <% end %>
+      
     });
 </script>
