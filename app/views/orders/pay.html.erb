@@ -65,6 +65,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     daum.postcode.load(function(){
+      alert("post loaded!!")
         let daumPostCode = new daum.Postcode({
             oncomplete: function(data) {
                 console.log(data);
@@ -73,7 +74,8 @@
             }
         });
       <% if @is_mobile %>
-        $("#order_address1").add('#order_zipcode').on("focus", function(){
+        $("#order_address1").add('#order_zipcode').on("click", function(){
+          alert("clicked");
           daumPostCode.open();
         });
       <% else %>
