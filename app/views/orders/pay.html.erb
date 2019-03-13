@@ -74,7 +74,7 @@
             }
         });
       <% if @is_mobile %>
-        $("#order_address1").add('#order_zipcode').on("click", function(){
+        $("#order_address1").add('#order_zipcode').on("focus", function(){
           alert("clicked");
           daumPostCode.open();
         });
