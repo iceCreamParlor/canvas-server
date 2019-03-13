@@ -16,6 +16,7 @@
             
             <div>
               <div>
+                <button onclick:"execDaumPostcode(this)">주소 찾기</button>
                 <label class="required">우편번호</label>
                 <%= f.text_field :zipcode, required: "true", onkeydown: "return false", onclick:"execDaumPostcode(this)" %>
               </div>
