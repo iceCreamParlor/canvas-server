@@ -84,6 +84,7 @@
       element.blur();
         new daum.Postcode({
             oncomplete: function(data) {
+              
                 // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -137,6 +138,7 @@
 
         // iframe을 넣은 element를 보이게 한다.
         element_layer.style.display = 'block';
+        alert(element_layer);
 
         // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
         initLayerPosition();
@@ -157,5 +159,8 @@
         // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
         element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
         element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+        console.log(element_layer);
+        alert(element_layer.style.left);
+        alert(element_layer.style.top);
     }
 </script>
