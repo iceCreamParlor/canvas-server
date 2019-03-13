@@ -64,7 +64,7 @@
 </div>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
-    daum.postcode.load(function(){
+    // daum.postcode.load(function(){
       alert("post loaded!!")
         let daumPostCode = new daum.Postcode({
             oncomplete: function(data) {
@@ -83,5 +83,5 @@
           daumPostCode.open();
         });
       <% end %>
-    });
+    // });
 </script>
