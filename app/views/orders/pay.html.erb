@@ -16,7 +16,7 @@
             
             <div>
               <div>
-                <button style="float: right;" type="button" onclick= "alert('!!');execDaumPostcode(this)">주소 찾기</button>
+                <!-- <button style="float: right;" type="button" onclick= "alert('!!');execDaumPostcode(this)">주소 찾기</button> -->
                 <label class="required">우편번호</label>
                 <%= f.text_field :zipcode, required: "true", onkeydown: "return false", onclick:"execDaumPostcode(this)" %>
               </div>
@@ -71,7 +71,7 @@
     <% end %>
   </div><!-- end container -->
 </div>
-<script src="//dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 <script>
   
     var element_layer = document.getElementById('layer');
@@ -82,7 +82,7 @@
     }
 
     function execDaumPostcode(element) {
-      alert("!!")
+      
       element.blur();
         new daum.Postcode({
             oncomplete: function(data) {
@@ -140,7 +140,6 @@
 
         // iframe을 넣은 element를 보이게 한다.
         element_layer.style.display = 'block';
-        alert(element_layer);
 
         // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
         initLayerPosition();
@@ -161,8 +160,6 @@
         // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
         element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
         element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
-        console.log(element_layer);
-        alert(element_layer.style.left);
-        alert(element_layer.style.top);
+        
     }
 </script>
