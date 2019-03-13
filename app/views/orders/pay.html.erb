@@ -72,8 +72,14 @@
                 $("#order_zipcode").val(data.postcode);
             }
         });
-      $("#order_address1").add('#order_zipcode').on("click", function(){
-        daumPostCode.open();
-      });
+      <% if @is_mobile %>
+        $("#order_address1").add('#order_zipcode').on("touchend", function(){
+          daumPostCode.open();
+        });
+      <% else %>
+        $("#order_address1").add('#order_zipcode').on("click", function(){
+          daumPostCode.open();
+        });
+      <% end %>
     });
 </script>
