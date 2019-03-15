@@ -1494,7 +1494,7 @@ textarea.w-select {
 }
 
 .w-dropdown-link.w--current {
-	color: #0082f3
+	color: white;
 }
 
 .w-nav[data-collapse="all"] .w-dropdown,
@@ -2019,7 +2019,7 @@ textarea.w-select {
 }
 
 .w-nav-link.w--current {
-	color: #0082f3
+	color: white;
 }
 
 .w-nav-menu {
@@ -3840,7 +3840,7 @@ blockquote {
 }
 
 .nav-item {
-	padding: 48px 30px;
+	padding: 48px 30px 20px 30px;
 	-webkit-transition: color 300ms ease;
 	transition: color 300ms ease;
 	font-family: NeueHaasGrotesk;
@@ -3897,6 +3897,10 @@ blockquote {
 	clear: none;
 }
 
+.vr.white{
+	border-left: 3px solid white;
+}
+
 .hr {
 	width: 100%;
 	height: 8px;
@@ -3914,8 +3918,18 @@ blockquote {
 	background-color: #005cef;
 }
 
+.hr.hr-theme-blue{
+	height: 8px;
+	float: left;
+	background-color: #0021F5;
+}
+
 .hr.hr-white {
 	background-color: #fff;
+}
+
+.hr.orange {
+	background-color: #EF8031;
 }
 
 .hr.hr-white.hr-margin {
@@ -3932,6 +3946,14 @@ blockquote {
 
 .hr.hr-thin {
 	height: 5px;
+}
+
+.hr.hr-thinner {
+	height: 4px;
+}
+
+.hr.hr-thick {
+	height: 15px;
 }
 
 .hr.hr-margin {
@@ -4059,6 +4081,7 @@ blockquote {
 	position: relative;
 	padding-top: 90px;
 	padding-bottom: 90px;
+	height: 100%;
 }
 
 .section.section-blue {

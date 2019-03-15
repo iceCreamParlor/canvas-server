@@ -1,29 +1,60 @@
 <style>
+  html{
+    height:100%;
+  }
+  
   body{
-    background-color: #0021F5 !important;
+    background-color: #0021F5;
+    height: 100%;
+  }
+  .blue{
+    color: #0021F5;
   }
   #nav{
     background-color: #0021F5;
   }
   .nav-item{
-    color: white !important;
+    color: white;
   }
   .nav-menu{
     background-color: #0021F5;
   }
   p, span{
-    color: white !important;
+    color: white;
   }
   .hr{
-    background-color: white !important;
+    background-color: white;
   }
-  .title-area{
+  .header-area{
     margin-top: 40px;
+  }
+  .header-text{
+    font-size: 120px;
+    font-weight: 600;
+  }
+  .magazine-brief-text-title{
+    font-size: 40px;
+  }
+  #magazine-content{
+    background-color: white;
+  }
+  .magazine-content-text-title{
+    color: #0021F5;
+    font-size: 30px;
+  }
+  
+  section{
+    padding-top: 50px;
+    overflow: auto;
+    padding-bottom: 30px;
   }
   @media screen and (max-width: 479px) {
     /* mobile */
-    .title-area{
+    .header-area{
       margin-top: 20px;
+    }
+    .header-text{
+      font-size: 30px;
     }
   }
 
@@ -44,12 +75,54 @@
 <%= render 'layouts/navbar' %>
 
 <div class="container">
-  <section id="magazine-top">
+  <section id="magazine-header">
     <div class="wrapper">
-      <div class="title-area">
-        <p>asdfasdf</p>
+      <div class="header-area">
+        <p class="header-text">누구나.</p>
       </div>
-      
+      <div class="hr hr-thinner"></div>
+      <div class="margin-top-20 hr orange hr-thick"></div>
+      <div class="margin-top-20 hr orange hr-thick"></div>
+      <div class="margin-top-20 hr orange hr-thick"></div>
+    </div>
+  </section>
+  <section id="magazine-brief">
+    <div class="wrapper" style="padding-right: 10px;">
+      <div class="w-col w-col-5">
+        <p class="magazine-brief-text-title">
+          No.1
+        </p>
+        <div class="hr hr-thinner"></div>
+        <p class="margin-top-20">
+          누구나 모든 벽을 향유할만한 가치가 있다. 내 작품이 모든 방에- 후회해봤자 소용은 없다. 모든 것은 나에게 달려있다 이말입니다.
+        </p>
+        <p>
+          누구나 모든 벽을 향유할만한 가치가 있다. 내 작품이 모든 방에- 후회해봤자 소용은 없다. 모든 것은 나에게 달려있다 이말입니다.
+        </p>
+      </div>
+      <div class="w-col w-col-2"></div>
+      <div class="w-col w-col-5 vr white" style="margin-top: 300px;">
+        <div style="padding-left: 20px;">
+          <p class="magazine-brief-text-title">
+            No.2
+          </p>
+          <div class="hr hr-thinner"></div>
+          <p class="margin-top-20">
+            누구나 모든 벽을 향유할만한 가치가 있다. 내 작품이 모든 방에- 후회해봤자 소용은 없다. 모든 것은 나에게 달려있다 이말입니다.
+          </p>
+          <p>
+            누구나 모든 벽을 향유할만한 가치가 있다. 내 작품이 모든 방에- 후회해봤자 소용은 없다. 모든 것은 나에게 달려있다 이말입니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="magazine-content">
+    <div class="wrapper">
+      <p class="magazine-content-text-title">
+        No.1
+      </p>
+      <div class="hr hr-theme-blue hr-thin"></div>
     </div>
   </section>
 </div>
