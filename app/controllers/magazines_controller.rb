@@ -7,6 +7,7 @@ class MagazinesController < InheritedResources::Base
     @main_magazines = Magazine.where(priority: "main").order("created_at DESC")
     @painting_magazines = Magazine.where(magazine_type: "painting") - @head_magazines - @main_magazines
     @artist_magazines = Magazine.where(magazine_type: "artist") - @head_magazines - @main_magazines
+    render layout: 'layouts/customized_layout'
   end
 
   def show

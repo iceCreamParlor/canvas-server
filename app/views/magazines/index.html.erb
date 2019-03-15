@@ -1,237 +1,55 @@
-<!-- HEAD MAGAZINES Posts -->
-  <!-- Blog section  -->
-  <div class="section 
-    <% if @is_mobile %> mobile <% end %>"
-  >
-    <div class="container">
-      <div>
-        <% if user_signed_in? && current_user.user_type == "admin" %>
-          <%= link_to new_magazine_path do %>
-            <button type="button" class="btn btn-outline-dark float-right">매거진 등록하기</button>
-          <% end %>
-        <% end %>
+<style>
+  body{
+    background-color: #0021F5 !important;
+  }
+  #nav{
+    background-color: #0021F5;
+  }
+  .nav-item{
+    color: white !important;
+  }
+  .nav-menu{
+    background-color: #0021F5;
+  }
+  p, span{
+    color: white !important;
+  }
+  .hr{
+    background-color: white !important;
+  }
+  .title-area{
+    margin-top: 40px;
+  }
+  @media screen and (max-width: 479px) {
+    /* mobile */
+    .title-area{
+      margin-top: 20px;
+    }
+  }
+
+  @media all and (min-width: 1024px) {
+
+  }
+
+  @media all and (min-width: 1680px) {
+
+  }
+
+  @media all and (min-width: 2200px){
+
+  }
+
+</style>
+
+<%= render 'layouts/navbar' %>
+
+<div class="container">
+  <section id="magazine-top">
+    <div class="wrapper">
+      <div class="title-area">
+        <p>asdfasdf</p>
       </div>
-      <br>
-      <div class="row" style="margin-top: 30px;">
-        <!-- Blog Posts -->
-        <div class="col-12 col-lg-8 blog-small-thumbnail">
-          <% if @head_magazines.present? %>
-            <div class="margin-bottom-20">
-              <span class="magazine-type">헤드</span>
-            </div>
-            <!-- Blog Post box 1 -->
-            <% @head_magazines.each do |magazine| %>
-              <div class="blog-post-box">
-                <div class="blog-post-img">
-                  <%= link_to magazine_path(magazine) do %>
-                    <%= link_to magazine_path(magazine) do %>
-                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                        <img src="<%= magazine.thumbnail.url %>" alt="">
-                      <% else %>
-                        <img src="/images/col-3.jpg" alt="">
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class="blog-post-content">
-                  <div class="blog-post-title margin-bottom-10">
-                    <h5>
-                      <%= link_to magazine_path(magazine) do %>
-                        <%= magazine.title %>
-                      <% end %>
-                    </h5>
-                    <ul class="list-horizontal-dash font-small margin-bottom-10">
-                      <li>
-                        <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
-                      </li>
-                    </ul>
-                  </div>
-                  <%= truncate magazine.content.html_safe, length: 150, :omission => "..." , :escape => false %>
-                  <% if !@is_mobile %>
-                    <br>
-                    <%= link_to '자세히', magazine_path(magazine) %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-          <hr>
-          
-          <div class="row margin-top-20">
-            <div class="col-12 col-lg-4">
-              <!-- Blog Post box 1 -->
-              <h6 class="heading-uppercase"><a class="magazine-type">신진 작가</a></h6>
-              <% @artist_magazines.each do |magazine| %>
-                <div class="blog-post-box">
-                  <!-- <div class="blog-post-img">
-                    <a href="#">
-                      <img src="/images/col-1.jpg" alt="">
-                    </a>
-                  </div> -->
-                  <div class="blog-post-content">
-                    <%= link_to magazine_path(magazine) do %>
-                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                        <img src="<%= magazine.thumbnail.url %>" alt="">
-                      <% else %>
-                        <img src="/images/col-1.jpg" alt="">
-                      <% end %>
-                    <% end %>
-                    <div class="blog-post-title margin-top-20">
-                      <h5>
-                        <%= link_to magazine_path(magazine) do %>
-                          <%= magazine.title %>
-                        <% end %>
-                      </h5>
-                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-
-            <div class="col-12 col-lg-4" 
-              <% if !@is_mobile %>
-              style="border-left: 1px solid #ddd;"
-              <% end %>
-            >
-              <% if @is_mobile %>
-                <hr>
-              <% end %>
-              <!-- Blog Post box 1 -->
-              <h6 class="heading-uppercase"><a class="magazine-type">이슈 작품</a></h6>
-              <% @painting_magazines.each do |magazine| %>
-                <div class="blog-post-box">
-                  <div class="blog-post-content">
-                    <%= link_to magazine_path(magazine) do %>
-                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                        <img src="<%= magazine.thumbnail.url %>" alt="">
-                      <% else %>
-                        <img src="/images/col-1.jpg" alt="">
-                      <% end %>
-                    <% end %>
-                    <div class="blog-post-title margin-top-20">
-                      <h5>
-                        <%= link_to magazine_path(magazine) do %>
-                          <%= magazine.title %>
-                        <% end %>
-                      </h5>
-                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-            <div class="col-12 col-lg-4" 
-              <% if !@is_mobile %>
-              style="border-left: 1px solid #ddd;"
-              <% end %>
-            >
-              <% if @is_mobile %>
-                <hr>
-              <% end %>
-              <h6 class="heading-uppercase"><a class="magazine-type">경매</a></h6>
-              <% @head_magazines.each do |magazine| %>
-                <div class="blog-post-box">
-                  <div class="blog-post-content">
-                    <%= link_to magazine_path(magazine) do %>
-                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                        <img src="<%= magazine.thumbnail.url %>" alt="">
-                      <% else %>
-                        <img src="/images/col-1.jpg" alt="">
-                      <% end %>
-                    <% end %>
-                    <div class="blog-post-title margin-top-20">
-                      <h5>
-                        <%= link_to magazine_path(magazine) do %>
-                          <%= magazine.title %>
-                        <% end %>
-                      </h5>
-                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-
-            </div>
-          </div>
-        </div>
-        
-        
-        <!-- Blog Sidebar -->
-        <div class="col-12 col-lg-4 
-          <% if !@is_mobile %> sidebar-wrapper <% end %>"
-        >
-
-          <!-- Sidebar box 3 - Popular Posts -->
-          <div class="sidebar-box">
-            <% if @main_magazines.present? %>
-              <h6 class="heading-uppercase">Popular</h6>
-              <!-- Popular post 1 -->
-              <% @main_magazines.each do |magazine| %>  
-                <div class="popular-post">
-                  <%= link_to magazine_path(magazine) do %>
-                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                      <img class="popular-post-img" src="<%= magazine.thumbnail.url %>" alt="">
-                    <% else %>
-                      <img class="popular-post-img" src="/images/col-3-tall.jpg" alt="">
-                    <% end %>
-                  <% end %>
-                  <div>
-                    <h6 class="font-weight-normal" style="line-height: 20px; ">
-                      <%= link_to magazine_path(magazine) do %>
-                        <span><%= magazine.title %></span>
-                      <% end %>
-                    </h6>
-                    <span style="bottom: 0px;"><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          </div> 
-
-          <!-- Sidebar box 6 - Facebook Like box -->
-          <div class="sidebar-box text-center">
-            <h6 class="heading-uppercase">Follow<br> Chack&Zzick</h6>
-            <ul class="list-horizontal-unstyled">
-              <!-- <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-              <li><a href="#"><i class="fab fa-behance"></i></a></li> -->
-              
-              <li><a href="https://www.instagram.com/chacknzzick/"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-          </div>
-
-          <!-- Sidebar box 3 - Popular Posts -->
-          <div class="sidebar-box">
-            <% if @main_magazines.present? %>
-              <h6 class="heading-uppercase">Announcement</h6>
-              <!-- Popular post 1 -->
-              <% @main_magazines.each do |magazine| %>  
-                <div class="popular-post">
-                  <%= link_to magazine_path(magazine) do %>
-                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
-                      <img class="popular-post-img" src="<%= magazine.thumbnail.url %>" alt="">
-                    <% else %>
-                      <img class="popular-post-img" src="/images/col-3-tall.jpg" alt="">
-                    <% end %>
-                  <% end %>
-                  <div>
-                    <h6 class="font-weight-normal" style="line-height: 20px; ">
-                      <%= link_to magazine_path(magazine) do %>
-                        <span><%= magazine.title %></span>
-                      <% end %>
-                    </h6>
-                    <span style="bottom: 0px;"><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          </div> 
-        </div>
-        <!-- end Blog Sidebar -->
       
-      </div><!-- end row -->
-    </div><!-- end container -->
-  </div>
-
+    </div>
+  </section>
+</div>

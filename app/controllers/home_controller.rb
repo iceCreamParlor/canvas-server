@@ -4,6 +4,6 @@ class HomeController < ApplicationController
     @paintings2 = Painting.all.select(:thumbnail).sample(10)
     @paintings3 = Painting.all.select(:thumbnail).sample(10)
     @magazines = Magazine.all.map{ |p| p.thumbnail }
-    render layout: false
+    render layout: 'layouts/customized_layout'
   end
 end
