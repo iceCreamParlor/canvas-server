@@ -42,6 +42,18 @@
     color: #0021F5;
     font-size: 30px;
   }
+
+  .artist-profile{
+    padding-top: 5%;
+  }
+  .artist-brief p{
+    color: black;
+  }
+  p.artist-name{
+    font-size: 80px;
+    color: #0021F5;
+    font-weight: 600;
+  }
   
   section{
     padding-top: 50px;
@@ -80,7 +92,7 @@
       <div class="header-area">
         <p class="header-text">누구나.</p>
       </div>
-      <div class="hr hr-thinner"></div>
+      <div class="hr hr-thinner margin-top-10"></div>
       <div class="margin-top-20 hr orange hr-thick"></div>
       <div class="margin-top-20 hr orange hr-thick"></div>
       <div class="margin-top-20 hr orange hr-thick"></div>
@@ -92,7 +104,7 @@
         <p class="magazine-brief-text-title">
           No.1
         </p>
-        <div class="hr hr-thinner"></div>
+        <div class="hr hr-thinner margin-top-10"></div>
         <p class="margin-top-20">
           누구나 모든 벽을 향유할만한 가치가 있다. 내 작품이 모든 방에- 후회해봤자 소용은 없다. 모든 것은 나에게 달려있다 이말입니다.
         </p>
@@ -101,12 +113,17 @@
         </p>
       </div>
       <div class="w-col w-col-2"></div>
-      <div class="w-col w-col-5 vr white" style="margin-top: 300px;">
-        <div style="padding-left: 20px;">
+      <% if @is_mobile %>
+        <div class="w-col w-col-5 margin-top-20">
+          <div>
+      <% else %>
+        <div class="w-col w-col-5 vr white" style="margin-top: 300px;">
+          <div style="padding-left: 20px;">
+      <% end %>
           <p class="magazine-brief-text-title">
             No.2
           </p>
-          <div class="hr hr-thinner"></div>
+          <div class="hr hr-thinner margin-top-10"></div>
           <p class="margin-top-20">
             누구나 모든 벽을 향유할만한 가치가 있다. 내 작품이 모든 방에- 후회해봤자 소용은 없다. 모든 것은 나에게 달려있다 이말입니다.
           </p>
@@ -122,7 +139,28 @@
       <p class="magazine-content-text-title">
         No.1
       </p>
-      <div class="hr hr-theme-blue hr-thin"></div>
+      <div class="hr hr-theme-blue hr-thin margin-top-10"></div>
+    </div>
+    <div class="wrapper" style="overflow: auto;">
+      <div class="artist-profile" >
+        <div class="w-col w-col-3 no-padding">
+          <img src="/images/sample_profile.jpeg" alt="">
+        </div>
+        <div class="w-col w-col-1"></div>
+        <div class="w-col w-col-8">
+          <div class="artist-brief" >
+            <p>필시 모든 것은 후회로 돌아온다. 그러니 후회를 잘 다루는 것이</p>
+            <p>무엇보다 중요하겠다고, 꼭 꼭 씹어 삼키는 것이다. 소화되지 않은</p>
+            <p>것들은 덩어리져, 덩어리져 뭉쳐, 뭉친채로 가슴께에 얹혀 하루고 이틀이고</p>
+            <p>나를 괴롭히는 것이었다. 괴롭다고 말한다면 무엇이 달라질까 싶어 다시 한번</p>
+            <p>억지로 그것을 짓이겨, 소화도 되지 않은 채 꾹꾹 눌러담을 뿐이다.</p>
+            <div class="hr hr-theme-blue hr-thinner margin-top-20"></div>
+            
+          </div>
+        </div>
+        <p style="position: absolute; bottom: 0px; left: 33.33333333%;" class="artist-name">김희재</p>      
+      </div>
+      
     </div>
   </section>
 </div>

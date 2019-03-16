@@ -7,33 +7,66 @@
     font-family: 'Noto Sans KR', sans-serif !important;
   }
 </style>
-<div data-collapse="medium" data-animation="default" data-duration="500" data-easing="ease-out-expo" data-easing2="ease-in-out" data-no-scroll="1" id="nav" class="nav w-nav">
-  <div class="wrapper w-container">
-     <div class="nav-body">
-        <a href="/" class="nav-brand w-nav-brand w--current">
-           <% if @is_mobile %>
-              <p style="font-weight: 550;padding-top:28px; padding-bottom: auto;">Chack N Zzick</p>
-
-           <% else %> 
-              <p style="font-weight: 550;padding-top:43px; padding-bottom: auto;">Chack N Zzick</p>
-           <% end %>
-        </a>
-        <a href="" class="nav-item is-last-h w-nav-link">|</a>
-        <a href="/paintings" class="nav-item is-last-h w-nav-link">Paintings</a>
-        <a href="/magazines" class="nav-item is-last-h w-nav-link">Magazine</a>
-        <nav role="navigation" class="nav-menu w-nav-menu">
-           
-           <a href="/about" class="nav-item is-last-h w-nav-link">About</a>
-           <a href="/notices" class="nav-item is-last-h w-nav-link">Notice</a>
-           <a href="/faqs" class="nav-item is-last-h w-nav-link">FAQ</a>
-           <% if user_signed_in? %>
-              <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
-           <% else %>
-              <a href="/users/sign_in" class="nav-item is-last-h w-nav-link">Login</a>
-           <% end %>
-        </nav>
-        <div data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86c" class="nav-toggle w-nav-button"><img src="/img/5b13ec2c541a846f4d141dd0_icon-menu.svg" width="28" data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86d" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="" class="nav-icon"/><img src="/img/5b13ef75541a841daa141eec_icon-close.svg" data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86e" style="-webkit-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="" class="nav-icon-close"/></div>
-     </div>
-     <div class="hr hr-thin"></div>
+<% if @is_mobile %>
+  <div data-collapse="medium" data-animation="default" data-duration="500" data-easing="ease-out-expo" data-easing2="ease-in-out" data-no-scroll="1" id="nav" class="nav w-nav">
+    <div class="wrapper w-container">
+       <div class="nav-body">
+          <a href="/" class="nav-brand w-nav-brand w--current">
+             <% if @is_mobile %>
+                <p style="font-weight: 550;padding-top:28px; padding-bottom: auto;">Chack N Zzick</p>
+  
+             <% else %> 
+                <p style="font-weight: 550;padding-top:43px; padding-bottom: auto;">Chack N Zzick</p>
+             <% end %>
+          </a>
+          
+          
+          <nav role="navigation" class="nav-menu w-nav-menu">
+             <a href="/paintings" class="nav-item is-last-h w-nav-link">Paintings</a>
+             <a href="/magazines" class="nav-item is-last-h w-nav-link">Magazine</a>   
+             <a href="/about" class="nav-item is-last-h w-nav-link">About</a>
+             <a href="/notices" class="nav-item is-last-h w-nav-link">Notice</a>
+             <a href="/faqs" class="nav-item is-last-h w-nav-link">FAQ</a>
+             <% if user_signed_in? %>
+                <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
+             <% else %>
+                <a href="/users/sign_in" class="nav-item is-last-h w-nav-link">Login</a>
+             <% end %>
+          </nav>
+          <div data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86c" class="nav-toggle w-nav-button"><img src="/img/5b13ec2c541a846f4d141dd0_icon-menu.svg" width="28" data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86d" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="" class="nav-icon"/><img src="/img/5b13ef75541a841daa141eec_icon-close.svg" data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86e" style="-webkit-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="" class="nav-icon-close"/></div>
+       </div>
+       <div class="hr hr-thin"></div>
+    </div>
   </div>
-</div>
+<% else %>
+  <div data-collapse="medium" data-animation="default" data-duration="500" data-easing="ease-out-expo" data-easing2="ease-in-out" data-no-scroll="1" id="nav" class="nav w-nav">
+    <div class="wrapper w-container">
+       <div class="nav-body">
+          <a href="/" class="nav-brand w-nav-brand w--current">
+             <% if @is_mobile %>
+                <p style="font-weight: 550;padding-top:28px; padding-bottom: auto;">Chack N Zzick</p>
+  
+             <% else %> 
+                <p style="font-weight: 550;padding-top:43px; padding-bottom: auto;">Chack N Zzick</p>
+             <% end %>
+          </a>
+          <a href="" class="nav-item is-last-h w-nav-link">|</a>
+          <a href="/paintings" class="nav-item is-last-h w-nav-link">Paintings</a>
+          <a href="/magazines" class="nav-item is-last-h w-nav-link">Magazine</a>
+          <nav role="navigation" class="nav-menu w-nav-menu">
+             
+             <a href="/about" class="nav-item is-last-h w-nav-link">About</a>
+             <a href="/notices" class="nav-item is-last-h w-nav-link">Notice</a>
+             <a href="/faqs" class="nav-item is-last-h w-nav-link">FAQ</a>
+             <% if user_signed_in? %>
+                <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
+             <% else %>
+                <a href="/users/sign_in" class="nav-item is-last-h w-nav-link">Login</a>
+             <% end %>
+          </nav>
+          <div data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86c" class="nav-toggle w-nav-button"><img src="/img/5b13ec2c541a846f4d141dd0_icon-menu.svg" width="28" data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86d" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="" class="nav-icon"/><img src="/img/5b13ef75541a841daa141eec_icon-close.svg" data-w-id="b2f9f39b-9e6e-8e20-21eb-f0d9828fe86e" style="-webkit-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(0, 0, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt="" class="nav-icon-close"/></div>
+       </div>
+       <div class="hr hr-thin"></div>
+    </div>
+  </div>
+<% end %>

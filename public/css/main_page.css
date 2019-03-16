@@ -868,6 +868,11 @@ textarea.w-select {
 	padding-right: 10px
 }
 
+.w-col.no-padding {
+	padding-left: 0;
+	padding-right: 0
+}
+
 .w-col .w-col {
 	padding-left: 0;
 	padding-right: 0
@@ -4345,6 +4350,10 @@ p.now-yours-text{
 
 .project-text.bg-white {
 	background-color: #fff;
+}
+
+.margin-top-10{
+	margin-top: 10px;
 }
 
 .margin-top-20{
