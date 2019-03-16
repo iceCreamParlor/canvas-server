@@ -142,7 +142,7 @@
         </div>
         <div class="w-col w-col-2"></div>
         <% if @is_mobile %>
-          <div class="w-col w-col-5 margin-top-20">
+          <div class="w-col w-col-5 margin-top-50">
             <div>
         <% else %>
           <div class="w-col w-col-5 vr white" style="margin-top: 250px;">
@@ -187,7 +187,9 @@
               
             </div>
           </div>
-          <p <% if !@is_mobile %> style="left: 33.33333333%;" <% end %> class="artist-name">김희재</p>      
+          <% if !@is_mobile %>
+            <p style="left: 33.33333333%;" class="artist-name">김희재</p>      
+          <% end %>
         </div>
       </div>
     </section>
@@ -214,9 +216,11 @@
             <% end %>
           </div>
           <div class="w-col w-col-2">
-            <center>
-              <img style="height: 300px;" src="/images/spring.png" alt="">
-            </center>
+            <% if !@is_mobile %>
+              <center>
+                <img style="height: 300px;" src="/images/spring.png" alt="">
+              </center>
+            <% end %>
           </div>
           <div class="w-col w-col-5">
             <% 2.times do %>
@@ -237,7 +241,7 @@
         </div>
       </div>
     </section>
-    <section id="magazine-painting" style="margin-bottom: 500px;">
+    <section id="magazine-painting" style="margin-bottom: 400px;">
       <div class="wrapper">
         <% @paintings.each do |painting| %>
           <%= link_to painting_path(painting) do %>
