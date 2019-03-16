@@ -27,7 +27,11 @@
              <a href="/about" class="nav-item is-last-h w-nav-link">About</a>
              <a href="/notices" class="nav-item is-last-h w-nav-link">Notice</a>
              <a href="/faqs" class="nav-item is-last-h w-nav-link">FAQ</a>
+             
+            
+               
              <% if user_signed_in? %>
+                <%= link_to 'Mypage', profiles_path, class:"nav-item is-last-h w-nav-link" %>
                 <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
              <% else %>
                 <a href="/users/sign_in" class="nav-item is-last-h w-nav-link">Login</a>
@@ -59,6 +63,7 @@
              <a href="/notices" class="nav-item is-last-h w-nav-link">Notice</a>
              <a href="/faqs" class="nav-item is-last-h w-nav-link">FAQ</a>
              <% if user_signed_in? %>
+                <%= link_to 'Mypage', profiles_path, class:"nav-item is-last-h w-nav-link" %>
                 <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
              <% else %>
                 <a href="/users/sign_in" class="nav-item is-last-h w-nav-link">Login</a>
