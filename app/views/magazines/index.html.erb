@@ -32,10 +32,14 @@
     font-size: 120px;
     font-weight: 600;
   }
+  .magazine-painting-img{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .magazine-brief-text-title{
     font-size: 40px;
   }
-  #magazine-content{
+  #magazine-content, #magazine-interview, #magazine-painting{
     background-color: white;
   }
   .magazine-content-text-title{
@@ -49,10 +53,34 @@
   .artist-brief p{
     color: black;
   }
+  .interview-title{
+    color: #0021F5;
+    font-size: 20px;
+    float: right;
+    padding-right: 5px;
+  }
+  .interview-content{
+    color: black;
+    font-size: 16px;
+  }
+  .interview-area{
+    margin-top: 20px;
+  }
   p.artist-name{
     font-size: 80px;
     color: #0021F5;
     font-weight: 600;
+    position: absolute;
+    bottom: 0px; 
+  }
+  p.painting-title{
+    font-size: 15px;
+    color: #0021F5;
+    font-weight: 600;
+  }
+  p.painting-sub{
+    font-size: 12px;
+    color: #0021F5;
   }
   
   section{
@@ -98,7 +126,7 @@
       <div class="margin-top-20 hr orange hr-thick"></div>
     </div>
   </section>
-  <section id="magazine-brief">
+  <section id="magazine-brief" style="padding-bottom: 50px;">
     <div class="wrapper" style="padding-right: 10px;">
       <div class="w-col w-col-5">
         <p class="magazine-brief-text-title">
@@ -158,9 +186,67 @@
             
           </div>
         </div>
-        <p style="position: absolute; bottom: 0px; left: 33.33333333%;" class="artist-name">김희재</p>      
+        <p <% if !@is_mobile %> style="left: 33.33333333%;" <% end %> class="artist-name">김희재</p>      
       </div>
-      
+    </div>
+  </section>
+  <section id="magazine-interview">
+    <div class="wrapper">
+      <p class="magazine-content-text-title">
+        Interview
+      </p>
+      <div class="margin-top-20">
+        <div class="w-col w-col-5">
+          <% 2.times do %>
+            <div class="interview-area">
+              <span class="interview-title" style="float: left;">Q.</span>
+              <div style="padding-left: 50px;">
+                때로는 아무 계획없이 멀리 우리라는 준비물만 챙겨서 떠나고싶어요. 그대만 좋다면요
+              </div>
+            </div>
+            <div class="interview-area">
+              <span class="interview-title" style="float: left;">A.</span>
+              <div style="padding-left: 50px;">
+                정말 신비한일야. 내맘에 기준이 되어버렸나봐요. 그대중심으로 멤돌고 멤돌아. 다가가고싶어요 욕심이나는걸.
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="w-col w-col-2">
+          <center>
+            <img style="height: 300px;" src="/images/spring.png" alt="">
+          </center>
+        </div>
+        <div class="w-col w-col-5">
+          <% 2.times do %>
+            <div class="interview-area">
+              <span class="interview-title" style="float: left;">Q.</span>
+              <div style="padding-left: 50px;">
+                처음에 만났을때, 그댄 맑은 사람같았죠. 큰 키에 안어울리게, 가끔 허술하던 모습에 왠지 자꾸만 눈이갔어요. 그댄 아마 모르겠죠.
+              </div>
+            </div>
+            <div class="interview-area">
+              <span class="interview-title" style="float: left;">A.</span>
+              <div style="padding-left: 50px;">
+                왜 이럴까 고민하고 모른척 해봐도 그대가 신경쓰이죠. 시도때도 없어요. 아직 잘 모르지만, 내맘을 열어둬요 날보러 오겠죠 환한 미소지으면서 그대는
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="magazine-painting" style="margin-bottom: 500px;">
+    <div class="wrapper">
+      <% @paintings.each do |painting| %>
+        <div class="w-col w-col-4">
+          <%= image_tag painting.thumbnail.url, class: "magazine-painting-img" %>
+          <center>
+            <p class="painting-title margin-top-20"><%= painting.name %></p>
+            <p class="painting-sub"><%= painting.completed_date.year %></p>
+          </center>
+        </div>
+      <% end %>
     </div>
   </section>
 </div>
