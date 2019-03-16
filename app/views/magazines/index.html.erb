@@ -239,13 +239,15 @@
   <section id="magazine-painting" style="margin-bottom: 500px;">
     <div class="wrapper">
       <% @paintings.each do |painting| %>
-        <div class="w-col w-col-4">
-          <%= image_tag painting.thumbnail.url, class: "magazine-painting-img" %>
-          <center>
-            <p class="painting-title margin-top-20"><%= painting.name %></p>
-            <p class="painting-sub"><%= painting.completed_date.year %></p>
-          </center>
-        </div>
+        <%= link_to painting_path(painting) do %>
+          <div class="w-col w-col-4">
+            <%= image_tag painting.thumbnail.url, class: "magazine-painting-img" %>
+            <center>
+              <p class="painting-title margin-top-20"><%= painting.name %></p>
+              <p class="painting-sub"><%= painting.completed_date.year %></p>
+            </center>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </section>
