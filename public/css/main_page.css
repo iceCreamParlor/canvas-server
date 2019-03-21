@@ -3840,6 +3840,20 @@ blockquote {
 	margin-left: auto;
 }
 
+.margin-left-100 {
+	margin-left: 100px;
+}
+
+.wrapper.left-margin {
+	position: relative;
+	z-index: 900;
+	/* width: 85%; */
+	width: 88%;
+	max-width: 1980px;
+	margin-right: auto;
+	margin-left: 100px;
+}
+
 .wrapper.wrapper-small {
 	max-width: 1280px;
 }

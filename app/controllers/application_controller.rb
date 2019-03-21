@@ -21,18 +21,9 @@ class ApplicationController < ActionController::Base
   end
 
   def check_sns
-    # @is_sns = (user_signed_in? && Identity.find_by(user_id: current_user.id).present?) ? true : false
     @is_mobile = mobile_device?
 
     @is_sns = (user_signed_in? && Identity.find_by(user_id: current_user.id).present?) ? true : false
-
-    # @is_sns = false
-    # if user_signed_in? 
-    #   if Identity.find_by(user_id: current_user.id).present?
-    #     @is_sns = true
-    #   end
-    # end
-    
   end
   def mobile_device?
     # 단순히 모바일 디바이스인지를 판별한다 (웹 브라우저의 경우, 여기에서 true가 반환됨)

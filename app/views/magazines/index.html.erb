@@ -7,6 +7,18 @@
       background-color: #0021F5;
       height: 100%;
     }
+    .sidenav-chacknzzick {
+      height: 100%; /* Full-height: remove this if you want "auto" height */
+      width: 70px; /* Set the width of the sidebar */
+      position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+      z-index: 1001; /* Stay on top */
+      top: 0; /* Stay at the top */
+      left: 0;
+      background-color: transparent; /* Black */
+      overflow-x: hidden; /* Disable horizontal scroll */
+      padding-top: 20px;
+      border-right: 2px solid white;
+    }
     .blue{
       color: #0021F5;
     }
@@ -112,11 +124,13 @@
   
   </style>
   
+  <%= render 'layouts/sidenav' %>
   <%= render 'layouts/navbar' %>
+  
   <script src="/js/siema.min.js"></script>
   <div class="container">
     <section id="magazine-header">
-      <div class="wrapper">
+      <div class="wrapper left-margin">
         <div class="header-area">
           <p class="header-text">누구나.</p>
         </div>
@@ -127,7 +141,7 @@
       </div>
     </section>
     <section id="magazine-brief" style="padding-bottom: 50px;">
-      <div class="wrapper" style="padding-right: 10px;">
+      <div class="wrapper left-margin" style="padding-right: 10px;">
         <div class="w-col w-col-5">
           <p class="magazine-brief-text-title">
             No.1
@@ -165,13 +179,13 @@
     <div class="siema">
       <div>
         <section id="magazine-content">
-          <div class="wrapper">
+          <div class="wrapper left-margin">
             <p class="magazine-content-text-title">
               No.1
             </p>
             <div class="hr hr-theme-blue hr-thin margin-top-10"></div>
           </div>
-          <div class="wrapper" style="overflow: auto;">
+          <div class="wrapper left-margin" style="overflow: auto;">
             <div class="artist-profile" >
               <div class="w-col w-col-3 no-padding">
                 <img src="/images/sample_profile.jpeg" alt="">
@@ -196,7 +210,7 @@
           </div>
         </section>
         <section id="magazine-interview">
-          <div class="wrapper">
+          <div class="wrapper margin-left-100">
             <p class="magazine-content-text-title">
               Interview
             </p>
@@ -243,103 +257,7 @@
             </div>
           </div>
         </section>
-        <section id="magazine-painting" style="margin-bottom: 400px;">
-          <div class="wrapper">
-            <% @paintings.each do |painting| %>
-              <%= link_to painting_path(painting) do %>
-                <div class="w-col w-col-4">
-                  <%= image_tag painting.thumbnail.url, class: "magazine-painting-img" %>
-                  <center>
-                    <p class="painting-title margin-top-20"><%= painting.name %></p>
-                    <p class="painting-sub"><%= painting.completed_date.year %></p>
-                  </center>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        </section>
-      </div>
-      <div>
-        <section id="magazine-content">
-          <div class="wrapper">
-            <p class="magazine-content-text-title">
-              No.2
-            </p>
-            <div class="hr hr-theme-blue hr-thin margin-top-10"></div>
-          </div>
-          <div class="wrapper" style="overflow: auto;">
-            <div class="artist-profile" >
-              <div class="w-col w-col-3 no-padding">
-                <img src="/images/sample_profile.jpeg" alt="">
-              </div>
-              <div class="w-col w-col-1"></div>
-              <div class="w-col w-col-8">
-                <div class="artist-brief" >
-                  <p>나는 매일 똑같은 밥을 먹는 것도 아니고</p>
-                  <p>나는 매일 똑같은 얘길 하는 것도 아니고</p>
-                  <p>어쩌면 오늘이 특별한 날일 수도 있는데</p>
-                  <p>가끔 만나는 사람들은 내게 이런 말을 해</p>
-                  <p>그대가 아는 것 만큼 난 좋은애가 아니에요. 나쁜 생각도 잘하고 속으로 욕도 가끔 해요. 우린 완벽하지 않고, 가끔 억지도 부리는걸 그럼 마음이 너무 아파</p>
-                  <p>그대를 내 어깨에 기대 찬바람에 얘길 떠나보내요.</p>
-                  <div class="hr hr-theme-blue hr-thinner margin-top-20"></div>
-                  
-                </div>
-              </div>
-              <% if !@is_mobile %>
-                <p style="left: 33.33333333%;" class="artist-name">김희재</p>      
-              <% end %>
-            </div>
-          </div>
-        </section>
-        <section id="magazine-interview">
-          <div class="wrapper">
-            <p class="magazine-content-text-title">
-              Interview
-            </p>
-            <div class="margin-top-20">
-              <div class="w-col w-col-5">
-                <% 2.times do %>
-                  <div class="interview-area">
-                    <span class="interview-title" style="float: left;">Q.</span>
-                    <div style="padding-left: 50px;">
-                      때로는 아무 계획없이 멀리 우리라는 준비물만 챙겨서 떠나고싶어요. 그대만 좋다면요
-                    </div>
-                  </div>
-                  <div class="interview-area">
-                    <span class="interview-title" style="float: left;">A.</span>
-                    <div style="padding-left: 50px;">
-                      정말 신비한일야. 내맘에 기준이 되어버렸나봐요. 그대중심으로 멤돌고 멤돌아. 다가가고싶어요 욕심이나는걸.
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-              <div class="w-col w-col-2">
-                <% if !@is_mobile %>
-                  <center>
-                    <img style="height: 300px;" src="/images/spring.png" alt="">
-                  </center>
-                <% end %>
-              </div>
-              <div class="w-col w-col-5">
-                <% 2.times do %>
-                  <div class="interview-area">
-                    <span class="interview-title" style="float: left;">Q.</span>
-                    <div style="padding-left: 50px;">
-                      처음에 만났을때, 그댄 맑은 사람같았죠. 큰 키에 안어울리게, 가끔 허술하던 모습에 왠지 자꾸만 눈이갔어요. 그댄 아마 모르겠죠.
-                    </div>
-                  </div>
-                  <div class="interview-area">
-                    <span class="interview-title" style="float: left;">A.</span>
-                    <div style="padding-left: 50px;">
-                      왜 이럴까 고민하고 모른척 해봐도 그대가 신경쓰이죠. 시도때도 없어요. 아직 잘 모르지만, 내맘을 열어둬요 날보러 오겠죠 환한 미소지으면서 그대는
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="magazine-painting" style="margin-bottom: 400px;">
+        <section id="magazine-painting" style="margin-bottom: 400px;" class="margin-left-100">
           <div class="wrapper">
             <% @paintings.each do |painting| %>
               <%= link_to painting_path(painting) do %>
