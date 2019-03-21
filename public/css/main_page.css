@@ -3829,7 +3829,9 @@ blockquote {
 .nav.is-white.bg-blue {
 	background-color: #005cef;
 }
-
+.text-center{
+	text-align: center;
+}
 .wrapper {
 	position: relative;
 	z-index: 900;
@@ -3838,6 +3840,14 @@ blockquote {
 	max-width: 1980px;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.background-blue{
+	background-color: #0021F5;
+}
+
+.width-100{
+	width: 100%;
 }
 
 .margin-left-100 {

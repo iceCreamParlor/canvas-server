@@ -19,6 +19,12 @@
       padding-top: 20px;
       border-right: 2px solid white;
     }
+
+    a.sidenav-link{
+      color: white;
+      text-decoration: none;
+    }
+
     .blue{
       color: #0021F5;
     }
@@ -257,7 +263,7 @@
             </div>
           </div>
         </section>
-        <section id="magazine-painting" style="margin-bottom: 400px;" class="margin-left-100">
+        <section id="magazine-painting" style="margin-bottom: 400px;">
           <div class="wrapper">
             <% @paintings.each do |painting| %>
               <%= link_to painting_path(painting) do %>
@@ -276,18 +282,37 @@
     </div>
   </div>
 <script>
-  new Siema({
-    selector: '.siema',
-    duration: 200,
-    easing: 'ease-out',
-    perPage: 1,
-    startIndex: 0,
-    draggable: true,
-    multipleDrag: true,
-    threshold: 20,
-    loop: false,
-    rtl: false,
-    onInit: () => {},
-    onChange: () => {},
-  });
+  $(function(){
+
+    const magazineContent = document.querySelector('#magazine-content');
+    
+    
+    // window.addEventListener('scroll', () => {
+    //   const magazineContentTop = getPosition(magazineContent).y;
+    //   const threshold = 500;
+    //   if(magazineContentTop-threshold < 0){
+    //     console.log("!!!")
+    //     $('.sidenav-link').css('color', '#005cef');
+    //   }
+    // })
+
+    // 좌우 슬라이드
+    new Siema({
+      selector: '.siema',
+      duration: 200,
+      easing: 'ease-out',
+      perPage: 1,
+      startIndex: 0,
+      draggable: true,
+      multipleDrag: true,
+      threshold: 20,
+      loop: false,
+      rtl: false,
+      onInit: () => {},
+      onChange: () => {},
+    });
+
+  })
+  
+
 </script>

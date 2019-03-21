@@ -8,7 +8,12 @@ class MagazinesController < InheritedResources::Base
     # @painting_magazines = Magazine.where(magazine_type: "painting") - @head_magazines - @main_magazines
     # @artist_magazines = Magazine.where(magazine_type: "artist") - @head_magazines - @main_magazines
     @paintings = Painting.last(3)
-    render layout: 'layouts/customized_layout'
+    
+    if @is_mobile 
+      render layout: 'layouts/customized_layout', template: 'magazines/index_mobile'
+    else
+      render layout: 'layouts/customized_layout'
+    end
   end
 
   def show
