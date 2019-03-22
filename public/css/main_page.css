@@ -3818,7 +3818,7 @@ blockquote {
 	display: none;
 }
 
-.nav {
+.nav-cz {
 	background-color: #fff;
 }
 
@@ -5020,16 +5020,6 @@ p.now-yours-text{
 	grid-template-rows: auto auto;
 }
 
-.product {
-	position: relative;
-	display: block;
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
-	color: #000;
-	text-decoration: none;
-}
-
 .heading-2 {
 	display: inline-block;
 }
@@ -5450,7 +5440,7 @@ p.now-yours-text{
 		font-size: 26px;
 		line-height: 36px;
 	}
-	.nav {
+	.nav-cz {
 		position: relative;
 	}
 	.nav-menu {

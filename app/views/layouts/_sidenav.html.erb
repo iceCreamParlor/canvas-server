@@ -1,12 +1,12 @@
 <div id="sidenav_cz" class="sidenav-cz text-center">
-  <div class="width-100" style="height: 80%;"></div>
-  <div class="width-100 sidenav-item selected">
-    <a href="#a" class="sidenav-link">No.1</a>
-  </div>
-  <div class="width-100 sidenav-item">
-    <a href="#a" class="sidenav-link">No.2</a>
-  </div>
-  <div class="width-100 sidenav-item">
-    <a href="#a" class="sidenav-link">No.3</a>
-  </div>
+  <div class="width-100" style="height: 75%;"></div>
+  <% 3.times do |index| %>
+    <div id="artist-link-<%= index+1 %>" class="width-100 sidenav-item
+      <% if index==0 %>
+        selected
+      <% end %>
+      ">
+      <a href="#artist-<%= index+1 %>" class="sidenav-link">No.<%= index+1 %></a>
+    </div>
+  <% end %>
 </div>

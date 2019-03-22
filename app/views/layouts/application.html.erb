@@ -41,181 +41,179 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 	</head>
 	<body data-preloader="2">
-		
-		<header>
-			<!-- navbar -->
-			<nav class="navbar navbar-absolute-dark navbar-fixed"><!-- add 'navbar-dark/navbar-grey/navbar-transparent/navbar-transparent-dark' -->
-				<div class="container">
-					<%= link_to root_path, class: "navbar-brand" do %>
-						<h5>ChackNZzick</h5>
-					<% end %>
-					<ul class="nav dropdown-dark"><!-- add 'dropdown-dark/dropdown-grey/dropdown-transparent/dropdown-transparent-dark' -->
-						<!-- Basic link -->
-						<li class="nav-item">
-							<%= link_to 'Commerce', paintings_path(only_commerce: "true"), class:"nav-link" %>
-						</li>
-						<li class="nav-item">
-							<%= link_to 'Paintings', paintings_path, class:"nav-link" %>
-						</li>
-						<li class="nav-item">
-							<%= link_to 'Magazines', magazines_path, class:"nav-link" %>
-						</li>
-						<li class="nav-item">
-							<%= link_to 'Notice', notices_path, class: "nav-link" %>
-						</li>
-						<li class="nav-item">
-							<%= link_to 'FAQ', faqs_path, class: "nav-link" %>
-						</li>
-						<li class="nav-item">
-							<%= link_to 'About', about_path, class: "nav-link" %>
-						</li>
-							<!-- <a class="nav-link" href="#">Link Only</a> -->
-						<li class="nav-item">
-							<% if current_user.present? %>
-								<%= link_to 'Logout', destroy_user_session_path, class:"nav-link", method: :delete %>
-							<% else %>
-								<%= link_to 'Login',
-										'', 
-										data: { toggle: 'modal', target: '#login-modal' },
-										class:"nav-link"
-									%>
-							<% end %>
-						</li>
-		
-						<!-- Dropdown -->
-						<% if user_signed_in? %>
+		<%= render 'layouts/navbar' %>
+		<% if false %>
+			<header>
+				<!-- navbar -->
+				<nav class="navbar navbar-absolute-dark navbar-fixed"><!-- add 'navbar-dark/navbar-grey/navbar-transparent/navbar-transparent-dark' -->
+					<div class="container">
+						<%= link_to root_path, class: "navbar-brand" do %>
+							<h5>ChackNZzick</h5>
+						<% end %>
+						<ul class="nav dropdown-dark"><!-- add 'dropdown-dark/dropdown-grey/dropdown-transparent/dropdown-transparent-dark' -->
+							<!-- Basic link -->
+							<li class="nav-item">
+								<%= link_to 'Commerce', paintings_path(only_commerce: "true"), class:"nav-link" %>
+							</li>
+							<li class="nav-item">
+								<%= link_to 'Paintings', paintings_path, class:"nav-link" %>
+							</li>
+							<li class="nav-item">
+								<%= link_to 'Magazines', magazines_path, class:"nav-link" %>
+							</li>
+							<li class="nav-item">
+								<%= link_to 'Notice', notices_path, class: "nav-link" %>
+							</li>
+							<li class="nav-item">
+								<%= link_to 'FAQ', faqs_path, class: "nav-link" %>
+							</li>
+							<li class="nav-item">
+								<%= link_to 'About', about_path, class: "nav-link" %>
+							</li>
+								<!-- <a class="nav-link" href="#">Link Only</a> -->
+							<li class="nav-item">
+								<% if current_user.present? %>
+									<%= link_to 'Logout', destroy_user_session_path, class:"nav-link", method: :delete %>
+								<% else %>
+									<%= link_to 'Login',
+											'', 
+											data: { toggle: 'modal', target: '#login-modal' },
+											class:"nav-link"
+										%>
+								<% end %>
+							</li>
+			
+							<!-- Dropdown -->
+							<% if user_signed_in? %>
 
-						<li class="nav-item nav-dropdown">
-							<a class="nav-link" href="#">
-								
-								<%= current_user.nickname %>
-									<span id="notification-count" class="badge badge-dark">
-										<%= current_user.arrived_messages.count %>
-									</span>
-							</a>
-				      <ul class="dropdown-menu">
-								<li>
-									<%= link_to messages_path, class: "white" do %>
-										쪽지 
-										<span style="float: right;" class="badge badge-light">
+							<li class="nav-item nav-dropdown">
+								<a class="nav-link" href="#">
+									
+									<%= current_user.nickname %>
+										<span id="notification-count" class="badge badge-dark">
 											<%= current_user.arrived_messages.count %>
 										</span>
-									<% end %>
-								</li>	
-								<li>
-									<%= link_to '마이페이지', profiles_path, class: "white" %>
-								</li>
-								<li>
-									<%= link_to '프로필', profile_path(current_user.id), class: "white" %>
-								</li>
-								<li>
-									<%= link_to '주문내역', order_list_orders_path, class: "white" %>
-								</li>
-								<li>
-									<%= link_to '장바구니', cart_orders_path, class: "white" %>
-								</li>
-							</ul>
-						</li>
-						<% end %>
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<%= link_to messages_path, class: "white" do %>
+											쪽지 
+											<span style="float: right;" class="badge badge-light">
+												<%= current_user.arrived_messages.count %>
+											</span>
+										<% end %>
+									</li>	
+									<li>
+										<%= link_to '마이페이지', profiles_path, class: "white" %>
+									</li>
+									<li>
+										<%= link_to '프로필', profile_path(current_user.id), class: "white" %>
+									</li>
+									<li>
+										<%= link_to '주문내역', order_list_orders_path, class: "white" %>
+									</li>
+									<li>
+										<%= link_to '장바구니', cart_orders_path, class: "white" %>
+									</li>
+								</ul>
+							</li>
+							<% end %>
 
-						<!-- Sub Dropdown -->
-						<!-- <li class="nav-item nav-dropdown">
-							<a class="nav-link" href="#">Sub Dropdown</a>
-				        	<ul class="dropdown-menu">
-								<li class="sub-dropdown">
-									<a href="#">Subdropdown 1</a>
-									<div class="sub-dropdown-menu">
-										<a href="#">Subdropdown link 1</a>
-										<a href="#">Subdropdown link 2</a>
-										<a href="#">Subdropdown link 3</a>
-										<a href="#">Subdropdown link 4</a>
-									</div>
-								</li>
-								<li class="sub-dropdown">
-									<a href="#">Subdropdown 2</a>
-									<div class="sub-dropdown-menu">
-										<a href="#">Subdropdown link 1</a>
-										<a href="#">Subdropdown link 2</a>
-										<a href="#">Subdropdown link 3</a>
-										<a href="#">Subdropdown link 4</a>
-									</div>
-								</li>
-								<li class="sub-dropdown">
-									<a href="#">Subdropdown 3</a>
-									<div class="sub-dropdown-menu">
-										<a href="#">Subdropdown link 1</a>
-										<a href="#">Subdropdown link 2</a>
-										<a href="#">Subdropdown link 3</a>
-										<a href="#">Subdropdown link 4</a>
-									</div>
-								</li>
-							</ul>
-						</li> -->
-						<% if false %>
-						<!-- Mega Dropdown -->
-						<li class="nav-item nav-megadropdown">
-							<a class="nav-link" href="#">Mega Menu</a>
-							<div class="mega-menu">
-								<div class="row">
-									<!-- Mega menu column 1 -->
-									<div class="col-12 col-lg-3">
-										<h6 class="heading-uppercase margin-bottom-20">Themify Icons</h6>
-										<ul class="list-unstyled">
-											<li><i class="ti-check-box"></i><a href="#">Link 1</a></li>
-											<li><i class="ti-check-box"></i><a href="#">Link 2</a></li>
-											<li><i class="ti-check-box"></i><a href="#">Link 3</a></li>
-											<li><i class="ti-check-box"></i><a href="#">Link 4</a></li>
-										</ul>
-									</div>
-									<!-- Mega menu column 2 -->
-									<div class="col-12 col-lg-3">
-										<h6 class="heading-uppercase margin-bottom-20">FontAwesome</h6>
-										<ul class="list-unstyled">
-											<li><i class="far fa-check-square"></i><a href="#">Link 1</a></li>
-											<li><i class="far fa-check-square"></i><a href="#">Link 2</a></li>
-											<li><i class="far fa-check-square"></i><a href="#">Link 3</a></li>
-											<li><i class="far fa-check-square"></i><a href="#">Link 4</a></li>
-										</ul>
-									</div>
-									<!-- Mega menu column 3 -->
-									<div class="col-12 col-lg-3">
-										<h6 class="heading-uppercase margin-bottom-20">Basic</h6>
-										<ul class="list-unstyled">
-											<li><a href="#">Link 1</a></li>
-											<li><a href="#">Link 2</a></li>
-											<li><a href="#">Link 3</a></li>
-											<li><a href="#">Link 4</a></li>
-										</ul>
-									</div>
-									<!-- Mega menu column 4 -->
-									<div class="col-12 col-lg-3">
-										<h6 class="heading-uppercase margin-bottom-20">list-icon</h6>
-										<ul class="list-icon list-icon-heart">
-											<li><a href="#">Link 1</a></li>
-											<li><a href="#">Link 2</a></li>
-											<li><a href="#">Link 3</a></li>
-											<li><a href="#">Link 4</a></li>
-										</ul>
-									</div>
-								</div><!-- end row -->
-							</div>
-						</li>
-						<% end %>
-					</ul><!-- end nav -->
-					<!-- Nav Toggle button -->
-					<button class="nav-toggle-btn">
-							<span class="lines"></span>
-					</button><!-- toggle button will show when screen resolution is less than 992px -->
-				</div><!-- end container -->
-			</nav>
-			<!-- end navbar -->
-		</header>
-
-		<!-- Scroll to top button -->
+							<!-- Sub Dropdown -->
+							<!-- <li class="nav-item nav-dropdown">
+								<a class="nav-link" href="#">Sub Dropdown</a>
+										<ul class="dropdown-menu">
+									<li class="sub-dropdown">
+										<a href="#">Subdropdown 1</a>
+										<div class="sub-dropdown-menu">
+											<a href="#">Subdropdown link 1</a>
+											<a href="#">Subdropdown link 2</a>
+											<a href="#">Subdropdown link 3</a>
+											<a href="#">Subdropdown link 4</a>
+										</div>
+									</li>
+									<li class="sub-dropdown">
+										<a href="#">Subdropdown 2</a>
+										<div class="sub-dropdown-menu">
+											<a href="#">Subdropdown link 1</a>
+											<a href="#">Subdropdown link 2</a>
+											<a href="#">Subdropdown link 3</a>
+											<a href="#">Subdropdown link 4</a>
+										</div>
+									</li>
+									<li class="sub-dropdown">
+										<a href="#">Subdropdown 3</a>
+										<div class="sub-dropdown-menu">
+											<a href="#">Subdropdown link 1</a>
+											<a href="#">Subdropdown link 2</a>
+											<a href="#">Subdropdown link 3</a>
+											<a href="#">Subdropdown link 4</a>
+										</div>
+									</li>
+								</ul>
+							</li> -->
+							<% if false %>
+							<!-- Mega Dropdown -->
+							<li class="nav-item nav-megadropdown">
+								<a class="nav-link" href="#">Mega Menu</a>
+								<div class="mega-menu">
+									<div class="row">
+										<!-- Mega menu column 1 -->
+										<div class="col-12 col-lg-3">
+											<h6 class="heading-uppercase margin-bottom-20">Themify Icons</h6>
+											<ul class="list-unstyled">
+												<li><i class="ti-check-box"></i><a href="#">Link 1</a></li>
+												<li><i class="ti-check-box"></i><a href="#">Link 2</a></li>
+												<li><i class="ti-check-box"></i><a href="#">Link 3</a></li>
+												<li><i class="ti-check-box"></i><a href="#">Link 4</a></li>
+											</ul>
+										</div>
+										<!-- Mega menu column 2 -->
+										<div class="col-12 col-lg-3">
+											<h6 class="heading-uppercase margin-bottom-20">FontAwesome</h6>
+											<ul class="list-unstyled">
+												<li><i class="far fa-check-square"></i><a href="#">Link 1</a></li>
+												<li><i class="far fa-check-square"></i><a href="#">Link 2</a></li>
+												<li><i class="far fa-check-square"></i><a href="#">Link 3</a></li>
+												<li><i class="far fa-check-square"></i><a href="#">Link 4</a></li>
+											</ul>
+										</div>
+										<!-- Mega menu column 3 -->
+										<div class="col-12 col-lg-3">
+											<h6 class="heading-uppercase margin-bottom-20">Basic</h6>
+											<ul class="list-unstyled">
+												<li><a href="#">Link 1</a></li>
+												<li><a href="#">Link 2</a></li>
+												<li><a href="#">Link 3</a></li>
+												<li><a href="#">Link 4</a></li>
+											</ul>
+										</div>
+										<!-- Mega menu column 4 -->
+										<div class="col-12 col-lg-3">
+											<h6 class="heading-uppercase margin-bottom-20">list-icon</h6>
+											<ul class="list-icon list-icon-heart">
+												<li><a href="#">Link 1</a></li>
+												<li><a href="#">Link 2</a></li>
+												<li><a href="#">Link 3</a></li>
+												<li><a href="#">Link 4</a></li>
+											</ul>
+										</div>
+									</div><!-- end row -->
+								</div>
+							</li>
+							<% end %>
+						</ul><!-- end nav -->
+						<!-- Nav Toggle button -->
+						<button class="nav-toggle-btn">
+								<span class="lines"></span>
+						</button><!-- toggle button will show when screen resolution is less than 992px -->
+					</div><!-- end container -->
+				</nav>
+				<!-- end navbar -->
+			</header>
+		<% end %>
 		
-		<!-- <div class="scrolltotop">
-			<a class="button-circle button-circle-sm button-circle-dark" href="#"><i class="ti-arrow-up"></i></a>
-		</div> -->
+		
 		<!-- end Scroll to top button -->
 		<div class="page" data-page="<%= controller_name %>-<%= action_name %>">
 			
@@ -264,7 +262,10 @@
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
 
 		<script src="/js/bootstrap-datepicker.js"></script>
-		<script src="/js/functions.js"></script>
+		<script src="/js/functions.js"></script>	
+		
+		<link href="/css/main_page.css" rel="stylesheet" type="text/css"/>
+		<script src="/js/main.js" type="text/javascript"></script>
 		
 	</body>
 </html>

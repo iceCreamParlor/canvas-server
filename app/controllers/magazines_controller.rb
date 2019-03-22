@@ -9,11 +9,9 @@ class MagazinesController < InheritedResources::Base
     # @artist_magazines = Magazine.where(magazine_type: "artist") - @head_magazines - @main_magazines
     @paintings = Painting.last(3)
     
-    if @is_mobile 
-      render layout: 'layouts/customized_layout', template: 'magazines/index_mobile'
-    else
-      render layout: 'layouts/customized_layout'
-    end
+    render layout: 'layouts/customized_layout', template: 'magazines/index_mobile' if @is_mobile
+    render layout: 'layouts/customized_layout' if !@is_mobile
+
   end
 
   def show
