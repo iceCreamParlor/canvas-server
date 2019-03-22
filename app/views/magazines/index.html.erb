@@ -7,17 +7,28 @@
       background-color: #0021F5;
       height: 100%;
     }
-    .sidenav-chacknzzick {
+    .sidenav-cz {
+      transition: background 0.2s ease;
       height: 100%; /* Full-height: remove this if you want "auto" height */
       width: 70px; /* Set the width of the sidebar */
       position: fixed; /* Fixed Sidebar (stay in place on scroll) */
       z-index: 1001; /* Stay on top */
       top: 0; /* Stay at the top */
       left: 0;
-      background-color: transparent; /* Black */
+      background-color: transparent;
       overflow-x: hidden; /* Disable horizontal scroll */
       padding-top: 20px;
       border-right: 2px solid white;
+    }
+
+    div.sidenav-item{
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+    }
+    
+    div.sidenav-item.selected{
+      background-color: #0021F5;
     }
 
     a.sidenav-link{
@@ -63,6 +74,14 @@
     .magazine-content-text-title{
       color: #0021F5;
       font-size: 30px;
+    }
+
+    .magazine-section-title{
+      color: #0021F5;
+      font-size: 30px;
+      border-top: 3px solid #0021F5;
+      border-bottom: 3px solid #0021F5;
+      padding-left: 4%;
     }
   
     .artist-profile{
@@ -130,13 +149,14 @@
   
   </style>
   
-  <%= render 'layouts/sidenav' %>
+  
   <%= render 'layouts/navbar' %>
   
   <script src="/js/siema.min.js"></script>
-  <div class="container">
-    <section id="magazine-header">
-      <div class="wrapper left-margin">
+  <div class="container" style="margin-left: 70px;">
+    <%= render 'layouts/sidenav' %>
+    <section id="magazine-header" data-background="#0021F5">
+      <div class="wrapper">
         <div class="header-area">
           <p class="header-text">누구나.</p>
         </div>
@@ -146,8 +166,8 @@
         <div class="margin-top-20 hr orange hr-thick"></div>
       </div>
     </section>
-    <section id="magazine-brief" style="padding-bottom: 50px;">
-      <div class="wrapper left-margin" style="padding-right: 10px;">
+    <section id="magazine-brief" data-background="#0021F5" style="padding-bottom: 50px;">
+      <div class="wrapper" style="padding-right: 10px;">
         <div class="w-col w-col-5">
           <p class="magazine-brief-text-title">
             No.1
@@ -184,14 +204,14 @@
     </section>
     <div class="siema">
       <div>
-        <section id="magazine-content">
-          <div class="wrapper left-margin">
+        <section id="magazine-content" data-background="white">
+          <div class="wrapper">
             <p class="magazine-content-text-title">
               No.1
             </p>
             <div class="hr hr-theme-blue hr-thin margin-top-10"></div>
           </div>
-          <div class="wrapper left-margin" style="overflow: auto;">
+          <div class="wrapper" style="overflow: auto;">
             <div class="artist-profile" >
               <div class="w-col w-col-3 no-padding">
                 <img src="/images/sample_profile.jpeg" alt="">
@@ -215,12 +235,12 @@
             </div>
           </div>
         </section>
-        <section id="magazine-interview">
-          <div class="wrapper margin-left-100">
-            <p class="magazine-content-text-title">
-              Interview
-            </p>
-            <div class="margin-top-20">
+        <section id="magazine-interview" data-background="white">
+          <p class="magazine-section-title">
+            Interview
+          </p>
+          <div class="wrapper">
+            <div class="margin-top-50">
               <div class="w-col w-col-5">
                 <% 2.times do %>
                   <div class="interview-area">
@@ -263,8 +283,9 @@
             </div>
           </div>
         </section>
-        <section id="magazine-painting" style="margin-bottom: 400px;">
-          <div class="wrapper">
+        <section id="magazine-painting" data-background="white" style="margin-bottom: 400px;">
+          <p class="magazine-section-title">Paintings</p>
+          <div class="wrapper margin-top-50">
             <% @paintings.each do |painting| %>
               <%= link_to painting_path(painting) do %>
                 <div class="w-col w-col-4">
@@ -281,20 +302,37 @@
       </div>
     </div>
   </div>
+
+<script src="/js/jquery_scrollie.js"></script>
 <script>
   $(function(){
 
     const magazineContent = document.querySelector('#magazine-content');
     
     
-    // window.addEventListener('scroll', () => {
-    //   const magazineContentTop = getPosition(magazineContent).y;
-    //   const threshold = 500;
-    //   if(magazineContentTop-threshold < 0){
-    //     console.log("!!!")
-    //     $('.sidenav-link').css('color', '#005cef');
-    //   }
-    // })
+    window.addEventListener('scroll', () => {
+      var wHeight = $(window).height();
+
+      $('section')
+        .scrollie({
+          scrollOffset : -50,
+          scrollingInView : function(elem) {
+                    
+            var bgColor = elem.data('background');
+            var borderColor;
+            
+            if(bgColor === "white"){
+              borderColor = "#0021F5";
+            } else {
+              borderColor = "white";
+            }
+
+            $('#sidenav_cz').css('background-color', bgColor);
+            $('#sidenav_cz').css('borderRight', '2px solid ' + borderColor);
+            
+          }
+        });
+    })
 
     // 좌우 슬라이드
     new Siema({
