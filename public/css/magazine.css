@@ -22,8 +22,12 @@ div.sidenav-item.selected{
 }
 
 a.sidenav-link{
-  color: white;
+  color: gray;
   text-decoration: none;
+}
+
+div.sidenav-item.selected a.sidenav-link{
+  color: white;
 }
 
 .header-area{
