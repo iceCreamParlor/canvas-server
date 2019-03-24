@@ -4376,6 +4376,10 @@ p.now-yours-text{
 	background-color: #fff;
 }
 
+.margin-left-20{
+	margin-left: 20px;
+}
+
 .margin-top-10{
 	margin-top: 10px;
 }
@@ -4394,6 +4398,14 @@ p.now-yours-text{
 
 .margin-top-100{
 	margin-top: 100px;
+}
+
+.margin-bottom-20{
+	margin-bottom: 20px;
+}
+
+.padding-bottom-20{
+	padding-bottom: 20px;
 }
 
 .project-img {

@@ -1,0 +1,114 @@
+.sidenav-cz {
+  transition: background 0.2s ease;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 70px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1001; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: transparent;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+div.sidenav-item{
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+div.sidenav-item.selected{
+  background-color: #0021F5;
+}
+
+a.sidenav-link{
+  color: white;
+  text-decoration: none;
+}
+
+.header-area{
+  margin-top: 40px;
+}
+.header-text{
+  font-size: 120px;
+  font-weight: 600;
+}
+.magazine-painting-img{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.magazine-brief-text-title{
+  font-size: 40px;
+}
+#magazine-content, #magazine-interview, #magazine-painting{
+  background-color: white;
+}
+
+
+.magazine-content-text-title{
+  color: #0021F5;
+  font-size: 30px;
+}
+
+.magazine-section-title{
+  color: #0021F5;
+  font-size: 30px;
+  border-top: 3px solid #0021F5;
+  border-bottom: 3px solid #0021F5;
+  padding-left: 4%;
+}
+
+.artist-profile{
+  padding-top: 5%;
+}
+.artist-brief p{
+  color: black;
+}
+.border-top-blue{
+  border-top: 3px solid #0021F5;
+}
+.border-bottom-blue{
+  border-bottom: 3px solid #0021F5;
+}
+
+.interview-title{
+  color: #0021F5;
+  font-size: 20px;
+  float: right;
+  padding-right: 5px;
+}
+.interview-content{
+  color: black;
+  font-size: 16px;
+}
+.interview-area{
+  margin-top: 20px;
+}
+p.artist-name{
+  font-size: 80px;
+  color: #0021F5;
+  font-weight: 600;
+}
+p.painting-title{
+  font-size: 15px;
+  color: #0021F5;
+  font-weight: 600;
+}
+p.painting-sub{
+  font-size: 12px;
+  color: #0021F5;
+}
+
+p.magazine-show-title{
+  font-size: 40px;
+  color: #0021F5;
+  font-weight: 600;
+}
+
+.blue{
+  color: #0021F5;
+}
+
+.bg-blue{
+  background-color: #0021F5;
+}

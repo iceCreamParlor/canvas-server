@@ -27,6 +27,11 @@
       text-align: center;
     }
     
+    p.artist-name{
+      position: absolute;
+      bottom: 0px; 
+    }
+
     div.sidenav-item.selected{
       background-color: #0021F5;
     }
@@ -36,9 +41,7 @@
       text-decoration: none;
     }
 
-    .blue{
-      color: #0021F5;
-    }
+    
     #nav{
       background-color: #0021F5;
     }
@@ -54,71 +57,7 @@
     .hr{
       background-color: white;
     }
-    .header-area{
-      margin-top: 40px;
-    }
-    .header-text{
-      font-size: 120px;
-      font-weight: 600;
-    }
-    .magazine-painting-img{
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-    .magazine-brief-text-title{
-      font-size: 40px;
-    }
-    #magazine-content, #magazine-interview, #magazine-painting{
-      background-color: white;
-    }
-    .magazine-content-text-title{
-      color: #0021F5;
-      font-size: 30px;
-    }
-
-    .magazine-section-title{
-      color: #0021F5;
-      font-size: 30px;
-      border-top: 3px solid #0021F5;
-      border-bottom: 3px solid #0021F5;
-      padding-left: 4%;
-    }
-  
-    .artist-profile{
-      padding-top: 5%;
-    }
-    .artist-brief p{
-      color: black;
-    }
-    .interview-title{
-      color: #0021F5;
-      font-size: 20px;
-      float: right;
-      padding-right: 5px;
-    }
-    .interview-content{
-      color: black;
-      font-size: 16px;
-    }
-    .interview-area{
-      margin-top: 20px;
-    }
-    p.artist-name{
-      font-size: 80px;
-      color: #0021F5;
-      font-weight: 600;
-      position: absolute;
-      bottom: 0px; 
-    }
-    p.painting-title{
-      font-size: 15px;
-      color: #0021F5;
-      font-weight: 600;
-    }
-    p.painting-sub{
-      font-size: 12px;
-      color: #0021F5;
-    }
+    
     
     section{
       padding-top: 50px;
@@ -148,9 +87,6 @@
     }
   
   </style>
-  
-  
-  <%= render 'layouts/navbar' %>
   
   <script src="/js/siema.min.js"></script>
   <div class="container" style="margin-left: 70px;">
@@ -238,54 +174,7 @@
               </div>
             </div>
           </section>
-          <section id="magazine-interview" data-background="white">
-            <p class="magazine-section-title">
-              Interview
-            </p>
-            <div class="wrapper">
-              <div class="margin-top-50">
-                <div class="w-col w-col-5">
-                  <% 2.times do %>
-                    <div class="interview-area">
-                      <span class="interview-title" style="float: left;">Q.</span>
-                      <div style="padding-left: 50px;">
-                        때로는 아무 계획없이 멀리 우리라는 준비물만 챙겨서 떠나고싶어요. 그대만 좋다면요
-                      </div>
-                    </div>
-                    <div class="interview-area">
-                      <span class="interview-title" style="float: left;">A.</span>
-                      <div style="padding-left: 50px;">
-                        정말 신비한일야. 내맘에 기준이 되어버렸나봐요. 그대중심으로 멤돌고 멤돌아. 다가가고싶어요 욕심이나는걸.
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-                <div class="w-col w-col-2">
-                  <% if !@is_mobile %>
-                    <center>
-                      <img style="height: 300px;" src="/images/spring.png" alt="">
-                    </center>
-                  <% end %>
-                </div>
-                <div class="w-col w-col-5">
-                  <% 2.times do %>
-                    <div class="interview-area">
-                      <span class="interview-title" style="float: left;">Q.</span>
-                      <div style="padding-left: 50px;">
-                        처음에 만났을때, 그댄 맑은 사람같았죠. 큰 키에 안어울리게, 가끔 허술하던 모습에 왠지 자꾸만 눈이갔어요. 그댄 아마 모르겠죠.
-                      </div>
-                    </div>
-                    <div class="interview-area">
-                      <span class="interview-title" style="float: left;">A.</span>
-                      <div style="padding-left: 50px;">
-                        왜 이럴까 고민하고 모른척 해봐도 그대가 신경쓰이죠. 시도때도 없어요. 아직 잘 모르지만, 내맘을 열어둬요 날보러 오겠죠 환한 미소지으면서 그대는
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </section>
+          <%= render 'magazine_interview' %>
           <section id="magazine-painting" data-background="white" style="margin-bottom: 400px;">
             <p class="magazine-section-title">Paintings</p>
             <div class="wrapper margin-top-50">

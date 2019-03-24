@@ -17,6 +17,7 @@ class MagazinesController < InheritedResources::Base
   def show
     @magazine = Magazine.find(params[:id])
     @magazine_comments = MagazineComment.where(magazine_id: @magazine.id).order("created_at DESC")
+    render layout: 'layouts/customized_layout'
   end
 
   def new
