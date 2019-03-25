@@ -142,7 +142,9 @@
         <%= render 'magazine_interview', interviews_left: wm.interviews.where(position: "left"),
         interviews_right: wm.interviews.where(position: "right") %>
 
-        <%= render 'magazine_paintings', paintings: wm.paintings %>
+        <% if wm.paintings.present? %>
+          <%= render 'magazine_paintings', paintings: wm.paintings %>
+        <% end %>
 
       </div>
     <% end %>
