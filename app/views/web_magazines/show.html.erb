@@ -84,9 +84,8 @@
       </div>
     </div>
   </section>
+
   <%= render 'magazine_interview', interviews_left: @interviews_left, interviews_right: @interviews_right %>
   
-  <% if wm.paintings.present? %>
-    <%= render 'magazine_paintings', paintings: wm.paintings %>
-  <% end %>
+  <%= render 'magazine_paintings', paintings: wm.paintings %>
 </div>
