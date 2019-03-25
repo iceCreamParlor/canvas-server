@@ -18,7 +18,7 @@ class MessagesController < ApplicationController
     @messages_json = @messages.to_json
     
     if @is_mobile
-      render 'mobile_index.html.erb'
+      render 'index_mobile.html.erb'
     else
       # 데스크탑 / 노트북
       render 'index.html.erb'

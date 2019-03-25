@@ -55,16 +55,31 @@
              <% end %>
           </a>
           <a href="" class="nav-item is-last-h w-nav-link nav-left">|</a>
-          <a href="/paintings" class="nav-item is-last-h w-nav-link nav-left">Paintings</a>
+          <div class="dropdown nav-item is-last-h w-nav-link nav-left">Paintings
+            <div class="dropdown-content">
+               <%= link_to 'Package', paintings_path(only_commerce: true) %>
+               <%= link_to 'All', paintings_path %>
+            </div>
+          </div>
+       
+
           <a href="/web_magazines" class="nav-item is-last-h w-nav-link nav-left">Magazine</a>
           <nav role="navigation" class="nav-menu w-nav-menu">
-             
              <a href="/about" class="nav-item is-last-h w-nav-link">About</a>
              <a href="/notices" class="nav-item is-last-h w-nav-link">Notice</a>
              <a href="/faqs" class="nav-item is-last-h w-nav-link">FAQ</a>
              <% if user_signed_in? %>
-                <%= link_to 'Mypage', profiles_path, class:"nav-item is-last-h w-nav-link" %>
-                <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
+               <div class="dropdown nav-item is-last-h w-nav-link">
+                  <%= current_user.nickname %>
+                  <div class="dropdown-content">
+                     <%= link_to 'Mypage', profiles_path, class:"nav-item is-last-h w-nav-link" %>
+                     <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
+                     <%= link_to 'Message', messages_path %>
+                     <%= link_to 'Profile', profile_path(current_user.id), class: "white" %>
+                     <%= link_to 'Orders', order_list_orders_path, class: "white" %>
+                     <%= link_to 'Cart', cart_orders_path, class: "white" %>
+                  </div>
+               </div>
              <% else %>
                 <a href="/users/sign_in" class="nav-item is-last-h w-nav-link">Login</a>
              <% end %>
