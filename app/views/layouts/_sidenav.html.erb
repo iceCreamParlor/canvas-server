@@ -1,12 +1,33 @@
-<div id="sidenav_cz" class="sidenav-cz text-center">
-  <div class="width-100" style="height: 75%;"></div>
-  <% 3.times do |index| %>
-    <div id="artist-link-<%= index+1 %>" class="width-100 sidenav-item
-      <% if index==0 %>
-        selected
-      <% end %>
-      ">
-      <a href="#artist-<%= index+1 %>" class="sidenav-link">No.<%= index+1 %></a>
-    </div>
-  <% end %>
-</div>
+<% if action_name=="index" %>
+  <div id="sidenav_cz" class="sidenav-cz text-center">
+    <div class="width-100" style="height: 75%;"></div>
+    <% @web_magazines.each do |wm, index| %>
+      <div id="artist-link-<%= wm.number %>" class="width-100 sidenav-item
+        <% if index==0 %>
+          selected
+        <% end %>
+        ">
+        
+          <a href="#artist-<%= wm.number %>" class="sidenav-link">No.<%= wm.number %></a>
+        
+          
+        
+      </div>
+    <% end %>
+  </div>
+<% elsif action_name=="show" %>
+  <div id="sidenav_cz" class="sidenav-cz text-center">
+    <div class="width-100" style="height: 75%;"></div>
+    <% @web_magazines.each do |wm| %>
+      <div id="artist-link-<%= wm.number %>" class="width-100 sidenav-item
+        <% if wm.number == @web_magazine.number %>
+          selected
+        <% end %>
+        ">
+        <%= link_to "No.#{ wm.number }", web_magazine_path(wm), class: "sidenav-link" %>
+        
+      </div>
+    <% end %>
+  </div>
+
+<% end %>

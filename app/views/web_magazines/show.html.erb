@@ -1,0 +1,90 @@
+<style>
+  #nav{
+    background-color: white;
+  }
+  .sidenav-cz {
+    transition: background 0.2s ease;
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 70px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1001; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: transparent;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    border-right: 2px solid #0021F5;
+  }
+  .artist-brief{
+    font-size: 14px !important;
+  }
+  section{
+    overflow: auto;
+  }
+</style>
+
+<div class="container margin-top-50" style="margin-left: 70px;">
+  <%= render 'layouts/sidenav' %>
+  <section>
+    <div class="wrapper">
+      <p class="magazine-show-title">Magazine NO.1</p>
+      <div class="hr hr-thinner bg-blue margin-top-10"></div>
+      <div class="magazine-header margin-top-50">
+        <div class="w-col w-col-2">
+          <img src="/images/col-4-tall.jpg" alt="">
+          <div class="artist-brief margin-top-20">
+            <p class="artist-brief">필시 모든 일은 후회로 돌아온다. 하지만 그 때로 돌아간다고 해도, 다른 선택을 했을까? 삶은 원래 괴롭고 나는 항상 멍청한 실수뿐이지만, 완전히 가질 수 없기에 삶이 아름다운것 아닐까. </p>
+          </div>
+        </div>
+        <div class="w-col w-col-10">
+          <div class="margin-left-20">
+            <p class="artist-name">김연우</p>
+            <div class="magazine-content margin-top-20">
+              
+              <div class="w-col w-col-6 border-top-blue" style="border-right: 3px solid #0021F5;">
+                <div class="wrapper margin-top-20">
+                  <div class="article-area margin-top-20">
+                    <strong>필시 모든 일은 후회로 돌아온다.</strong>
+                    <p>필시 모든 일은 후회로 돌아온다. 하지만 그 때로 돌아간다고 해도, 다른 선택을 했을까? 삶은 원래 괴롭고 나는 항상 멍청한 실수뿐이지만, 완전히 가질 수 없기에 삶이 아름다운것 아닐까. </p>
+                    <p>내일이 없는 것처럼 느껴져도, 지금 걷고 있다는 사실이 중요하다고 생각해. 가슴이 답답할 때에는 밖에 가서 숨이 찰 때까지 뛰는게 어때.</p>
+                    <p> 실컷 운 것처럼 후련해 질지도 몰라.</p>
+                  </div>
+                  <div class="article-area margin-top-20">
+                    <strong>필시 모든 일은 후회로 돌아온다.</strong>
+                    <p>필시 모든 일은 후회로 돌아온다. 하지만 그 때로 돌아간다고 해도, 다른 선택을 했을까? 삶은 원래 괴롭고 나는 항상 멍청한 실수뿐이지만, 완전히 가질 수 없기에 삶이 아름다운것 아닐까. </p>
+                    <p>내일이 없는 것처럼 느껴져도, 지금 걷고 있다는 사실이 중요하다고 생각해. 가슴이 답답할 때에는 밖에 가서 숨이 찰 때까지 뛰는게 어때.</p>
+                    <p> 실컷 운 것처럼 후련해 질지도 몰라.</p>
+                    <p> 실컷 운 것처럼 후련해 질지도 몰라.</p>
+                    <br>
+                    <br>
+                  </div>
+                </div>
+              </div>
+              <div class="w-col w-col-6 border-top-blue">
+                <div class="border-bottom-blue">
+                  <div class="wrapper">
+                    <p class="blue">Comment</p>
+                  </div>
+                </div>
+                <div class="wrapper margin-top-10">
+                  <img src="/images/col-1.jpg" alt="">
+
+                  <div class="article-area margin-top-20">
+                    <strong>필시 모든 일은 후회로 돌아온다.</strong>
+                    <p>필시 모든 일은 후회로 돌아온다. 하지만 그 때로 돌아간다고 해도, 다른 선택을 했을까? 삶은 원래 괴롭고 나는 항상 멍청한 실수뿐이지만, 완전히 가질 수 없기에 삶이 아름다운것 아닐까. </p>
+                  
+                  </div>
+                </div>
+              </div>  
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+  </section>
+  <%= render 'magazine_interview', interviews_left: @interviews_left, interviews_right: @interviews_right %>
+  
+  <%= render 'magazine_paintings', paintings: @web_magazine.paintings %>
+</div>

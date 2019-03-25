@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get 'likes/toggle_like/:painting_id', to: 'likes#toggle_like', as: 'toggle_like'
   get 'paintings/search', to: 'paintings#search', as: 'painting_search'
 
-  resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles, :painting_comments, :notices, :options, :faqs
+  resources :paintings, :messages, :auctions, :magazines, :magazine_comments, :profiles, :painting_comments, :notices, :options, :faqs, :web_magazines
 
   resources :orders, param: :order_number do
     collection do

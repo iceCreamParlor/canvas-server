@@ -1,0 +1,210 @@
+<style>
+  html{
+    height:100%;
+  }
+  
+  body{
+    background-color: #0021F5;
+    height: 100%;
+  }
+  
+  p.artist-name{
+    position: absolute;
+    bottom: 0px; 
+  }
+  .w-nav-link.w--current {
+    color: white;
+  }
+  
+  #nav{
+    background-color: #0021F5;
+  }
+  .nav-item{
+    color: white;
+  }
+  .nav-menu{
+    background-color: #0021F5;
+  }
+  p, span{
+    color: white;
+  }
+  .hr{
+    background-color: white;
+  }
+  
+  
+  section{
+    padding-top: 50px;
+    overflow: auto;
+    padding-bottom: 30px;
+  }
+  @media screen and (max-width: 479px) {
+    /* mobile */
+    .header-area{
+      margin-top: 20px;
+    }
+    .header-text{
+      font-size: 30px;
+    }
+  }
+
+  @media all and (min-width: 1024px) {
+
+  }
+
+  @media all and (min-width: 1680px) {
+
+  }
+
+  @media all and (min-width: 2200px){
+
+  }
+
+</style>
+
+<script src="/js/siema.min.js"></script>
+<div class="container" style="margin-left: 70px;">
+  <%= render 'layouts/sidenav' %>
+  <section id="magazine-header" data-background="#0021F5">
+    <div class="wrapper">
+      <div class="header-area">
+        <p class="header-text">누구나.</p>
+      </div>
+      <div class="hr hr-thinner margin-top-10"></div>
+      <div class="margin-top-20 hr orange hr-thick"></div>
+      <div class="margin-top-20 hr orange hr-thick"></div>
+      <div class="margin-top-20 hr orange hr-thick"></div>
+    </div>
+  </section>
+  <section id="magazine-brief" data-background="#0021F5" style="padding-bottom: 50px;">
+    <div class="wrapper" style="padding-right: 10px;">
+      <% @web_magazines.each do |wm| %>
+        <div class="w-col w-col-4 margin-top-20">
+          <p class="magazine-brief-text-title">
+            No.<%= wm.number %>
+          </p>
+          <div class="hr hr-thinner margin-top-10"></div>
+          <p class="margin-top-20">
+            <%= wm.brief %>
+          </p>
+          
+        </div>
+        <div class="w-col w-col-2"></div>
+      <% end %>
+      <!-- <div class="w-col w-col-5 vr white" style="margin-top: 250px;">
+        <div style="padding-left: 20px;">
+  
+          <p class="magazine-brief-text-title">
+            No.2
+          </p>
+          <div class="hr hr-thinner margin-top-10"></div>
+          <p class="margin-top-20">
+            내맘은 정했어 Yes. 힘들면 보기를 줄게 넌 고르기만해.
+          </p>
+          <p>
+            뭘 고를 지 몰라 준비해봤어. 둘중에 하나만 골라 Yes or Yes. 싫어는 싫어 너 아니면 우리.
+          </p>
+        </div>
+      </div> -->
+    </div>
+  </section>
+  <div class="siema">
+    <% @web_magazines.each do |wm| %>
+      <div id="artist-<%= wm.number %>">
+        <section id="magazine-content" data-background="white" data-artist="<%= wm.number %>">
+          <div class="wrapper">
+            <%= link_to web_magazine_path(wm) do %>
+              <p class="magazine-content-text-title">
+                No.<%= wm.number %>
+              </p>
+            <% end %>
+            <div class="hr hr-theme-blue hr-thin margin-top-10"></div>
+          </div>
+          <div class="wrapper" style="overflow: auto;">
+            <div class="artist-profile" >
+              <div class="w-col w-col-3 no-padding">
+                <img src="/images/col-4-tall.jpg" alt="">
+              </div>
+              <div class="w-col w-col-1"></div>
+              <div class="w-col w-col-8">
+                <div class="artist-brief" >
+                  <p><%= wm.brief %></p>
+                  <div class="hr hr-theme-blue hr-thinner margin-top-20"></div>
+                  
+                </div>
+              </div>
+              <% if !@is_mobile %>
+                <p style="left: 33.33333333%;" class="artist-name"><%= wm.artist_name %></p>      
+              <% end %>
+            </div>
+          </div>
+        </section>
+        <%= render 'magazine_interview', interviews_left: wm.interviews.where(position: "left"),
+        interviews_right: wm.interviews.where(position: "right") %>
+
+        <%= render 'magazine_paintings', paintings: wm.paintings %>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script src="/js/jquery_scrollie.js"></script>
+<script>
+$(function(){
+
+  const magazineContent = document.querySelector('#magazine-content');
+  
+  
+  window.addEventListener('scroll', () => {
+    var wHeight = $(window).height();
+
+    $('section')
+      .scrollie({
+        scrollOffset : -50,
+        scrollingInView : function(elem) {
+                  
+          var bgColor = elem.data('background');
+          var borderColor;
+          
+          var artistNo = elem.data('artist');
+          
+
+          if(bgColor === "white"){
+            borderColor = "#0021F5";
+          } else {
+            borderColor = "white";
+          }
+          
+          $('#sidenav_cz').css('background-color', bgColor);
+          $('#sidenav_cz').css('borderRight', '2px solid ' + borderColor);
+          
+          if(artistNo){
+            $('.sidenav-item').removeClass('selected');
+            $('#artist-link-' + artistNo).addClass('selected');
+          }
+
+        }
+      });
+  })
+
+  // 좌우 슬라이드
+  // new Siema({
+  //   selector: '.siema',
+  //   duration: 200,
+  //   easing: 'ease-out',
+  //   perPage: 1,
+  //   startIndex: 0,
+  //   draggable: true,
+  //   multipleDrag: true,
+  //   threshold: 20,
+  //   loop: false,
+  //   rtl: false,
+  //   onInit: () => {},
+  //   onChange: () => {},
+  // });
+
+})
+
+
+</script>

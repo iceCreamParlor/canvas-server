@@ -2024,7 +2024,7 @@ textarea.w-select {
 }
 
 .w-nav-link.w--current {
-	color: white;
+	color: black;
 }
 
 .w-nav-menu {
@@ -2120,6 +2120,9 @@ textarea.w-select {
 	.w-nav[data-collapse="medium"] .w-nav-button {
 		display: block
 	}
+	.nav-left{
+		display: none
+	}
 }
 
 @media screen and (max-width:767px) {
@@ -2128,6 +2131,9 @@ textarea.w-select {
 	}
 	.w-nav[data-collapse="small"] .w-nav-button {
 		display: block
+	}
+	.nav-left{
+		display: none
 	}
 	.w-nav-brand {
 		padding-left: 10px
@@ -2140,6 +2146,9 @@ textarea.w-select {
 	}
 	.w-nav[data-collapse="tiny"] .w-nav-button {
 		display: block
+	}
+	.nav-left{
+		display: none
 	}
 }
 

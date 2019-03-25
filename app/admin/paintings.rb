@@ -12,7 +12,7 @@ ActiveAdmin.register Painting do
 #   permitted
 # end
 
-  permit_params :name, :status, :price, :category_id, :color_id, :thumbnail, :desc, :completed_date, { images: [] }
+  permit_params :name, :status, :price, :category_id, :color_id, :thumbnail, :desc, :completed_date, :web_magazine_id, { images: [] }
 
   form(html: { multipart: true }) do |f|
     f.inputs do
@@ -23,6 +23,7 @@ ActiveAdmin.register Painting do
       f.input :color, :as => :select, :collection => Color.all.collect {|color| [color.name, color.id] }
       f.input :desc
       f.input :completed_date
+      f.input :web_magazine, :as => :select, :collection => WebMagazine.all.collect {|m| [m.number, m.id] }
       f.label :thumbnail
       f.file_field :thumbnail
       f.label :images

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_040404) do
+ActiveRecord::Schema.define(version: 2019_03_25_025321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,13 @@ ActiveRecord::Schema.define(version: 2019_03_04_040404) do
     t.string "hex"
   end
 
+  create_table "config_settings", force: :cascade do |t|
+    t.string "key"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -125,6 +132,17 @@ ActiveRecord::Schema.define(version: 2019_03_04_040404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
+  create_table "interviews", force: :cascade do |t|
+    t.bigint "web_magazine_id"
+    t.integer "position"
+    t.integer "order"
+    t.string "question"
+    t.string "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["web_magazine_id"], name: "index_interviews_on_web_magazine_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -251,9 +269,11 @@ ActiveRecord::Schema.define(version: 2019_03_04_040404) do
     t.bigint "user_id"
     t.datetime "completed_date", default: "2019-01-30 15:42:29"
     t.integer "status", default: 0
+    t.bigint "web_magazine_id"
     t.index ["category_id"], name: "index_paintings_on_category_id"
     t.index ["color_id"], name: "index_paintings_on_color_id"
     t.index ["user_id"], name: "index_paintings_on_user_id"
+    t.index ["web_magazine_id"], name: "index_paintings_on_web_magazine_id"
   end
 
   create_table "prices", force: :cascade do |t|
@@ -292,11 +312,23 @@ ActiveRecord::Schema.define(version: 2019_03_04_040404) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "web_magazines", force: :cascade do |t|
+    t.integer "number"
+    t.string "artist_name"
+    t.string "image"
+    t.string "brief"
+    t.string "content1"
+    t.string "content2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "auction_candidates", "auctions"
   add_foreign_key "auction_candidates", "users"
   add_foreign_key "auctions", "paintings"
   add_foreign_key "auctions", "users"
   add_foreign_key "identities", "users"
+  add_foreign_key "interviews", "web_magazines"
   add_foreign_key "likes", "paintings"
   add_foreign_key "likes", "users"
   add_foreign_key "line_items", "options"
@@ -313,5 +345,6 @@ ActiveRecord::Schema.define(version: 2019_03_04_040404) do
   add_foreign_key "paintings", "categories"
   add_foreign_key "paintings", "colors"
   add_foreign_key "paintings", "users"
+  add_foreign_key "paintings", "web_magazines"
   add_foreign_key "register_sellers", "users"
 end

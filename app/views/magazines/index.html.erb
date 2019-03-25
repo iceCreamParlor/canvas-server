@@ -1,229 +1,237 @@
-<style>
-    html{
-      height:100%;
-    }
-    
-    body{
-      background-color: #0021F5;
-      height: 100%;
-    }
-    
-    p.artist-name{
-      position: absolute;
-      bottom: 0px; 
-    }
-
-    
-    #nav{
-      background-color: #0021F5;
-    }
-    .nav-item{
-      color: white;
-    }
-    .nav-menu{
-      background-color: #0021F5;
-    }
-    p, span{
-      color: white;
-    }
-    .hr{
-      background-color: white;
-    }
-    
-    
-    section{
-      padding-top: 50px;
-      overflow: auto;
-      padding-bottom: 30px;
-    }
-    @media screen and (max-width: 479px) {
-      /* mobile */
-      .header-area{
-        margin-top: 20px;
-      }
-      .header-text{
-        font-size: 30px;
-      }
-    }
-  
-    @media all and (min-width: 1024px) {
-  
-    }
-  
-    @media all and (min-width: 1680px) {
-  
-    }
-  
-    @media all and (min-width: 2200px){
-  
-    }
-  
-  </style>
-  
-  <script src="/js/siema.min.js"></script>
-  <div class="container" style="margin-left: 70px;">
-    <%= render 'layouts/sidenav' %>
-    <section id="magazine-header" data-background="#0021F5">
-      <div class="wrapper">
-        <div class="header-area">
-          <p class="header-text">누구나.</p>
-        </div>
-        <div class="hr hr-thinner margin-top-10"></div>
-        <div class="margin-top-20 hr orange hr-thick"></div>
-        <div class="margin-top-20 hr orange hr-thick"></div>
-        <div class="margin-top-20 hr orange hr-thick"></div>
-      </div>
-    </section>
-    <section id="magazine-brief" data-background="#0021F5" style="padding-bottom: 50px;">
-      <div class="wrapper" style="padding-right: 10px;">
-        <div class="w-col w-col-5">
-          <p class="magazine-brief-text-title">
-            No.1
-          </p>
-          <div class="hr hr-thinner margin-top-10"></div>
-          <p class="margin-top-20">
-            내가 이렇게 이기적이었던가. 뭔가 이렇게 갖고 싶었던 적 있었나. 다 놀라 내 뻔뻔함에.
-          </p>
-          <p>
-            생각보다 과감해진 나의 시나리오. 이정도 플랜이면 만족해.
-          </p>
-        </div>
-        <div class="w-col w-col-2"></div>
-        <% if @is_mobile %>
-          <div class="w-col w-col-5 margin-top-50">
-            <div>
-        <% else %>
-          <div class="w-col w-col-5 vr white" style="margin-top: 250px;">
-            <div style="padding-left: 20px;">
+<!-- HEAD MAGAZINES Posts -->
+  <!-- Blog section  -->
+  <div class="section 
+    <% if @is_mobile %> mobile <% end %>"
+  >
+    <div class="container">
+      <div>
+        <% if user_signed_in? && current_user.user_type == "admin" %>
+          <%= link_to new_magazine_path do %>
+            <button type="button" class="btn btn-outline-dark float-right">매거진 등록하기</button>
+          <% end %>
         <% end %>
-            <p class="magazine-brief-text-title">
-              No.2
-            </p>
-            <div class="hr hr-thinner margin-top-10"></div>
-            <p class="margin-top-20">
-              내맘은 정했어 Yes. 힘들면 보기를 줄게 넌 고르기만해.
-            </p>
-            <p>
-              뭘 고를 지 몰라 준비해봤어. 둘중에 하나만 골라 Yes or Yes. 싫어는 싫어 너 아니면 우리.
-            </p>
+      </div>
+      <br>
+      <div class="row" style="margin-top: 30px;">
+        <!-- Blog Posts -->
+        <div class="col-12 col-lg-8 blog-small-thumbnail">
+          <% if @head_magazines.present? %>
+            <div class="margin-bottom-20">
+              <span class="magazine-type">헤드</span>
+            </div>
+            <!-- Blog Post box 1 -->
+            <% @head_magazines.each do |magazine| %>
+              <div class="blog-post-box">
+                <div class="blog-post-img">
+                  <%= link_to magazine_path(magazine) do %>
+                    <%= link_to magazine_path(magazine) do %>
+                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                        <img src="<%= magazine.thumbnail.url %>" alt="">
+                      <% else %>
+                        <img src="/images/col-3.jpg" alt="">
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="blog-post-content">
+                  <div class="blog-post-title margin-bottom-10">
+                    <h5>
+                      <%= link_to magazine_path(magazine) do %>
+                        <%= magazine.title %>
+                      <% end %>
+                    </h5>
+                    <ul class="list-horizontal-dash font-small margin-bottom-10">
+                      <li>
+                        <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                      </li>
+                    </ul>
+                  </div>
+                  <%= truncate magazine.content.html_safe, length: 150, :omission => "..." , :escape => false %>
+                  <% if !@is_mobile %>
+                    <br>
+                    <%= link_to '자세히', magazine_path(magazine) %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <hr>
+          
+          <div class="row margin-top-20">
+            <div class="col-12 col-lg-4">
+              <!-- Blog Post box 1 -->
+              <h6 class="heading-uppercase"><a class="magazine-type">신진 작가</a></h6>
+              <% @artist_magazines.each do |magazine| %>
+                <div class="blog-post-box">
+                  <!-- <div class="blog-post-img">
+                    <a href="#">
+                      <img src="/images/col-1.jpg" alt="">
+                    </a>
+                  </div> -->
+                  <div class="blog-post-content">
+                    <%= link_to magazine_path(magazine) do %>
+                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                        <img src="<%= magazine.thumbnail.url %>" alt="">
+                      <% else %>
+                        <img src="/images/col-1.jpg" alt="">
+                      <% end %>
+                    <% end %>
+                    <div class="blog-post-title margin-top-20">
+                      <h5>
+                        <%= link_to magazine_path(magazine) do %>
+                          <%= magazine.title %>
+                        <% end %>
+                      </h5>
+                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="col-12 col-lg-4" 
+              <% if !@is_mobile %>
+              style="border-left: 1px solid #ddd;"
+              <% end %>
+            >
+              <% if @is_mobile %>
+                <hr>
+              <% end %>
+              <!-- Blog Post box 1 -->
+              <h6 class="heading-uppercase"><a class="magazine-type">이슈 작품</a></h6>
+              <% @painting_magazines.each do |magazine| %>
+                <div class="blog-post-box">
+                  <div class="blog-post-content">
+                    <%= link_to magazine_path(magazine) do %>
+                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                        <img src="<%= magazine.thumbnail.url %>" alt="">
+                      <% else %>
+                        <img src="/images/col-1.jpg" alt="">
+                      <% end %>
+                    <% end %>
+                    <div class="blog-post-title margin-top-20">
+                      <h5>
+                        <%= link_to magazine_path(magazine) do %>
+                          <%= magazine.title %>
+                        <% end %>
+                      </h5>
+                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-12 col-lg-4" 
+              <% if !@is_mobile %>
+              style="border-left: 1px solid #ddd;"
+              <% end %>
+            >
+              <% if @is_mobile %>
+                <hr>
+              <% end %>
+              <h6 class="heading-uppercase"><a class="magazine-type">경매</a></h6>
+              <% @head_magazines.each do |magazine| %>
+                <div class="blog-post-box">
+                  <div class="blog-post-content">
+                    <%= link_to magazine_path(magazine) do %>
+                      <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                        <img src="<%= magazine.thumbnail.url %>" alt="">
+                      <% else %>
+                        <img src="/images/col-1.jpg" alt="">
+                      <% end %>
+                    <% end %>
+                    <div class="blog-post-title margin-top-20">
+                      <h5>
+                        <%= link_to magazine_path(magazine) do %>
+                          <%= magazine.title %>
+                        <% end %>
+                      </h5>
+                      <span><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <div class="siema">
-      <% 3.times do |index| %>
-        <div id="artist-<%= index+1 %>">
-          <section id="magazine-content" data-background="white" data-artist="<%= index+1 %>">
-            <div class="wrapper">
-              <%= link_to magazine_path(1) do %>
-                <p class="magazine-content-text-title">
-                  No.<%= index+1 %>
-                </p>
-              <% end %>
-              <div class="hr hr-theme-blue hr-thin margin-top-10"></div>
-            </div>
-            <div class="wrapper" style="overflow: auto;">
-              <div class="artist-profile" >
-                <div class="w-col w-col-3 no-padding">
-                  <img src="/images/col-4-tall.jpg" alt="">
-                </div>
-                <div class="w-col w-col-1"></div>
-                <div class="w-col w-col-8">
-                  <div class="artist-brief" >
-                    <p>나는 매일 똑같은 밥을 먹는 것도 아니고</p>
-                    <p>나는 매일 똑같은 얘길 하는 것도 아니고</p>
-                    <p>어쩌면 오늘이 특별한 날일 수도 있는데</p>
-                    <p>가끔 만나는 사람들은 내게 이런 말을 해</p>
-                    <p>그대가 아는 것 만큼 난 좋은애가 아니에요. 나쁜 생각도 잘하고 속으로 욕도 가끔 해요. 우린 완벽하지 않고, 가끔 억지도 부리는걸 그럼 마음이 너무 아파</p>
-                    <p>그대를 내 어깨에 기대 찬바람에 얘길 떠나보내요.</p>
-                    <div class="hr hr-theme-blue hr-thinner margin-top-20"></div>
-                    
+        
+        
+        <!-- Blog Sidebar -->
+        <div class="col-12 col-lg-4 
+          <% if !@is_mobile %> sidebar-wrapper <% end %>"
+        >
+
+          <!-- Sidebar box 3 - Popular Posts -->
+          <div class="sidebar-box">
+            <% if @main_magazines.present? %>
+              <h6 class="heading-uppercase">Popular</h6>
+              <!-- Popular post 1 -->
+              <% @main_magazines.each do |magazine| %>  
+                <div class="popular-post">
+                  <%= link_to magazine_path(magazine) do %>
+                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                      <img class="popular-post-img" src="<%= magazine.thumbnail.url %>" alt="">
+                    <% else %>
+                      <img class="popular-post-img" src="/images/col-3-tall.jpg" alt="">
+                    <% end %>
+                  <% end %>
+                  <div>
+                    <h6 class="font-weight-normal" style="line-height: 20px; ">
+                      <%= link_to magazine_path(magazine) do %>
+                        <span><%= magazine.title %></span>
+                      <% end %>
+                    </h6>
+                    <span style="bottom: 0px;"><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
                   </div>
                 </div>
-                <% if !@is_mobile %>
-                  <p style="left: 33.33333333%;" class="artist-name">김희재</p>      
-                <% end %>
-              </div>
-            </div>
-          </section>
-          <%= render 'magazine_interview' %>
-          <section id="magazine-painting" data-background="white" style="margin-bottom: 400px;">
-            <p class="magazine-section-title">Paintings</p>
-            <div class="wrapper margin-top-50">
-              <% @paintings.each do |painting| %>
-                <%= link_to painting_path(painting) do %>
-                  <div class="w-col w-col-4">
-                    <%= image_tag painting.thumbnail.url, class: "magazine-painting-img" %>
-                    <center>
-                      <p class="painting-title margin-top-20"><%= painting.name %></p>
-                      <p class="painting-sub"><%= painting.completed_date.year %></p>
-                    </center>
-                  </div>
-                <% end %>
               <% end %>
-            </div>
-          </section>
+            <% end %>
+          </div> 
+
+          <!-- Sidebar box 6 - Facebook Like box -->
+          <div class="sidebar-box text-center">
+            <h6 class="heading-uppercase">Follow<br> Chack&Zzick</h6>
+            <ul class="list-horizontal-unstyled">
+              <!-- <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+              <li><a href="#"><i class="fab fa-behance"></i></a></li> -->
+              
+              <li><a href="https://www.instagram.com/chacknzzick/"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+
+          <!-- Sidebar box 3 - Popular Posts -->
+          <div class="sidebar-box">
+            <% if @main_magazines.present? %>
+              <h6 class="heading-uppercase">Announcement</h6>
+              <!-- Popular post 1 -->
+              <% @main_magazines.each do |magazine| %>  
+                <div class="popular-post">
+                  <%= link_to magazine_path(magazine) do %>
+                    <% if magazine.thumbnail.present? && magazine.thumbnail.url.present? %>
+                      <img class="popular-post-img" src="<%= magazine.thumbnail.url %>" alt="">
+                    <% else %>
+                      <img class="popular-post-img" src="/images/col-3-tall.jpg" alt="">
+                    <% end %>
+                  <% end %>
+                  <div>
+                    <h6 class="font-weight-normal" style="line-height: 20px; ">
+                      <%= link_to magazine_path(magazine) do %>
+                        <span><%= magazine.title %></span>
+                      <% end %>
+                    </h6>
+                    <span style="bottom: 0px;"><%= magazine.created_at.strftime("%Y년 %m월 %d일") %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div> 
         </div>
-      <% end %>
-    </div>
+        <!-- end Blog Sidebar -->
+      
+      </div><!-- end row -->
+    </div><!-- end container -->
   </div>
 
-<script src="/js/jquery_scrollie.js"></script>
-<script>
-  $(function(){
-
-    const magazineContent = document.querySelector('#magazine-content');
-    
-    
-    window.addEventListener('scroll', () => {
-      var wHeight = $(window).height();
-
-      $('section')
-        .scrollie({
-          scrollOffset : -50,
-          scrollingInView : function(elem) {
-                    
-            var bgColor = elem.data('background');
-            var borderColor;
-            
-            var artistNo = elem.data('artist');
-            
-
-            if(bgColor === "white"){
-              borderColor = "#0021F5";
-            } else {
-              borderColor = "white";
-            }
-            
-            $('#sidenav_cz').css('background-color', bgColor);
-            $('#sidenav_cz').css('borderRight', '2px solid ' + borderColor);
-            
-            if(artistNo){
-              $('.sidenav-item').removeClass('selected');
-              $('#artist-link-' + artistNo).addClass('selected');
-            }
-
-          }
-        });
-    })
-
-    // 좌우 슬라이드
-    // new Siema({
-    //   selector: '.siema',
-    //   duration: 200,
-    //   easing: 'ease-out',
-    //   perPage: 1,
-    //   startIndex: 0,
-    //   draggable: true,
-    //   multipleDrag: true,
-    //   threshold: 20,
-    //   loop: false,
-    //   rtl: false,
-    //   onInit: () => {},
-    //   onChange: () => {},
-    // });
-
-  })
-  
-
-</script>

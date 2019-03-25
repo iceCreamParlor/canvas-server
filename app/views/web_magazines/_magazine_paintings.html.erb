@@ -1,0 +1,16 @@
+<section id="magazine-painting" data-background="white" style="margin-bottom: 400px;">
+  <p class="magazine-section-title">Paintings</p>
+  <div class="wrapper margin-top-50">
+    <% paintings.each do |painting| %>
+      <%= link_to painting_path(painting) do %>
+        <div class="w-col w-col-4">
+          <%= image_tag painting.thumbnail.url, class: "magazine-painting-img" %>
+          <center>
+            <p class="painting-title margin-top-20"><%= painting.name %></p>
+            <p class="painting-sub"><%= painting.completed_date.year %></p>
+          </center>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>

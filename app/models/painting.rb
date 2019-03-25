@@ -1,14 +1,15 @@
 class Painting < ApplicationRecord
   mount_uploaders :images, ImageUploader
   mount_uploader :thumbnail, ImageUploader
+
   belongs_to :color
   belongs_to :category
-
   belongs_to :user
+  belongs_to :web_magazine, optional: true
+
   has_many :likes, dependent: :destroy
   has_many :auctions, dependent: :destroy
   has_many :painting_comments, dependent: :destroy
-
   has_many :options, dependent: :nullify
 
   scope :only_commerce, -> {where(status: "commerce")}
