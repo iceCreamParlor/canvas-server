@@ -92,6 +92,7 @@ p.artist-name{
   font-size: 5rem;
   color: #0021F5;
   line-height: 5rem;
+  vertical-align: bottom;
   font-weight: 600;
 }
 p.painting-title{

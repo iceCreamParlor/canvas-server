@@ -13,7 +13,7 @@ activitiesStrArr.forEach(function(activityStr){
 var circles;
 var planets;
 // 가장 오른쪽에 가상의 행성이 있다고 가정!!
-var circleCount = 6;
+var circleCount = 5;
 // 실제로 존재하는 행성의 수
 var actualCircleCount = circleCount - 1;
 // ['요가', '필라테스', '헬스']
@@ -116,7 +116,8 @@ document.addEventListener('DOMContentLoaded', function(){
   // let leftAdjustBtn = document.getElementById('left-adjust-btn');
   // let rightAdjustBtn = document.getElementById('right-adjust-btn');
 
-  leftMoveBtn.addEventListener('click', function(){
+  if(leftMoveBtn){
+    leftMoveBtn.addEventListener('click', function(){
 
     removeCards();
 
@@ -148,9 +149,11 @@ document.addEventListener('DOMContentLoaded', function(){
     addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
     animatePlanet();
 
-  })
+    })
+  }
 
-  rightMoveBtn.addEventListener('click', function(){
+  if(rightMoveBtn){
+    rightMoveBtn.addEventListener('click', function(){
 
     removeCards();
 
@@ -178,8 +181,10 @@ document.addEventListener('DOMContentLoaded', function(){
     addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupertags);
     animatePlanet();
 
-  })
+    })
 
+  }  
+  
   // leftAdjustBtn.addEventListener('click', function(){
   //   switch(dateMode){
   //     case 0:
@@ -557,24 +562,31 @@ function markUnitDate(dateMode, dateArr, circleCount){
     
   var planetLabels = document.getElementsByClassName('planet-label');
   for(var i = 0 ; i < planetLabels.length ; i++){
-    
+    let currentDate = document.getElementById('current-date');
+    let adjustDate = document.getElementById('adjust-date');
     switch(dateMode) {
       case 0:
         planetLabels[i].innerText = dateArr[i].getFullYear() + '년';
-        document.getElementById('current-date').innerText = dateArr[i].getFullYear();
-        document.getElementById('adjust-date').innerText = actualCircleCount + ' Years';
+        if(currentDate && adjustDate){
+          document.getElementById('current-date').innerText = dateArr[i].getFullYear();
+          document.getElementById('adjust-date').innerText = actualCircleCount + ' Years';
+        }
         break;
 
       case 1:
-        document.getElementById('current-date').innerText = startDate.getFullYear() + '년' + (startDate.getMonth() + 1) + '월';
         planetLabels[i].innerText = dateArr[i].getFullYear() + '년' + (dateArr[i].getMonth() + 1) + '월';
-        document.getElementById('adjust-date').innerText = '1 Years';
+        if(currentDate && adjustDate){
+          document.getElementById('current-date').innerText = startDate.getFullYear() + '년' + (startDate.getMonth() + 1) + '월';
+          document.getElementById('adjust-date').innerText = '1 Years';
+        }
         break;
 
       case 2: 
-        document.getElementById('current-date').innerText = startDate.getFullYear() + '년' + (startDate.getMonth() + 1) + '월';
         planetLabels[i].innerText = dateArr[i].getFullYear() + '년' + (dateArr[i].getMonth() + 1) + '월';
-        document.getElementById('adjust-date').innerText = '1 Months';
+        if(currentDate && adjustDate){
+          document.getElementById('current-date').innerText = startDate.getFullYear() + '년' + (startDate.getMonth() + 1) + '월';
+          document.getElementById('adjust-date').innerText = '1 Months';
+        }
         break;
       
     } 

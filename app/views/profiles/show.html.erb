@@ -1,8 +1,9 @@
 <!-- Home section -->
-<div class="section-lg bg-image bg-image-gradient">
+<div class="section bg-image bg-image-gradient">
   <div class="bg-white-08">
-    <div class="container" style="padding-bottom: 0px;">
-      <div class="row align-items-center col-spacing-50">
+    <div class="wrapper" style="padding: 100px 20px;">
+      <div class="row col-spacing-50">
+        <% if false %>
         <div class="col-12 col-lg-4"
           <% if !@is_mobile %>
            style="margin-top: 150px; margin-bottom: 0px;">
@@ -44,31 +45,29 @@
 
 
         </div>
+        <% end %>
 
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-3">
           <% if @user.image.present? %>
-            <img class="box-shadow-with-hover" src="<%= @user.image.url %>" alt="">
+            <!-- <img class="box-shadow-with-hover" src="<%= @user.image.url %>" alt=""> -->
+            <img class="box-shadow-with-hover" src="/images/col-4-tall.jpg" alt="">
           <% end %>
         </div>
-        <div class="col-12 col-lg-4" style="cursor: pointer;">
-          
-          <h2 class="font-weight-normal">
+        <div class="col-12 col-lg-5" style="cursor: pointer;">
+          <p class="artist-name">
             <%= @user.nickname %>
             <% if user_signed_in? && @user.id == current_user.id %>
               <%= link_to edit_profile_path(@user.id) do %>
                 <button type="button" class="btn btn-outline-dark profile-edit-btn">수정</button>
               <% end %>
             <% end %>
-          </h2>
-          <ul class="list-horizontal-dash margin-bottom-20">
+          </p>
+          <ul class="list-horizontal-dash margin-bottom-20 margin-top-20">
             <% @user_category.each do |category| %>
               <li class="heading-uppercase text-dark"><%= category.name %></li>
             <% end %>
           </ul>
           <ul class="list-horizontal-unstyled margin-bottom-20">
-            <!-- <li><a href="#"><i class="fab fa-facebook-f"></i></a></li> -->
-            <!-- <li><a href="#"><i class="fab fa-twitter"></i></a></li> -->
-            <!-- <li><a href="#"><i class="fab fa-pinterest"></i></a></li> -->
             <% if @user.instagram.present? %>
               <li>
                 <%= link_to "#{ @user.instagram }", target: "_blank", rel: "noopener noreferrer" do %>
@@ -82,22 +81,7 @@
               <p><%= @user.desc %></p>
             <% end %>
           </div>
-          <div class="row margin-top-area">
-            <div class="col-4 text-center">
-              <span class="profile-text">게시물 
-                <br><%= @user.paintings.count %></span>
-            </div>
-            <div class="col-4 text-center" data-toggle="modal" data-target="#followerModal">
-              <span class="profile-text">팔로워 <br><%= @user.followed.count %></span>
-            </div>
-            <div class="col-4 text-center" data-toggle="modal" data-target="#followingModal">
-              <span style="float: right;" class="profile-text">팔로우<br>
-                <span id="follows-count" class="text-center">
-                  <%= @user.follows.count %>
-                </span>
-              </span>
-            </div>
-          </div>
+          
           <!-- Skills -->
           <!-- <div class="row margin-top-30">
             <div class="col-12 col-lg-6">
@@ -141,6 +125,22 @@
                           </div>
             </div> -->
         </div>
+        <div class="col-12 col-lg-4">
+          <div class="row margin-top-area align-items-center" style="border-left: 2px solid #0021F5">
+            <div class="col-4 text-center">
+              <p class="profile-text">게시글</p>
+              <p class="profile-info-text margin-top-20"><%= @user.paintings.count %></p>
+            </div>
+            <div class="col-4 text-center" data-toggle="modal" data-target="#followerModal">
+              <p class="profile-text">팔로워</p>
+              <p class="profile-info-text margin-top-20"><%= @user.followed.count %></p>
+            </div>
+            <div class="col-4 text-center" data-toggle="modal" data-target="#followingModal">
+              <p class="profile-text">팔로우</p>
+              <p class="profile-info-text margin-top-20"><%= @user.follows.count %></p>
+            </div>
+          </div>
+        </div>
       </div><!-- end row -->
     </div><!-- end container -->
   </div>
@@ -174,7 +174,7 @@
         </ul>
       </div>
       <!-- end Portfolio filter -->
-      <div class="portfolio-wrapper column-3 spacing-10">
+      <div class="portfolio-wrapper column-4 spacing-10">
         <!-- Portfolio box 1 -->
         <% @user_category.each_with_index do |category, index|%>
           <% category.filter_paintings(user: @user).each do |painting| %>
