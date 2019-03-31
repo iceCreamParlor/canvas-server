@@ -8,8 +8,9 @@ body{
 }
 
 p.artist-name{
-  position: absolute;
-  bottom: 0px; 
+  line-height: 6rem;
+  font-size: 5rem;
+  vertical-align: bottom;
 }
 .w-nav-link.w--current {
   color: white;

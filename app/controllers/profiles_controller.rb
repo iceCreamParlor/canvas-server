@@ -29,6 +29,7 @@ class ProfilesController < ApplicationController
     @follow_members = @user.follow_members
     @following_members = @user.following_members
 
+    # render layout: 'layouts/customized_layout'
   end
   
   def edit

@@ -46,10 +46,10 @@ Rails.application.routes.draw do
       post :direct
     end
   end
-
+  get '/register_sellers', to: 'profiles#register_sellers', as: 'register_seller'
   resources :profiles do
     collection do
-      get :register_sellers
+      # get :register_sellers
       post :register_sellers, to: "profiles#create_register_sellers", as: "create_register_sellers"
     end
     member do

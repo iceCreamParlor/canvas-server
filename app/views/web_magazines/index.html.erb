@@ -58,7 +58,7 @@
             <% end %>
             <div class="hr hr-theme-blue hr-thin margin-top-10"></div>
           </div>
-          <div class="wrapper" style="overflow: auto;">
+          <div class="wrapper">
             <div class="artist-profile" >
               <div class="w-col w-col-3 no-padding">
                 <img src="/images/col-4-tall.jpg" alt="">
@@ -68,12 +68,12 @@
                 <div class="artist-brief" >
                   <p><%= wm.brief.html_safe %></p>
                   <div class="hr hr-theme-blue hr-thinner margin-top-20"></div>
-                  
                 </div>
+                <% if !@is_mobile %>
+                  <p style="left: 33.33333333%;" class="artist-name"><%= wm.artist_name %></p>      
+                <% end %>
               </div>
-              <% if !@is_mobile %>
-                <p style="left: 33.33333333%;" class="artist-name"><%= wm.artist_name %></p>      
-              <% end %>
+              
             </div>
           </div>
         </section>
