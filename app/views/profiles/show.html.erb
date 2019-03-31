@@ -1,9 +1,10 @@
 <!-- Home section -->
 <div class="section bg-image bg-image-gradient">
   <div class="bg-white-08">
-    <div class="wrapper" style="padding: 100px 20px;">
+    <div class="wrapper wrapper-padding">
       <div class="row col-spacing-50">
         <% if false %>
+        <!-- 여기서부터 지워질 내용(수평선 조작 부분) -->
         <div class="col-12 col-lg-4"
           <% if !@is_mobile %>
            style="margin-top: 150px; margin-bottom: 0px;">
@@ -45,6 +46,7 @@
 
 
         </div>
+        <!-- 여기까지 지워질 내용(수평선 조작 부분) -->
         <% end %>
 
         <div class="col-12 col-lg-3">
@@ -81,49 +83,6 @@
               <p><%= @user.desc %></p>
             <% end %>
           </div>
-          
-          <!-- Skills -->
-          <!-- <div class="row margin-top-30">
-            <div class="col-12 col-lg-6">
-              <div class="progress-box">
-                              <h6 class="font-weight-normal">Photography</h6>
-                              <div class="progress">
-                                  <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                                      <span>90%</span>
-                                  </div>
-                              </div>
-                          </div>
-            </div>
-            <div class="col-12 col-lg-6">
-              <div class="progress-box">
-                              <h6 class="font-weight-normal">Marketing</h6>
-                              <div class="progress">
-                                  <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                                      <span>80%</span>
-                                  </div>
-                              </div>
-                          </div>
-            </div>
-            <div class="col-12 col-lg-6">
-              <div class="progress-box">
-                              <h6 class="font-weight-normal">Branding</h6>
-                              <div class="progress">
-                                  <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                      <span>85%</span>
-                                  </div>
-                              </div>
-                          </div>
-            </div>
-            <div class="col-12 col-lg-6">
-              <div class="progress-box">
-                              <h6 class="font-weight-normal">Drawing</h6>
-                              <div class="progress">
-                                  <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                                      <span>95%</span>
-                                  </div>
-                              </div>
-                          </div>
-            </div> -->
         </div>
         <div class="col-12 col-lg-4">
           <div class="row margin-top-area align-items-center" style="border-left: 2px solid #0021F5">
@@ -145,26 +104,31 @@
     </div><!-- end container -->
   </div>
   <!-- Line section -->
-  <% if !@is_mobile %>
-    <%= render 'line' %>
-  <% end %>
+  <div class="section">
+    <% if !@is_mobile %>
+      <%= render 'line' %>
+    <% end %>
+  </div>
   <!-- End Line section -->
 </div>
 <!-- end Home section -->
 
 
 <!-- Portfolio section -->
-<div class="section-lg bg-grey-lighter profile-portfolio margin-top-area" style="z-index: 1">
-  <div class="container mobile">
+<div class="section-lg bg-white profile-portfolio margin-top-area" style="z-index: 1">
+  <div class="wrapper wrapper-padding">
     <div class="section-title" style="margin-bottom: 20px;">
-      <h2 class="font-weight-normal">Artworks</h2>
-      <div class="divider-zigzag divider-zigzag-color-black-07">
+      <p class="artwork-text">Artworks</p>
+      <!-- <div class="divider-zigzag divider-zigzag-color-black-07">
         <span></span><span></span><span></span>
-      </div>
+      </div> -->
+      <div class="hr hr-thinner bg-blue margin-top-10 margin-bottom-20"></div>
     </div>
     <!-- Portfolio filter -->
     <% if @user.paintings.present? %>
+      
       <div class="filter filter-style-4 margin-bottom-50">
+        <% if false %>
         <ul>
           <li class="active" data-filter="*">All</li>
          
@@ -172,7 +136,9 @@
             <li data-filter=".category-<%= index %>"><%= category.name %></li>
           <% end %>
         </ul>
+        <% end %>
       </div>
+      
       <!-- end Portfolio filter -->
       <div class="portfolio-wrapper column-4 spacing-10">
         <!-- Portfolio box 1 -->

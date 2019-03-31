@@ -3870,12 +3870,16 @@ blockquote {
 }
 .wrapper {
 	position: relative;
-	z-index: 900;
+	z-index: 800;
 	width: 85%;
 	/* width: 92%; */
 	max-width: 1980px;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.wrapper.wrapper-padding{
+	padding: 5rem 2rem;
 }
 
 .background-blue{
@@ -3892,7 +3896,7 @@ blockquote {
 
 .wrapper.left-margin {
 	position: relative;
-	z-index: 900;
+	z-index: 800;
 	/* width: 85%; */
 	width: 88%;
 	max-width: 1980px;
@@ -4014,7 +4018,7 @@ blockquote {
 }
 
 .hr.hr-thinner {
-	height: 4px;
+	height: 3px;
 }
 
 .hr.hr-thick {
