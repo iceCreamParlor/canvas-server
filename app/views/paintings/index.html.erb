@@ -56,7 +56,7 @@
           </div>
         </div>
         
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.user_type == 'seller' %>
           <%= link_to new_painting_path do %>
             <button type="button" class="btn btn-outline-dark float-right margin-top-20">작품 등록하기</button>
           <% end %>
