@@ -465,6 +465,18 @@ hr {
   margin-bottom: 0px !important;
 }
 
+.margin-bottom-50{
+  margin-bottom: 50px;
+}
+
+.margin-bottom-100{
+  margin-bottom: 100px;
+}
+
 .no-border-radius{
   border-radius: 3px !important;
+}
+
+.white {
+  color: white;
 }

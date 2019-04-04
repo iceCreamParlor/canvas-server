@@ -22,6 +22,8 @@ class WebMagazinesController < ApplicationController
 
   private
     def get_web_magazines
-      @web_magazines = ConfigSetting.get_web_magazines
+      # @web_magazines = ConfigSetting.get_web_magazines
+      @web_magazine_group = WebMagazineGroup.last
+      @web_magazines = @web_magazine_group.web_magazines
     end
 end

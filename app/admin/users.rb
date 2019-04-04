@@ -26,8 +26,5 @@ ActiveAdmin.register User do
     actions default: true do |obj|
     
     end
-    
-end
-
-
+  end
 end

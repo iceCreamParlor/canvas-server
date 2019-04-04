@@ -1,7 +1,7 @@
 <% paintings ||= [] %>
 
-<section id="magazine-painting" data-background="white" style="margin-bottom: 400px;">
-  <p class="magazine-section-title">Paintings</p>
+<section class="margin-bottom-50" id="magazine-painting" data-background="white">
+  <p class="magazine-section-title">Printings</p>
   <div class="wrapper margin-top-50">
     <% paintings.each do |painting| %>
       <%= link_to painting_path(painting) do %>

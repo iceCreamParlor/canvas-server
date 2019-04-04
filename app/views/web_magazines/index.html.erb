@@ -6,7 +6,7 @@
   <section id="magazine-header" data-background="#0021F5">
     <div class="wrapper">
       <div class="header-area">
-        <p class="header-text">누구나.</p>
+        <p class="header-text"><%= @web_magazine_group.name %></p>
       </div>
       <div class="hr hr-thinner margin-top-10"></div>
       <div class="margin-top-20 hr orange hr-thick"></div>
@@ -16,40 +16,62 @@
   </section>
   <section id="magazine-brief" data-background="#0021F5" style="padding-bottom: 50px;">
     <div class="wrapper" style="padding-right: 10px;">
-      <% @web_magazines.each do |wm| %>
-        <div class="w-col w-col-4 margin-top-20">
-          <p class="magazine-brief-text-title">
-            No.<%= wm.number %>
-          </p>
-          <div class="hr hr-thinner margin-top-10"></div>
-          <p class="margin-top-20">
-            <%= wm.brief.html_safe %>
-          </p>
-          
-        </div>
-        <!-- <div class="w-col w-col-2"></div> -->
+      <% @web_magazines.each_with_index do |wm, index| %>
+        <% if index%2 == 0 %>
+          <div class="row margin-top-50">
+            <div class="col-4">
+              <p class="magazine-brief-text-title">
+                No.<%= wm.number %>
+              </p>
+              <div class="hr hr-thinner margin-top-10"></div>
+              <p class="margin-top-20">
+                <%= wm.brief.html_safe %>
+              </p>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-7">
+              <div class="row">
+                <% wm.paintings.each do |painting| %>
+                  <div class="col-4">
+                    <%= image_tag(painting.thumbnail.url, class: "box-shadow") %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="row margin-top-50">
+            <div class="col-7">
+              <div class="row">
+                <% wm.paintings.each do |painting| %>
+                  <div class="col-4">
+                    <%= image_tag(painting.thumbnail.url, class: "box-shadow") %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+              <p class="magazine-brief-text-title">
+                No.<%= wm.number %>
+              </p>
+              <div class="hr hr-thinner margin-top-10"></div>
+              <p class="margin-top-20">
+                <%= wm.brief.html_safe %>
+              </p>
+            </div>
+          </div>
+        <% end %>
       <% end %>
-      <!-- <div class="w-col w-col-5 vr white" style="margin-top: 250px;">
-        <div style="padding-left: 20px;">
-  
-          <p class="magazine-brief-text-title">
-            No.2
-          </p>
-          <div class="hr hr-thinner margin-top-10"></div>
-          <p class="margin-top-20">
-            내맘은 정했어 Yes. 힘들면 보기를 줄게 넌 고르기만해.
-          </p>
-          <p>
-            뭘 고를 지 몰라 준비해봤어. 둘중에 하나만 골라 Yes or Yes. 싫어는 싫어 너 아니면 우리.
-          </p>
-        </div>
-      </div> -->
     </div>
   </section>
   <div class="siema">
+    
     <% @web_magazines.each do |wm| %>
+      
       <div id="artist-<%= wm.number %>">
-        <section id="magazine-content" data-background="white" data-artist="<%= wm.number %>">
+        <img src="/images/spring_horizontal.png" alt="" style="position: absolute;">
+        <section id="magazine-content" data-background="white" data-artist="<%= wm.number %>">    
           <div class="wrapper">
             <%= link_to web_magazine_path(wm) do %>
               <p class="magazine-content-text-title">
@@ -81,7 +103,6 @@
         <%= render 'magazine_interview', interviews_left: wm.interviews.where(position: "left"),
         interviews_right: wm.interviews.where(position: "right") %>
 
-        
         <%= render 'magazine_paintings', paintings: wm.paintings %>
         
 
