@@ -44,7 +44,13 @@
   </div>
 <% else %>
   <div data-collapse="medium" data-animation="default" data-duration="500" data-easing="ease-out-expo" data-easing2="ease-in-out" data-no-scroll="1" id="nav" class="nav-cz w-nav">
-    <div class="wrapper w-container left-margin">
+     
+    <div class="wrapper w-container 
+      <% if controller_name == "web_magazines" %>
+         <!-- 좌측 sidebar 때문에 left-margin 줘야 함 -->
+         left-margin
+      <% end %>
+    ">
        <div class="nav-body">
           <a href="/" class="nav-brand w-nav-brand">
              <% if @is_mobile %>
