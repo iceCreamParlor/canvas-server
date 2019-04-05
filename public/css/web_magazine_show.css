@@ -1,0 +1,22 @@
+#nav{
+  background-color: white;
+}
+.sidenav-cz {
+  transition: background 0.2s ease;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 70px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1001; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: transparent;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  border-right: 2px solid #0021F5;
+}
+.artist-brief{
+  font-size: 14px !important;
+}
+section{
+  overflow: auto;
+}
