@@ -65,19 +65,63 @@
     </div>
   </section>
 
-  <%= render 'magazine_interview', interviews_left: @interviews_left, interviews_right: @interviews_right %>
+  <% if @interviews_left.present? && @interviews_right.present? %>
+    <%= render 'magazine_interview', interviews_left: @interviews_left, interviews_right: @interviews_right %>
+  <% end %>
   
-  <%= render 'magazine_paintings', paintings: @web_magazine.paintings %>
+  <% if @web_magazine.paintings.present? %>
+    <%= render 'magazine_paintings', paintings: @web_magazine.paintings %>
+  <% end %>
 
   <section>
     <div class="background-blue">
       <p class="white magazine-section-title">For Sale</p>
-      <div class="row"></div>
-      <div class="col-6">
+      <div class="row">
+        <div class="col-7 no-padding package-large">
+          <p class="magazine-section-title white package-text">Package1</p>
+          <div class="wrapper narrow package-large-bottom">
+            <div class="row align-items-center height-100">
+              <div class="col-7">
+                <%= image_tag(@web_magazine.paintings.first.thumbnail.url, class:"package-img-large") %>
+              </div>
+              <div class="col-5">
+                <p class="white"><%= @web_magazine.paintings.first.options.first.title %></p>
+              </div>
+            </div>
+          </div>
+        </div>
         
-      </div>
-      <div class="col-6">
-
+        <div class="col-5 no-padding package-small-group">
+          <!-- Package2 -->
+          <div class="package-small">
+            <p class="magazine-section-title white package-text">Package2</p>
+            <div class="wrapper narrow package-small-bottom">
+              <div class="row align-items-center height-100">
+                <div class="col-5">
+                  <%= image_tag(@web_magazine.paintings.first.thumbnail.url, class: "package-img-small") %>
+                </div>
+                <div class="col-7">
+                  <p class="white"><%= @web_magazine.paintings.second.options.first.title %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Package3 -->
+          <div class="package-small">
+            <p class="magazine-section-title white package-text">Package3</p>
+            <div class="wrapper narrow package-small-bottom">
+              <div class="row align-items-center height-100">
+                <div class="col-5">
+                  <%= image_tag(@web_magazine.paintings.first.thumbnail.url, class: "package-img-small") %>
+                </div>
+                <div class="col-7">
+                  <p class="white"><%= @web_magazine.paintings.third.options.first.title %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
       </div>
     </div>
 

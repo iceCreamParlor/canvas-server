@@ -39,10 +39,9 @@ class Painting < ApplicationRecord
 
   def generate_options
     
-    Option.create painting: self, title: "10호", position: 0, price: 0
-    Option.create painting: self, title: "13호", position: 1, price: 10000
-    Option.create painting: self, title: "16호", position: 2, price: 20000
-    Option.create painting: self, title: "20호", position: 3, price: 30000
+    Option.create painting: self, title: "포스터 + 엽서 3종 + 스티커 1부", position: 0, price: 5000
+    Option.create painting: self, title: "포스터 + 엽서 3종", position: 1, price: 4000
+    Option.create painting: self, title: "포스터 + 스티커 1부", position: 2, price: 2000
     
   end
 

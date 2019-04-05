@@ -2183,6 +2183,9 @@ blockquote {
 	margin-right: auto;
 	margin-left: auto;
 }
+.wrapper.narrow{
+	width: 85%;
+}
 
 .background-blue{
 	background-color: #0021F5;

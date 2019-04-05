@@ -59,7 +59,7 @@ div.sidenav-item.selected a.sidenav-link{
   font-size: 30px;
   border-top: 3px solid #0021F5;
   border-bottom: 3px solid #0021F5;
-  padding-left: 4%;
+  padding-left: 20px;
 }
 
 .artist-profile{
@@ -117,4 +117,51 @@ p.magazine-show-title{
 
 .bg-blue{
   background-color: #0021F5;
+}
+
+.package-large{
+  width: 100%; 
+  border-style: solid; 
+  border-width: 0px 2px 1px 1px; 
+  border-color: white; 
+  height: 600px;
+}
+
+.package-large .package-text{
+  height: 10%; 
+  width: 100%; 
+  border-style: solid; 
+  border-width: 2px 0px 2px 0px; 
+  border-color: white;
+}
+
+.package-large-bottom{
+  height: 90%;
+}
+
+.package-small-group{
+  height: 600px;
+}
+
+.package-small{
+  height: 50%;
+}
+
+.package-small .package-text{
+  width: 100%; 
+  height: 20%; 
+  border-style: solid; 
+  border-width: 2px 2px 2px 0px; 
+  border-color: white;
+}
+
+.package-small-bottom{
+  height: 80%;
+}
+
+.package-img-large{
+  height: 400px;
+}
+.package-img-small{
+  height: 200px;
 }
