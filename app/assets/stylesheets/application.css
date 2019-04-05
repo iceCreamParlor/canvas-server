@@ -137,6 +137,31 @@ input[type=range]{
 .auth-form-area {
   margin-top: 100px;
 }
+
+.margin-top-10{
+  margin-top: 10px;
+}
+
+.margin-top-20{
+  margin-top: 20px;
+}
+
+.margin-top-30{
+  margin-top: 30px;
+}
+
+.margin-top-40{
+  margin-top: 40px;
+}
+
+.margin-top-50{
+  margin-top: 50px;
+}
+
+.margin-top-100{
+  margin-top: 100px;
+}
+
 .margin-top-area{
   margin-top: 30px;
 }
