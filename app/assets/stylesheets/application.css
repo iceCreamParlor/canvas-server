@@ -81,6 +81,10 @@ input[type=range]{
   margin-bottom: 20px;
 }
 
+.margin-sidebar{
+  margin-left: 70px;
+}
+
 .btn.btn-outline-dark.filled{
   background-color: black;
   color: white;

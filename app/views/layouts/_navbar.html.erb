@@ -3,7 +3,7 @@
   html {
   -webkit-font-smoothing: antialiased;
   }
-  * {
+  body, p, a, span, h1, h2, h3, h4, h5, h6, a, div {
     font-family: 'Noto Sans KR', sans-serif !important;
   }
 </style>
@@ -43,19 +43,14 @@
     </div>
   </div>
 <% else %>
-  <div data-collapse="medium" data-animation="default" data-duration="500" data-easing="ease-out-expo" data-easing2="ease-in-out" data-no-scroll="1" id="nav" class="nav-cz w-nav">
-     
-    <div class="wrapper w-container 
-      <% if controller_name == "web_magazines" %>
-         <!-- 좌측 sidebar 때문에 left-margin 줘야 함 -->
-         left-margin
-      <% end %>
-    ">
+  <div data-collapse="medium" data-animation="default" data-duration="500" data-easing="ease-out-expo" data-easing2="ease-in-out" data-no-scroll="1" id="nav"
+  class="nav-cz w-nav <% if controller_name=='web_magazines' %>margin-sidebar<% end %>">
+    <!-- 좌측 sidebar 때문에 left-margin 줘야 함 --> 
+    <div class="wrapper w-container" >
        <div class="nav-body">
           <a href="/" class="nav-brand w-nav-brand">
              <% if @is_mobile %>
                 <p style="font-weight: 550;padding-top:28px; padding-bottom: auto;">Chack N Zzick</p>
-  
              <% else %> 
                 <p style="font-weight: 550;padding-top:43px; padding-bottom: auto;">Chack N Zzick</p>
              <% end %>
@@ -67,8 +62,6 @@
                <%= link_to 'All', paintings_path %>
             </div>
           </div>
-       
-
           <a href="/web_magazines" class="nav-item is-last-h w-nav-link nav-left">Magazine</a>
           <nav role="navigation" class="nav-menu w-nav-menu">
              <a href="/about" class="nav-item is-last-h w-nav-link">About</a>
