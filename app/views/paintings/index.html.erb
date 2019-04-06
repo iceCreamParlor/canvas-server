@@ -17,16 +17,15 @@
   <div class="wrapper">
     <div class="row">
       <!-- Products -->
-      <div class="col-12 col-lg-9 order-lg-2">
+      <div class="col-12 col-lg-10 order-lg-2">
         <div class="row align-items-center">
-          <div class="col-5 text-left">
+          <div class="col-2 text-left">
             <% if @only_commerce %>
               <input type="hidden" id="painting_status" value="commerce">
             <% else %>
               <input type="hidden" id="painting_status" value="sale">
             <% end %>
             <select class="custom-select" id="sale-category" onchange="filterByStatus(event)">
-              
               <% Painting.options_for_status.each do |option| %>
                 <% if @only_commerce && option[1] == "commerce" %>
                   <option selected value="<%= option[1] %>"><%= option[0] %></option>
@@ -38,11 +37,9 @@
               <% end %>
               <option value="all">전체</option>
             </select>
-            
           </div>
-            
-          <div class="col-2"></div>
-          <div class="col-5 text-right">
+          <div class="col-7"></div>
+          <div class="col-3 text-right">
             
             <form id="painting-search" action="<%= painting_search_path %>">
               <div class="input-group">
@@ -86,7 +83,7 @@
       </div>
       
       <!-- Sidebar -->
-      <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
+      <div class="col-12 col-lg-2 order-lg-1 shop-sidebar">
         <!-- Sidebar box 1 - Category -->
         <div class="shop-sidebar-box">
           <h5 class="font-weight-light margin-bottom-20">

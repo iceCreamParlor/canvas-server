@@ -21,7 +21,9 @@
           <div class="row margin-top-50">
             <div class="col-4">
               <p class="magazine-brief-text-title">
-                No.<%= wm.number %>
+                <%= link_to "#artist-#{ wm.number }", class: "white" do %>
+                  No.<%= wm.number %>
+                <% end %>
               </p>
               <div class="hr hr-thinner margin-top-10"></div>
               <p class="margin-top-20">
@@ -53,7 +55,9 @@
             <div class="col-1"></div>
             <div class="col-4">
               <p class="magazine-brief-text-title">
-                No.<%= wm.number %>
+                <%= link_to "#artist-#{ wm.number }", class: "white" do %>
+                  No.<%= wm.number %>
+                <% end %>
               </p>
               <div class="hr hr-thinner margin-top-10"></div>
               <p class="margin-top-20">
@@ -66,9 +70,7 @@
     </div>
   </section>
   <div class="siema">
-    
     <% @web_magazines.each do |wm| %>
-      
       <div id="artist-<%= wm.number %>">
         <img src="/images/spring_horizontal.png" alt="" style="position: absolute;">
         <section id="magazine-content" data-background="white" data-artist="<%= wm.number %>">    
