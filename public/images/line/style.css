@@ -5,9 +5,7 @@
 .gray {
   color: gray;
 }
-div.info-area {
-  margin-top: 100px;
-}
+
 div#line {
   position: absolute;
   height: 2px;
