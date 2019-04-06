@@ -1,8 +1,11 @@
 
 <link rel="stylesheet" href="/css/web_magazine_index.css">
 <script src="/js/siema.min.js"></script>
-<%= render 'layouts/sidenav' %>
-<div class="cz-container" style="margin-left: 70px;">
+
+<% if !@is_mobile %>
+  <%= render 'layouts/sidenav' %>
+<% end %>
+<div class="cz-container" <% if !@is_mobile %> style="margin-left: 70px;" <% end %>>
   
   <section id="magazine-header" data-background="#0021F5">
     <div class="wrapper">
@@ -15,61 +18,63 @@
       <div class="margin-top-20 hr orange hr-thick"></div>
     </div>
   </section>
-  <section id="magazine-brief" data-background="#0021F5" style="padding-bottom: 50px;">
-    <div class="wrapper" style="padding-right: 10px;">
-      <% @web_magazines.each_with_index do |wm, index| %>
-        <% if index%2 == 0 %>
-          <div class="row margin-top-50">
-            <div class="col-4">
-              <p class="magazine-brief-text-title">
-                <%= link_to "#artist-#{ wm.number }", class: "white" do %>
-                  No.<%= wm.number %>
-                <% end %>
-              </p>
-              <div class="hr hr-thinner margin-top-10"></div>
-              <p class="margin-top-20">
-                <%= wm.brief.html_safe %>
-              </p>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-7">
-              <div class="row">
-                <% wm.paintings.each do |painting| %>
-                  <div class="col-4">
-                    <%= image_tag(painting.thumbnail.url, class: "box-shadow") %>
-                  </div>
-                <% end %>
+  <% if !@is_mobile %>
+    <section id="magazine-brief" data-background="#0021F5" style="padding-bottom: 50px;">
+      <div class="wrapper" style="padding-right: 10px;">
+        <% @web_magazines.each_with_index do |wm, index| %>
+          <% if index%2 == 0 %>
+            <div class="row margin-top-50">
+              <div class="col-12 col-lg-4">
+                <p class="magazine-brief-text-title">
+                  <%= link_to "#artist-#{ wm.number }", class: "white" do %>
+                    No.<%= wm.number %>
+                  <% end %>
+                </p>
+                <div class="hr hr-thinner margin-top-10"></div>
+                <p class="margin-top-20">
+                  <%= wm.brief.html_safe %>
+                </p>
+              </div>
+              <div class="col-12 col-lg-1"></div>
+              <div class="col-12 col-lg-7">
+                <div class="row">
+                  <% wm.paintings.each do |painting| %>
+                    <div class="col-12 col-lg-4">
+                      <%= image_tag(painting.thumbnail.url, class: "box-shadow") %>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
-          </div>
-        <% else %>
-          <div class="row margin-top-50">
-            <div class="col-7">
-              <div class="row">
-                <% wm.paintings.each do |painting| %>
-                  <div class="col-4">
-                    <%= image_tag(painting.thumbnail.url, class: "box-shadow") %>
-                  </div>
-                <% end %>
+          <% else %>
+            <div class="row margin-top-50">
+              <div class="col-12 col-lg-7">
+                <div class="row">
+                  <% wm.paintings.each do |painting| %>
+                    <div class="col-12 col-lg-4">
+                      <%= image_tag(painting.thumbnail.url, class: "box-shadow") %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-12 col-lg-1"></div>
+              <div class="col-12 col-lg-4">
+                <p class="magazine-brief-text-title">
+                  <%= link_to "#artist-#{ wm.number }", class: "white" do %>
+                    No.<%= wm.number %>
+                  <% end %>
+                </p>
+                <div class="hr hr-thinner margin-top-10"></div>
+                <p class="margin-top-20">
+                  <%= wm.brief.html_safe %>
+                </p>
               </div>
             </div>
-            <div class="col-1"></div>
-            <div class="col-4">
-              <p class="magazine-brief-text-title">
-                <%= link_to "#artist-#{ wm.number }", class: "white" do %>
-                  No.<%= wm.number %>
-                <% end %>
-              </p>
-              <div class="hr hr-thinner margin-top-10"></div>
-              <p class="margin-top-20">
-                <%= wm.brief.html_safe %>
-              </p>
-            </div>
-          </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-  </section>
+      </div>
+    </section>
+  <% end %>
   <div class="siema">
     <% @web_magazines.each do |wm| %>
       <div id="artist-<%= wm.number %>">
@@ -86,7 +91,9 @@
           <div class="wrapper">
             <div class="artist-profile" >
               <div class="w-col w-col-3 no-padding">
-                <img src="/images/col-4-tall.jpg" alt="">
+                <center>
+                  <img src="/images/col-4-tall.jpg" alt="">
+                </center>
               </div>
               <div class="w-col w-col-1"></div>
               <div class="w-col w-col-8">

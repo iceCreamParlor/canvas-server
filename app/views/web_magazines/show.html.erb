@@ -1,14 +1,18 @@
 
 <link rel="stylesheet" href="/css/web_magazine_show.css">
-<div class="cz-container margin-top-50" style="margin-left: 70px;">
-  <%= render 'layouts/sidenav' %>
+<div class="cz-container margin-top-50" <% if !@is_mobile %> style="margin-left: 70px;" <% end %>>
+  <% if !@is_mobile %>
+    <%= render 'layouts/sidenav' %>
+  <% end %>
   <section>
     <div class="wrapper">
-      <p class="magazine-show-title">Magazine NO.<%= @web_magazine.number %></p>
+      <p class="magazine-show-title">NO.<%= @web_magazine.number %></p>
       <div class="hr hr-thinner bg-blue margin-top-10"></div>
       <div class="magazine-header margin-top-50">
         <div class="w-col w-col-2">
-          <img src="/images/col-4-tall.jpg" alt="">
+          <center>
+            <img src="/images/col-4-tall.jpg" alt="">
+          </center>
           <div class="artist-brief margin-top-20">
             <p class="artist-brief">
               <%= @web_magazine.brief.html_safe %>
@@ -50,6 +54,7 @@
     <%= render 'magazine_paintings', paintings: @web_magazine.paintings %>
   <% end %>
 
+  <% if !@is_mobile %>
   <section>
     <div class="background-blue">
       <p class="white magazine-section-title">For Sale</p>
@@ -103,5 +108,6 @@
     </div>
 
   </section>
+  <% end %>
 
 </div>
