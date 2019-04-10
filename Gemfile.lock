@@ -144,6 +144,9 @@ GEM
       dotenv (= 2.6.0)
       railties (>= 3.2, < 6.0)
     erubi (1.8.0)
+    exception_notification (4.3.0)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
     execjs (2.7.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -358,6 +361,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   dotenv-rails
+  exception_notification
   figaro
   httparty
   iamport

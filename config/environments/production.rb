@@ -15,6 +15,13 @@ Rails.application.configure do
     :user_name => ENV["GMAIL_USERNAME"],
     :password => ENV["GMAIL_PASSWORD"]
   }
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    :deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+    :email_prefix => "[CHACKNZZICK] ",
+    :sender_address => %{"notifier" <error@chacknzzick.com>},
+    :exception_recipients => %w{ heejjeeh@gmail.com }
+  }
   
   # MAIL CUSTOMIZATION
 
