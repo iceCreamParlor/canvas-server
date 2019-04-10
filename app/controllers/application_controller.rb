@@ -38,7 +38,12 @@ class ApplicationController < ActionController::Base
     if session[:recent_paintings].count > 8
       session[:recent_paintings].delete_at(0)
     end
-    @recent_paintings = session[:recent_paintings].map{ |id| Painting.find(id) }
+    @recent_paintings = session[:recent_paintings].map{ |id| 
+      if Painting.exists?(id: id)
+        Painting.find(id)
+      end
+    }
+    @recent_paintings = @recent_paintings.compact
   end
 
   def check_app
