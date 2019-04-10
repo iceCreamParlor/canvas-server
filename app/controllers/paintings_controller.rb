@@ -96,6 +96,7 @@ class PaintingsController < ApplicationController
 
     respond_to do |format|
       if @painting.save
+        @painting.generate_options
         format.html { redirect_to @painting, notice: 'Painting was successfully created.' }
         format.json { render :show, status: :created, location: @painting }
       else
@@ -103,6 +104,7 @@ class PaintingsController < ApplicationController
         format.json { render json: @painting.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /paintings/1

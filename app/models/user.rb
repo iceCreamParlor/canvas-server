@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
   has_many :paintings, dependent: :destroy
+  has_many :painting_comments, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_many :magazines, dependent: :destroy
   has_many :auctions, dependent: :destroy
   has_many :likes, dependent: :destroy
