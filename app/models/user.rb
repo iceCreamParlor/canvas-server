@@ -9,14 +9,13 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :paintings, dependent: :destroy
   has_many :painting_comments, dependent: :destroy
-  has_many :messages, dependent: :destroy
   has_many :magazines, dependent: :destroy
   has_many :auctions, dependent: :destroy
   has_many :likes, dependent: :destroy
   
   has_many :follows, class_name:  "Follow", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name:  "Follow", foreign_key: "followed_id", dependent: :destroy
-
+  has_many :register_sellers, dependent: :destroy
 
   # 보낸 메세지, 받은 메세지 구성하는 부분
   has_many :sent_messages, class_name: "Message", foreign_key: "sender_id", dependent: :destroy

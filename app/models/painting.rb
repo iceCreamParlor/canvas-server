@@ -11,6 +11,7 @@ class Painting < ApplicationRecord
   has_many :auctions, dependent: :destroy
   has_many :painting_comments, dependent: :destroy
   has_many :options, dependent: :nullify
+  has_many :messages, dependent: :destroy
 
   scope :only_commerce, -> {where(status: "commerce")}
   scope :except_commerce, -> {where.not(status: "commerce")}
