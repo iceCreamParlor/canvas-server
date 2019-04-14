@@ -71,7 +71,7 @@ class LineItemsController < ApplicationController
         redirect_back(fallback_location: root_path)
       end
       if order.line_items.create!(line_item_params)
-        (last_created_line_item = order.line_items.first).update(amount: (last_created_line_item.option.price.to_i+painting.price.to_i)*last_created_line_item.quantity.to_i)
+        (last_created_line_item = order.line_items.first).update(state: "not_cancel", amount: (last_created_line_item.option.price.to_i+painting.price.to_i)*last_created_line_item.quantity.to_i)
         @flag = true
       end
     end
