@@ -311,11 +311,17 @@
   });
 
   $("#direct").on("click", function(){
-    $("#new_line_item").removeAttr("data-remote")
-    $("#new_line_item").removeData("remote")
-    $("#new_line_item").prop("action", "<%= direct_line_items_path %>");
-    $("#new_line_item").submit();
-    return false;
+    <% if user_signed_in? %>
+      if(window.confirm("장바구니에 담으시겠습니까?")){
+        $("#new_line_item").removeAttr("data-remote")
+        $("#new_line_item").removeData("remote")
+        $("#new_line_item").prop("action", "<%= direct_line_items_path %>");
+        $("#new_line_item").submit();
+      }
+      return false;
+    <% else %>
+      window.location.href = "/users/sign_in";
+    <% end %>
   });
 
   function optionSelected(event){
