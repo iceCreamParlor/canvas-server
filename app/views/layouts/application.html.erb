@@ -15,27 +15,20 @@
 
 		<%= stylesheet_link_tag    'application', media: 'all' %>
 		<%= javascript_include_tag 'application' %>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 		
 		<script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
 		
 		<title>Chack&Zzick</title>
 		<!-- Favicon -->
-		<link href="/plugins/font-awesome/css/all.css" rel="stylesheet">
 		<link href="/plugins/themify/themify-icons.min.css" rel="stylesheet">
-		<!-- SEMANTIC_UI (SNS LOGIN) -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-		<!-- IONICONS -->
-		<link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
-    <link href="/images/favicon.png" rel="shortcut icon">
-		<!-- CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+		<link rel="stylesheet" href="/css/bootstrap-datepicker.css">
 		<link href="/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
 		<link href="/plugins/owl-carousel/owl.theme.default.min.css" rel="stylesheet">
-		<link href="/plugins/magnific-popup/magnific-popup.min.css" rel="stylesheet">
 		<link href="/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
-		<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-darkness/jquery-ui.css"rel = "stylesheet">
+		<!-- <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-darkness/jquery-ui.css"rel = "stylesheet"> -->
+		<!-- Black & White Theme -->
 		<link href="/css/app.css" rel="stylesheet">
+		<!-- Chack&Zzick Customization -->
 		<link href="/css/main_page.css" rel="stylesheet" type="text/css"/>
 		<link href="/css/cz_customize.css" rel="stylesheet" type="text/css"/>
 		<!-- Fonts/Icons -->
@@ -43,16 +36,10 @@
 		<!-- Libraries -->
 		
 		<script src="/plugins/jquery.min.js"></script>
-		<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script src = "/js/jquery-ui.js"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-		
-		
-		<!-- IAMPORT -->
-		<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 		<script src="/plugins/bootstrap/popper.min.js"></script>
-				
-		<!-- ANIMATE CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+		
 	</head>
 	<body data-preloader="2">
 		<%= render 'layouts/navbar' %>		
@@ -76,29 +63,19 @@
 		<!-- ***** JAVASCRIPTS ***** -->
 
 		<!-- Plugins -->
-		<script src="https://unpkg.com/ionicons@4.5.1/dist/ionicons.js"></script>
+		<!-- IAMPORT -->
+		
 		<script src="/plugins/masonry.pkgd.min.js"></script>
 		<script src="/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/plugins/appear.min.js"></script>
-		<script src="/plugins/easing.min.js"></script>
-		<script src="/plugins/retina.min.js"></script>
-		<script src="/plugins/countdown.min.js"></script>
 		<script src="/plugins/imagesloaded.pkgd.min.js"></script>
 		<script src="/plugins/isotope.pkgd.min.js"></script>
-		<script src="/plugins/jarallax/jarallax.min.js"></script>
-		<script src="/plugins/jarallax/jarallax-video.min.js"></script>
-		<script src="/plugins/jarallax/jarallax-element.min.js"></script>
-		<script src="/plugins/magnific-popup/magnific-popup.min.js"></script>
 		<script src="/plugins/owl-carousel/owl.carousel.min.js"></script>
-		<!-- SEMENTIC_UI(SNS 로그인) -->
-		<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 		<!-- Scripts -->
-		
-
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+		<script src="/js/functions.js"></script>	
 
 		<script src="/js/bootstrap-datepicker.js"></script>
-		<script src="/js/functions.js"></script>	
 		
+		<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 	</body>
 </html>

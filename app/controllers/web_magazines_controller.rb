@@ -17,7 +17,6 @@ class WebMagazinesController < ApplicationController
 
     @paintings = @web_magazine.paintings
 
-    render layout: 'layouts/customized_layout'
   end
 
   private

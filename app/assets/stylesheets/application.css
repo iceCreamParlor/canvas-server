@@ -94,12 +94,13 @@ input[type=range]{
 .page[data-page=paintings-index] .product-info {
   padding-top: 0px;
 }
-.ui.fluid.kakao.icon.button.sns{
+button.kakao{
   background-color: #FBDD04;
   border-radius: 0px;
 }
-.ui.fluid.icon.button.sns{
+button.sns{
   border-radius: 0px;
+  width: 100%;
 }
 .auth-form-area {
   margin-top: 100px;
@@ -455,7 +456,7 @@ hr {
 }
 
 .margin-0{
-  margin: 0px;
+  margin: 0px !important;
 }
 
 .margin-bottom-0{
