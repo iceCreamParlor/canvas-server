@@ -249,11 +249,6 @@ var isFilterRemoved = false;
 var isFiltered = false;
 
 $(function(){
-  // let slider = document.getElementById("priceRange");
-  // slider.onmouseup = function() {
-  //   console.log(this.value);
-    
-  // }
   $( "#slider" ).slider({
       range:true,
       min: <%= @min_price %>,
@@ -363,32 +358,6 @@ function filterByStatus(e){
   initLoad();
   isStatusChanged = false;
 }
-
-// function filterByPrice(element){
-  
-//   let priceId = parseInt(element.dataset.price);
-//   isFinished = false;
-//   var selected = false;
-//   if(element.classList.contains('selected')){
-//     selected = true;
-//   }
-
-//   $('.price-option').removeClass('selected');
-  
-//   if(selected){
-    
-//     element.classList.remove('selected');  
-
-//   } else {
-    
-//     element.classList.add('selected');
-
-//   }
-//   countSelectedFilter();
-
-//   initLoad();
-
-// }
 
 function filterByColor(e){
   e.stopPropagation();
