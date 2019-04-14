@@ -630,9 +630,9 @@ $(function() {
   /*===============================================
     Parallax
   ===============================================*/
-  $(".parallax").jarallax({
-    speed: 0.2
-  });
+  // $(".parallax").jarallax({
+  //   speed: 0.2
+  // });
 
 
   /*===============================================
@@ -703,23 +703,23 @@ $(function() {
   /*===============================================
     Fun Facts Counter
   ===============================================*/
-  $(".facts-wrapper").appear(function() {
+  // $(".facts-wrapper").appear(function() {
 
-    var fcounter = $(".facts-counter");
+  //   var fcounter = $(".facts-counter");
 
-    fcounter.each(function () {
-      $(this).prop("Counter",0).animate({
-          Counter: $(this).text()
-      }, {
-          duration: 3000,
-          easing: "swing",
-          step: function (now) {
-              $(this).text(Math.ceil(now));
-          }
-      });
-    });
+  //   fcounter.each(function () {
+  //     $(this).prop("Counter",0).animate({
+  //         Counter: $(this).text()
+  //     }, {
+  //         duration: 3000,
+  //         easing: "swing",
+  //         step: function (now) {
+  //             $(this).text(Math.ceil(now));
+  //         }
+  //     });
+  //   });
 
-  },{accX: 0, accY: -10});
+  // },{accX: 0, accY: -10});
 
 
   /*===============================================
