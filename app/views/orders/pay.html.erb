@@ -55,7 +55,11 @@
             <ul class="payment-detail-product-list">
               <% if @order.line_items.present? %>
                 <% @order.line_items.each do |line_item| %>
-                  <li><%= line_item.painting.name %><span class="payment-detail-product-quantity"><%= line_item.quantity %></span><span><%= line_item.amount %></span></li>
+                  <li>
+                    <%= line_item.painting.name %>
+                    <span class="payment-detail-product-quantity"><%= line_item.quantity %></span>
+                    <span><%= line_item.amount %></span>
+                </li>
                 <% end %>
               
             </ul>

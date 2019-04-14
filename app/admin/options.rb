@@ -2,7 +2,7 @@ ActiveAdmin.register Option do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :state, :order_id, :option_id, :painting_id, :quantity, :amount, :shipement_cost
+permit_params :state, :order_id, :price, :option_id, :painting_id, :quantity, :amount, :shipement_cost
 #
 # or
 #

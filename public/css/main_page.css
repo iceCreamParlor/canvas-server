@@ -2326,6 +2326,10 @@ blockquote {
 	height: 4px;
 }
 
+.hr.hr-thinnest {
+	height: 2px;
+}
+
 .hr.hr-thick {
 	height: 15px;
 }

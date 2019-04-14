@@ -168,3 +168,8 @@ p.magazine-show-title{
 .package-img-small{
   height: 200px;
 }
+
+p.painting-title{
+  font-size: 1.8rem;
+  color: #0021F5;
+}

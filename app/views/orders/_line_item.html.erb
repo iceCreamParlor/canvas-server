@@ -12,7 +12,7 @@
   <td class="cart-product-quantity">
     <div class="product-quantity">
       <button class="button-circle button-circle-xs button-circle-grey dec"><i class="ti-minus"></i></button>
-      <input onchange="changeQuantity(this, '<%= line_item.id %>', '<%= line_item.painting.price %>')" type="text" name="quantity"  value="<%= line_item.quantity %>">
+      <input onchange="changeQuantity(this, '<%= line_item.id %>', '<%= line_item.painting.price %>', '<%= line_item.option.price %>')" type="text" name="quantity"  value="<%= line_item.quantity %>">
       <button class="button-circle button-circle-xs button-circle-grey inc"><i class="ti-plus"></i></button>
     </div>
   </td>

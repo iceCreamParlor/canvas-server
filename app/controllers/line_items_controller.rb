@@ -66,9 +66,12 @@ class LineItemsController < ApplicationController
     order = direct_order
     painting = Painting.find(params[:line_item][:painting_id])
     if painting
-      params["line_item"]["options_attributes"].reject!{|_, v| v["option_id"].empty? || v["quantity"].empty?}
+      
+      if params['line_item']['option_id'].empty? || params['line_item']['quantity'].empty?
+        redirect_back(fallback_location: root_path)
+      end
       if order.line_items.create!(line_item_params)
-        (last_created_line_item = order.line_items.first).update amount: last_created_line_item.option_groups.sum(:quantity)*painting.price
+        (last_created_line_item = order.line_items.first).update(amount: (last_created_line_item.option.price.to_i+painting.price.to_i)*last_created_line_item.quantity.to_i)
         @flag = true
       end
     end
@@ -77,6 +80,6 @@ class LineItemsController < ApplicationController
 
   private
   def line_item_params
-    params.require(:line_item).permit(:order_id, :amount, :state, :painting_id, :option_id, :quantity, :amount)
+    params.require(:line_item).permit(:order_id, :amount, :state, :painting_id, :option_id, :quantity)
   end
 end

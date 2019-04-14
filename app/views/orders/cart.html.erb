@@ -45,10 +45,11 @@
 </div>
 
 <script>
-  function changeQuantity(element, lineItemId, price){
+  function changeQuantity(element, lineItemId, price, optionPrice){
     price = parseInt(price);
+    optionPrice = parseInt(optionPrice)
     let quantity = parseInt(element.value);
-    let amount = price * quantity;
+    let amount = (price + optionPrice) * quantity;
     
     $.ajax({
 

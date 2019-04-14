@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
   end
 
   def pay
+    @payment_amount = @order.get_payment_amount
     redirect_to paintings_path if @order.nil? || !(@order.cart? || @order.direct?) || (@order.user != current_user)
   end
 

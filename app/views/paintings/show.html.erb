@@ -1,8 +1,42 @@
 <!-- Product Content -->
-<div class="section">
+<div class="section padding-top-50">
   <div class="wrapper">
+    <div>
+      <% if user_signed_in? && @painting.user_id == current_user.id %>
+        <%= link_to edit_painting_path(@painting) do %>
+          <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">수정</button>
+        <% end %>
+        <%= link_to painting_path(@painting), method: :delete do %>
+          <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">삭제</button>
+        <% end %>
+      <% elsif user_signed_in? %>
+        <button type="button" 
+                class="btn btn-outline-dark margin-little" 
+                style="float:right;" 
+                data-toggle="modal" 
+                data-target="#message-modal">쪽지</button>
+        <button type="button" 
+                id="follow-btn"
+                class="btn btn-outline-dark margin-little"
+                onclick="followUser()"
+                style="float:right;">
+          <% if @is_following %>
+            언팔로우
+          <% else %>
+            팔로우
+          <% end %>
+        </button>        
+      <% end %>
+      <%= link_to paintings_path do %>
+        <button type="button" class="btn btn-outline-dark margin-little float-right">목록</button>
+      <% end %>
+      <% if @is_mobile %>
+        <button id="magnify-btn" type="button" class="btn btn-outline-dark margin-little float-right" onclick="toggleMagnifier()">확대</button>
+      <% end %>
+    </div>
+    <br><br>
     <div class="row">
-      <div class="col-12 col-lg-7 product-single">
+      <div class="col-12 col-lg-6 product-single">
         <div class="product-single-img" style="padding: 0px;">
           <div class="owl-carousel" 
             data-owl-items="1" 
@@ -34,98 +68,113 @@
         <% end %>
       </div>
         <!-- Sidebar -->
-      <div class="col-12 col-lg-5">
+      
+      <div class="col-12 col-lg-6">
         <div>
-          <% if user_signed_in? && @painting.user_id == current_user.id %>
-            <%= link_to edit_painting_path(@painting) do %>
-              <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">수정</button>
-            <% end %>
-            <%= link_to painting_path(@painting), method: :delete do %>
-              <button type="button" class="btn btn-outline-dark margin-little" style="float:right;">삭제</button>
-            <% end %>
-          <% elsif user_signed_in? %>
-            <button type="button" 
-                    class="btn btn-outline-dark margin-little" 
-                    style="float:right;" 
-                    data-toggle="modal" 
-                    data-target="#message-modal">쪽지</button>
-            <button type="button" 
-                    id="follow-btn"
-                    class="btn btn-outline-dark margin-little"
-                    onclick="followUser()"
-                    style="float:right;">
-              <% if @is_following %>
-                언팔로우
-              <% else %>
-                팔로우
-              <% end %>
-            </button>        
-
-          <% end %>
-          <%= link_to paintings_path do %>
-            <button type="button" class="btn btn-outline-dark margin-little float-right">목록</button>
-          <% end %>
-          <% if @is_mobile %>
-            <button id="magnify-btn" type="button" class="btn btn-outline-dark margin-little float-right" onclick="toggleMagnifier()">확대</button>
-          <% end %>
-        </div>
-        <br>
-        <br>
-        <br>
-  
-        <div>
-          
-          <h5>
+          <p class="painting-title">
             <%= @painting.name %>
-            <% if user_signed_in? %>
-              <span class="float-right">
-                <div class="like-area">
-                  <ion-icon 
-                    id="like-button" 
-                    onclick="likeButtonClicked()" 
-                    class="like-button" 
-                    <% if @like.present? %>
-                    name="heart"
-                    <% else %>
-                    name="heart-empty"
-                    <% end %>
-                  ></ion-icon>
-                  <span id="like-cnt" class="like-cnt">
-                    <%= @painting.likes.count %>
-                  </span>
-                </div>
-              </span>
-            <% end %>
-          </h5>
+          </p>
+          <div class="hr hr-thinnest bg-blue mt-3 mb-3"></div>
           
-          
-          <p style="word-wrap: break-word;"><%= @painting.desc %></p>
-        </div>
-        <div class="margin-top-20">
-          <h6 class="heading-uppercase no-margin">작가</h6>
-          <%= link_to profile_path(@painting.user) do %>
-            <span><%= @painting.user.nickname %></span>
+          <% if user_signed_in? %>
+            <span class="float-right">
+              <div class="like-area">
+                <ion-icon 
+                  id="like-button" 
+                  onclick="likeButtonClicked()" 
+                  class="like-button" 
+                  <% if @like.present? %>
+                  name="heart"
+                  <% else %>
+                  name="heart-empty"
+                  <% end %>
+                ></ion-icon>
+                <span id="like-cnt" class="like-cnt">
+                  <%= @painting.likes.count %>
+                </span>
+              </div>
+            </span>
           <% end %>
         </div>
-        <div class="margin-top-20">
-          <h6 class="heading-uppercase no-margin">Category</h6>
-          <span><%= @painting.category.name %></span>
+
+        <div class="margin-top-100">
+          <div class="row">
+            <div class="col-3">
+              <h6 class="heading-uppercase no-margin">작가</h6>
+            </div>
+            <div class="col-9">
+              <%= link_to profile_path(@painting.user) do %>
+                <span><%= @painting.user.nickname %></span>
+              <% end %>
+            </div>
+          </div>
         </div>
         <div class="margin-top-20">
-          <h6 class="heading-uppercase no-margin">Price</h6>
-          <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
-          <div class="margin-top-70 margin-bottom-20">
-              
-              <div style="display: flex; align-items: center;">
+          <div class="row">
+            <div class="col-3">
+              <h6 class="heading-uppercase no-margin">카테고리</h6>
+            </div>
+            <div class="col-9">
+              <span><%= @painting.category.name %></span>    
+            </div>
+          </div>
+        </div>
+        <div class="margin-top-20">
+          <div class="row">
+            <div class="col-3">
+              <h6 class="heading-uppercase no-margin">가격</h6>
+            </div>
+            <div class="col-9">
+              <span><%= number_to_currency(@painting.price, unit: '￦', precision: 0) %></span>
+            </div>
+          </div>
+          <div class="margin-top-20">
+            <div class="row">
+              <div class="col-3">
+                <h6 class="heading-uppercase no-margin">옵션</h6>
+              </div>
+              <div class="col-9">
+                <select class="custom-select width-100" id="option-select" onchange="optionSelected(event)">
+                  <% @painting.options.each do |option| %>
+                    <option data-price="<%= option.price %>" value="<%= option.id %>"><%= option.title %></option>
+                  <% end %>
+                </select>
+              </div>
+            </div>  
+          </div>
+          <div class="margin-top-20">
+            <div class="row">
+              <div class="col-3">
+                <h6 class="heading-uppercase no-margin">수량</h6>
+              </div>
+              <div class="col-9">
+                <select class="custom-select width-100" id="quantity-select" onchange="quantitySelected(event)">
+                  <% 10.times do |index| %>
+                    <option value="<%= index+1 %>"><%= index+1 %></option>
+                  <% end %>
+                </select>
+                <%= form_for @line_item, url: add_to_cart_line_items_path, style: "display: none;" ,remote: true do |f| %>
+                  <%= f.hidden_field :painting_id, value:  @painting.id %>
+                  <%= f.hidden_field :option_id, value: @painting.options.first.id %>
+                  <%= f.hidden_field :quantity, value: "1" %>
+                  
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <% end %>
+              </div>
+            </div>  
+          </div>
+
+
+              <!-- <div style="display: flex; align-items: center;">
                 <p style="margin-bottom: 0px;">옵션</p>
                 <select class="custom-select margin-left-20" id="option-select" onchange="optionSelected(event)">
                   <% @painting.options.each do |option| %>
                     <option data-price="<%= option.price %>" value="<%= option.id %>"><%= option.title %></option>
                   <% end %>
                 </select>
-              </div>
+              </div> -->
               
-              <div class="margin-top-20" style="display: flex; align-items: center;">
+              <!-- <div class="margin-top-20" style="display: flex; align-items: center;">
                 <p style="margin-bottom: 0px;">수량</p>  
                 <select class="custom-select margin-left-20" id="quantity-select" onchange="quantitySelected(event)">
                   <% 10.times do |index| %>
@@ -138,13 +187,16 @@
                   <%= f.hidden_field :quantity, value: "1" %>
                   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                 <% end %>
-              </div>
-              
-              <p id="total-price" class="float-right"></p>
-              <hr class="margin-top-50">
-
-              <div class="margin-top-50">
-                <button type="button" id="addToCart" class="btn btn-outline-dark margin-little float-right">장바구니</button>
+              </div> -->
+              <div class="hr hr-thinnest bg-blue mt-3 mb-3"></div>
+              <div class="row margin-top-50">
+                <div class="col-8">
+                  <p id="total-price"></p>
+                </div>
+                <div class="col-4">
+                  <button type="button" id="direct" class="btn btn-outline-dark margin-little float-right">바로구매</button>
+                  <button type="button" id="addToCart" class="btn btn-outline-dark margin-little float-right">장바구니</button>
+                </div>
               </div>
 
 						</div>
@@ -227,6 +279,7 @@
     paintingImg = document.getElementsByClassName('painting-img');
     for(var i = 0 ; i < paintingImg.length ; i++){
       paintingImg[i].style.width = paintingImg[i].offsetWidth + 'px';
+      // paintingImg[i].style.width = document.querySelector('.product-single-img').offsetWidth + 'px';
       paintingImg[i].style.height = paintingImg[i].offsetHeight + 'px';
       magnify(paintingImg[i], 2);
     }
@@ -244,6 +297,14 @@
     <% else %>
       window.location.href = "/users/sign_in";
     <% end %>
+  });
+
+  $("#direct").on("click", function(){
+    $("#new_line_item").removeAttr("data-remote")
+    $("#new_line_item").removeData("remote")
+    $("#new_line_item").prop("action", "<%= direct_line_items_path %>");
+    $("#new_line_item").submit();
+    return false;
   });
 
   function optionSelected(event){

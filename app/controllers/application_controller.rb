@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :check_sns
   before_action :check_app, :app?
   
+  helper_method :direct_order
   helper_method :get_cart
 
   # ApplicationController 에 현재 접속된 클라이언트의 플랫폼을 분류하는 코드 작성
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
 
   def get_cart
     order = current_user.orders.carts.first_or_create
+  end
+
+  def direct_order
+    order = current_user.orders.create!(state: :direct)
   end
 
   def configure_permitted_parameters

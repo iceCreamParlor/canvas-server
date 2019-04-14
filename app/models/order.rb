@@ -20,6 +20,8 @@ class Order < ApplicationRecord
   STATES = { cart: '장바구니', direct: '바로주문', complete: '주문완료', request_cancel: '취소 요청', cancel: '주문 취소' }.freeze
   SHIPMENT_STATES = { ready: '배송준비중', shipping: '배송중', shipped: '배송완료' }.freeze
 
+  DEFAULT_SHIPMENT_FEE = 100
+
   def state_kr
     STATES[state.to_sym]
   end
@@ -53,7 +55,7 @@ class Order < ApplicationRecord
       item_total += (item.amount.to_i)
     end
 
-    shipment_fee = line_items.present? ? 100 : 0
+    shipment_fee = line_items.present? ? DEFAULT_SHIPMENT_FEE : 0
 
     item_discount = 0
 
