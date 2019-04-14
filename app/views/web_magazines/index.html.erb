@@ -122,6 +122,9 @@
 <script>
 $(function(){
 
+  // move screen when anchor clicked
+  $("a").click(function(e) { e.preventDefault(); var dest = $(this).attr('href'); console.log(dest); $('html,body').animate({ scrollTop: $(dest).offset().top }, 'slow'); });
+
   const magazineContent = document.querySelector('#magazine-content');
   
   

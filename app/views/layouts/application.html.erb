@@ -25,7 +25,7 @@
 		<link href="/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
 		<link href="/plugins/owl-carousel/owl.theme.default.min.css" rel="stylesheet">
 		<link href="/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
-		<!-- <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-darkness/jquery-ui.css"rel = "stylesheet"> -->
+		<link rel="stylesheet" href="/css/animate.css">
 		<!-- Black & White Theme -->
 		<link href="/css/app.css" rel="stylesheet">
 		<!-- Chack&Zzick Customization -->
@@ -35,8 +35,17 @@
 		
 		<script src="/plugins/jquery.min.js"></script>
 		<script src = "/js/jquery-ui.js"></script>
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+		<script type="text/javascript" src="/js/touch-punch.js"></script>
 		<script src="/plugins/bootstrap/popper.min.js"></script>
+
+		<script src="/plugins/masonry.pkgd.min.js"></script>
+		<script src="/plugins/bootstrap/bootstrap.min.js"></script>
+		<script src="/plugins/imagesloaded.pkgd.min.js"></script>
+		<script src="/plugins/isotope.pkgd.min.js"></script>
+		<script src="/plugins/owl-carousel/owl.carousel.min.js"></script>
+		<!-- Scripts -->
+		<script src="/js/functions.js"></script>	
+		<script src="/js/bootstrap-datepicker.js"></script>
 		
 	</head>
 	<body data-preloader="2">
@@ -54,7 +63,7 @@
 			</div>
 			<%= yield %>
 		</div>
-		<script src="/js/main.js" type="text/javascript"></script>
+		
 		<%= render 'layouts/script' %>
 		<%= render 'layouts/toast' %>
 		<%= render 'layouts/login_modal', resource: User.new, resource_name: :user, devise_mapping: Devise.mappings[:user] %>
@@ -63,17 +72,10 @@
 		<!-- Plugins -->
 		<!-- IAMPORT -->
 		
-		<script src="/plugins/masonry.pkgd.min.js"></script>
-		<script src="/plugins/bootstrap/bootstrap.min.js"></script>
-		<script src="/plugins/imagesloaded.pkgd.min.js"></script>
-		<script src="/plugins/isotope.pkgd.min.js"></script>
-		<script src="/plugins/owl-carousel/owl.carousel.min.js"></script>
-		<!-- Scripts -->
-		<script src="/js/functions.js"></script>	
-
-		<script src="/js/bootstrap-datepicker.js"></script>
-		
-		<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+		<% if controller_name == 'home' && action_name == 'index' %>
+			<!-- Main page js -->
+			<script src="/js/main.js" type="text/javascript"></script>
+		<% end %>
 
 	</body>
 </html>
