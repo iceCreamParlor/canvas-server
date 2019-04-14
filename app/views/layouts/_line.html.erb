@@ -1,3 +1,5 @@
+<% paintings_json ||= [] %>
+<link rel="stylesheet" href="/images/line/style.css">
 <!-- 모달 띄웠을 때의 엑스 버튼 -->
 <img id="xButton" src="/images/line/x-button.png" alt="">
 <!-- <div class="section-lg bg-grey-lighter profile-portfolio margin-top-area"></div> -->
@@ -33,4 +35,4 @@
     </div>
 <!-- </div> -->
 
-<%= render 'line_js' %>
+<%= render 'layouts/line_js', paintings_json: paintings_json %>

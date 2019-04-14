@@ -207,6 +207,15 @@
 </div>
 <!-- end Product Content -->
 
+<!-- Line section -->
+<% if !@is_mobile %>
+  <div class="section" style="margin-bottom: 100px">
+    <%= render 'layouts/line', paintings_json: @user_line_json %>
+  </div>
+<% end %>
+<!-- End Line section -->
+
+
 <!-- Comments section -->
 <div class="section">
   <div class="container">
@@ -223,11 +232,13 @@
     </div><!-- end row -->
   </div><!-- end container -->
 </div>
-<!-- end Comments section -->
 
+<!-- end Comments section -->
 <% if user_signed_in? %>
   <%= render 'comment_form' %>
 <% end %>
+
+
 
 <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

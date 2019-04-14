@@ -65,6 +65,7 @@ class PaintingsController < ApplicationController
     session[:recent_paintings] = session[:recent_paintings].uniq
 
     @user = @painting.user
+    @user_line_json = @user.get_line_info
     @user_category = @user.user_categories
 
     # COMMENTS

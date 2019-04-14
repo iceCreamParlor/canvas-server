@@ -50,6 +50,23 @@ class User < ApplicationRecord
     self.arrived_messages + self.sent_messages
   end
 
+  def get_line_info
+    paintings = self.paintings
+    paintings_json = []
+    paintings.each do |painting|
+      # 수평선을 위한 json화
+      painting_hash = Hash.new
+      painting_hash['id'] = painting.id
+      painting_hash['supertag'] = painting.category.name
+      painting_hash['date'] = painting.completed_date.to_i * 1000
+      painting_hash['content'] = painting.desc
+      painting_hash['title'] = painting.name
+      painting_hash['thumbnail'] = painting.thumbnail.url
+      paintings_json << painting_hash.to_json
+    end
+    paintings_json
+  end
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # SNS 로그인을 위한 함수
     # user와 identity가 nil이 아니라면 받는다

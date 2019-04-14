@@ -60,7 +60,7 @@
   <!-- Line section -->
   <div class="section" style="margin-bottom: 100px">
     <% if !@is_mobile %>
-      <%= render 'line' %>
+      <%= render 'layouts/line', paintings_json: @paintings_json %>
     <% end %>
   </div>
   <!-- End Line section -->

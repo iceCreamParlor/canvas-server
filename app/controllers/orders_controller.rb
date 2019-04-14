@@ -50,6 +50,10 @@ class OrdersController < ApplicationController
           completed_at: Time.now,
           payment_amount: payment_amount
         )
+        
+        # 유저가 지니고 있던 '바로 구매' Order 들을 지운다.
+        current_user.orders.where(state: 'direct').destroy_all
+
         flash[:notice] = '결제에 성공했습니다.'
         redirect_to order_path(@order)
       else

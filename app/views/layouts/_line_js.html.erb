@@ -2,7 +2,7 @@
 // GLOBAL VARIABLES
 var activities = [];
 
-let activitiesStrArr = <%= raw @paintings_json %>;
+let activitiesStrArr = <%= raw paintings_json %>;
 activitiesStrArr.forEach(function(activityStr){
   var activityJson = (JSON.parse(activityStr));
   activityJson['date'] = new Date(activityJson['date']);
@@ -330,8 +330,7 @@ function addActivitiesToCard(activities, dateArr, actualCircleCount, checkedSupe
               '<div style="background-position: center center;'+
   'background-repeat: no-repeat; background-image: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.4) 100%), url('+ activity.thumbnail +'); z-index: 990;" class="card-body text-dark activity-card-content"'+
                   'onmouseover="activityHovered(this)"'+
-                  'onmouseout="activityMouseOuted(this)"'+
-                  'onclick="activityClicked(this)">'+
+                  'onmouseout="activityMouseOuted(this)">'+
                 '<p class="card-text">'+ activity.title +'</p>'+
                 '<p class="card-text category">'+ activity.supertag +'</p>'+
                 '<p class="card-text date">'+ activity.date.getFullYear() + '년 ' + (activity.date.getMonth()+1) + '월 ' + activity.date.getDay() +'일</p>'+
