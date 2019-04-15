@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'exception_notification'
 # ACTIVE ADMIN
 gem 'activeadmin'
+gem 'active_skin'
 # DEVISE
 gem 'devise'
 #Postgres database
