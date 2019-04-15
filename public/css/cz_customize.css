@@ -173,3 +173,14 @@ p.painting-title{
   font-size: 1.8rem;
   color: #0021F5;
 }
+
+.artist-category{
+  color: black;
+  font-size: 1.2rem;
+}
+
+.painting-section-title{
+  font-size: 1.2rem;
+  color: #0021F5;
+  font-weight: 600;
+}

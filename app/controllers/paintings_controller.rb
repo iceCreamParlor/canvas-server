@@ -65,8 +65,11 @@ class PaintingsController < ApplicationController
     session[:recent_paintings] = session[:recent_paintings].uniq
 
     @user = @painting.user
+    @user_category = @user.user_categories
     @user_line_json = @user.get_line_info
     @user_category = @user.user_categories
+
+    @other_paintings = @user.paintings.select(:thumbnail, :name, :id).last(10)
 
     # COMMENTS
     @painting_comments = PaintingComment.where(painting_id: @painting.id).order("created_at DESC")

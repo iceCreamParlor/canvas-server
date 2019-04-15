@@ -3,20 +3,13 @@ class WebMagazinesController < ApplicationController
 
   def index
    
-    @paintings = Painting.last(3)
-
-    # render template: 'web_magazines/index_mobile' if @is_mobile
-    # render layout: 'layouts/customized_layout' if !@is_mobile
-
   end
 
   def show
     @web_magazine = WebMagazine.find(params[:id])
+    @paintings = @web_magazine.paintings
     @interviews_left = @web_magazine.interviews.where(position: "left")
     @interviews_right = @web_magazine.interviews.where(position: "right")
-
-    @paintings = @web_magazine.paintings
-
   end
 
   private
