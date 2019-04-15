@@ -480,7 +480,7 @@ hr {
 }
 
 .white {
-  color: white;
+  color: white !important;
 }
 
 .height-100{
