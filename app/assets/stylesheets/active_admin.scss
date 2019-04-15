@@ -11,6 +11,38 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 
+$skinActiveColor: #0021F5;
+$skinHeaderBck: #0021F5;
+$panelHeaderBck: #0021F5;
+
+@import "active_skin";
+
+form fieldset.inputs {
+  padding-top:0px;
+}
+.panel > h3 {
+  margin-top: 0px;
+}
+#header h1.site_title {
+  background-color: #fff;
+  background: none;
+  padding-left: 30px;
+  color: #1e2a33;
+  text-indent: 0px;
+  font-size: 20px;
+  
+}
+li.menu_item{
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+#header ul.tabs > li a {
+  padding: 10px 10px;
+  margin: 0;
+}
+
+
+
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
