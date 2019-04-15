@@ -1,6 +1,6 @@
 <% if !@is_mobile %>
 <!-- Products section -->
-<div class="section padding-top-0">
+<div class="section padding-0">
   <div class="wrapper">
     <div class="header-area">
       <p class="header-text">착 & 찍</p>
@@ -38,8 +38,8 @@
               <option value="all">전체</option>
             </select>
           </div>
-          <div class="col-7"></div>
-          <div class="col-3 text-right">
+          <div class="col-6"></div>
+          <div class="col-4 text-right">
             
             <form id="painting-search" action="<%= painting_search_path %>">
               <div class="input-group">
@@ -65,7 +65,11 @@
         
         <% if user_signed_in? && current_user.user_type == 'seller' %>
           <%= link_to new_painting_path do %>
-            <button type="button" class="btn btn-outline-dark float-right margin-top-20">작품 등록하기</button>
+          <div class="row">
+            <div class="col-2 offset-10">
+              <button type="button" class="btn btn-outline-dark margin-top-20 float-right">작품 등록하기</button>
+            </div>
+          </div>
           <% end %>
         <% end %>
         
@@ -107,7 +111,7 @@
           </ul>
         </div>
 
-        <!-- Sidebar box 3 - Size -->
+        <!-- Sidebar box 3 - Price -->
         <div class="shop-sidebar-box">
           <h5 class="font-weight-light margin-bottom-20">
             Price
