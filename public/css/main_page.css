@@ -1792,7 +1792,7 @@ textarea.w-select {
 .w-nav {
 	position: relative;
 	background: #dddddd;
-	z-index: 800;
+	z-index: 1000;
 }
 
 .w-nav:before,
@@ -3654,7 +3654,7 @@ p.now-yours-text{
 	}
 	.nav-menu {
 		position: absolute;
-		z-index: 800;
+		z-index: 1000;
 		width: 120%;
 		margin-right: auto;
 		margin-left: auto;
