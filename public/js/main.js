@@ -27641,8 +27641,8 @@ Webflow.require('ix2').init({
               "target": {
                 "id": "chacknzzick_page|main-left-sticker"
               },
-              "xValue": -170,
-              "yValue": -100,
+              "xValue": -160,
+              "yValue": -90,
               "xUnit": "%",
               "yUnit": "%",
               "zUnit": "PX"
@@ -27671,8 +27671,8 @@ Webflow.require('ix2').init({
               "target": {
                 "id": "chacknzzick_page|main-right-sticker"
               },
-              "xValue": -30,
-              "yValue": -20,
+              "xValue": -20,
+              "yValue": -10,
               "xUnit": "%",
               "yUnit": "%",
               "zUnit": "PX"

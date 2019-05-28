@@ -1,11 +1,15 @@
 <div class="auth-form-area">
   <div class="container">
-    <h2>로그인</h2>
     <div class="row">
-      
       <div class="col-sm-12 col-md-6">
+        <div class="container">
+          <h2 class="blue">착</h2>  
+          <h2 class="blue">그리고 찍</h2>
+        </div>
 
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      </div>
+      <div class="col-sm-12 col-md-6">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="field">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -48,13 +52,7 @@
               <% end %>
             <% end -%>
           </div>
-      </div>
-
-
-      </div>
-      <div class="col-sm-12 col-md-6">
-          
-        <img src="/images/sample_image1.jpeg" style="width: 100%;" alt="">
+        </div>
             
       </div>
     </div>
