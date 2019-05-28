@@ -2373,7 +2373,7 @@ blockquote {
 .hero-title {
 	font-family: NeueHaasGroteskBold;
 	color: #000;
-	font-size: 140px;
+	font-size: 8.5rem;
 	line-height: 1;
 	font-weight: 700;
 	letter-spacing: -8px;
@@ -4521,6 +4521,9 @@ p.now-yours-text{
 	}
 	.square {
 		width: 300px;
+	}
+	.hero-title {
+		font-size: 2.9rem;
 	}
 	.margin-top-now-yours{
 		margin-top: 50px;
