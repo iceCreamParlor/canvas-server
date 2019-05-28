@@ -23276,6 +23276,66 @@ Webflow.require('ix2').init({
       }],
       "createdOn": 1528704383944
     },
+    "e-23": {
+      "id": "e-23",
+      "eventTypeId": "PAGE_SCROLL",
+      "action": {
+        "id": "",
+        "actionTypeId": "GENERAL_CONTINUOUS_ACTION",
+        "config": {
+          "actionListId": "a-42",
+          "affectedElements": {},
+          "duration": 0
+        }
+      },
+      "mediaQueries": ["main", "medium", "small", "tiny"],
+      "target": {
+        "appliesTo": "PAGE",
+        "styleBlockIds": [],
+        "id": "chacknzzick_page"
+      },
+      "config": [{
+        "continuousParameterGroupId": "a-42-p",
+        "smoothing": 50,
+        "startsEntering": true,
+        "addStartOffset": false,
+        "addOffsetValue": 50,
+        "startsExiting": false,
+        "addEndOffset": false,
+        "endOffsetValue": 50
+      }],
+      "createdOn": 1528704383944
+    },
+    "e-24": {
+      "id": "e-24",
+      "eventTypeId": "PAGE_SCROLL",
+      "action": {
+        "id": "",
+        "actionTypeId": "GENERAL_CONTINUOUS_ACTION",
+        "config": {
+          "actionListId": "a-41",
+          "affectedElements": {},
+          "duration": 0
+        }
+      },
+      "mediaQueries": ["main", "medium", "small", "tiny"],
+      "target": {
+        "appliesTo": "PAGE",
+        "styleBlockIds": [],
+        "id": "chacknzzick_page"
+      },
+      "config": [{
+        "continuousParameterGroupId": "a-41-p",
+        "smoothing": 50,
+        "startsEntering": true,
+        "addStartOffset": false,
+        "addOffsetValue": 50,
+        "startsExiting": false,
+        "addEndOffset": false,
+        "endOffsetValue": 50
+      }],
+      "createdOn": 1528704383944
+    },
     "e-27": {
       "id": "e-27",
       "eventTypeId": "MOUSE_CLICK",
@@ -27542,6 +27602,104 @@ Webflow.require('ix2').init({
         }]
       }],
       "createdOn": 1545308340036
+    },
+    "a-41": {
+      "id": "a-41",
+      "title": "scroll-square",
+      "continuousParameterGroups": [{
+        "id": "a-41-p",
+        "type": "SCROLL_PROGRESS",
+        "parameterLabel": "Scroll",
+        "continuousActionGroups": [{
+          "keyframe": 0,
+          "actionItems": [{
+            "id": "a-41-n",
+            "actionTypeId": "TRANSFORM_MOVE",
+            "config": {
+              "delay": 0,
+              "easing": "",
+              "duration": 500,
+              "target": {
+                "id": "chacknzzick_page|main-left-sticker"
+              },
+              "xValue": -100,
+              "yValue": -30,
+              "xUnit": "%",
+              "yUnit": "%",
+              "zUnit": "PX"
+            }
+          }]
+        }, {
+          "keyframe": 25,
+          "actionItems": [{
+            "id": "a-41-n-2",
+            "actionTypeId": "TRANSFORM_MOVE",
+            "config": {
+              "delay": 0,
+              "easing": "inOutExpo",
+              "duration": 500,
+              "target": {
+                "id": "chacknzzick_page|main-left-sticker"
+              },
+              "xValue": -170,
+              "yValue": -100,
+              "xUnit": "%",
+              "yUnit": "%",
+              "zUnit": "PX"
+            }
+          }]
+        }]
+      }],
+      "createdOn": 1528704392126
+    },
+    "a-42": {
+      "id": "a-42",
+      "title": "scroll-square",
+      "continuousParameterGroups": [{
+        "id": "a-42-p",
+        "type": "SCROLL_PROGRESS",
+        "parameterLabel": "Scroll",
+        "continuousActionGroups": [{
+          "keyframe": 0,
+          "actionItems": [{
+            "id": "a-42-n",
+            "actionTypeId": "TRANSFORM_MOVE",
+            "config": {
+              "delay": 0,
+              "easing": "",
+              "duration": 500,
+              "target": {
+                "id": "chacknzzick_page|main-right-sticker"
+              },
+              "xValue": -30,
+              "yValue": -20,
+              "xUnit": "%",
+              "yUnit": "%",
+              "zUnit": "PX"
+            }
+          }]
+        }, {
+          "keyframe": 25,
+          "actionItems": [{
+            "id": "a-42-n-2",
+            "actionTypeId": "TRANSFORM_MOVE",
+            "config": {
+              "delay": 0,
+              "easing": "inOutExpo",
+              "duration": 500,
+              "target": {
+                "id": "chacknzzick_page|main-right-sticker"
+              },
+              "xValue": 40,
+              "yValue": 50,
+              "xUnit": "%",
+              "yUnit": "%",
+              "zUnit": "PX"
+            }
+          }]
+        }]
+      }],
+      "createdOn": 1528704392126
     }
   },
   "site": {

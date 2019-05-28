@@ -94,7 +94,7 @@ body {
 	background-color: #fff;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
-	line-height: 20px;
+	/* line-height: 20px; */
 	color: #333
 }
 
@@ -1792,7 +1792,7 @@ textarea.w-select {
 .w-nav {
 	position: relative;
 	background: #dddddd;
-	z-index: 1000
+	z-index: 800;
 }
 
 .w-nav:before,
@@ -2090,7 +2090,7 @@ body {
 	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 	color: #333;
 	font-size: 14px;
-	line-height: 20px;
+	/* line-height: 20px; */
 }
 
 h1 {
@@ -2390,9 +2390,9 @@ blockquote {
 .square {
 	position: absolute;
 	left: 60%;
-	z-index: 800;
+	z-index: 900;
 	display: block;
-	width: 700px;
+	width: 1000px;
 	max-width: none;
 }
 
@@ -3654,7 +3654,7 @@ p.now-yours-text{
 	}
 	.nav-menu {
 		position: absolute;
-		z-index: 1000;
+		z-index: 800;
 		width: 120%;
 		margin-right: auto;
 		margin-left: auto;
@@ -3719,7 +3719,7 @@ p.now-yours-text{
 		padding-top: 40px;
 	}
 	.square {
-		width: 800px;
+		width: 1000px;
 	}
 	.now-yours{
 		margin-top: 300px;
@@ -4122,7 +4122,7 @@ p.now-yours-text{
 		padding-top: 30px;
 	}
 	.square {
-		width: 800px;
+		width: 1000px;
 	}
 	.now-yours{
 		margin-top: 300px;
