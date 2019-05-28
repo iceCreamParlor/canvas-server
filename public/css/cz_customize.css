@@ -44,14 +44,25 @@ div.sidenav-item.selected a.sidenav-link{
 .magazine-brief-text-title{
   font-size: 40px;
 }
-#magazine-content, #magazine-interview, #magazine-painting{
+#magazine-content, #magazine-interview, #magazine-painting, .white-background{
   background-color: white;
 }
+
 
 
 .magazine-content-text-title{
   color: #0021F5;
   font-size: 30px;
+}
+
+.magazine-content-text {
+  color: #0021F5;
+  font-size: 18px;
+}
+
+.magazine-content-text-small {
+  color: #0021F5;
+  font-size: 15px;
 }
 
 .magazine-section-title{
@@ -117,6 +128,13 @@ p.magazine-show-title{
 
 .bg-blue{
   background-color: #0021F5;
+}
+
+.round-item {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 150px;
 }
 
 .package-large{
