@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+﻿// This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
@@ -12,7 +12,7 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require ckeditor/init
+// require ckeditor/init 자바스크립트 오류로 인해 주석처리
 // require turbolinks
 // active admin 자바스크립트 오류로 인해 주석처리
 // require_tree .
