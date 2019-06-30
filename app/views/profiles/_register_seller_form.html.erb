@@ -1,12 +1,78 @@
 <div class="row">
-  <%= form_for :register_seller, url: url, html: { id: "register_seller_form" } do |f| %>
-    <%= f.file_field :images, multiple: true %>
-    <%= f.submit "작가 신청", type: "button", id: "submit_btn" %>
-  <% end %>
+  <div class="col-8">
+    <div class="row", style='margin-bottom:0px;'>
+
+      <%= form_for :register_seller, url: url, html: { id: "register_seller_form" } do |f| %>
+        <p class="image-number"> 파일 선택 (여러개 가능) </p>
+        <%= f.file_field :images, multiple: true %>
+
+        <div class="pkg", style='display:inline;'>        
+        </div>
+
+        <%= f.submit "신청", type: "button", id: "submit_btn", style: "background-color: #0021F5; height:30; color:#FFFFFF;" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <p style="font-size:30px; color: #0021F5;">HELP</p><br>
+    <p style="font-size:14px; color: #0021F5;">Q. 몇개의 작업을 등록해야 하나요?</p><br>
+    <p style="font-size:14px">A. 최소 3개의 작업을 최초 등록해야 작가 심사를 받을 수 있습니다.</p><br>
+    <p style="font-size:14px; color: #0021F5;">Q. 작가 심사를 하는 이유는 무엇인가요?</p><br>
+    <p style="font-size:14px">A. 작가 심사는 도용 및 해상도 등 작품의 퀄리티와 작가-고객 간 만족도를 높이기 위하여 진행하고 있습니다.</p><br>
+    <p style="font-size:14px; color: #0021F5;">Q. 도용 문제에 따른 해결은 어떻게 되나요?</p><br>
+    <p style="font-size:14px">A. 작가 심사를 통해 1차적으로 필터링 하여 최선으로 도용을 막고 있지만, 그럼에도 생기게 되는 도용 문제에 대해서는 타인의 작품을 도용한 개인이 책임을 집니다.</p><br>
+    <p style="font-size:14px; color: #0021F5;">Q. 작가 심사는 얼마나 걸리나요?</p><br>
+    <p style="font-size:14px">A. 영업일 기준 3일 이내에 해드리고 있습니다.</p><br>
+  </div>
 </div>
+
+
+<script>
+  $(function() {
+  $('#register_seller_images').on('change', function(event) {
+
+    var files = event.target.files;
+    var number = 0;
+
+    $(".pkg").empty();
+
+    for(var j=0; j<files.length; j++){
+      var dd = document.createElement("div");
+      dd.id = 'image' + j;
+      dd.setAttribute('class', 'col-4 col-lg-4');
+      dd.style='display:inline;float:left;';
+      $(".pkg").append(dd);
+      console.log(dd);
+    }
+
+
+    for(var i=0; i<files.length; i++) {
+      var image = files[i];
+      // here's the file size
+      console.log(image.size);
+      var reader = new FileReader();
+      
+      reader.onload = function(file) {
+        var img = new Image();
+        console.log(file);
+        img.src = file.target.result;
+        console.log('#image'+(number).toString());
+        $('#image'+(number).toString()).html(img);
+        number = number + 1;
+      }
+
+      reader.readAsDataURL(image);
+      console.log(files);
+    }
+
+  });
+});
+</script>
 
 <script>
   $("#submit_btn").on("click", function(){
+
     let fileCount = $("#register_seller_images").get(0).files.length;
     if(fileCount < 3){
       alert("작품을 세 개 이상 등록해 주세요 !");

@@ -71,10 +71,10 @@
                <div class="dropdown nav-item is-last-h w-nav-link">
                   <%= current_user.nickname %>
                   <div class="dropdown-content">
-                     <%= link_to 'Mypage', profiles_path, class:"nav-item is-last-h w-nav-link" %>
+                     <%= link_to 'My page', profile_path(current_user.id) %>                    
+                     <%= link_to 'Account', profiles_path, class:"nav-item is-last-h w-nav-link" %>
                      <%= link_to 'Logout', destroy_user_session_path, class:"nav-item is-last-h w-nav-link", method: :delete %>
                      <%= link_to 'Message', messages_path %>
-                     <%= link_to 'Profile', profile_path(current_user.id), class: "white" %>
                      <%= link_to 'Orders', order_list_orders_path, class: "white" %>
                      <%= link_to 'Cart', cart_orders_path, class: "white" %>
                   </div>

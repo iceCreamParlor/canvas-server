@@ -181,6 +181,19 @@ button.sns{
   font-weight: 600;
 }
 
+.big-button-link-twitter{
+  font-size: 14px;
+  color: #0021F5;
+  font-weight: 600;
+}
+
+.big-button-link-register-seller{
+  font-size: 2rem;
+  /*color: #0021F5 !important;*/
+  font-weight: 600;
+  float:right;
+}
+
 .profile-portfolio{
   padding-top: 20px !important;
 }

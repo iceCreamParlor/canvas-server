@@ -1,51 +1,64 @@
 <div class="section">
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <!-- Main Contents -->
-        <div class="col-12 col-lg-9 order-lg-2">
-          <%= yield :profile_setting %>
-          
-        </div>
-        <!-- Sidebar -->
-        <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
-          <!-- Sidebar box 1 - Category -->
-          <div class="shop-sidebar-box">
-            <h5 class="font-weight-light margin-bottom-20">Accounts</h5>
-            <ul class="shop-sidebar-category">
-              <% if !@is_sns %>
-                <li>
-                  <%= link_to "비밀번호 변경", edit_user_registration_path(), class: "big-button link twitter" %>
-                </li>
-              <% end %>
-              <% if current_user.user_type != "seller" %>
-                <li>
-                  <%= link_to "작가 등록", register_seller_path, class: "big-button link twitter" %>
-                </li>
-              <% end %>
-            </ul>
+  <div class="container">
+    <!-- Title section -->
+    <div class="bg-white" style="z-index: 1">
+      <div class="section-title" style="margin-bottom: 20px;">
+        <div class="row">
+          <div class="col-md-8">
+            <p class="artwork-text">Title (페이지별로 다르게끔 바꿔줘야함...)</p>
           </div>
-          <!-- Sidebar box 2 - Color -->
-          <div class="shop-sidebar-box">
-            <h5 class="font-weight-light margin-bottom-20">Profile</h5>
-            <ul class="shop-sidebar-color">
+        </div>   
+        <div class="hr hr-thinner bg-blue">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Main Contents -->
+      <div class="col-12 col-lg-9 order-lg-2">
+        <%= yield :profile_setting %>
+      </div>
+      <!-- Sidebar -->
+      <div class="col-12 col-lg-3 order-lg-1 shop-sidebar">
+        <!-- Sidebar box 1 - Category -->
+        <div class="shop-sidebar-box">
+          <h5 class="font-weight-light margin-bottom-20">Account 계정</h5>
+          <ul class="shop-sidebar-category">
+            <% if !@is_sns %>
               <li>
-                <%= link_to '프로필 변경', 
-                  (@is_mobile? edit_profile_path(current_user.id) : profiles_path) %>
+                <%= link_to "마이페이지 설정", profile_path(current_user.id), class: "big-button-link-twitter" %>
               </li>
-            </ul>
-          </div>
-          <!-- Sidebar box 3 - Size -->
-          <div class="shop-sidebar-box">
-            <h5 class="font-weight-light margin-bottom-20">결제</h5>
-            <ul class="shop-sidebar-size">
-              <li><%= link_to '주문내역', order_list_orders_path, class: "white" %></li>
-              <li><%= link_to '장바구니', cart_orders_path, class: "white" %></li>
-              <li><%= link_to '환불내역', cancel_list_orders_path, class: "white" %></li>
-            </ul>
-          </div>
+              <li>
+                <%= link_to "비밀번호 변경", edit_user_registration_path(), class: "big-button-link-twitter" %>
+              </li>
+            <% end %>
+            <% if current_user.user_type != "seller" %>
+              <li>
+                <%= link_to "작가 등록", register_seller_path, class: "big-button-link-twitter" %>
+              </li>
+            <% end %>
+          </ul>
         </div>
-      </div><!-- end row -->
-    </div><!-- end container -->
-  </div>
+        <!-- Sidebar box 2 - Color -->
+        <div class="shop-sidebar-box">
+          <h5 class="font-weight-light margin-bottom-20">Profile</h5>
+          <ul class="shop-sidebar-color">
+            <li>
+              <%= link_to '프로필 변경', 
+                (@is_mobile? edit_profile_path(current_user.id) : profiles_path) %>
+            </li>
+          </ul>
+        </div>
+        <!-- Sidebar box 3 - Size -->
+        <div class="shop-sidebar-box">
+          <h5 class="font-weight-light margin-bottom-20">결제</h5>
+          <ul class="shop-sidebar-size">
+            <li><%= link_to '주문내역', order_list_orders_path, class: "white" %></li>
+            <li><%= link_to '장바구니', cart_orders_path, class: "white" %></li>
+            <li><%= link_to '환불내역', cancel_list_orders_path, class: "white" %></li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
 </div>
